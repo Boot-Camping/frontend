@@ -140,6 +140,9 @@ html {
   font-family: "Pretendard-Regular";
   width: 100%;
   overflow-x: hidden;
+  font-size: 62.5%;
+  /* font-size: 15px;
+  font-size: 1.5rem; */
 }
 
 a:link,
