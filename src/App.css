@@ -138,10 +138,20 @@ table {
 
 html {
   font-family: "Pretendard-Regular";
+  width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  width: 92%;
+  margin: 0 4%;
 }
 
 a:link,
 a:visited {
   text-decoration: none;
   color: #000;
+}
+
+@media screen and (min-width: 1024px) {
 }
