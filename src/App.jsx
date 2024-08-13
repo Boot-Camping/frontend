@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DetailPage from "./pages/DetailPage";
 import BookPage from "./pages/BookPage";
+import BookingPayment from "./pages/BookingPayment";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <main>
         <DetailPage />
         <BookPage />
+        <BookingPayment />
       </main>
       <Footer />
     </>

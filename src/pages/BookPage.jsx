@@ -1,4 +1,5 @@
 import React from "react";
+import DateSelector from "../components/DateSelector";
 import "../css/BookPage.css";
 
 const BookPage = () => {
@@ -19,6 +20,12 @@ const BookPage = () => {
             </div>
           </div>
         </div>
+        <img
+          className="book-calendar"
+          src="../assets/bookCalendar.png"
+          alt=""
+        />
+        {/* <DateSelector /> */}
       </div>
     </>
   );

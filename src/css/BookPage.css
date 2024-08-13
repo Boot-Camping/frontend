@@ -1,3 +1,4 @@
+/* BookPage.jsx */
 .title {
   font-size: 2rem;
   font-weight: bold;
@@ -28,3 +29,9 @@
 .book-num {
   font-size: 1.4rem;
 }
+
+.book-calendar {
+  width: 40rem;
+}
+
+/* DateSelector.jsx */
