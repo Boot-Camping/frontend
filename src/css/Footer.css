@@ -18,6 +18,7 @@
 .questions,
 .company-info {
   margin: 5px 0;
+  border-top: 1px solid black;
 }
 
 .call-center {

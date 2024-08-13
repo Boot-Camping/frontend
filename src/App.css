@@ -128,6 +128,16 @@ table {
   border-spacing: 0;
 }
 
+:root {
+  --heading: 2rem;
+  --sub-heading: 1.5rem;
+  --content: 1.4rem;
+  --sub-content: 1.2rem;
+}
+div {
+  font-size: var(--heading);
+}
+
 @font-face {
   font-family: "Pretendard-Regular";
   src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
