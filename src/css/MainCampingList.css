@@ -6,6 +6,31 @@
 
 .camping-list-title {
   font-size: 2rem;
+  font-weight: bold;
   margin-top: 2rem;
   margin-bottom: 1rem;
+}
+
+.camping-img {
+  width: 18rem;
+  height: 16rem;
+  margin-bottom: 0.5rem;
+}
+
+.camping-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.camping-type {
+  font-size: 1.4rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.camping-info {
+  font-size: 1rem;
+  color: gray;
+  margin-bottom: 0.5rem;
 }
