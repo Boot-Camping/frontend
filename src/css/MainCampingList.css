@@ -1,4 +1,4 @@
-.camping-title-waper {
+.camping-title-wraper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,7 +11,7 @@
   margin-bottom: 1rem;
 }
 
-.camping-list-waper {
+.camping-list-wraper {
   display: flex;
   justify-content: center;
 }
@@ -24,6 +24,7 @@
 .camping-img {
   width: 18rem;
   height: 16rem;
+  border-radius: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -41,7 +42,7 @@
   margin-bottom: 0.5rem;
 }
 
-.camping-sub-title-waper {
+.camping-sub-title-box {
   display: flex;
   margin-bottom: 0.5rem;
 }
@@ -56,7 +57,7 @@
   padding-left: 7.5rem;
 }
 
-.camping-info-waper {
+.camping-info-wraper {
   display: flex;
 }
 

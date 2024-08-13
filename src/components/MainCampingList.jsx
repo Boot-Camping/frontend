@@ -4,7 +4,7 @@ import "../css/MainCampingList.css";
 const MainCampingList = () => {
   return (
     <>
-      <div className="camping-title-waper">
+      <div className="camping-title-wraper">
         <div className="camping-title">캠핑장 리스트</div>
         <select>
           <option value="reservation">예약 많은 순</option>
@@ -13,7 +13,7 @@ const MainCampingList = () => {
           <option value="heart">찜 많은 순</option>
         </select>
       </div>
-      <div className="camping-list-waper">
+      <div className="camping-list-wraper">
         <div className="camping-list">
           <img
             className="camping-img"
@@ -22,11 +22,11 @@ const MainCampingList = () => {
           />
           <img className="camping-img-heart" src="/assets/heart.svg" alt="" />
           <div className="camping-name">캠프 그라운드 화온</div>
-          <div className="camping-sub-title-waper">
+          <div className="camping-sub-title-box">
             <div className="camping-type">오토캠핑</div>
             <div className="camping-price">40,000~</div>
           </div>
-          <div className="camping-info-waper">
+          <div className="camping-info-wraper">
             <img className="camping-info-star" src="/assets/star.svg" alt="" />
             <div className="camping-info">5.0</div>
             <div className="camping-info">・리뷰(123)</div>
@@ -41,11 +41,11 @@ const MainCampingList = () => {
           />
           <img className="camping-img-heart" src="/assets/heart.svg" alt="" />
           <div className="camping-name">캠프 그라운드 화온</div>
-          <div className="camping-sub-title-waper">
+          <div className="camping-sub-title-box">
             <div className="camping-type">오토캠핑</div>
             <div className="camping-price">40,000~</div>
           </div>
-          <div className="camping-info-waper">
+          <div className="camping-info-wraper">
             <img className="camping-info-star" src="/assets/star.svg" alt="" />
             <div className="camping-info">5.0</div>
             <div className="camping-info">・리뷰(123)</div>

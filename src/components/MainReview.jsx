@@ -6,7 +6,7 @@ const MainReview = () => {
     <>
       <div className="review-title">실시간 리뷰</div>
       <div>
-        <div className="review-box">
+        <div className="review-wraper">
           <img
             className="review-img"
             src="https://campingagains3.s3.ap-northeast-2.amazonaws.com/small_IMG_0197_dac74dac65.jpeg"
@@ -22,7 +22,7 @@ const MainReview = () => {
             <div className="review-place">미산 분교 캠핑장</div>
           </div>
         </div>
-        <div className="review-box">
+        <div className="review-wraper">
           <img
             className="review-img"
             src="https://campingagains3.s3.ap-northeast-2.amazonaws.com/small_IMG_0197_dac74dac65.jpeg"
@@ -38,7 +38,7 @@ const MainReview = () => {
             <div className="review-place">미산 분교 캠핑장</div>
           </div>
         </div>
-        <div className="review-box">
+        <div className="review-wraper">
           <img
             className="review-img"
             src="https://campingagains3.s3.ap-northeast-2.amazonaws.com/small_IMG_0197_dac74dac65.jpeg"
