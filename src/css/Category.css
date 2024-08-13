@@ -1,0 +1,12 @@
+.category-title-waper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}

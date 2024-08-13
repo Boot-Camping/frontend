@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/MainPage.css";
 import MainSlider from "../components/MainSlider";
 import MainCategory from "../components/MainCategory";
 import MainReview from "../components/MainReview";

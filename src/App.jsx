@@ -1,11 +1,13 @@
 import "./App.css";
-import MainPage from "./pages/MainPage";
+import CategoryPage from "./pages/CategoryPage";
+// import MainPage from "./pages/MainPage";
 
 function App() {
   return (
     <>
       <main>
-        <MainPage />
+        {/* <MainPage /> */}
+        <CategoryPage />
       </main>
     </>
   );
