@@ -1,13 +1,22 @@
-.header-img {
+.header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: 20px;
+  padding: 20px;
+  background-color: white;
 }
 
-.camping-png {
-  width: 20px;
+.logo {
+  width: 30px;
+  height: 30px;
 }
 
-.header-svg {
+.header-icons {
   display: flex;
-  width: 20px;
+  gap: 20px;
+}
+
+.header-icons > img {
+  width: 30px;
+  height: 30px;
 }

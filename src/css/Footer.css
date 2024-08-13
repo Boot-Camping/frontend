@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  border-top: 1px solid black;
+}
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.policy,
+.call-center,
+.questions,
+.company-info {
+  margin: 5px 0;
+}
+
+.call-center {
+  display: flex;
+}
