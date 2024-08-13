@@ -1,0 +1,22 @@
+.slider-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.slider-img {
+  width: 40rem;
+  height: 18rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+.catgory-img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 1rem;
+}
+.catgory {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
