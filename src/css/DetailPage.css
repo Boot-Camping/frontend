@@ -1,4 +1,86 @@
-.detail-img {
+.rating {
+  display: flex;
+}
+
+.rating div {
+  font-size: 14px;
+}
+
+.main-info {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.tag {
+  color: green;
+  padding: 5px 10px;
+  border: 1px solid green;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.info {
+  margin-bottom: 15px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.info-item img {
+  margin-right: 10px;
+  width: 14px;
+  color: #28a745;
+}
+
+.description {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.more-info {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: #28a745;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.more-info img {
+  margin-right: 10px;
+  width: 14px;
+}
+
+.mockMap {
   width: 400px;
   height: 100%;
 }

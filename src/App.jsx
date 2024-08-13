@@ -10,7 +10,7 @@ function App() {
       <main>
         <DetailPage />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

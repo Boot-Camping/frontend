@@ -1,10 +1,10 @@
 .footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-  background-color: white;
-  border-top: 1px solid black;
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  color: black;
+  text-align: center;
+  padding: 0 20px;
 }
 
 .footer-section {
@@ -13,14 +13,34 @@
   margin-bottom: 10px;
 }
 
-.policy,
-.call-center,
-.questions,
-.company-info {
-  margin: 5px 0;
-  border-top: 1px solid black;
+.footer-policy {
+  display: flex;
+  justify-content: space-between;
 }
 
-.call-center {
+.policy {
+  font-size: 14px;
+}
+
+.footer-contact {
   display: flex;
+}
+
+.contact-title {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.time {
+  font-size: 14px;
+}
+
+.questions {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.company-info {
+  font-size: 14px;
+  font-weight: bold;
 }
