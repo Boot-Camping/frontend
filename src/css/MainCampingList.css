@@ -1,0 +1,11 @@
+.camping-list-waper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.camping-list-title {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
