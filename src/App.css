@@ -128,6 +128,16 @@ table {
   border-spacing: 0;
 }
 
+:root {
+  --heading: 2rem;
+  --sub-heading: 1.5rem;
+  --content: 1.4rem;
+  --sub-content: 1.2rem;
+}
+div {
+  font-size: var(--heading);
+}
+
 @font-face {
   font-family: "Pretendard-Regular";
   src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
@@ -154,14 +164,12 @@ a:visited {
 main {
   width: 92%;
   margin: 0 4%;
-  border: solid 1px;
 }
 
 @media screen and (min-width: 800px) {
   main {
     width: 84%;
     margin: 0 8%;
-    border: solid 1px;
   }
 }
 
@@ -169,6 +177,5 @@ main {
   main {
     width: 76%;
     margin: 0 12%;
-    border: solid 1px;
   }
 }
