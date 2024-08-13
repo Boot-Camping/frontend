@@ -154,14 +154,12 @@ a:visited {
 main {
   width: 92%;
   margin: 0 4%;
-  border: solid 1px;
 }
 
 @media screen and (min-width: 800px) {
   main {
     width: 84%;
     margin: 0 8%;
-    border: solid 1px;
   }
 }
 
@@ -169,6 +167,5 @@ main {
   main {
     width: 76%;
     margin: 0 12%;
-    border: solid 1px;
   }
 }

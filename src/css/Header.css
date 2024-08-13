@@ -1,0 +1,13 @@
+.header-img {
+  display: flex;
+  justify-content: space-around;
+}
+
+.camping-png {
+  width: 20px;
+}
+
+.header-svg {
+  display: flex;
+  width: 20px;
+}
