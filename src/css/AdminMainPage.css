@@ -43,13 +43,14 @@
   font-weight: bolder;
   display: flex;
   justify-content: center;
-  margin-top: 6rem;
+  margin-top: 4rem;
 }
 
 .staticsCategory {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .staticsCategorySite {
@@ -157,5 +158,69 @@
   border: 1px solid #03a678;
   background-color: #03a678;
   color: white;
+  cursor: pointer;
+}
+
+.imageContainer {
+  width: 42rem;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+}
+
+.notiTitle {
+  font-size: 2rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.notiRegisterBtn {
+  width: 17rem;
+  height: 5rem;
+  margin: 3rem 1rem 0 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: #03a678;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+.notiCorrectBtn {
+  width: 17rem;
+  height: 5rem;
+  margin: 3rem 0 0 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #038153;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.reserveTitle {
+  font-size: 2rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.reserveSeeBtn {
+  width: 13rem;
+  height: 4rem;
+  margin: 2rem 0 0 0;
+  border-radius: 1rem;
+  border: none;
+  background-color: #038153;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
   cursor: pointer;
 }
