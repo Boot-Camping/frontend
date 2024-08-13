@@ -1,0 +1,30 @@
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 1rem;
+}
+
+.book-info {
+  display: flex;
+  align-items: center;
+}
+
+.book-img {
+  width: 20rem;
+  height: 10rem;
+  border-radius: 1rem;
+}
+
+.book-contents {
+  padding-left: 1rem;
+}
+
+.book-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.book-num {
+  font-size: 1.4rem;
+}

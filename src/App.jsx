@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DetailPage from "./pages/DetailPage";
+import BookPage from "./pages/BookPage";
 
 function App() {
   return (
@@ -9,8 +10,9 @@ function App() {
       <Header />
       <main>
         <DetailPage />
+        <BookPage />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

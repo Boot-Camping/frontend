@@ -1,10 +1,9 @@
 .footer {
-  position: fixed;
   bottom: 0;
   width: 90%;
   color: black;
-  text-align: center;
-  padding: 0 20px;
+  padding: 2rem 2rem;
+  margin-bottom: 1rem;
 }
 
 .footer-section {
@@ -13,34 +12,37 @@
   margin-bottom: 10px;
 }
 
-.footer-policy {
+.policies {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
 .policy {
   font-size: 14px;
 }
 
-.footer-contact {
+.contact {
   display: flex;
+  padding-bottom: 1rem;
 }
 
 .contact-title {
-  font-size: 14px;
-  font-weight: 900;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
-.time {
-  font-size: 14px;
+.contact-time {
+  font-size: 1.4rem;
+  padding-left: 2rem;
 }
 
 .questions {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
 .company-info {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: bold;
 }

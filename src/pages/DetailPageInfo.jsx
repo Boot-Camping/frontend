@@ -6,7 +6,14 @@ const DetailPageInfo = () => {
     <div>
       <div className="detail-content">
         <div class="rating">
-          <div>⭐️ 5.0 👀 123</div>
+          <div className="stars">
+            <img src="./assets/star.svg" alt="" />
+            5.0
+          </div>
+          <div className="views">
+            <img src="./assets/view.svg" alt="" />
+            123
+          </div>
         </div>
 
         <div className="main">
@@ -23,6 +30,7 @@ const DetailPageInfo = () => {
         </div>
 
         <div className="detail-info">
+          <div className="detail-title">기본정보</div>
           <div className="detail-item">
             <img src="./assets/location.svg" />
             충남 아산시 영인면 고룡산로 512-37
