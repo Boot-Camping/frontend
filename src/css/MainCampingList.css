@@ -19,10 +19,10 @@
 }
 
 .camping-list {
-  position: relative; /* 기준점 */
+  position: relative;
   display: block;
-  /* padding-right: 2rem; */
 }
+
 .camping-img {
   width: 18rem;
   height: 16rem;
