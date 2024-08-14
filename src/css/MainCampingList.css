@@ -12,8 +12,10 @@
 }
 
 .camping-list-wraper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18rem 18rem;
   justify-content: space-around;
+  align-items: center;
 }
 
 .camping-list {
