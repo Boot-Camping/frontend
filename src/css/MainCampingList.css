@@ -1,0 +1,74 @@
+.camping-title-wraper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.camping-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.camping-list-wraper {
+  display: flex;
+  justify-content: center;
+}
+
+.camping-list {
+  position: relative; /* 기준점 */
+  display: block;
+  padding-right: 2rem;
+}
+.camping-img {
+  width: 18rem;
+  height: 16rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.camping-img-heart {
+  position: absolute;
+  top: 0.5rem;
+  right: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.camping-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.camping-sub-title-box {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.camping-type {
+  font-size: 1.4rem;
+  color: gray;
+}
+
+.camping-price {
+  font-size: 1.4rem;
+  padding-left: 7.5rem;
+}
+
+.camping-info-wraper {
+  display: flex;
+}
+
+.camping-info-star {
+  width: 1rem;
+  height: 1rem;
+  /* color: yellow; 적용이 안됨 */
+}
+
+.camping-info {
+  font-size: 1rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
