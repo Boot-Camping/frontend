@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useAddress from "../../hooks/useAddress";
 
-const PostCodeApi = () => {
-  const { postcode, setPostcode, address, setAddress } = useAddress();
+const PostCodeApi = ({setPostcode}) => {
+  const { postcode } = useAddress();
 
+  const [address, setAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
   const [extraAddress, setExtraAddress] = useState("");
-  const [isScriptLoaded, setIsScriptLoaded] = useState("");
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -57,6 +58,9 @@ const PostCodeApi = () => {
           } else {
             setExtraAddress("");
           }
+
+					console.log("우편번호:", data.zonecode);
+					console.log("주소:", addr);
 
           setPostcode(data.zonecode);
           setAddress(addr);
