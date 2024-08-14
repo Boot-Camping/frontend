@@ -3,6 +3,7 @@ import MainSlider from "../components/MainSlider";
 import MainCategory from "../components/MainCategory";
 import MainReview from "../components/MainReview";
 import MainCampingList from "../components/MainCampingList";
+import Footer from "../components/Footer";
 
 const MainPage = () => {
   return (
@@ -11,6 +12,7 @@ const MainPage = () => {
       <MainCategory />
       <MainReview />
       <MainCampingList />
+      <Footer />
     </>
   );
 };

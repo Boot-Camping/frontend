@@ -34,4 +34,15 @@
   width: 40rem;
 }
 
-/* DateSelector.jsx */
+/* 캠핑기간 선택하기 */
+.book-date {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.book-date h3 {
+  font-weight: bold;
+  font-size: var(--sub-heading);
+}

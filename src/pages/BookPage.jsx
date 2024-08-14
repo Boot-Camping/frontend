@@ -1,5 +1,6 @@
 import React from "react";
-import DateSelector from "../components/DateSelector";
+import BookingPayment from "./BookingPayment";
+import DateRangePicker from "../components/DateRangePicker";
 import "../css/BookPage.css";
 
 const BookPage = () => {
@@ -20,13 +21,13 @@ const BookPage = () => {
             </div>
           </div>
         </div>
-        <img
-          className="book-calendar"
-          src="../assets/bookCalendar.png"
-          alt=""
-        />
-        {/* <DateSelector /> */}
+
+        <div className="book-date">
+          <h3>캠핑기간 선택하기</h3>
+          <DateRangePicker />
+        </div>
       </div>
+      <BookingPayment />
     </>
   );
 };
