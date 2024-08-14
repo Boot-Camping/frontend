@@ -1,11 +1,11 @@
 h2 {
-  font-size: 2rem;
+  font-size: var(--heading);
   font-weight: bold;
   padding-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   padding-bottom: 1rem;
 }
@@ -15,7 +15,7 @@ h3 {
 }
 
 .payment-info p {
-  font-size: 1.4rem;
+  font-size: var(--content);
 }
 
 .input-name,
@@ -37,21 +37,62 @@ h3 {
   border-top: 0.1rem solid black;
 }
 
-.payment-detail {
-  display: flex;
+/* 결제금액 세부항목 */
+.payment {
   padding-top: 1rem;
   border-top: 0.1rem solid black;
+  border-bottom: 0.1rem solid black;
+}
+
+.payment h3 {
+  font-size: var(--sub-heading);
+}
+.payment-detail {
+  display: flex;
+  padding: 1rem 0;
   justify-content: space-between;
 }
 
 .payment-detail div {
-  font-size: 1.5rem;
+  font-size: var(--content);
+  padding-bottom: 0.5rem;
 }
 
-.total {
+.oneday,
+.oneday-amount {
+  color: var(--light-gray);
+}
+
+.total,
+.total-amount {
+  font-weight: bold;
+  padding-top: 1rem;
+}
+
+/* 결제 약관동의 */
+.payment-policy {
+  padding-top: 1rem;
+}
+
+.payment-policy h2 {
+  font-size: var(--sub-heading);
   font-weight: bold;
 }
 
-.total-amount {
+.payment-policy img {
+  width: 1.5rem;
+}
+
+.policy-1,
+.policy-2,
+.policy-3,
+.policy-4 {
+  display: flex;
+  padding-left: 0.5rem;
+  align-items: center;
+  font-size: var(--sub-content);
+}
+
+.policy-1 {
   font-weight: bold;
 }

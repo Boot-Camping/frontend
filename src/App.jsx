@@ -41,7 +41,7 @@ function App() {
           <Route path="/admin/camping" element={<AdminCampingRegister />} />
         </Routes>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
