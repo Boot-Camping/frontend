@@ -1,5 +1,10 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import DetailPage from "./pages/DetailPage";
+import BookPage from "./pages/BookPage";
+import BookingPayment from "./pages/BookingPayment";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MyPage from "./pages/MyPage";
@@ -12,6 +17,7 @@ import NoticePage from "./pages/NoticePage";
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <main>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
@@ -22,8 +28,12 @@ function App() {
           <Route path="/save" element={<SavePage />} />
           <Route path="/cash" element={<CashPage />} />
           <Route path="/notice" element={<NoticePage />} />
+          <Route path="/detail" element={<DetailPage />} />
+          <Route path="/book" element={<BookPage />} />
+          <Route path="/book" element={<BookingPayment />} />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }

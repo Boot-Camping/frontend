@@ -1,0 +1,201 @@
+/* DetailPageInfo */
+.detail-content {
+  padding-top: 3rem;
+}
+
+/* 평점 */
+.rating {
+  display: flex;
+  padding-bottom: 1rem;
+}
+
+.rating div {
+  font-size: 1.4rem;
+}
+
+.stars {
+  display: flex;
+}
+
+.stars img {
+  width: 1.5rem;
+  padding-right: 0.2rem;
+}
+
+.views {
+  display: flex;
+  padding-left: 1rem;
+}
+
+.views img {
+  width: 1.5rem;
+  padding-right: 0.2rem;
+}
+
+/* 업체 기본정보 */
+.main {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px black;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+}
+
+.tag {
+  color: green;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid #03a678;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 업체 상세정보 */
+.detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.detail-info {
+  margin-bottom: 15px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.detail-item img {
+  margin-right: 10px;
+  width: 14px;
+  color: #28a745;
+}
+
+.description {
+  font-size: 14px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.more-info {
+  display: flex;
+  justify-content: center;
+  color: #038153;
+  cursor: pointer;
+  padding-bottom: 1rem;
+}
+
+.more-info div {
+  font-size: 14px;
+}
+
+.more-info img {
+  margin-right: 10px;
+  width: 1.4rem;
+}
+
+/* 지도 */
+.map {
+  border-top: 0.1rem solid black;
+  padding-top: 1rem;
+}
+
+.map div {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.map img {
+  width: 40rem;
+  height: 100%;
+  padding-bottom: 1rem;
+}
+
+/* ReviewPage */
+.review {
+  padding-top: 2rem;
+  border-top: 0.1rem solid black;
+}
+
+.review-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.review-info {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.review-info img {
+  width: 15rem;
+  border-radius: 1rem;
+}
+
+.writer {
+  align-content: center;
+  padding-right: 15rem;
+}
+
+.id {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.date {
+  font-size: 1.4rem;
+  color: grey;
+}
+
+.content {
+  font-size: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+/* 예약하기 버튼 */
+.book-button {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.book-emoji {
+  width: 3cap;
+  background-color: white;
+  height: 3rem;
+}
+
+.book-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #037d5b;
+  height: 3rem;
+  width: 100%;
+}
