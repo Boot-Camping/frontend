@@ -3,7 +3,7 @@
   font-weight: bolder;
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .hashTag {
@@ -17,8 +17,8 @@
 .regi-category {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .regi-category-san {
@@ -142,9 +142,27 @@
   margin-top: 3rem;
 }
 
+.camp-standard-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.camp-max-user-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.camp-plus-price-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
 .input-camp-price {
   margin-top: 1rem;
-  width: 10rem;
+  width: 8rem;
   height: 2rem;
   border: solid 1px #666666;
   border-radius: 0.5rem;
@@ -159,6 +177,36 @@
 .camp-info {
   display: flex;
   justify-content: space-between;
+}
+
+.camp-user-title {
+  display: flex;
+  justify-content: space-around;
+}
+
+.camping-explanaion {
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.input-camp-exp {
+  margin-top: 1rem;
+  width: 38.5rem;
+  height: 20rem;
+  border: solid 1px #666666;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  justify-content: start;
+  align-content: flex-start;
+  text-align: start;
+  margin-bottom: 3rem;
+}
+
+.camping-info {
+  display: flex;
+  justify-content: space-around;
 }
 
 .won {
@@ -177,6 +225,22 @@
   font-size: 1.4rem;
   font-weight: bold;
   margin-top: 3rem;
+}
+
+.input-camp-user {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 2rem;
+  border: solid 1px #666666;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.camping-user {
+  padding-top: 1.5rem;
+  margin-left: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .camp-img-input {
@@ -235,4 +299,21 @@
   cursor: pointer;
   font-size: 1.5rem;
   color: #fff;
+}
+
+.camp-center-container {
+  display: flex;
+  justify-content: center;
+}
+
+.camp-perpect-regi {
+  color: white;
+  background-color: var(--dark-green);
+  font-size: 1.4rem;
+  font-weight: normal;
+  border: none;
+  width: 15rem;
+  height: 4rem;
+  margin: 1rem 0 3rem 0;
+  cursor: pointer;
 }
