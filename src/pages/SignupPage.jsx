@@ -12,7 +12,11 @@ const SignupPage = () => {
       <div className="signup-title">회원가입</div>
       <SignupForm setError={setError} setIsOpened={setIsOpened} />
 
-      <SignupModal error={error} isOpened={isOpened} />
+      <SignupModal
+        error={error}
+        isOpened={isOpened}
+        setIsOpened={setIsOpened}
+      />
     </section>
   );
 };
