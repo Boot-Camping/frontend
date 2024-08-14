@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { SIGN_UP_TERMS } from "../../constants/SignUp";
 
-const SignupTerms = () => {
-  const [checkedAll, setCheckedAll] = useState(false);
-  const [checkedTerms, setCheckedTerms] = useState({});
-
+const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
   const checkAllHandle = (event) => {
     const isChecked = event.target.checked;
-    setCheckedAll(isChecked);
     setCheckedTerms(new Array(SIGN_UP_TERMS.length).fill(isChecked));
   };
 
@@ -15,7 +11,6 @@ const SignupTerms = () => {
     const newChckedTerms = [...checkedTerms];
     newChckedTerms[index] = event.target.checked;
     setCheckedTerms(newChckedTerms);
-    setCheckedAll(newChckedTerms.every(Boolean));
   };
 
   return (
@@ -26,7 +21,6 @@ const SignupTerms = () => {
           className="chk-box"
           type="checkbox"
           id="chk-all"
-          checked={checkedAll}
           onChange={checkAllHandle}
         />
         <label className="chk-content" htmlFor="chk-all">
@@ -44,6 +38,11 @@ const SignupTerms = () => {
             id={terms.key}
             checked={checkedTerms[index]}
             onChange={isCheckedHandle(index)}
+            ref={(el) => {
+              if (el) {
+                setErrorFocus(el);
+              }
+            }}
           />
           <label className="chk-content" htmlFor={terms.key}>
             {terms.content}
