@@ -1,17 +1,11 @@
 .footer {
-  bottom: 0;
-  width: 90%;
   color: black;
   padding: 2rem 2rem;
-  margin-bottom: 1rem;
+  border-top: 1px solid green;
+  margin-top: 1rem;
 }
 
-.footer-section {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
+.footer-section,
 .policies {
   display: flex;
   justify-content: space-between;
@@ -19,7 +13,7 @@
 }
 
 .policy {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 .contact {
@@ -27,7 +21,9 @@
   padding-bottom: 1rem;
 }
 
-.contact-title {
+.contact-title,
+.questions,
+.company-info {
   font-size: 1.4rem;
   font-weight: bold;
 }
@@ -35,14 +31,4 @@
 .contact-time {
   font-size: 1.4rem;
   padding-left: 2rem;
-}
-
-.questions {
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-
-.company-info {
-  font-size: 1.4rem;
-  font-weight: bold;
 }
