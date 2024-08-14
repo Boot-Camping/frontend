@@ -1,0 +1,57 @@
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.payment-info div {
+  padding-bottom: 1rem;
+}
+
+.payment-info p {
+  font-size: 1.4rem;
+}
+
+.input-name,
+.input-number {
+  width: 100%;
+  height: 2rem;
+}
+
+.input-require {
+  width: 100%;
+  height: 6rem;
+}
+
+.coupon-pick {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 1rem;
+  border-top: 0.1rem solid black;
+}
+
+.payment-detail {
+  display: flex;
+  padding-top: 1rem;
+  border-top: 0.1rem solid black;
+  justify-content: space-between;
+}
+
+.payment-detail div {
+  font-size: 1.5rem;
+}
+
+.total {
+  font-weight: bold;
+}
+
+.total-amount {
+  font-weight: bold;
+}
