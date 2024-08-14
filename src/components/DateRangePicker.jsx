@@ -1,18 +1,27 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { Calendar } from "react-date-range";
-import format from "date-fns/format";
+import { DateRange } from "react-date-range";
 
+import format from "date-fns/format";
+import { addDays } from "date-fns";
+
+import "../css/DateRangePicker.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-const DateSelector = () => {
-  const [calendar, setCalendar] = useState("");
+const DateRangePicker = () => {
+  const [range, setRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: "selection",
+    },
+  ]);
+
   const [open, setOpen] = useState(false);
   const refOne = useRef(null);
 
   useEffect(() => {
-    setCalendar(format(new Date(), "yyyy/MM/dd"));
     document.addEventListener("keydown", hideOnEscape, true);
     document.addEventListener("click", hideOnClickOutside, true);
   }, []);
@@ -23,20 +32,19 @@ const DateSelector = () => {
     }
   };
 
-  const hideOnClickOutside = () => {
+  const hideOnClickOutside = (e) => {
     if (refOne.current && !refOne.current.contains(e.target)) {
       setOpen(false);
     }
   };
 
-  const selectHandle = (date) => {
-    setCalendar(format(date, "yyyy/MM/dd"));
-  };
-
   return (
     <div className="calendar-wrap">
       <input
-        value={calendar}
+        value={`${format(range[0].startDate, "yyyy/MM/dd")} 부터 ${format(
+          range[0].endDate,
+          "yyyy/MM/dddd"
+        )}까지`}
         readOnly
         className="inputbox"
         onClick={() => setOpen((open) => !open)}
@@ -44,9 +52,13 @@ const DateSelector = () => {
 
       <div ref={refOne}>
         {open && (
-          <Calendar
-            date={new Date()}
-            onChange={selectHandle}
+          <DateRange
+            onChange={(item) => setRange([item.selection])}
+            editableDateInputs={true}
+            moveRangeOnFirstSelection={false}
+            ranges={range}
+            months={1}
+            direction="horizontal"
             className="calendar-element"
           />
         )}
@@ -55,4 +67,4 @@ const DateSelector = () => {
   );
 };
 
-export default DateSelector;
+export default DateRangePicker;

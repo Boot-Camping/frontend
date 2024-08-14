@@ -1,0 +1,124 @@
+.regi-title {
+  font-size: 2rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.hashTag {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #bdbdbd;
+  display: flex;
+  justify-content: center;
+}
+
+.regi-category {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.regi-category-san {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-sea {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-gog {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-dog {
+  width: 9rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-NoKids {
+  width: 4.8rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category button.selected {
+  background-color: #03a678;
+  color: white;
+}
+
+.camp-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+.input-camp-name {
+  margin-top: 1rem;
+  width: 20rem;
+  height: 2rem;
+  border: solid 1px #666666;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.camp-img-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 3rem;
+}

@@ -4,6 +4,7 @@ import ImageSlider from "../components/ImageSlider";
 import DetailPageInfo from "./DetailPageInfo";
 import ReviewPage from "../components/ReviewPage";
 import BookButton from "../components/BookButton";
+import { Link } from "react-router-dom";
 import "../css/DetailPage.css";
 
 const DetailPage = () => {
@@ -13,7 +14,9 @@ const DetailPage = () => {
         <ImageSlider />
         <DetailPageInfo />
         <ReviewPage />
-        <BookButton />
+        <Link to="/book">
+          <BookButton />
+        </Link>
       </div>
     </>
   );
