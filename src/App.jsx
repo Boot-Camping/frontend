@@ -1,14 +1,20 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import DetailPage from "./pages/DetailPage";
+import BookPage from "./pages/BookPage";
+import BookingPayment from "./pages/BookingPayment";
 
 function App() {
   return (
     <>
+      <Header />
       <main>
-        <div>Hello World</div>
+        <DetailPage />
+        <BookPage />
+        <BookingPayment />
       </main>
+      <Footer />
     </>
   );
 }
