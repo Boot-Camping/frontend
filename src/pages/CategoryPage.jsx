@@ -1,26 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../css/CategoryPage.css";
-import { campingPlace } from "../constants/MockCampingPlace";
+import { campingPlace } from "../constants/campingPlace";
+import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 
 const CategoryPage = () => {
-  const [selectedFilter, setSelectedFilter] = useState("reservation");
-  const [campingPlaceFiltered, setCampingPlaceFiltered] =
-    useState(campingPlace);
-
-  useEffect(() => {
-    let campingPlaceSorted = [...campingPlace];
-    if (selectedFilter === "reservation") {
-      campingPlaceSorted.sort((a, b) => b.reservations - a.reservations);
-    } else if (selectedFilter === "review") {
-      campingPlaceSorted.sort((a, b) => b.reviews - a.reviews);
-    } else if (selectedFilter === "star") {
-      campingPlaceSorted.sort((a, b) => b.rating - a.rating);
-    } else if (selectedFilter === "hart") {
-      campingPlaceSorted.sort((a, b) => b.heart - a.heart);
-    }
-    setCampingPlaceFiltered(campingPlaceSorted);
-  }, [selectedFilter]);
-
+  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
+    useCampingPlaceFilter(campingPlace);
   return (
     <>
       <div className="category-title-wraper">
