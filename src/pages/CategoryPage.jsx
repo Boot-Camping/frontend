@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../css/CategoryPage.css";
-import { campingPlace } from "../constants/campingPlace";
+import { campingPlaceData } from "../constants/campingPlaceData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 
 const CategoryPage = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlace);
+    useCampingPlaceFilter(campingPlaceData);
   return (
     <>
       <div className="category-title-wraper">
