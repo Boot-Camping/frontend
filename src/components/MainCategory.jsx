@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/MainCategory.css";
+import { Link } from "react-router-dom";
 
 const MainCategory = () => {
   return (
