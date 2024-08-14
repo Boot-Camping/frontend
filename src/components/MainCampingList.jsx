@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/MainCampingList.css";
-import { campingPlace } from "../constants/campingPlace";
+import { campingPlaceData } from "../constants/campingPlaceData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 
 const MainCampingList = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlace);
+    useCampingPlaceFilter(campingPlaceData);
 
   return (
     <>
