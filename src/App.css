@@ -133,9 +133,15 @@ table {
   --sub-heading: 1.5rem;
   --content: 1.4rem;
   --sub-content: 1.2rem;
-}
-div {
-  font-size: var(--heading);
+  --bold: bold;
+  --dark-green: #038153;
+  --light-green: #03a678;
+  --red: #f43c3c;
+  --yellow: #ffc100;
+  --dark-gray: #666666;
+  --light-gray: #999999;
+  --bg-gray: #eaeaea;
+  --bg-gray-50: rgb(234, 234, 234, 0.5);
 }
 
 @font-face {
@@ -151,6 +157,7 @@ html {
   width: 100%;
   overflow-x: hidden;
   font-size: 62.5%;
+  letter-spacing: -0.05rem;
   /* font-size: 15px;
   font-size: 1.5rem; */
 }

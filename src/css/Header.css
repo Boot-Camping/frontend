@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: 20px;
+  padding: 20px;
+  background-color: white;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+}
+
+.header-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.header-icons > img {
+  width: 30px;
+  height: 30px;
+}
