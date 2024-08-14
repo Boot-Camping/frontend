@@ -1,4 +1,4 @@
-.capmingTitle {
+.capming-title {
   font-size: 2rem;
   font-weight: bolder;
   display: flex;
@@ -6,12 +6,12 @@
   margin-top: 6rem;
 }
 
-.topBtn {
+.top-btn {
   display: flex;
   justify-content: center;
 }
 
-.campingRegisterBtn {
+.camping-register-btn {
   width: 17rem;
   height: 5rem;
   margin: 3rem 1rem 0 0;
@@ -24,7 +24,7 @@
   text-align: center;
   cursor: pointer;
 }
-.campingCorrectBtn {
+.camping-correct-btn {
   width: 17rem;
   height: 5rem;
   margin: 3rem 0 0 1rem;
@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 
-.staticsTitle {
+.statics-title {
   font-size: 2rem;
   font-weight: bolder;
   display: flex;
@@ -46,14 +46,14 @@
   margin-top: 4rem;
 }
 
-.staticsCategory {
+.statics-category {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
 
-.staticsCategorySite {
+.statics-category-site {
   width: 9rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -66,7 +66,7 @@
   margin-right: 1rem;
   cursor: pointer;
 }
-.staticsCategorySite:focus {
+.statics-category-site:focus {
   width: 9rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-.staticsCategoryUser {
+.statics-category-user {
   width: 10rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -94,7 +94,7 @@
   cursor: pointer;
 }
 
-.staticsCategoryUser:focus {
+.statics-category-user:focus {
   width: 10rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -108,7 +108,7 @@
   cursor: pointer;
 }
 
-.staticsCategoryReview {
+.statics-category-review {
   width: 10rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -121,7 +121,7 @@
   color: #03a678;
   cursor: pointer;
 }
-.staticsCategoryReview:focus {
+.statics-category-review:focus {
   width: 10rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -135,7 +135,7 @@
   cursor: pointer;
 }
 
-.staticsCategorySale {
+.statics-category-sale {
   width: 7rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -148,7 +148,7 @@
   cursor: pointer;
 }
 
-.staticsCategorySale:focus {
+.statics-category-sale:focus {
   width: 7rem;
   height: 3.6rem;
   font-size: 1.4rem;
@@ -161,14 +161,14 @@
   cursor: pointer;
 }
 
-.imageContainer {
+.image-container {
   width: 42rem;
   height: 20rem;
   display: flex;
   justify-content: center;
 }
 
-.notiTitle {
+.noti-title {
   font-size: 2rem;
   font-weight: bolder;
   display: flex;
@@ -176,7 +176,7 @@
   margin-top: 6rem;
 }
 
-.notiRegisterBtn {
+.noti-register-btn {
   width: 17rem;
   height: 5rem;
   margin: 3rem 1rem 0 0;
@@ -189,7 +189,7 @@
   text-align: center;
   cursor: pointer;
 }
-.notiCorrectBtn {
+.noti-correct-btn {
   width: 17rem;
   height: 5rem;
   margin: 3rem 0 0 1rem;
@@ -203,7 +203,7 @@
   cursor: pointer;
 }
 
-.reserveTitle {
+.reserve-title {
   font-size: 2rem;
   font-weight: bolder;
   display: flex;
@@ -211,7 +211,7 @@
   margin-top: 6rem;
 }
 
-.reserveSeeBtn {
+.reserve-see-btn {
   width: 13rem;
   height: 4rem;
   margin: 2rem 0 0 0;
