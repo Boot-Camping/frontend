@@ -13,6 +13,8 @@ import PaidPage from "./pages/PaidPage";
 import SavePage from "./pages/SavePage";
 import CashPage from "./pages/CashPage";
 import NoticePage from "./pages/NoticePage";
+import CategoryPage from "./pages/CategoryPage";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Header />
       <main>
         <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/mypage" element={<MyPage />} />
