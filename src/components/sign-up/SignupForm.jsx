@@ -1,18 +1,36 @@
-import React, { useState } from "react";
-import { SIGN_UP } from "../../constants/SignUp";
+import React, { useEffect, useRef, useState } from "react";
+import { SIGN_UP, SIGN_UP_TERMS } from "../../constants/SignUp";
 import PostCodeApi from "../../components/sign-up/PostCodeApi";
 import SignupTerms from "../../components/sign-up/SignupTerms";
 import useAddress from "../../hooks/useAddress";
 
-const SignupForm = ({ setError, setIsOpened }) => {
-  const { postcode, address } = useAddress();
+const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
+  const { postcode, setPostcode } = useAddress();
+  const [checkedTerms, setCheckedTerms] = useState(
+    Array(SIGN_UP_TERMS.length).fill(false)
+  );
+  const checkboxRefs = useRef([]);
 
   const submitHandle = (event) => {
     event.preventDefault();
 
-    if (postcode === "" || address === "") {
+    if (postcode === "") {
       setError(true);
+      setErrorType("post");
       setIsOpened(true);
+      return;
+    }
+
+    if (!checkedTerms.every(Boolean)) {
+      setError(true);
+      setErrorType("terms");
+      setIsOpened(true);
+      checkboxRefs.current.forEach((ref, index) => {
+        if (ref && !checkedTerms[index]) {
+          ref.focus();
+          return;
+        }
+      });
       return;
     }
 
@@ -28,7 +46,7 @@ const SignupForm = ({ setError, setIsOpened }) => {
           <div className="signup-input-wrap" key={signup.key}>
             <label className="signup-input-label">{signup.label}</label>
             {signup.label === "주소" ? (
-              <PostCodeApi />
+              <PostCodeApi postcode={postcode} setPostcode={setPostcode} />
             ) : (
               <input
                 className="signup-input"
@@ -40,7 +58,15 @@ const SignupForm = ({ setError, setIsOpened }) => {
           </div>
         ))}
 
-        <SignupTerms />
+        <SignupTerms
+          checkedTerms={checkedTerms}
+          setCheckedTerms={setCheckedTerms}
+          setErrorFocus={(ref) => {
+            if (ref && !checkboxRefs.current.includes(ref)) {
+              checkboxRefs.current.push(ref);
+            }
+          }}
+        />
 
         <button className="signup-btn">가입하기</button>
       </form>
