@@ -13,6 +13,8 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
     setCheckedTerms(newChckedTerms);
   };
 
+  const allChecked = checkedTerms.every(Boolean);
+
   return (
     <div className="signup-terms">
       <div className="signup-terms-title">가입 약관을 읽고 동의해 주세요</div>
@@ -21,6 +23,7 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
           className="chk-box"
           type="checkbox"
           id="chk-all"
+          checked={allChecked}
           onChange={checkAllHandle}
         />
         <label className="chk-content" htmlFor="chk-all">
