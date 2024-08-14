@@ -3,7 +3,7 @@
   font-weight: bolder;
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .top-btn {
@@ -12,9 +12,10 @@
 }
 
 .camping-register-btn {
-  width: 17rem;
+  width: 20rem;
   height: 5rem;
-  margin: 3rem 1rem 0 0;
+  margin-top: 3rem;
+  margin-right: 0.5rem;
   border-radius: 1rem;
   border: none;
   background-color: #03a678;
@@ -25,9 +26,10 @@
   cursor: pointer;
 }
 .camping-correct-btn {
-  width: 17rem;
+  width: 20rem;
   height: 5rem;
-  margin: 3rem 0 0 1rem;
+  margin-top: 3rem;
+  margin-left: 0.5rem;
   border-radius: 1rem;
   border: none;
   background-color: #038153;
@@ -49,7 +51,7 @@
 .statics-category {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
 }
 
@@ -177,9 +179,10 @@
 }
 
 .noti-register-btn {
-  width: 17rem;
+  width: 20rem;
   height: 5rem;
-  margin: 3rem 1rem 0 0;
+  margin-top: 3rem;
+  margin-right: 0.5rem;
   border-radius: 1rem;
   border: none;
   background-color: #03a678;
@@ -190,9 +193,10 @@
   cursor: pointer;
 }
 .noti-correct-btn {
-  width: 17rem;
+  width: 20rem;
   height: 5rem;
-  margin: 3rem 0 0 1rem;
+  margin-top: 3rem;
+  margin-left: 0.5rem;
   border-radius: 1rem;
   border: none;
   background-color: #038153;
@@ -208,12 +212,12 @@
   font-weight: bolder;
   display: flex;
   justify-content: center;
-  margin-top: 6rem;
+  margin-top: 4rem;
 }
 
 .reserve-see-btn {
-  width: 13rem;
-  height: 4rem;
+  width: 20rem;
+  height: 5rem;
   margin: 2rem 0 0 0;
   border-radius: 1rem;
   border: none;
