@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { signUp, signUpTerms } from "../../constants/signUp";
-import PostCodeApi from "../../components/sign-up/PostCodeApi";
+import DaumPostCode from "./DaumPostCode";
 import SignupTerms from "../../components/sign-up/SignupTerms";
 import useAddress from "../../hooks/useAddress";
 
@@ -46,7 +46,7 @@ const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
           <div className="signup-input-wrap" key={signup.key}>
             <label className="signup-input-label">{signup.label}</label>
             {signup.label === "주소" ? (
-              <PostCodeApi postcode={postcode} setPostcode={setPostcode} />
+              <DaumPostCode postcode={postcode} setPostcode={setPostcode} />
             ) : (
               <input
                 className="signup-input"
