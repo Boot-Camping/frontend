@@ -163,10 +163,8 @@
 
 .won {
   padding-top: 1.5rem;
-  margin-left: 0;
+  margin-left: 1rem;
   font-size: 1.5rem;
-  display: flex;
-  justify-content: end;
 }
 
 .camp-number-title,
@@ -182,7 +180,6 @@
 
 .camp-img-input {
   margin-top: 1rem;
-  margin-right: 2rem;
   border: none;
   border-radius: 1rem;
   width: 10rem;
@@ -203,12 +200,17 @@
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 .img-previews {
   display: flex;
+  margin-left: 2rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
   flex-wrap: nowrap;
   gap: 0.5rem;
+  width: calc(100% - 12rem);
 }
 
 .img-preview {

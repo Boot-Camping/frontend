@@ -148,18 +148,18 @@ const AdminCampingRegister = () => {
             className="input-camp-number"
             required
           />
-          <input
-            id="camp-price"
-            name="camp-price"
-            type="number"
-            autoComplete="camp-price"
-            className="input-camp-price"
-            required
-          />
-          <span className="won">원</span>
+          <div>
+            <input
+              id="camp-price"
+              name="camp-price"
+              type="number"
+              autoComplete="camp-price"
+              className="input-camp-price"
+              required
+            />
+            <span className="won">원</span>
+          </div>
         </div>
-
-        <div></div>
       </div>
     </div>
   );
