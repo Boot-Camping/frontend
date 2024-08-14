@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <main>
-        {/* <AdminMainPage /> */}
-        <AdminCampingRegister />
+        <AdminMainPage />
+        {/* <AdminCampingRegister /> */}
       </main>
     </>
   );
