@@ -42,9 +42,11 @@
   margin-bottom: 0.5rem;
 }
 
-.camping-sub-title-box {
+.camping-sub-title-wraper,
+.camping-info-icons-wraper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
@@ -55,13 +57,6 @@
 
 .camping-price {
   font-size: 1.4rem;
-  padding-left: 7.5rem;
-}
-
-.camping-info-icons-wraper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .camping-info-star-wraper,
@@ -80,5 +75,4 @@
 .camping-info {
   font-size: 1rem;
   color: gray;
-  margin-bottom: 0.5rem;
 }

@@ -24,7 +24,7 @@ const MainCampingList = () => {
             />
             <img className="camping-img-heart" src="/assets/heart.svg" alt="" />
             <div className="camping-name">캠프 그라운드 화온</div>
-            <div className="camping-sub-title-box">
+            <div className="camping-sub-title-wraper">
               <div className="camping-type">오토캠핑</div>
               <div className="camping-price">40,000~</div>
             </div>
@@ -59,7 +59,7 @@ const MainCampingList = () => {
             />
             <img className="camping-img-heart" src="/assets/heart.svg" alt="" />
             <div className="camping-name">캠프 그라운드 화온</div>
-            <div className="camping-sub-title-box">
+            <div className="camping-sub-title-wraper">
               <div className="camping-type">오토캠핑</div>
               <div className="camping-price">40,000~</div>
             </div>
