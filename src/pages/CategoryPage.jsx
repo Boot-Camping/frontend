@@ -54,7 +54,7 @@ const CategoryPage = () => {
             <div className="category-camping-price">{campingPlace.price}</div>
           </div>
           <div className="category-camping-location-wraper">
-            <div className="category-camping-location-box">
+            <div className="category-camping-location-icon-wraper">
               <img
                 className="category-camping-location-icon"
                 src="/assets/location.svg"
