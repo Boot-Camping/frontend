@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SIGN_UP } from "../../constants/SignUp";
 import PostCodeApi from "../../components/sign-up/PostCodeApi";
 import SignupTerms from "../../components/sign-up/SignupTerms";
@@ -9,6 +9,7 @@ const SignupForm = ({ setError, setIsOpened }) => {
 
   const submitHandle = (event) => {
     event.preventDefault();
+    console.log("제출 시 우편번호:", postcode); // 제출 시 우편번호 확인
 
     if (postcode === "") {
       setError(true);
@@ -28,7 +29,7 @@ const SignupForm = ({ setError, setIsOpened }) => {
           <div className="signup-input-wrap" key={signup.key}>
             <label className="signup-input-label">{signup.label}</label>
             {signup.label === "주소" ? (
-              <PostCodeApi setPostcode={setPostcode} />
+              <PostCodeApi postcode={postcode} setPostcode={setPostcode} />
             ) : (
               <input
                 className="signup-input"
