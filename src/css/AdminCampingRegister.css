@@ -117,6 +117,63 @@
   font-size: 1.2rem;
 }
 
+.camp-number-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+.input-camp-number {
+  margin-top: 1rem;
+  width: 20rem;
+  height: 2rem;
+  border: solid 1px #666666;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.camp-price-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+.input-camp-price {
+  margin-top: 1rem;
+  width: 10rem;
+  height: 2rem;
+  border: solid 1px #666666;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camp-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.won {
+  padding-top: 1.5rem;
+  margin-left: 0;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: end;
+}
+
+.camp-number-title,
+.camp-price-title {
+  margin-right: 1rem;
+}
+
 .camp-img-title {
   font-size: 1.4rem;
   font-weight: bold;

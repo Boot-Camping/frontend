@@ -1,8 +1,4 @@
 import React, { useState, useRef } from "react";
-import SignupModal from "../components/sign-up/SignupModal";
-import PostCodeApi from "../components/sign-up/PostCodeApi";
-import SignupForm from "../components/sign-up/SignupForm";
-import useAddress from "../hooks/useAddress";
 import "../css/AdminCampingRegister.css";
 import AdminCampAddress from "./AdminCampAddress";
 
@@ -138,6 +134,33 @@ const AdminCampingRegister = () => {
         </div>
       </div>
       <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+      <div>
+        <div className="camp-info">
+          <div className="camp-number-title">전화번호</div>
+          <div className="camp-price-title">금액 /1박</div>
+        </div>
+        <div className="contact-info">
+          <input
+            id="camp-number"
+            name="camp-number"
+            type="number"
+            autoComplete="camp-number"
+            className="input-camp-number"
+            required
+          />
+          <input
+            id="camp-price"
+            name="camp-price"
+            type="number"
+            autoComplete="camp-price"
+            className="input-camp-price"
+            required
+          />
+          <span className="won">원</span>
+        </div>
+
+        <div></div>
+      </div>
     </div>
   );
 };
