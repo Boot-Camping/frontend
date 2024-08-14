@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { SIGN_UP_ERROR } from "../../constants/SignUp";
 
-const SignupModal = ({ error, isOpened, setIsOpened }) => {
+const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
   const closeHandle = () => {
     setIsOpened(false);
+  };
+
+  const errorMessage = () => {
+    return SIGN_UP_ERROR[errorType] || null;
   };
 
   return (
@@ -17,12 +22,7 @@ const SignupModal = ({ error, isOpened, setIsOpened }) => {
           {createPortal(
             <div className="signup-modal signup-error">
               <div className="signup-modal-content">
-                {error && (
-                  <ul>
-                    <li>우편번호와 주소는</li>
-                    <li>필수 입력 사항입니다.</li>
-                  </ul>
-                )}
+                {error && errorMessage()}
               </div>
               <button
                 type="button"
