@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { SIGN_UP_TERMS } from "../../constants/SignUp";
+import { signUpTerms } from "../../constants/signUp";
 
 const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
   const checkAllHandle = (event) => {
     const isChecked = event.target.checked;
-    setCheckedTerms(new Array(SIGN_UP_TERMS.length).fill(isChecked));
+    setCheckedTerms(new Array(signUpTerms.length).fill(isChecked));
   };
 
   const isCheckedHandle = (index) => (event) => {
@@ -33,7 +33,7 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
           </div>
         </label>
       </div>
-      {SIGN_UP_TERMS.map((terms, index) => (
+      {signUpTerms.map((terms, index) => (
         <div className="chk-wrap" key={terms.key}>
           <input
             className="chk-box"
