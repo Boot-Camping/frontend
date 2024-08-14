@@ -3,14 +3,16 @@ import "../css/MainCategory.css";
 
 const MainCategory = () => {
   return (
-    <div>
+    <>
       <ul className="catgory">
         <li>
-          <img
-            className="catgory-img"
-            src="https://cdn-icons-png.flaticon.com/512/5110/5110754.png"
-            alt=""
-          />
+          <Link to={"/categorypage"}>
+            <img
+              className="catgory-img"
+              src="https://cdn-icons-png.flaticon.com/512/5110/5110754.png"
+              alt=""
+            />
+          </Link>
           <div className="catgory-title">전체</div>
         </li>
         <li>
@@ -54,7 +56,7 @@ const MainCategory = () => {
           <div className="catgory-title">노키즈</div>
         </li>
       </ul>
-    </div>
+    </>
   );
 };
 
