@@ -1,19 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { SIGN_UP } from "../../constants/SignUp";
+import React, { useEffect, useRef, useState } from "react";
+import { SIGN_UP, SIGN_UP_TERMS } from "../../constants/SignUp";
 import PostCodeApi from "../../components/sign-up/PostCodeApi";
 import SignupTerms from "../../components/sign-up/SignupTerms";
 import useAddress from "../../hooks/useAddress";
 
-const SignupForm = ({ setError, setIsOpened }) => {
+const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
   const { postcode, setPostcode } = useAddress();
+  const [checkedTerms, setCheckedTerms] = useState(
+    Array(SIGN_UP_TERMS.length).fill(false)
+  );
+  const checkboxRefs = useRef([]);
 
   const submitHandle = (event) => {
     event.preventDefault();
-    console.log("제출 시 우편번호:", postcode); // 제출 시 우편번호 확인
 
     if (postcode === "") {
       setError(true);
+      setErrorType("post");
       setIsOpened(true);
+      return;
+    }
+
+    if (!checkedTerms.every(Boolean)) {
+      setError(true);
+      setErrorType("terms");
+      setIsOpened(true);
+      checkboxRefs.current.forEach((ref, index) => {
+        if (ref && !checkedTerms[index]) {
+          ref.focus();
+          return;
+        }
+      });
       return;
     }
 
@@ -41,7 +58,15 @@ const SignupForm = ({ setError, setIsOpened }) => {
           </div>
         ))}
 
-        <SignupTerms />
+        <SignupTerms
+          checkedTerms={checkedTerms}
+          setCheckedTerms={setCheckedTerms}
+          setErrorFocus={(ref) => {
+            if (ref && !checkboxRefs.current.includes(ref)) {
+              checkboxRefs.current.push(ref);
+            }
+          }}
+        />
 
         <button className="signup-btn">가입하기</button>
       </form>
