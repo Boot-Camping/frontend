@@ -1,56 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../css/CategoryPage.css";
+import { campingPlace } from "../constants/MockCampingPlace";
 
 const CategoryPage = () => {
+  const [selectedFilter, setSelectedFilter] = useState("reservation");
+  const [campingPlaceFiltered, setCampingPlaceFiltered] =
+    useState(campingPlace);
+
+  useEffect(() => {
+    let campingPlaceSorted = [...campingPlace];
+    if (selectedFilter === "reservation") {
+      campingPlaceSorted.sort((a, b) => b.reservations - a.reservations);
+    } else if (selectedFilter === "review") {
+      campingPlaceSorted.sort((a, b) => b.reviews - a.reviews);
+    } else if (selectedFilter === "star") {
+      campingPlaceSorted.sort((a, b) => b.rating - a.rating);
+    } else if (selectedFilter === "hart") {
+      campingPlaceSorted.sort((a, b) => b.heart - a.heart);
+    }
+    setCampingPlaceFiltered(campingPlaceSorted);
+  }, [selectedFilter]);
+
   return (
     <>
       <div className="category-title-wraper">
-        <div className="category-title">반려견 동반</div>
-        <select>
+        <div className="category-title">전체</div>
+        <select
+          value={selectedFilter}
+          onChange={(e) => setSelectedFilter(e.target.value)}
+        >
           <option value="reservation">예약 많은 순</option>
-          <option value="review">리뷰 많은순</option>
+          <option value="review">리뷰 많은 순</option>
           <option value="star">평점 좋은 순</option>
           <option value="hart">찜 많은 순</option>
         </select>
       </div>
-      <div className="category-camping-list">
-        <img
-          className="category-camping-img"
-          src="https://campingagains3.s3.ap-northeast-2.amazonaws.com/small_C1_d5d87fe452.jpg"
-          alt=""
-        />
-        <img
-          className="category-camping-img-heart"
-          src="/assets/heart.svg"
-          alt=""
-        />
-        <div className="category-camping-type">오토캠핑</div>
-        <div className="category-camping-sub-title-wraper">
-          <div className="category-camping-name">캠프 그라운드 화온</div>
-          <div className="category-camping-price">40,000~</div>
-        </div>
-        <div className="category-camping-location-wraper">
-          <div className="category-camping-location-box">
-            <img
-              className="category-camping-location-icon"
-              src="/assets/location.svg"
-              alt=""
-            />
-            <div className="category-camping-location">충북 논산시</div>
-          </div>
-          <div className="category-camping-people">기준2인/최대6인</div>
-        </div>
-        <div className="category-camping-info-wraper">
+
+      {campingPlaceFiltered.map((campingPlace) => (
+        <div key={campingPlace.id} className="category-camping-list">
           <img
-            className="category-camping-info-star"
-            src="/assets/star.svg"
-            alt=""
+            className="category-camping-img"
+            src={campingPlace.img}
+            alt={campingPlace.name}
           />
-          <div className="category-camping-info">5.0</div>
-          <div className="category-camping-info">・리뷰(123)</div>
-          <div className="category-camping-info">・예약(168)</div>
+          <img
+            className="category-camping-img-heart"
+            src="/assets/heart.svg"
+            alt="찜"
+          />
+          <div className="category-camping-type">{campingPlace.type}</div>
+          <div className="category-camping-sub-title-wraper">
+            <div className="category-camping-name">{campingPlace.name}</div>
+            <div className="category-camping-price">{campingPlace.price}</div>
+          </div>
+          <div className="category-camping-location-wraper">
+            <div className="category-camping-location-box">
+              <img
+                className="category-camping-location-icon"
+                src="/assets/location.svg"
+                alt="위치"
+              />
+              <div className="category-camping-location">
+                {campingPlace.location}
+              </div>
+            </div>
+            <div className="category-camping-people">{campingPlace.people}</div>
+          </div>
+          <div className="category-camping-info-icons-wraper">
+            <div className="category-camping-info-star-wraper">
+              <img
+                className="category-camping-info-star"
+                src="/assets/star.svg"
+                alt="별점"
+              />
+              <div className="category-camping-info">{campingPlace.rating}</div>
+              <div className="category-camping-info">
+                ・리뷰({campingPlace.reviews})
+              </div>
+            </div>
+            <div className="category-camping-info-heart-wraper">
+              <img
+                className="category-camping-info-heart"
+                src="/assets/heart.svg"
+                alt="찜"
+              />
+              <div className="category-camping-info">{campingPlace.heart}</div>
+              <div className="category-camping-info">
+                ・예약({campingPlace.reservations})
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </>
   );
 };

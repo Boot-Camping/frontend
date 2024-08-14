@@ -1,0 +1,19 @@
+.calendar-wrap {
+  border-bottom: 0.1rem solid black;
+}
+
+input.inputbox {
+  font-size: var(--content);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 0.1rem solid black;
+  width: 38rem;
+  text-align: center;
+  color: var(--light-green);
+  font-weight: bold;
+}
+
+.calendar-element {
+  padding: 0 1rem;
+  width: 40;
+}
