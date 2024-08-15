@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/header/Header"
+import Footer from "./components/footer/Footer";
 import DetailPage from "./pages/DetailPage";
 import BookPage from "./pages/BookPage";
-import BookingPayment from "./pages/BookingPayment";
+import BookingPaymentPage from "./pages/BookingPaymentPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MyPage from "./pages/MyPage";
@@ -14,7 +14,7 @@ import SavePage from "./pages/SavePage";
 import CashPage from "./pages/CashPage";
 import NoticePage from "./pages/NoticePage";
 import AdminMainPage from "./pages/AdminMainPage";
-import AdminCampingRegister from "./pages/AdminCampingRegister";
+import AdminCampingRegisterPage from "./pages/AdminCampingRegisterPage";
 import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 
@@ -36,9 +36,9 @@ function App() {
           <Route path="/notice" element={<NoticePage />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/book" element={<BookPage />} />
-          <Route path="/book" element={<BookingPayment />} />
+          <Route path="/book" element={<BookingPaymentPage />} />
           <Route path="/admin" element={<AdminMainPage />} />
-          <Route path="/admin/camping" element={<AdminCampingRegister />} />
+          <Route path="/admin/camping" element={<AdminCampingRegisterPage />} />
         </Routes>
       </main>
       <Footer />

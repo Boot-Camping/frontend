@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/MainCampingList.css";
-import { campingPlaceData } from "../constants/campingPlaceData";
-import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import "../main-page/MainCampingList.css";
+import { campingPlaceData } from "../../constants/campingPlaceData";
+import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 
 const MainCampingList = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =

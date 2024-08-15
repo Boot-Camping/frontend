@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useAddress from "../hooks/useAddress";
+import useAddress from "../../hooks/useAddress";
 
 const PostCodeAddress = () => {
   const { postcode, setPostcode, address, setAddress } = useAddress();

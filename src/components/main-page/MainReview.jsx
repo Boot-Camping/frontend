@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/MainReview.css";
-import { mainReviewData } from "../constants/mainReviewData";
+import "../main-page/MainReview.css";
+import { mainReviewData } from "../../constants/mainReviewData";
 
 const MainReview = () => {
   return (

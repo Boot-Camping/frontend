@@ -1,7 +1,7 @@
 import React from "react";
-import BookingPayment from "./BookingPayment";
-import DateRangePicker from "../components/DateRangePicker";
-import "../css/BookPage.css";
+import BookingPayment from "./BookingPaymentPage";
+import DateRangePicker from "../components/book-page/DateRangePicker";
+import "../components/book-page/BookPage.css";
 
 const BookPage = () => {
   return (

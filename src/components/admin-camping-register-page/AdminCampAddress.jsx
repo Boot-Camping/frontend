@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import useAddress from "../hooks/useAddress";
-import PostCodeAddress from "../components/PostCodeAddress";
+import useAddress from "../../hooks/useAddress";
+import PostCodeAddress from "../admin-camping-register-page/PostCodeAddress";
 
 const SIGN_UP = [{ key: "1", label: "주소", type: "text", placeholder: "" }];
 
