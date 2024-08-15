@@ -1,4 +1,4 @@
-export const campingPlace = [
+export const campingPlaceData = [
   {
     id: 1,
     name: "캠프 그라운드 화온",

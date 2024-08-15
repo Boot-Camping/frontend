@@ -12,15 +12,17 @@
 }
 
 .camping-list-wraper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18rem 18rem;
   justify-content: space-around;
+  align-items: center;
 }
 
 .camping-list {
-  position: relative; /* 기준점 */
+  position: relative;
   display: block;
-  /* padding-right: 2rem; */
 }
+
 .camping-img {
   width: 18rem;
   height: 16rem;
@@ -42,9 +44,11 @@
   margin-bottom: 0.5rem;
 }
 
-.camping-sub-title-box {
+.camping-sub-title-wraper,
+.camping-info-icons-wraper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
@@ -55,13 +59,6 @@
 
 .camping-price {
   font-size: 1.4rem;
-  padding-left: 7.5rem;
-}
-
-.camping-info-icons-wraper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .camping-info-star-wraper,
@@ -80,5 +77,4 @@
 .camping-info {
   font-size: 1rem;
   color: gray;
-  margin-bottom: 0.5rem;
 }

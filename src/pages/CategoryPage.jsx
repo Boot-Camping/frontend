@@ -1,26 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../css/CategoryPage.css";
-import { campingPlace } from "../constants/MockCampingPlace";
+import { campingPlaceData } from "../constants/campingPlaceData";
+import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 
 const CategoryPage = () => {
-  const [selectedFilter, setSelectedFilter] = useState("reservation");
-  const [campingPlaceFiltered, setCampingPlaceFiltered] =
-    useState(campingPlace);
-
-  useEffect(() => {
-    let campingPlaceSorted = [...campingPlace];
-    if (selectedFilter === "reservation") {
-      campingPlaceSorted.sort((a, b) => b.reservations - a.reservations);
-    } else if (selectedFilter === "review") {
-      campingPlaceSorted.sort((a, b) => b.reviews - a.reviews);
-    } else if (selectedFilter === "star") {
-      campingPlaceSorted.sort((a, b) => b.rating - a.rating);
-    } else if (selectedFilter === "hart") {
-      campingPlaceSorted.sort((a, b) => b.heart - a.heart);
-    }
-    setCampingPlaceFiltered(campingPlaceSorted);
-  }, [selectedFilter]);
-
+  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
+    useCampingPlaceFilter(campingPlaceData);
   return (
     <>
       <div className="category-title-wraper">
@@ -54,7 +39,7 @@ const CategoryPage = () => {
             <div className="category-camping-price">{campingPlace.price}</div>
           </div>
           <div className="category-camping-location-wraper">
-            <div className="category-camping-location-box">
+            <div className="category-camping-location-icon-wraper">
               <img
                 className="category-camping-location-icon"
                 src="/assets/location.svg"

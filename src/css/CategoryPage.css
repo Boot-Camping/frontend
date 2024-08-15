@@ -37,7 +37,9 @@
   margin-bottom: 0.5rem;
 }
 
-.category-camping-sub-title-wraper {
+.category-camping-sub-title-wraper,
+.category-camping-location-wraper,
+.category-camping-info-icons-wraper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,15 +55,8 @@
   font-size: 2rem;
 }
 
-.category-camping-location-wraper {
+.category-camping-location-icon-wraper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.category-camping-location-box {
-  display: flex;
-  margin-bottom: 0.5rem;
 }
 
 .category-camping-location-icon {
@@ -75,12 +70,6 @@
   color: gray;
 }
 
-.category-camping-info-icons-wraper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .category-camping-info-star-wraper,
 .category-camping-info-heart-wraper {
   display: flex;
@@ -88,12 +77,11 @@
 
 .category-camping-info-star,
 .category-camping-info-heart {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .category-camping-info {
   font-size: 1.2rem;
   color: gray;
-  margin-bottom: 0.5rem;
 }
