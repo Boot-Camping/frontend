@@ -3,7 +3,7 @@ import "../header/Header.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
-import logo from "../../assets/image/camping.png";
+import logo from "/src/assets/image/camping.png";
 import userImg from "/src/assets/svg/userImg.svg";
 import searchImg from "/src/assets/svg/search.svg";
 

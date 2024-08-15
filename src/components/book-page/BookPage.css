@@ -46,3 +46,8 @@
   font-weight: bold;
   font-size: var(--sub-heading);
 }
+
+/* 확인 버튼 */
+.confirm-button {
+  margin: 1rem 0;
+}

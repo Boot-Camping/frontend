@@ -10,6 +10,17 @@ h3 {
   padding-bottom: 1rem;
 }
 
+.payment-title {
+  margin-top: 1rem;
+  border-top: 0.1rem solid black;
+  padding-top: 1rem;
+}
+
+.payment-info-title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .payment-info div {
   padding-bottom: 1rem;
 }
@@ -79,10 +90,6 @@ h3 {
   font-weight: bold;
 }
 
-.payment-policy img {
-  width: 1.5rem;
-}
-
 .policy-1,
 .policy-2,
 .policy-3,
@@ -95,4 +102,9 @@ h3 {
 
 .policy-1 {
   font-weight: bold;
+}
+
+.checkImg {
+  width: 1.5rem;
+  color: var(--light-green);
 }
