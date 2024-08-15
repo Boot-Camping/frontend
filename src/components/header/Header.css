@@ -4,20 +4,20 @@
   align-items: 20px;
   padding: 15px;
   background-color: white;
-  border-bottom: 1px solid green;
 }
 
 .logo {
+  display: flex;
   width: 30px;
   height: 30px;
 }
 
-.header-icons {
+.icons {
   display: flex;
-  gap: 20px;
 }
 
-.header-icons img {
+.header-icon {
+  gap: 20px;
   width: 30px;
   height: 30px;
 }

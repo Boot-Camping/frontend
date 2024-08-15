@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
 
 const ReviewPage = () => {
@@ -8,7 +9,7 @@ const ReviewPage = () => {
         <div className="review-title">리뷰</div>
 
         <div className="review-info">
-          <img src="./assets/detailImg-1.png" alt="" />
+          <img src="../src/assets/image/detailImg-1.png" alt="" />
           <div className="writer">
             <div className="id">camper123</div>
             <div className="date">2024.08-12</div>

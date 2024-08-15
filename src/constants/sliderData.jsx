@@ -1,20 +1,20 @@
 export const sliderData = [
   {
-    image: "./assets/detailImg-1.png",
+    image: "../src/assets/image/detailImg-1.png",
   },
   {
-    image: "./assets/detailImg-2.png",
+    image: "../src/assets/image/detailImg-2.png",
   },
   {
-    image: "./assets/detailImg-3.png",
+    image: "../src/assets/image/detailImg-3.png",
   },
   {
-    image: "./assets/detailImg-4.png",
+    image: "../src/assets/image/detailImg-4.png",
   },
   {
-    image: "./assets/detailImg-5.png",
+    image: "../src/assets/image/detailImg-5.png",
   },
   {
-    image: "./assets/detailImg-6.png",
+    image: "../src/assets/image/detailImg-6.png",
   },
 ];
