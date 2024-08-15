@@ -1,3 +1,4 @@
+/* PaymentPage */
 h2 {
   font-size: var(--heading);
   font-weight: bold;
@@ -8,6 +9,17 @@ h3 {
   font-size: var(--sub-heading);
   font-weight: bold;
   padding-bottom: 1rem;
+}
+
+.payment-title {
+  margin-top: 1rem;
+  border-top: 0.1rem solid black;
+  padding-top: 1rem;
+}
+
+.payment-info-title {
+  display: flex;
+  justify-content: space-between;
 }
 
 .payment-info div {
@@ -29,23 +41,15 @@ h3 {
   height: 6rem;
 }
 
-.coupon-pick {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  padding: 1rem;
-  border-top: 0.1rem solid black;
-}
-
-/* 결제금액 세부항목 */
+/* PaymentAmount */
 .payment {
   padding-top: 1rem;
   border-top: 0.1rem solid black;
   border-bottom: 0.1rem solid black;
 }
 
-.payment h3 {
-  font-size: var(--sub-heading);
+.payment-title {
+  font-size: var(--heading);
 }
 .payment-detail {
   display: flex;
@@ -55,32 +59,24 @@ h3 {
 
 .payment-detail div {
   font-size: var(--content);
-  padding-bottom: 0.5rem;
-}
-
-.oneday,
-.oneday-amount {
-  color: var(--light-gray);
+  padding-bottom: 1rem;
 }
 
 .total,
 .total-amount {
   font-weight: bold;
   padding-top: 1rem;
+  color: var(--light-green);
 }
 
-/* 결제 약관동의 */
+/* PaymentPolicy */
 .payment-policy {
   padding-top: 1rem;
 }
 
-.payment-policy h2 {
-  font-size: var(--sub-heading);
+.policy-title {
+  font-size: var(--heading);
   font-weight: bold;
-}
-
-.payment-policy img {
-  width: 1.5rem;
 }
 
 .policy-1,
@@ -90,9 +86,15 @@ h3 {
   display: flex;
   padding-left: 0.5rem;
   align-items: center;
-  font-size: var(--sub-content);
+  font-size: var(--content);
+  padding: 0.5rem 0;
 }
 
 .policy-1 {
   font-weight: bold;
+}
+
+.checkImg {
+  width: 1.5rem;
+  color: var(--light-green);
 }
