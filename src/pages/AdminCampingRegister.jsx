@@ -6,6 +6,7 @@ const AdminCampingRegister = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
+  const [explanaion, setExplanaion] = useState(""); // 상태 변수 수정
 
   const toggleCategory = (category) => {
     setSelectedCategories((prev) => {
@@ -16,8 +17,13 @@ const AdminCampingRegister = () => {
       }
     });
   };
+
   const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
+
+  const handleChange = (event) => {
+    setExplanaion(event.target.value); // 상태 변수 수정
+  };
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
@@ -148,18 +154,74 @@ const AdminCampingRegister = () => {
             className="input-camp-number"
             required
           />
-          <input
-            id="camp-price"
-            name="camp-price"
-            type="number"
-            autoComplete="camp-price"
-            className="input-camp-price"
-            required
-          />
-          <span className="won">원</span>
+          <div>
+            <input
+              id="camp-price"
+              name="camp-price"
+              type="number"
+              autoComplete="camp-price"
+              className="input-camp-price"
+              required
+            />
+            <span className="won">원</span>
+          </div>
         </div>
-
-        <div></div>
+        <div className="camp-user-title">
+          <div className="camp-standard-title">기준 인원</div>
+          <div className="camp-max-user-title">최대 인원</div>
+          <div className="camp-plus-price-title">추가 요금 /인당</div>
+        </div>
+        <div className="camping-info">
+          <div>
+            <input
+              id="camp-user"
+              name="camp-user"
+              type="number"
+              autoComplete="camp-user"
+              className="input-camp-user"
+              required
+            />
+            <span className="camping-user">명</span>
+          </div>
+          <div>
+            <input
+              id="camp-user"
+              name="camp-user"
+              type="number"
+              autoComplete="camp-user"
+              className="input-camp-user"
+              required
+            />
+            <span className="camping-user">명</span>
+          </div>
+          <div>
+            <input
+              id="camp-price"
+              name="camp-price"
+              type="number"
+              autoComplete="camp-price"
+              className="input-camp-price"
+              required
+            />
+            <span className="won">원</span>
+          </div>
+        </div>
+      </div>
+      <div className="camping-explanaion">캠핑지 소개</div>
+      <form>
+        <textarea
+          className="input-camp-exp"
+          id="camp-exp"
+          name="camp-exp"
+          value={explanaion}
+          onChange={handleChange}
+          rows="30"
+          cols="50"
+          placeholder="캠핑장의 특징을 입력하세요."
+        />
+      </form>
+      <div className="camp-center-container">
+        <button className="camp-perpect-regi">등록</button>
       </div>
     </div>
   );
