@@ -13,7 +13,9 @@ const Header = () => {
         <Link to={"/mypage"}>
           <img src="/assets/userImg.svg" alt="" />
         </Link>
-        <img src="/assets/searchImg.svg" alt="" />
+        <Link to={"/SearchPage"}>
+          <img src="/assets/searchImg.svg" alt="" />
+        </Link>
       </div>
     </div>
   );
