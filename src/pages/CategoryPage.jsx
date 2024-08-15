@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "../components/category-page/CategoryPage.css";
 import { campingPlaceData } from "../constants/campingPlaceData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import heart from "../assets/svg/heart.svg";
+import location from "../assets/svg/location.svg";
+import star from "../assets//svg/star.svg";
 
 const CategoryPage = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -28,11 +31,7 @@ const CategoryPage = () => {
             src={campingPlace.img}
             alt={campingPlace.name}
           />
-          <img
-            className="category-camping-img-heart"
-            src="/assets/heart.svg"
-            alt="찜"
-          />
+          <img className="category-camping-img-heart" src={heart} alt="찜" />
           <div className="category-camping-type">{campingPlace.type}</div>
           <div className="category-camping-sub-title-wraper">
             <div className="category-camping-name">{campingPlace.name}</div>
@@ -42,7 +41,7 @@ const CategoryPage = () => {
             <div className="category-camping-location-icon-wraper">
               <img
                 className="category-camping-location-icon"
-                src="/assets/location.svg"
+                src={location}
                 alt="위치"
               />
               <div className="category-camping-location">
@@ -55,7 +54,7 @@ const CategoryPage = () => {
             <div className="category-camping-info-star-wraper">
               <img
                 className="category-camping-info-star"
-                src="/assets/star.svg"
+                src={star}
                 alt="별점"
               />
               <div className="category-camping-info">{campingPlace.rating}</div>
@@ -66,7 +65,7 @@ const CategoryPage = () => {
             <div className="category-camping-info-heart-wraper">
               <img
                 className="category-camping-info-heart"
-                src="/assets/heart.svg"
+                src={heart}
                 alt="찜"
               />
               <div className="category-camping-info">{campingPlace.heart}</div>
