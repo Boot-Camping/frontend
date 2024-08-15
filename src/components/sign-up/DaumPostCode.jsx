@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from "react";
-import {
-  loadDaumPostCode,
-  openPostcodePopup,
-} from "../../utils/daumPostCodeUtils";
+import React from "react";
+import useDaumPostCode from "../../hooks/useDaumPostCode";
 
-const PostCodeApi = ({ postcode, setPostcode }) => {
-  const [address, setAddress] = useState("");
-  const [detailAddress, setDetailAddress] = useState("");
-  const [extraAddress, setExtraAddress] = useState("");
-
-  useEffect(() => {
-    const cleanup = loadDaumPostCode();
-    return () => {
-      cleanup();
-    };
-  }, []);
-
-  const postcodeSearchHandle = () => {
-    openPostcodePopup(setAddress, setPostcode, setExtraAddress);
-  };
+const DaumPostCode = ({ postcode, setPostcode }) => {
+  const {
+    address,
+    detailAddress,
+    setDetailAddress,
+    extraAddress,
+    openPostcodePopup,
+  } = useDaumPostCode(setPostcode);
 
   return (
     <div className="signup-input-wrap postcode-wrap">
@@ -26,7 +16,7 @@ const PostCodeApi = ({ postcode, setPostcode }) => {
         <button
           id="postcode-btn"
           className="postcode-btn"
-          onClick={postcodeSearchHandle}
+          onClick={openPostcodePopup}
         >
           우편번호 찾기
         </button>
@@ -68,4 +58,4 @@ const PostCodeApi = ({ postcode, setPostcode }) => {
   );
 };
 
-export default PostCodeApi;
+export default DaumPostCode;
