@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import useAddress from "../hooks/useAddress";
 
-const PostCodeApi = ({ postcode, setPostcode }) => {
-  const [address, setAddress] = useState("");
+const PostCodeAddress = () => {
+  const { postcode, setPostcode, address, setAddress } = useAddress();
+
   const [detailAddress, setDetailAddress] = useState("");
   const [extraAddress, setExtraAddress] = useState("");
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+  const [isScriptLoaded, setIsScriptLoaded] = useState("");
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -55,9 +57,6 @@ const PostCodeApi = ({ postcode, setPostcode }) => {
           } else {
             setExtraAddress("");
           }
-
-          console.log("우편번호:", data.zonecode);
-          console.log("주소:", addr);
 
           setPostcode(data.zonecode);
           setAddress(addr);
@@ -110,20 +109,12 @@ const PostCodeApi = ({ postcode, setPostcode }) => {
         className="signup-input"
         type="text"
         value={detailAddress}
-        placeholder="상세주소"
+        placeholder="참고사항"
         onChange={(e) => setDetailAddress(e.target.value)}
         required
-      />
-      <br />
-      <input
-        className="signup-input"
-        type="text"
-        value={extraAddress}
-        placeholder="참고항목"
-        readOnly
       />
     </div>
   );
 };
 
-export default PostCodeApi;
+export default PostCodeAddress;

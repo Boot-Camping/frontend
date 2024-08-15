@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { SIGN_UP_ERROR } from "../../constants/SignUp";
+import { signUpError } from "../../constants/signUp";
 
 const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
   const closeHandle = () => {
@@ -8,7 +8,7 @@ const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
   };
 
   const errorMessage = () => {
-    return SIGN_UP_ERROR[errorType] || null;
+    return signUpError[errorType] || null;
   };
 
   return (
