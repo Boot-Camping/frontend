@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useDaumPostCode from "../../hooks/useDaumPostCode";
 
-const DaumPostCode = ({ postcode, setPostcode }) => {
+const DaumPostCode = ({
+  postcode,
+  setPostcode,
+  addressRef,
+  detailAddressRef,
+}) => {
   const {
     address,
     detailAddress,
@@ -9,6 +14,17 @@ const DaumPostCode = ({ postcode, setPostcode }) => {
     extraAddress,
     openPostcodePopup,
   } = useDaumPostCode(setPostcode);
+
+  useEffect(() => {
+    if (address) {
+      addressRef.current.value = address;
+    }
+  }, [address, addressRef]);
+
+  const detailAddressChangeHandle = (newDetailAddress) => {
+    setDetailAddress(newDetailAddress);
+    detailAddressRef.current.value = newDetailAddress;
+  };
 
   return (
     <div className="signup-input-wrap postcode-wrap">
@@ -35,6 +51,7 @@ const DaumPostCode = ({ postcode, setPostcode }) => {
         value={address}
         placeholder="주소"
         readOnly
+        ref={addressRef}
       />
       <br />
       <input
@@ -45,6 +62,7 @@ const DaumPostCode = ({ postcode, setPostcode }) => {
         placeholder="상세주소"
         onChange={(e) => setDetailAddress(e.target.value)}
         required
+        ref={detailAddressRef}
       />
       <br />
       <input
