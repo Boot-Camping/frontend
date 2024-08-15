@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const PostCodeApi = ({ postcode, setPostcode }) => {
+const useDaumPostCode = (setPostcode) => {
   const [address, setAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
   const [extraAddress, setExtraAddress] = useState("");
@@ -23,14 +23,12 @@ const PostCodeApi = ({ postcode, setPostcode }) => {
     };
   }, []);
 
-  const sample6_execDaumPostcode = (event) => {
+  const openPostcodePopup = (event) => {
     event.preventDefault();
 
     if (isScriptLoaded) {
       new window.daum.Postcode({
         oncomplete: function (data) {
-          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
           var addr = "";
           var extraAddr = "";
 
@@ -78,52 +76,13 @@ const PostCodeApi = ({ postcode, setPostcode }) => {
     }
   };
 
-  return (
-    <div className="signup-input-wrap postcode-wrap">
-      <div className="postcode-btn-wrap">
-        <button
-          id="postcode-btn"
-          className="postcode-btn"
-          onClick={sample6_execDaumPostcode}
-        >
-          우편번호 찾기
-        </button>
-      </div>
-      <input
-        className="signup-input"
-        type="text"
-        value={postcode}
-        placeholder="우편번호"
-        readOnly
-      />
-      <br />
-      <input
-        className="signup-input"
-        type="text"
-        value={address}
-        placeholder="주소"
-        readOnly
-      />
-      <br />
-      <input
-        id="detail-address"
-        className="signup-input"
-        type="text"
-        value={detailAddress}
-        placeholder="상세주소"
-        onChange={(e) => setDetailAddress(e.target.value)}
-        required
-      />
-      <br />
-      <input
-        className="signup-input"
-        type="text"
-        value={extraAddress}
-        placeholder="참고항목"
-        readOnly
-      />
-    </div>
-  );
+  return {
+    address,
+    detailAddress,
+    setDetailAddress,
+    extraAddress,
+    openPostcodePopup,
+  };
 };
 
-export default PostCodeApi;
+export default useDaumPostCode;

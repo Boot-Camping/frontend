@@ -1,7 +1,7 @@
 /*****************************
  * 	폼 상수데이터
  */
-export const SIGN_UP = [
+export const signUp = [
   {
     key: "signup-id",
     label: "아이디",
@@ -43,7 +43,7 @@ export const SIGN_UP = [
 /*****************************
  * 	약관 상수데이터
  */
-export const SIGN_UP_TERMS = [
+export const signUpTerms = [
   {
     key: "terms1",
     content: "(필수) 서비스 이용약관",
@@ -61,7 +61,7 @@ export const SIGN_UP_TERMS = [
 /*****************************
  * 	에러 모달 상수데이터
  */
-export const SIGN_UP_ERROR = {
+export const signUpError = {
   post: "우편번호와 주소는 필수 입력사항입니다",
   terms: "필수 약관에 동의해주세요",
 };
