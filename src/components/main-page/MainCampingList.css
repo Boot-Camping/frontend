@@ -68,8 +68,14 @@
   align-items: center;
 }
 
-.camping-info-star,
+.camping-info-star {
+  color: yellow;
+  width: 1rem;
+  height: 1rem;
+}
+
 .camping-info-heart {
+  color: red;
   width: 1rem;
   height: 1rem;
 }

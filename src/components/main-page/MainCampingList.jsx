@@ -5,6 +5,7 @@ import { campingPlaceData } from "../../constants/campingPlaceData";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import heart from "../../assets/svg/heart.svg";
 import star from "../../assets/svg/star.svg";
+import { ReactSVG } from "react-svg";
 
 const MainCampingList = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -43,14 +44,14 @@ const MainCampingList = () => {
             </Link>
             <div className="camping-info-icons-wraper">
               <div className="camping-info-star-wraper">
-                <img className="camping-info-star" src={star} alt="" />
+                <ReactSVG className="camping-info-star" src={star} alt="" />
                 <div className="camping-info">{campingPlace.rating}</div>
                 <div className="camping-info">
                   ・리뷰({campingPlace.reviews})
                 </div>
               </div>
               <div className="camping-info-heart-wraper">
-                <img className="camping-info-heart" src={heart} alt="" />
+                <ReactSVG className="camping-info-heart" src={heart} alt="" />
                 <div className="camping-info">{campingPlace.heart}</div>
                 <div className="camping-info">
                   ・예약({campingPlace.reservations})
