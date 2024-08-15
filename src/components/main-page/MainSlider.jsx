@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/MainSlider.css";
+import "../main-page/MainSlider.css";
 
 const MainSlider = () => {
   return (

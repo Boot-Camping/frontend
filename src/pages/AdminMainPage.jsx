@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/AdminMainPage.css";
+import "../components/admin-main-page/AdminMainPage.css";
 
 const AdminMainPage = () => {
   const [focusedButton, setFocusedButton] = useState(null);

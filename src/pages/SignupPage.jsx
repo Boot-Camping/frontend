@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../css/SignUp.css";
-import SignupForm from "../components/sign-up/SignupForm";
-import SignupModal from "../components/sign-up/SignupModal";
+import "../components/sign-up-page/SignUp.css";
+import SignupForm from "../components/sign-up-page/SignupForm";
+import SignupModal from "../components/sign-up-page/SignupModal";
 
 const SignupPage = () => {
   const [error, setError] = useState(false);

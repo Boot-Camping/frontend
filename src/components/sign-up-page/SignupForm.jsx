@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { signUp, signUpTerms } from "../../constants/signUp";
 import DaumPostCode from "./DaumPostCode";
-import SignupTerms from "../../components/sign-up/SignupTerms";
+import SignupTerms from "../../components/sign-up-page/SignupTerms";
 import useAddress from "../../hooks/useAddress";
 
 const SignupForm = ({ setError, setErrorType, setIsOpened }) => {

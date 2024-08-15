@@ -1,11 +1,11 @@
 import React from "react";
-import DetailPageInfo from "./DetailPageInfo";
-import ReviewPage from "../components/ReviewPage";
-import BookButton from "../components/BookButton";
-import ImageSlider from "../components/imageSlider/ImageSlider";
+import DetailPageInfo from "../components/detail-page/DetailPageInfo";
+import ReviewPage from "../components/detail-page/ReviewPage";
+import BookButton from "../components/book-page/BookButton";
+import ImageSlider from "../components/detail-page/ImageSlider";
 import { sliderData } from "../constants/sliderData";
 
-import "../css/DetailPage.css";
+import "../components/detail-page/DetailPage.css";
 
 const DetailPage = () => {
   return (
