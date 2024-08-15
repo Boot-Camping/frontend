@@ -1,4 +1,4 @@
-export const MockSliderData = [
+export const sliderData = [
   {
     image: "./assets/detailImg-1.png",
   },

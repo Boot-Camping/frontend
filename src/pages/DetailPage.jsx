@@ -1,24 +1,20 @@
 import React from "react";
-
-import ImageSlider from "../components/ImageSlider";
 import DetailPageInfo from "./DetailPageInfo";
 import ReviewPage from "../components/ReviewPage";
 import BookButton from "../components/BookButton";
-import { Link } from "react-router-dom";
+import ImageSlider from "../components/imageSlider/ImageSlider";
+import { sliderData } from "../constants/sliderData";
+
 import "../css/DetailPage.css";
 
 const DetailPage = () => {
   return (
-    <>
-      <div className="detail-page">
-        <ImageSlider />
-        <DetailPageInfo />
-        <ReviewPage />
-        <Link to="/book">
-          <BookButton />
-        </Link>
-      </div>
-    </>
+    <div className="detail-page">
+      <ImageSlider sliderData={sliderData} />
+      <DetailPageInfo />
+      <ReviewPage />
+      <BookButton to="/book" />
+    </div>
   );
 };
 
