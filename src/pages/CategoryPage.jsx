@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/CategoryPage.css";
+import "../components/category-page/CategoryPage.css";
 import { campingPlaceData } from "../constants/campingPlaceData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 

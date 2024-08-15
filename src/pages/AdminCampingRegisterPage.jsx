@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import "../css/AdminCampingRegister.css";
-import AdminCampAddress from "./AdminCampAddress";
+import "../components/admin-camping-register-page/AdminCampingRegister.css";
+import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
 
 const AdminCampingRegister = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
