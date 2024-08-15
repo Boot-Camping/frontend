@@ -1,33 +1,31 @@
-.review-title {
+.main-review-title {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-.review-wraper {
+.main-review-wraper {
   display: flex;
   padding-bottom: 0.5rem;
 }
 
-.review-img {
-  width: 30rem;
-  height: 10rem;
+.main-review-img {
+  width: 9rem;
   border-radius: 1rem;
   margin-right: 1rem;
 }
 
-.review-text {
+.main-review-text {
   font-size: 1.4rem;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
 }
 
-.review-time {
+.main-review-time {
   font-size: 1rem;
   color: gray;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 
-.review-place {
+.main-review-place {
   font-size: 1.4rem;
   font-weight: bold;
-  padding-bottom: 0.5rem;
 }
