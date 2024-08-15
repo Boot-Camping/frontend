@@ -17,7 +17,7 @@
   display: flex;
 }
 
-.stars img {
+.stars-img {
   width: 1.5rem;
   padding-right: 0.2rem;
 }
@@ -27,7 +27,7 @@
   padding-left: 1rem;
 }
 
-.views img {
+.views-img {
   width: 1.5rem;
   padding-right: 0.2rem;
 }
@@ -86,11 +86,13 @@
   margin-bottom: 5px;
 }
 
-.detail-item img {
+.detail-icon {
   margin-right: 10px;
   width: 14px;
   color: #28a745;
 }
+
+/* 캠핑장 설명 */
 
 .description {
   font-size: 14px;
@@ -104,13 +106,10 @@
   color: #038153;
   cursor: pointer;
   padding-bottom: 1rem;
-}
-
-.more-info div {
   font-size: 14px;
 }
 
-.more-info img {
+.more-info-img {
   margin-right: 10px;
   width: 1.4rem;
 }
@@ -187,6 +186,7 @@
   width: 3cap;
   background-color: white;
   height: 3rem;
+  color: #f43c3c;
 }
 
 .book-text {
