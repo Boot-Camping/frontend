@@ -8,8 +8,8 @@ import { policies } from "../../constants/policies";
 const PaymentPolicy = () => {
   return (
     <div className="payment-policy">
-      <h2>약관동의</h2>
-      <div className="policy-detail">
+      <h2 className="policy-title">약관동의</h2>
+      <div>
         {policies.map((policy) => (
           <div key={policy.id} className={policy.id}>
             <ReactSVG className="checkImg" src={checkImg} alt="" />
