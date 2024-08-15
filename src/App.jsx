@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/header/Header"
+import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import DetailPage from "./pages/DetailPage";
 import BookPage from "./pages/BookPage";
@@ -17,6 +17,7 @@ import AdminMainPage from "./pages/AdminMainPage";
 import AdminCampingRegisterPage from "./pages/AdminCampingRegisterPage";
 import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/book" element={<BookPage />} />
           <Route path="/book" element={<BookingPaymentPage />} />
           <Route path="/admin" element={<AdminMainPage />} />
+          <Route path="/SearchPage" element={<SearchPage />} />
           <Route path="/admin/camping" element={<AdminCampingRegisterPage />} />
         </Routes>
       </main>
