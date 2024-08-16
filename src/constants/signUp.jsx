@@ -1,3 +1,5 @@
+import check from "../assets/svg/check.svg";
+
 /*****************************
  * 	폼 상수데이터
  */
@@ -57,6 +59,10 @@ export const signUpTerms = [
     content: "(필수) 만 14세 이상입니다",
   },
 ];
+
+export const signUpImg = {
+  check,
+};
 
 /*****************************
  * 	에러 모달 상수데이터
