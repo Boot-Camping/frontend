@@ -113,6 +113,16 @@
   width: 1.4rem;
 }
 
+/* ReadMore.jsx */
+.readmore {
+  padding-bottom: 1rem;
+}
+
+.readmore-text {
+  font-size: var(--sub-content);
+  padding-bottom: 0.5rem;
+}
+
 /* KakaoMap.jsx */
 .map {
   border-top: 0.1rem solid black;

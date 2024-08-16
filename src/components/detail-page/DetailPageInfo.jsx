@@ -8,6 +8,7 @@ import location from "../../assets/svg/location.svg";
 import phone from "../../assets/svg/phone.svg";
 import arrow from "../../assets/svg/arrow.svg";
 import { mockDetailInfo } from "../../constants/mockDetailInfo";
+import ReadMore from "./ReadMore";
 
 const DetailPageInfo = () => {
   const mockInfo = mockDetailInfo[0];
@@ -70,13 +71,7 @@ const DetailPageInfo = () => {
             인당 추가요금 {mockInfo.overCharge}원
           </div>
         </div>
-
-        <div className="description">{mockInfo.description}</div>
-
-        <div className="more-info">
-          <div>더보기</div>
-          <ReactSVG className="more-info-img" src={arrow} alt="" />
-        </div>
+        <ReadMore text={mockInfo.description} maxLength={80} />
       </div>
     </div>
   );
