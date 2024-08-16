@@ -104,6 +104,7 @@
   position: relative;
   padding-left: 2.5rem;
 }
+
 .chk-content::before {
   content: "";
   position: absolute;
@@ -115,13 +116,20 @@
   border-radius: 0.3rem;
 }
 
+.signup-check-img {
+	position: absolute;
+	left: 0.1rem;
+	top: 0.1rem;
+	width: var(--sub-heading);
+  height: var(--sub-heading);
+}
+
 .chk-box {
   display: none;
 }
 
 .chk-box:checked + .chk-content::before {
   background-color: var(--dark-green);
-  background-image: url("./assets/check.svg");
 }
 
 .chk-all-content {
