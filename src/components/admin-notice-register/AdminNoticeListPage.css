@@ -1,0 +1,88 @@
+.notice-page-title {
+  font-size: 2rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.list-notice-category {
+  display: flex;
+  justify-content: center;
+}
+
+.list-notice-category button {
+  background-color: white;
+  border: 1px solid var(--light-green);
+  color: var(--light-green);
+  margin: 3rem 2rem 2rem 0;
+  cursor: pointer;
+}
+
+.list-notice-category button.selected {
+  background-color: var(--light-green); /* 선택된 버튼 배경색 */
+  color: white;
+}
+
+.list-category-notice {
+  width: 8rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 2rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  padding: 0;
+  cursor: pointer;
+}
+
+.list-category-event {
+  width: 6rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 2rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  padding: 0;
+  cursor: pointer;
+}
+
+.notice-list-ex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.list-pencil img {
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+}
+
+.notice-regi-btn {
+  display: flex;
+  justify-content: right;
+}
+
+.notice-register-btn {
+  width: 8rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--dark-green);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}

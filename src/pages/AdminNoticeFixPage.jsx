@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
-import "../components/admin-notice-register/AdminNoticeRegister.css";
 
-const AdminNoticeRegisterPage = () => {
-  // 상태 정의
+const AdminNoticeFixPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [images, setImages] = useState([]);
   const [explanaion, setExplanaion] = useState("");
@@ -43,10 +41,9 @@ const AdminNoticeRegisterPage = () => {
   const handleChange = (event) => {
     setExplanaion(event.target.value);
   };
-
   return (
     <div>
-      <div className="notice-title">공지사항 등록</div>
+      <div className="notice-title">공지사항 수정</div>
       <div className="notice-category">
         <div className="notice-category-title">카테고리</div>
         <button
@@ -126,10 +123,10 @@ const AdminNoticeRegisterPage = () => {
         />
       </form>
       <div className="notice-center-container">
-        <button className="camp-notice-regi">등록</button>
+        <button className="camp-notice-fix">수정</button>
       </div>
     </div>
   );
 };
 
-export default AdminNoticeRegisterPage;
+export default AdminNoticeFixPage;

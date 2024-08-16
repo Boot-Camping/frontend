@@ -5,6 +5,9 @@
   justify-content: center;
   margin-top: 2rem;
 }
+* {
+  background-color: #fff;
+}
 
 .hashTag {
   font-size: 1.2rem;
@@ -310,7 +313,19 @@
   color: white;
   background-color: var(--dark-green);
   font-size: 1.4rem;
-  font-weight: normal;
+  font-weight: bold;
+  border: none;
+  width: 15rem;
+  height: 4rem;
+  margin: 1rem 0 3rem 0;
+  cursor: pointer;
+}
+
+.camp-fix-btn {
+  color: white;
+  background-color: var(--red);
+  font-size: 1.4rem;
+  font-weight: bold;
   border: none;
   width: 15rem;
   height: 4rem;
