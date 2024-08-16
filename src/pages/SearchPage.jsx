@@ -2,13 +2,11 @@ import React from "react";
 import "../components/search-page/SearchPage.css";
 
 const SearchPage = () => {
-  // const searchSubmitHandle((e) => {
-
-  // })
+  // const searchSubmitHandle = (e) => {};
   return (
     <>
       <div className="search-title">검색</div>
-      <select>
+      <select className="search-area">
         <option value="all-area">전체 지역</option>
         <option value="경기">경기</option>
         <option value="인천">인천</option>
@@ -25,22 +23,16 @@ const SearchPage = () => {
         <option value="전남">전남</option>
         <option value="제주">제주</option>
       </select>
-      {/* <input
+      <input
         className="search-text"
         type="text"
         id="search"
-        placeholder="검색어 입력"
+        placeholder="캠핑장 검색"
+        // value={searchText}
         // onChange={searchSubmitHandle}
-      /> */}
-
-      <input
-        class="inputId"
-        type="text"
-        name="keyword"
-        placeholder="검색어 입력"
       />
 
-      <input class="submitBtn" type="submit" value="검색하기" />
+      <input className="search-submit-Btn" type="submit" value="검색" />
     </>
   );
 };
