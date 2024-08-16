@@ -120,17 +120,16 @@
   padding-top: 1rem;
 }
 
-.map div {
+.map-title {
   font-size: 2rem;
   font-weight: bold;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.map img {
+.map-api {
   width: 40rem;
   height: 100%;
-  padding-bottom: 1rem;
 }
 
 /* ReviewPage */

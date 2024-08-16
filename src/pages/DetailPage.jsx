@@ -3,6 +3,8 @@ import DetailPageInfo from "../components/detail-page/DetailPageInfo";
 import ReviewPage from "../components/detail-page/ReviewPage";
 import BookButton from "../components/book-page/BookButton";
 import ImageSlider from "../components/detail-page/ImageSlider";
+import KakaoMap from "../components/detail-page/KakaoMap";
+
 import { sliderData } from "../constants/sliderData";
 
 import "../components/detail-page/DetailPage.css";
@@ -12,6 +14,7 @@ const DetailPage = () => {
     <div className="detail-page">
       <ImageSlider sliderData={sliderData} />
       <DetailPageInfo />
+      <KakaoMap />
       <ReviewPage />
       <BookButton to="/book" />
     </div>

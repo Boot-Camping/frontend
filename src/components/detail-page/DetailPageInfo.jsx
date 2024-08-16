@@ -82,11 +82,6 @@ const DetailPageInfo = () => {
             alt=""
           />
         </div>
-
-        <div className="map">
-          <div>지도</div>
-          <img src="../src/assets/image/mockMap.png" alt="" />
-        </div>
       </div>
     </div>
   );
