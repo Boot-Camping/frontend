@@ -9,9 +9,12 @@ import { Link } from "react-router-dom";
 const PaymentPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    if (isButtonEnabled) {
+      setIsModalOpen(true);
+    }
   };
 
   const closeModal = () => {
@@ -27,13 +30,19 @@ const PaymentPage = () => {
     setIsSecondModalOpen(false);
   };
 
+  const allCheckedHandle = (allChecked) => {
+    setIsButtonEnabled(allChecked);
+  };
+
   return (
     <>
       <h2 className="payment-title">캠핑장 결제하기</h2>
       <PaymentInfo />
       <PaymentAmount />
-      <PaymentPolicy />
-      <button onClick={openModal}>캠핑장 결제하기</button>
+      <PaymentPolicy allCheckedHandle={allCheckedHandle} />
+      <button onClick={openModal} disabled={!isButtonEnabled}>
+        캠핑장 결제하기
+      </button>
 
       <PaymentModal isModalOpen={isModalOpen} closeModal={closeModal}>
         <p>결제를 진행하시겠습니까?</p>
