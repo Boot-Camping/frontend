@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
 import { campingPlaceData } from "../../constants/campingPlaceData";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
+import heart from "../../assets/svg/heart.svg";
+import star from "../../assets/svg/star.svg";
+import { ReactSVG } from "react-svg";
 
 const MainCampingList = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -27,16 +30,8 @@ const MainCampingList = () => {
         {campingPlaceFiltered.map((campingPlace) => (
           <div key={campingPlace.id} className="camping-list">
             <Link to={"/detail"}>
-              <img
-                className="camping-img"
-                src={campingPlace.img}
-                alt={campingPlace.name}
-              />
-              <img
-                className="camping-img-heart"
-                src="/assets/heart.svg"
-                alt=""
-              />
+              <img className="camping-img" src={campingPlace.img} alt="" />
+              <ReactSVG className="camping-img-heart" src={heart} alt="" />
               <div className="camping-name">{campingPlace.name}</div>
               <div className="camping-sub-title-wraper">
                 <div className="camping-type">{campingPlace.type}</div>
@@ -45,22 +40,14 @@ const MainCampingList = () => {
             </Link>
             <div className="camping-info-icons-wraper">
               <div className="camping-info-star-wraper">
-                <img
-                  className="camping-info-star"
-                  src="/assets/star.svg"
-                  alt=""
-                />
+                <ReactSVG className="camping-info-star" src={star} alt="" />
                 <div className="camping-info">{campingPlace.rating}</div>
                 <div className="camping-info">
                   ・리뷰({campingPlace.reviews})
                 </div>
               </div>
               <div className="camping-info-heart-wraper">
-                <img
-                  className="camping-info-heart"
-                  src="/assets/heart.svg"
-                  alt=""
-                />
+                <ReactSVG className="camping-info-heart" src={heart} alt="" />
                 <div className="camping-info">{campingPlace.heart}</div>
                 <div className="camping-info">
                   ・예약({campingPlace.reservations})

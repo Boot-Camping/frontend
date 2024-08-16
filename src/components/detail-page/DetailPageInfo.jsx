@@ -1,5 +1,11 @@
 import React from "react";
+import { ReactSVG } from "react-svg";
+
 import "../detail-page/DetailPage.css";
+import stars from "../../assets/svg/star.svg";
+import views from "../../assets/svg/view.svg";
+import location from "../../assets/svg/location.svg";
+import phone from "../../assets/svg/phone.svg";
 
 const DetailPageInfo = () => {
   return (
@@ -7,11 +13,11 @@ const DetailPageInfo = () => {
       <div className="detail-content">
         <div class="rating">
           <div className="stars">
-            <img src="./assets/star.svg" alt="" />
+            <ReactSVG src={stars} alt="" className="stars-img" />
             5.0
           </div>
           <div className="views">
-            <img src="./assets/view.svg" alt="" />
+            <ReactSVG src={views} alt="" className="views-img" />
             123
           </div>
         </div>
@@ -32,21 +38,29 @@ const DetailPageInfo = () => {
         <div className="detail-info">
           <div className="detail-title">기본정보</div>
           <div className="detail-item">
-            <img src="./assets/location.svg" />
+            <ReactSVG className="detail-icon" src={location} />
             충남 아산시 영인면 고룡산로 512-37
           </div>
 
           <div className="detail-item">
-            <img src="./assets/phone.svg" alt="" /> 050713733109
+            <ReactSVG className="detail-icon" src={phone} alt="" /> 050713733109
           </div>
 
           <div className="detail-item">
-            <img src="./assets/group.svg" alt="" />
+            <ReactSVG
+              className="detail-icon"
+              src="../src/assets/svg/group.svg"
+              alt=""
+            />
             기준인원 4명 / 최대인원 6명
           </div>
 
           <div className="detail-item">
-            <img src="./assets/calculator.svg" alt="" />
+            <ReactSVG
+              className="detail-icon"
+              src="../src/assets/svg/calculator.svg"
+              alt=""
+            />
             인당 추가요금 10,000원
           </div>
         </div>
@@ -62,12 +76,11 @@ const DetailPageInfo = () => {
 
         <div className="more-info">
           <div>더보기</div>
-          <img src="./assets/arrow.svg" alt="" />
-        </div>
-
-        <div className="map">
-          <div>지도</div>
-          <img src="./assets/mockMap.png" alt="" />
+          <ReactSVG
+            className="more-info-img"
+            src="../src/assets/svg/arrow.svg"
+            alt=""
+          />
         </div>
       </div>
     </div>

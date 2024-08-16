@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import DetailPage from "./pages/DetailPage";
 import BookPage from "./pages/BookPage";
-import BookingPaymentPage from "./pages/BookingPaymentPage";
+import BookingPaymentPage from "./pages/PaymentPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MyPage from "./pages/MyPage";
@@ -21,6 +21,7 @@ import AdminNoticeList from "./pages/AdminNoticeListPage";
 import AdminNoticeFixPage from "./pages/AdminNoticeFixPage";
 import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/book" element={<BookPage />} />
           <Route path="/book" element={<BookingPaymentPage />} />
           <Route path="/admin" element={<AdminMainPage />} />
+          <Route path="/SearchPage" element={<SearchPage />} />
           <Route path="/admin/camping" element={<AdminCampingRegisterPage />} />
           <Route path="/admin/camping-fix" element={<AdminCampFixPage />} />
           <Route path="/admin/notice-regi" element={<AdminNoticeRegiPage />} />

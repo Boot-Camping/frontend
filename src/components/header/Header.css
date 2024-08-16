@@ -1,23 +1,23 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: 20px;
-  padding: 15px;
+  align-items: 0.2rem;
+  padding: 1.5rem;
   background-color: white;
-  border-bottom: 1px solid green;
 }
 
 .logo {
-  width: 30px;
-  height: 30px;
-}
-
-.header-icons {
   display: flex;
-  gap: 20px;
+  width: 0.3rem;
+  height: 0.3rem;
 }
 
-.header-icons img {
-  width: 30px;
-  height: 30px;
+.icons {
+  display: flex;
+}
+
+.header-icon {
+  gap: 0.2rem;
+  width: 0.3rem;
+  height: 0.3rem;
 }
