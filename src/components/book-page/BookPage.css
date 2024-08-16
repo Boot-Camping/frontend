@@ -5,6 +5,23 @@
   padding-top: 1rem;
 }
 
+.book-date {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.book-date h3 {
+  font-weight: bold;
+  font-size: var(--sub-heading);
+}
+
+.confirm-button {
+  margin: 1rem 0;
+}
+
+/* BookInfo.jsx */
 .book-info {
   display: flex;
   align-items: center;
@@ -28,26 +45,4 @@
 
 .book-num {
   font-size: 1.4rem;
-}
-
-.book-calendar {
-  width: 40rem;
-}
-
-/* 캠핑기간 선택하기 */
-.book-date {
-  display: flex;
-  flex-direction: column;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.book-date h3 {
-  font-weight: bold;
-  font-size: var(--sub-heading);
-}
-
-/* 확인 버튼 */
-.confirm-button {
-  margin: 1rem 0;
 }

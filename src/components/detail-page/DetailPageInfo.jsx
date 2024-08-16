@@ -6,6 +6,7 @@ import stars from "../../assets/svg/star.svg";
 import views from "../../assets/svg/view.svg";
 import location from "../../assets/svg/location.svg";
 import phone from "../../assets/svg/phone.svg";
+import arrow from "../../assets/svg/arrow.svg";
 
 const DetailPageInfo = () => {
   return (
@@ -76,11 +77,7 @@ const DetailPageInfo = () => {
 
         <div className="more-info">
           <div>더보기</div>
-          <ReactSVG
-            className="more-info-img"
-            src="../src/assets/svg/arrow.svg"
-            alt=""
-          />
+          <ReactSVG className="more-info-img" src={arrow} alt="" />
         </div>
       </div>
     </div>

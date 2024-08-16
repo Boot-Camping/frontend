@@ -3,7 +3,7 @@ import "../components/payment-page/PaymentPage.css";
 import PaymentInfo from "../components/payment-page/PaymentInfo";
 import PaymentAmount from "../components/payment-page/PaymentAmount";
 import PaymentPolicy from "../components/payment-page/PaymentPolicy";
-import PaymentModal from "../components/detail-page/PaymentModal";
+import PaymentModal from "../components/payment-page/PaymentModal";
 import { Link } from "react-router-dom";
 
 const PaymentPage = () => {
@@ -46,12 +46,12 @@ const PaymentPage = () => {
         closeModal={closeSecondModal}
       >
         <p>결제가 완료되었습니다!</p>
-        <button onClick={() => (window.location.href = "/")}>
+        <Link to="/" className="modal-button">
           홈으로 이동
-        </button>
-        <button onClick={() => (window.location.href = "/mypage")}>
-          나의 예약 보러가기
-        </button>
+        </Link>
+        <Link to="/mypage" className="modal-button">
+          예약내역 보러가기
+        </Link>
       </PaymentModal>
     </>
   );
