@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/search-page/SearchPage.css";
 
 const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
+  const [searchHistory, setSearchHistory] = useState([]);
+
+  useEffect(() => {
+    const history = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    setSearchHistory(history);
+  }, []);
 
   const searchSubmitHandle = (e) => {
     e.preventDefault();
+    const updatedHistory = [searchText, ...searchHistory];
+    setSearchHistory(updatedHistory);
+
+    localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
+
     setSearchText("");
     console.log(searchText);
+  };
+
+  // 검색 기록 항목 삭제
+  const historyItemDelete = (itemToDelete) => {
+    const updatedHistory = searchHistory.filter(
+      (item) => item !== itemToDelete
+    );
+    setSearchHistory(updatedHistory);
+    localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
   };
 
   return (
@@ -51,7 +71,24 @@ const SearchPage = () => {
         </button>
       </div>
 
-      <div className="search-block"></div>
+      <div className="search-block">
+        <div className="search-history">최근 검색 기록</div>
+        <div>
+          {searchHistory.map((item, index) => (
+            <div className="search-history-list-wraper">
+              <div key={index} className="search-history-list">
+                {item}
+              </div>
+              <button
+                className="search-history-delete-btn"
+                onClick={() => historyItemDelete(item)}
+              >
+                삭제
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 };

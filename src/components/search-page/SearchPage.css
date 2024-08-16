@@ -40,5 +40,30 @@
 }
 
 .search-block {
-  min-height: 60rem;
+  height: 100%;
+  margin-left: 8.1rem;
+  border: 1px solid gray;
+}
+
+.search-history {
+  font-size: 1.5rem;
+  color: gray;
+  padding: 1.5rem 1rem;
+}
+
+.search-history-list-wraper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-history-list {
+  font-size: 1.4rem;
+  margin: 0 1rem;
+}
+
+.search-history-delete-btn {
+  width: 4rem;
+  margin-right: 1rem;
+  background-color: white;
+  border: none;
 }
