@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/search-page/SearchPage.css";
 
 const SearchPage = () => {
-  // const searchSubmitHandle = (e) => {};
+  const [searchText, setSearchText] = useState("");
+
+  const searchSubmitHandle = (e) => {
+    e.preventDefault();
+    setSearchText("");
+    console.log(searchText);
+  };
+
   return (
     <>
       <div className="search-title">검색</div>
@@ -24,16 +31,24 @@ const SearchPage = () => {
           <option value="전남">전남</option>
           <option value="제주">제주</option>
         </select>
+
         <input
           className="search-text"
           type="text"
           id="search"
           placeholder="캠핑장 검색"
-          // value={searchText}
-          // onChange={searchSubmitHandle}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
 
-        <input className="search-submit-Btn" type="submit" value="검색" />
+        <button
+          className="search-submit-Btn"
+          type="submit"
+          value="검색"
+          onClick={searchSubmitHandle}
+        >
+          검색
+        </button>
       </div>
 
       <div className="search-block"></div>
