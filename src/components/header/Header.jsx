@@ -18,7 +18,10 @@ const Header = () => {
         <Link to={"/mypage"}>
           <ReactSVG className="header-icon" src={userImg} alt="" />
         </Link>
-        <ReactSVG className="header-icon" src={searchImg} alt="" />
+
+        <Link to={"/SearchPage"}>
+          <ReactSVG className="header-icon" src={searchImg} alt="" />
+        </Link>
       </div>
     </div>
   );

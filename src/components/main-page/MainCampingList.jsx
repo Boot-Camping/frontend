@@ -30,12 +30,8 @@ const MainCampingList = () => {
         {campingPlaceFiltered.map((campingPlace) => (
           <div key={campingPlace.id} className="camping-list">
             <Link to={"/detail"}>
-              <img
-                className="camping-img"
-                src={campingPlace.img}
-                alt={campingPlace.name}
-              />
-              <img className="camping-img-heart" src={heart} alt="" />
+              <img className="camping-img" src={campingPlace.img} alt="" />
+              <ReactSVG className="camping-img-heart" src={heart} alt="" />
               <div className="camping-name">{campingPlace.name}</div>
               <div className="camping-sub-title-wraper">
                 <div className="camping-type">{campingPlace.type}</div>
