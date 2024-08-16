@@ -5,6 +5,7 @@ import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import heart from "../assets/svg/heart.svg";
 import location from "../assets/svg/location.svg";
 import star from "../assets//svg/star.svg";
+import { ReactSVG } from "react-svg";
 
 const CategoryPage = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -26,12 +27,12 @@ const CategoryPage = () => {
 
       {campingPlaceFiltered.map((campingPlace) => (
         <div key={campingPlace.id} className="category-camping-list">
-          <img
-            className="category-camping-img"
-            src={campingPlace.img}
-            alt={campingPlace.name}
+          <img className="category-camping-img" src={campingPlace.img} alt="" />
+          <ReactSVG
+            className="category-camping-img-heart"
+            src={heart}
+            alt="찜"
           />
-          <img className="category-camping-img-heart" src={heart} alt="찜" />
           <div className="category-camping-type">{campingPlace.type}</div>
           <div className="category-camping-sub-title-wraper">
             <div className="category-camping-name">{campingPlace.name}</div>
@@ -39,7 +40,7 @@ const CategoryPage = () => {
           </div>
           <div className="category-camping-location-wraper">
             <div className="category-camping-location-icon-wraper">
-              <img
+              <ReactSVG
                 className="category-camping-location-icon"
                 src={location}
                 alt="위치"
@@ -52,7 +53,7 @@ const CategoryPage = () => {
           </div>
           <div className="category-camping-info-icons-wraper">
             <div className="category-camping-info-star-wraper">
-              <img
+              <ReactSVG
                 className="category-camping-info-star"
                 src={star}
                 alt="별점"
@@ -63,7 +64,7 @@ const CategoryPage = () => {
               </div>
             </div>
             <div className="category-camping-info-heart-wraper">
-              <img
+              <ReactSVG
                 className="category-camping-info-heart"
                 src={heart}
                 alt="찜"
