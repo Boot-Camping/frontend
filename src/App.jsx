@@ -15,6 +15,10 @@ import CashPage from "./pages/CashPage";
 import NoticePage from "./pages/NoticePage";
 import AdminMainPage from "./pages/AdminMainPage";
 import AdminCampingRegisterPage from "./pages/AdminCampingRegisterPage";
+import AdminCampFixPage from "./pages/AdminCampFixPage";
+import AdminNoticeRegiPage from "./pages/AdminNoticeRegisterPage";
+import AdminNoticeList from "./pages/AdminNoticeListPage";
+import AdminNoticeFixPage from "./pages/AdminNoticeFixPage";
 import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
@@ -41,6 +45,10 @@ function App() {
           <Route path="/admin" element={<AdminMainPage />} />
           <Route path="/SearchPage" element={<SearchPage />} />
           <Route path="/admin/camping" element={<AdminCampingRegisterPage />} />
+          <Route path="/admin/camping-fix" element={<AdminCampFixPage />} />
+          <Route path="/admin/notice-regi" element={<AdminNoticeRegiPage />} />
+          <Route path="/admin/notice-list" element={<AdminNoticeList />} />
+          <Route path="/admin/notice-fix" element={<AdminNoticeFixPage />} />
         </Routes>
       </main>
       <Footer />

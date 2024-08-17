@@ -29,6 +29,7 @@
   right: 1rem;
   width: 2.5rem;
   height: 2.5rem;
+  color: red;
 }
 
 .category-camping-type {
@@ -62,6 +63,7 @@
 .category-camping-location-icon {
   width: 1.5rem;
   height: 1.5rem;
+  color: green;
 }
 
 .category-camping-location,
@@ -75,10 +77,15 @@
   display: flex;
 }
 
-.category-camping-info-star,
+.category-camping-info-star {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: yellow;
+}
 .category-camping-info-heart {
   width: 1.2rem;
   height: 1.2rem;
+  color: red;
 }
 
 .category-camping-info {
