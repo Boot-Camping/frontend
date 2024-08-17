@@ -2,7 +2,19 @@ import React from "react";
 import { ReactSVG } from "react-svg";
 import { userInfoIcon, userProfile } from "../../constants/userInfo";
 
-const UserProfile = () => {
+const UserProfile = ({ setIsOpened, setModalType }) => {
+  const telChangeHandle = () => {
+    setIsOpened(true);
+    setModalType("userTel");
+    console.log("전화번호 변경");
+  };
+
+  const addrChangeHandle = () => {
+    setIsOpened(true);
+    setModalType("addr");
+    console.log("주소 변경");
+  };
+
   return (
     <div className="user-profile-wrap">
       <div className="profile-img-wrap underline">
@@ -17,7 +29,7 @@ const UserProfile = () => {
           <div>이름</div>
           <div>{userProfile.userName}</div>
         </div>
-        <div className="profile-txt">
+        <div className="profile-txt" onClick={telChangeHandle}>
           <div>전화번호</div>
           <div>
             <div>{userProfile.userTel}</div>
@@ -28,7 +40,7 @@ const UserProfile = () => {
           <div>이메일</div>
           <div>{userProfile.email}</div>
         </div>
-        <div className="profile-txt profile-address">
+        <div className="profile-txt profile-address" onClick={addrChangeHandle}>
           <div className="">주소</div>
           <div>
             <div>
