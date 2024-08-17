@@ -1,19 +1,39 @@
 import React from "react";
+import "../components/my-page/MyPage.css";
 import { Link } from "react-router-dom";
+import { ReactSVG } from "react-svg";
+import { mypageBtns, mypageImgs } from "../constants/mypage";
+import MyPageUser from "../components/my-page/MyPageUser";
 
 const MyPage = () => {
   return (
-    <>
-      <div>마이페이지</div>
-      <Link to="/signup">회원가입</Link>
-      <Link to="/login">로그인</Link>
-      <Link to="/userinfo">내 정보 관리</Link>
-      <Link to="/paid">결제 내역</Link>
-      <Link to="/">나의 리뷰</Link>
-      <Link to="/save">찜 목록</Link>
-      <Link to="/cash">캐시 충전/사용</Link>
-      <Link to="/notice">공지사항 및 이벤트</Link>
-    </>
+    <section className="mypage-wrap">
+      <MyPageUser />
+
+      <div className="mypage-btn-wrap">
+        {mypageBtns.map((mypageBtn) => (
+          <Link
+            to="/paid"
+            className={`mypage-btn ${mypageBtn.key}`}
+            key={mypageBtn.key}
+          >
+            <ReactSVG
+              src={mypageImgs[mypageBtn.src]}
+              className="mypage-btn-icon"
+            />
+            <div>{mypageBtn.txt}</div>
+          </Link>
+        ))}
+      </div>
+
+      <Link to="/notice" className="mypage-btn-notice">
+        <div className="mypage-notice-text">
+          <div>공지사항 및 이벤트</div>
+          <div>공지사항과 진행중인 이벤트를 확인하세요</div>
+        </div>
+        <ReactSVG src={mypageImgs.next} className="mypage-notice-icon" />
+      </Link>
+    </section>
   );
 };
 
