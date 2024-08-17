@@ -20,6 +20,7 @@
 .stars-img {
   width: 1.5rem;
   padding-right: 0.2rem;
+  color: var(--light-green);
 }
 
 .views {
@@ -30,6 +31,7 @@
 .views-img {
   width: 1.5rem;
   padding-right: 0.2rem;
+  color: var(--light-green);
 }
 
 /* 업체 기본정보 */
@@ -92,29 +94,29 @@
   color: #28a745;
 }
 
-/* 캠핑장 설명 */
-
-.description {
-  font-size: 14px;
-  color: #6c757d;
-  margin-bottom: 10px;
-}
-
-.more-info {
-  display: flex;
-  justify-content: center;
-  color: #038153;
-  cursor: pointer;
+/* ReadMore.jsx */
+.readmore {
   padding-bottom: 1rem;
-  font-size: 14px;
 }
 
-.more-info-img {
-  margin-right: 10px;
-  width: 1.4rem;
+.readmore-button {
+  background-color: var(--dark-green);
+  color: white;
+  border: none;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--sub-content);
 }
 
-/* 지도 */
+.readmore-text {
+  font-size: var(--content);
+  padding-bottom: 0.5rem;
+  color: var(--dark-gray);
+  line-height: 2rem;
+}
+
+/* KakaoMap.jsx */
 .map {
   border-top: 0.1rem solid black;
   padding-top: 1rem;
@@ -127,12 +129,7 @@
   padding-bottom: 1rem;
 }
 
-.map-api {
-  width: 40rem;
-  height: 100%;
-}
-
-/* ReviewPage */
+/* ReviewPage.jsx */
 .review {
   padding-top: 2rem;
   border-top: 0.1rem solid black;
@@ -149,7 +146,7 @@
   padding-top: 1rem;
 }
 
-.review-info img {
+.review-img {
   width: 15rem;
   border-radius: 1rem;
 }
@@ -174,7 +171,7 @@
   padding-top: 1.5rem;
 }
 
-/* 예약하기 버튼 */
+/* BookButton.jsx */
 .book-button {
   display: flex;
   justify-content: center;
@@ -182,7 +179,7 @@
 }
 
 .book-emoji {
-  width: 3cap;
+  width: 5cap;
   background-color: white;
   height: 3rem;
   color: #f43c3c;
@@ -194,7 +191,8 @@
   align-items: center;
   font-size: 1.5rem;
   color: white;
-  background-color: #037d5b;
+  background-color: var(--dark-green);
+  border-radius: 0.5rem;
   height: 3rem;
   width: 100%;
 }
