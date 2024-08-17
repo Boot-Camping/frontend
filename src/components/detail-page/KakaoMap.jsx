@@ -5,12 +5,10 @@ const KAKAO_MAP_API_KEY = "1d6e7d08ab295cf034bd9d006c34305b";
 
 const KakaoMap = () => {
   useEffect(() => {
-    // 카카오 지도 API 스크립트 로드
     const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_MAP_API_KEY}`;
     script.async = true;
     script.onload = () => {
-      // API 로드 후에 kakao 객체 사용 가능
       script.onload = () => {
         if (window.kakao && window.kakao.maps) {
           const container = document.getElementById("map");
@@ -19,7 +17,6 @@ const KakaoMap = () => {
             level: 3,
           };
 
-          // 지도 생성
           const map = new window.kakao.maps.Map(container, options);
         } else {
           console.error("Kakao Maps API를 로드할 수 없습니다.");
@@ -29,7 +26,6 @@ const KakaoMap = () => {
 
     document.head.appendChild(script);
 
-    // 컴포넌트 언마운트 시 스크립트 제거
     return () => {
       document.head.removeChild(script);
     };
@@ -38,7 +34,7 @@ const KakaoMap = () => {
   return (
     <div className="map">
       <div className="map-title">지도</div>
-      <div id="map" className="map-api"></div> {/* id="map" 추가 */}
+      <div id="map" className="map-api"></div>
     </div>
   );
 };
