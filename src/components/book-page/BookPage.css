@@ -1,40 +1,13 @@
 /* BookPage.jsx */
-.title {
-  font-size: 2rem;
+.book-page {
+}
+
+.book-page-title {
+  font-size: var(--heading);
   font-weight: bold;
   padding-top: 1rem;
 }
 
-.book-info {
-  display: flex;
-  align-items: center;
-}
-
-.book-img {
-  width: 20rem;
-  height: 10rem;
-  border-radius: 1rem;
-}
-
-.book-contents {
-  padding-left: 1rem;
-}
-
-.book-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding-bottom: 1rem;
-}
-
-.book-num {
-  font-size: 1.4rem;
-}
-
-.book-calendar {
-  width: 40rem;
-}
-
-/* 캠핑기간 선택하기 */
 .book-date {
   display: flex;
   flex-direction: column;
@@ -45,9 +18,39 @@
 .book-date h3 {
   font-weight: bold;
   font-size: var(--sub-heading);
+  padding-bottom: 0.5rem;
 }
 
-/* 확인 버튼 */
-.confirm-button {
-  margin: 1rem 0;
+.date-confirm-button {
+  background-color: var(--dark-green);
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--content);
+}
+
+/* BookInfo.jsx */
+.book-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.camping-name {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.camping-num {
+  font-size: var(--content);
+}
+
+.book-img {
+  width: 20rem;
+  height: 15rem;
+  border-radius: 0.5rem;
 }

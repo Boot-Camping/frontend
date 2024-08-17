@@ -1,8 +1,7 @@
 .calendar-wrap {
-  border-bottom: 0.1rem solid black;
 }
 
-input.inputbox {
+.inputbox {
   font-size: var(--content);
   padding: 1rem;
   border-radius: 0.3rem;
@@ -14,6 +13,5 @@ input.inputbox {
 }
 
 .calendar-element {
-  padding: 0 1rem;
-  width: 40;
+  width: 100%;
 }
