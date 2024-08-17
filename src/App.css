@@ -162,6 +162,10 @@ html {
   font-size: 1.5rem; */
 }
 
+body {
+  overflow-x: hidden;
+}
+
 a:link,
 a:visited {
   text-decoration: none;
@@ -172,6 +176,20 @@ main {
   width: 92%;
   margin: 0 4%;
   margin-top: 1rem;
+}
+
+.underline {
+  position: relative;
+}
+.underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 150%;
+  height: 0.5rem;
+  background: var(--bg-gray);
+  transform: translateX(-50%);
 }
 
 @media screen and (min-width: 800px) {
