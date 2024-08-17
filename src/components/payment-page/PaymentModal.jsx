@@ -9,7 +9,7 @@ const PaymentModal = ({ isModalOpen, closeModal, children }) => {
     <div className="modal-overlay">
       <div className="modal-content">{children}</div>
     </div>,
-    document.body
+    document.getElementById("modal-root")
   );
 };
 
