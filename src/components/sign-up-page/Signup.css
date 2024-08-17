@@ -117,10 +117,10 @@
 }
 
 .signup-check-img {
-	position: absolute;
-	left: 0.1rem;
-	top: 0.1rem;
-	width: var(--sub-heading);
+  position: absolute;
+  left: 0.1rem;
+  top: 0.1rem;
+  width: var(--sub-heading);
   height: var(--sub-heading);
 }
 
@@ -146,7 +146,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 10000000;
 }
 
 .signup-modal {
@@ -165,7 +164,6 @@
   align-items: center;
   text-align: center;
   line-height: 1.3;
-  z-index: 10000000;
 }
 
 .signup-modal-content {
