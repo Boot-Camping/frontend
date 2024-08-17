@@ -1,0 +1,46 @@
+import React from "react";
+import { ReactSVG } from "react-svg";
+import { userInfoIcon, userProfile } from "../../constants/userInfo";
+
+const UserProfile = () => {
+  return (
+    <div className="user-profile-wrap">
+      <div className="profile-img-wrap underline">
+        <div className="profile-img">
+          <ReactSVG src={userProfile.userImage} className="profile-img-user" />
+          <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
+        </div>
+        <div>{userProfile.loginId}</div>
+      </div>
+      <div className="profile-txt-wrap underline">
+        <div className="profile-txt">
+          <div>이름</div>
+          <div>{userProfile.userName}</div>
+        </div>
+        <div className="profile-txt">
+          <div>전화번호</div>
+          <div>
+            <div>{userProfile.userTel}</div>
+            <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+          </div>
+        </div>
+        <div className="profile-txt">
+          <div>이메일</div>
+          <div>{userProfile.email}</div>
+        </div>
+        <div className="profile-txt profile-address">
+          <div className="">주소</div>
+          <div>
+            <div>
+              <div>{userProfile.addr.address}</div>
+              <div>{userProfile.addr.detailAddress}</div>
+            </div>
+            <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserProfile;

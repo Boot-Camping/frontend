@@ -1,0 +1,94 @@
+.underline {
+  position: relative;
+}
+.underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 150%;
+  height: 0.5rem;
+  background: var(--bg-gray);
+  transform: translateX(-50%);
+}
+
+/***********************************
+ *	이미지 영역
+*/
+.profile-img-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  padding: 1rem 0 3rem;
+}
+
+.profile-img {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.profile-img-user {
+  width: 10rem;
+  height: 10rem;
+}
+
+.profile-img-user svg {
+  fill: var(--bg-gray);
+}
+
+.profile-img-photo {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+}
+
+.profile-img-photo svg {
+  fill: var(--light-green);
+}
+
+/***********************************
+ *	텍스트 영역
+*/
+.profile-txt-wrap {
+  padding: 2rem 0;
+  width: 100%;
+  font-size: var(--sub-heading);
+}
+
+.profile-txt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.profile-txt > div:first-child {
+  color: var(--dark-gray);
+}
+
+.profile-txt > div:last-child {
+  color: var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+}
+
+.info-change-img {
+  width: var(--sub-heading);
+  height: var(--sub-heading);
+  margin-left: 0.5rem;
+}
+
+.profile-address {
+  line-height: 1.5;
+}
+
+.profile-address div {
+  align-self: start;
+}
