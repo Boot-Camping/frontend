@@ -1,3 +1,6 @@
+/*****************************
+ * 	이미지 불러오기
+ */
 import user from "../assets/svg/userImg.svg";
 import setting from "../assets/svg/cog6Tooth.svg";
 import calendar from "../assets/svg/calendarDays.svg";
@@ -6,11 +9,17 @@ import heart from "../assets/svg/heart.svg";
 import cash from "../assets/svg/banknotes.svg";
 import next from "../assets/svg/arrowNext.svg";
 
+/*****************************
+ * 	유저 정보 상수데이터
+ */
 export const myPageData = {
   loginId: "camper123",
   userImg: "",
 };
 
+/*****************************
+ * 	이미지 데이터
+ */
 export const mypageImgs = {
   user,
   setting,
@@ -21,6 +30,9 @@ export const mypageImgs = {
   next,
 };
 
+/*****************************
+ * 	버튼 데이터
+ */
 export const mypageBtns = [
   {
     key: "mypage-btn-paid",
