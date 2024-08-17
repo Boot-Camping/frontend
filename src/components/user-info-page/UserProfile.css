@@ -1,17 +1,3 @@
-.underline {
-  position: relative;
-}
-.underline::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 150%;
-  height: 0.5rem;
-  background: var(--bg-gray);
-  transform: translateX(-50%);
-}
-
 /***********************************
  *	이미지 영역
 */
