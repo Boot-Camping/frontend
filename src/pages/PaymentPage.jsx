@@ -40,7 +40,11 @@ const PaymentPage = () => {
       <PaymentInfo />
       <PaymentAmount />
       <PaymentPolicy allCheckedHandle={allCheckedHandle} />
-      <button onClick={openModal} disabled={!isButtonEnabled}>
+      <button
+        className="payment-button"
+        onClick={openModal}
+        disabled={!isButtonEnabled}
+      >
         캠핑장 결제하기
       </button>
 

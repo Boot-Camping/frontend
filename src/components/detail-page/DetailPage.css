@@ -20,6 +20,7 @@
 .stars-img {
   width: 1.5rem;
   padding-right: 0.2rem;
+  color: var(--light-green);
 }
 
 .views {
@@ -30,6 +31,7 @@
 .views-img {
   width: 1.5rem;
   padding-right: 0.2rem;
+  color: var(--light-green);
 }
 
 /* 업체 기본정보 */
@@ -92,35 +94,26 @@
   color: #28a745;
 }
 
-/* 캠핑장 설명 */
-.description {
-  font-size: 14px;
-  color: #6c757d;
-  margin-bottom: 10px;
-}
-
-.more-info {
-  display: flex;
-  justify-content: center;
-  color: #038153;
-  cursor: pointer;
-  padding-bottom: 1rem;
-  font-size: 14px;
-}
-
-.more-info-img {
-  margin-right: 10px;
-  width: 1.4rem;
-}
-
 /* ReadMore.jsx */
 .readmore {
   padding-bottom: 1rem;
 }
 
-.readmore-text {
+.readmore-button {
+  background-color: var(--dark-green);
+  color: white;
+  border: none;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
   font-size: var(--sub-content);
+}
+
+.readmore-text {
+  font-size: var(--content);
   padding-bottom: 0.5rem;
+  color: var(--dark-gray);
+  line-height: 2rem;
 }
 
 /* KakaoMap.jsx */
@@ -186,7 +179,7 @@
 }
 
 .book-emoji {
-  width: 3cap;
+  width: 5cap;
   background-color: white;
   height: 3rem;
   color: #f43c3c;
@@ -198,7 +191,8 @@
   align-items: center;
   font-size: 1.5rem;
   color: white;
-  background-color: #037d5b;
+  background-color: var(--dark-green);
+  border-radius: 0.5rem;
   height: 3rem;
   width: 100%;
 }

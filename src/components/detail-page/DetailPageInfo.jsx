@@ -6,7 +6,6 @@ import stars from "../../assets/svg/star.svg";
 import views from "../../assets/svg/view.svg";
 import location from "../../assets/svg/location.svg";
 import phone from "../../assets/svg/phone.svg";
-import arrow from "../../assets/svg/arrow.svg";
 import { mockDetailInfo } from "../../constants/mockDetailInfo";
 import ReadMore from "./ReadMore";
 

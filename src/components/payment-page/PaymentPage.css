@@ -1,56 +1,76 @@
 /* PaymentPage */
-h2 {
-  font-size: var(--heading);
-  font-weight: bold;
-  padding-bottom: 1rem;
-}
-
-h3 {
-  font-size: var(--sub-heading);
-  font-weight: bold;
-  padding-bottom: 1rem;
-}
-
 .payment-title {
   margin-top: 1rem;
   border-top: 0.1rem solid black;
-  padding-top: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
+.payment-button {
+  background-color: var(--dark-green);
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--content);
 }
 
 /* PaymentInfo.jsx */
 .payment-info-title {
   display: flex;
   justify-content: space-between;
-}
-
-.payment-info div {
   padding-bottom: 1rem;
 }
 
-.payment-info p {
+.reset-button {
+  background-color: var(--light-green);
+  color: white;
+  border: none;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: var(--sub-content);
+}
+
+.payment-info-title h3 {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+}
+
+.payment-info-detail-name,
+.payment-info-detail-phoneNumber,
+.payment-info-detail-request {
   font-size: var(--content);
+  padding-bottom: 1rem;
 }
 
 .input-name,
-.input-number {
-  width: 100%;
-  height: 2rem;
+.input-phoneNumber {
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
 }
 
-.input-require {
-  width: 100%;
-  height: 6rem;
+.input-request {
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
 }
 
 /* PaymentAmount.jsx */
 .payment {
   padding-top: 1rem;
-  border-top: 0.1rem solid black;
   border-bottom: 0.1rem solid black;
 }
 
 .payment-title {
   font-size: var(--heading);
+  font-weight: bold;
 }
 .payment-detail {
   display: flex;
@@ -63,21 +83,33 @@ h3 {
   padding-bottom: 1rem;
 }
 
-.total,
+.coupon-button {
+  background-color: var(--light-green);
+  color: white;
+  border: none;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: var(--sub-content);
+}
+
+.total-title,
 .total-amount {
   font-weight: bold;
-  padding-top: 1rem;
+  padding-top: 2rem;
   color: var(--light-green);
 }
 
 /* PaymentPolicy.jsx */
 .payment-policy {
-  padding-top: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .policy-title {
   font-size: var(--heading);
   font-weight: bold;
+  padding-bottom: 1rem;
 }
 
 .policy-1,
