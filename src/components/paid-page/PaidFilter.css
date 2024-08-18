@@ -1,23 +1,23 @@
 .paid-filter {
-	margin: 2rem 0;
-	text-align: right;
+  margin: 2rem 0;
+  text-align: right;
 }
 
 .paid-filter button {
-	font-size: var(--sub-content);
-	border-radius: 0.5rem;
-	padding: 0.5rem;
+  font-size: var(--sub-content);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 
 .book-filter {
-	border: none;
-	background: var(--light-green);
-	color: #fff;
+  border: none;
+  background: var(--light-green);
+  color: #fff;
+  margin: 0 0.5rem;
 }
 
 .usage-filter {
-	border: 1px solid var(--light-green);
-	color: var(--light-green);
-	background: transparent;
-	margin-left: 0.5rem;
+  border: 1px solid var(--light-green);
+  color: var(--light-green);
+  background: transparent;
 }
