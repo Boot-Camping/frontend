@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import "../components/admin-notice-register/AdminNoticeRegister.css";
 
 const AdminNoticeRegisterPage = () => {
@@ -46,6 +47,13 @@ const AdminNoticeRegisterPage = () => {
 
   return (
     <div>
+      <Link to={"/admin"}>
+        <img
+          className="admin-home-icon"
+          src="../../src/assets/svg/home.svg"
+          alt=""
+        />
+      </Link>
       <div className="notice-title">공지사항 등록</div>
       <div className="notice-category">
         <div className="notice-category-title">카테고리</div>

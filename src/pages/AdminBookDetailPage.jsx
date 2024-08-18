@@ -1,9 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../components/admin-book-page/AdminBookDetail.css";
 
 const AdminBookDetailPage = () => {
   return (
     <div>
+      <Link to={"/admin"}>
+        <img
+          className="admin-home-icon"
+          src="../../src/assets/svg/home.svg"
+          alt=""
+        />
+      </Link>
       <div className="admin-book-detail-title">예약 상세 조회</div>
       <div className="admin-book-camping-title">캠핑장 이름</div>
       <div className="admin-book-person-title">예약자 정보</div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../components/admin-main-page/AdminMainPage.css";
 
 const AdminMainPage = () => {
@@ -16,8 +17,12 @@ const AdminMainPage = () => {
     <div>
       <div className="capming-title">캠핑지</div>
       <div className="top-btn">
-        <button className="camping-register-btn">+ 등록</button>
-        <button className="camping-correct-btn">수정</button>
+        <Link to={"/admin/camping-regi"}>
+          <button className="camping-register-btn">+ 등록</button>
+        </Link>
+        <Link to={"/admin/camping-fix"}>
+          <button className="camping-correct-btn">수정</button>
+        </Link>
       </div>
       <div className="statics-title">통계</div>
       <div className="statics-category">
@@ -57,12 +62,18 @@ const AdminMainPage = () => {
       )}
       <div className="noti-title">공지사항</div>
       <div className="top-btn">
-        <button className="noti-register-btn">+ 등록</button>
-        <button className="noti-correct-btn">수정</button>
+        <Link to={"/admin/notice-regi"}>
+          <button className="noti-register-btn">+ 등록</button>
+        </Link>
+        <Link to={"/admin/notice-fix"}>
+          <button className="noti-correct-btn">수정</button>
+        </Link>
       </div>
       <div className="reserve-title">예약</div>
       <div className="top-btn">
-        <button className="reserve-see-btn">조회</button>
+        <Link to={"/admin/book-list"}>
+          <button className="reserve-see-btn">조회</button>
+        </Link>
       </div>
     </div>
   );

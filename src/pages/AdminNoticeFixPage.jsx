@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const AdminNoticeFixPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -43,6 +44,13 @@ const AdminNoticeFixPage = () => {
   };
   return (
     <div>
+      <Link to={"/admin"}>
+        <img
+          className="admin-home-icon"
+          src="../../src/assets/svg/home.svg"
+          alt=""
+        />
+      </Link>
       <div className="notice-title">공지사항 수정</div>
       <div className="notice-category">
         <div className="notice-category-title">카테고리</div>

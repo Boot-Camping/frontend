@@ -329,3 +329,9 @@
   margin: 1rem 0 3rem 0;
   cursor: pointer;
 }
+
+.admin-home-icon {
+  justify-content: left;
+  width: 2.5rem;
+  height: auto;
+}
