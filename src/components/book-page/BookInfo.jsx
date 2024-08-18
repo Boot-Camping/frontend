@@ -1,10 +1,10 @@
 import React from "react";
 import "./BookPage.css";
 import bookImage from "../../assets/image/detailImg-2.png";
-import { mockDetailInfo } from "../../constants/mockDetailInfo";
+import { detailCampingInfo } from "../../constants/detailPageInfo";
 
 const BookInfo = () => {
-  const mockInfo = mockDetailInfo[0];
+  const mockInfo = detailCampingInfo[0];
 
   return (
     <div>
