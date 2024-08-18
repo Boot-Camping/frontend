@@ -23,7 +23,7 @@
   color: var(--light-gray);
 }
 
-.info-modal-new input {
+.info-modal-data input {
   color: var(--dark-gray);
   border: none;
   border-bottom: 1px solid #000;
@@ -32,30 +32,12 @@
   width: 35%;
 }
 
-.info-modal-new input:focus-visible {
+.info-modal-data input:focus-visible {
   outline: none;
 }
 
-/***********************************
- *	변경 완료 버튼
-*/
-.info-modal-submit {
-  border: none;
-  border-radius: 0.5rem;
-  background: var(--dark-green);
-  color: #fff;
-  font-size: var(--sub-content);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  margin: 4rem auto 0;
-}
-
-.info-modal-img {
-  width: var(--content);
-  height: var(--content);
-  margin-right: 0.5rem;
+.info-modal-data input::placeholder {
+  color: var(--soft-gray);
 }
 
 /***********************************
@@ -78,7 +60,7 @@
   align-items: start;
 }
 
-.info-modal-addr .info-modal-data li:first-child {
+.info-modal-addr .info-modal-data div:first-child {
   font-size: var(--content);
 }
 .info-modal-addr .info-modal-new {
@@ -99,4 +81,31 @@
 
 .info-modal-addr .postcode-btn {
   font-size: var(--sub-content);
+}
+
+/***********************************
+ *	비밀번호 변경 모달
+*/
+.info-modal-pw .info-modal-data {
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.info-modal-pw .info-modal-old div:first-child {
+  color: #000;
+}
+
+.info-modal-pw .info-modal-data input {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.info-modal-pw .info-modal-old input {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 0.5rem 1rem;
+  color: var(--dark-gray);
 }
