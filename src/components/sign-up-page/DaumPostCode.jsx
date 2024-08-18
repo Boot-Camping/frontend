@@ -64,14 +64,6 @@ const DaumPostCode = ({
         required
         ref={detailAddressRef}
       />
-      <br />
-      <input
-        className="signup-input"
-        type="text"
-        value={extraAddress}
-        placeholder="참고항목"
-        readOnly
-      />
     </div>
   );
 };
