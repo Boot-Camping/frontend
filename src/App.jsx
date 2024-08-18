@@ -23,6 +23,7 @@ import AdminBookListPage from "./pages/AdminBookListPage";
 import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
+import DeleteAccountPage from "./pages/DeleteAccountPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/user/delete" element={<DeleteAccountPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/userinfo" element={<UserInfoPage />} />
           <Route path="/paid" element={<PaidPage />} />

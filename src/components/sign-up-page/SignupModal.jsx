@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
 import { signUpError } from "../../constants/signUp";
+import { closeModal } from "../../utils/closeModal";
 
 const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
-  const closeHandle = () => {
-    setIsOpened(false);
-  };
-
   const errorMessage = () => {
     return signUpError[errorType] || null;
   };
@@ -16,7 +13,7 @@ const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
       {isOpened && (
         <>
           {createPortal(
-            <div className="overlay" onClick={closeHandle}></div>,
+            <div className="overlay" onClick={closeModal(setIsOpened)}></div>,
             document.getElementById("overlay-root")
           )}
           {createPortal(
@@ -27,7 +24,7 @@ const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
               <button
                 type="button"
                 className="signup-modal-btn"
-                onClick={closeHandle}
+                onClick={closeModal(setIsOpened)}
               >
                 확인
               </button>

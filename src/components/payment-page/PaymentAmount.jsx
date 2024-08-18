@@ -12,8 +12,8 @@ const PaymentAmount = () => {
             <div>1일 숙박비</div>
             <div>숙박 예약 요금(4박)</div>
             <div>초과인원당 추가비용(2명 * 4박)</div>
-            <button>쿠폰 선택</button>
-            <div className="total">총 결제금액</div>
+            <button className="coupon-button">쿠폰 선택</button>
+            <div className="total-title">총 결제금액</div>
           </div>
 
           <div>
