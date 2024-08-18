@@ -1,6 +1,6 @@
 /* DetailPageInfo */
 .detail-content {
-  padding-top: 3rem;
+  padding: 2rem 0;
 }
 
 /* 평점 */
@@ -117,10 +117,6 @@
 }
 
 /* KakaoMap.jsx */
-.map {
-  border-top: 0.1rem solid black;
-  padding-top: 1rem;
-}
 
 .map-title {
   font-size: 2rem;
@@ -131,8 +127,7 @@
 
 /* ReviewPage.jsx */
 .review {
-  padding-top: 2rem;
-  border-top: 0.1rem solid black;
+  padding-top: 1rem;
 }
 
 .review-title {
@@ -175,7 +170,7 @@
 .book-button {
   display: flex;
   justify-content: center;
-  padding-top: 1rem;
+  padding: 2rem;
 }
 
 .book-emoji {

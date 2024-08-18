@@ -32,7 +32,7 @@ const KakaoMap = () => {
   }, []);
 
   return (
-    <div className="map">
+    <div className="map underline">
       <div className="map-title">지도</div>
       <div id="map" className="map-api"></div>
     </div>

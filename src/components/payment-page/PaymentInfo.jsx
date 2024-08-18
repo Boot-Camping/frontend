@@ -34,7 +34,7 @@ const PaymentInfo = () => {
         </button>
       </div>
 
-      <div className="payment-info-detail">
+      <div className="payment-info-detail underline">
         {paymentInfoForm.map((field) => (
           <div key={field.id} className={`payment-info-detail-${field.id}`}>
             <p>{field.label}</p>

@@ -15,7 +15,7 @@ const DetailPageInfo = () => {
 
   return (
     <div>
-      <div className="detail-content">
+      <div className="detail-content underline">
         <div class="rating">
           <div className="stars">
             <ReactSVG src={stars} alt="" className="stars-img" />

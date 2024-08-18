@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./PaymentPage.css";
 
-const PaymentModal = ({ isModalOpen, closeModal, children }) => {
+const PaymentModal = ({ isModalOpen, children }) => {
   if (!isModalOpen) return null;
 
   return ReactDOM.createPortal(
