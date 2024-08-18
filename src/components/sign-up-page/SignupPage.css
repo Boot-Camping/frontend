@@ -1,0 +1,8 @@
+.signup-section {
+  margin: 3rem 0;
+}
+
+.signup-title {
+  font-size: var(--heading);
+  font-weight: var(--bold);
+}
