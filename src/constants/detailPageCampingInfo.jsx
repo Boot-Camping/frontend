@@ -1,4 +1,4 @@
-export const detailCampingInfo = [
+export const detailPageCampingInfo = [
   {
     id: "stars",
     labe: "평점",

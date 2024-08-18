@@ -1,20 +1,22 @@
 import React from "react";
 import "./BookPage.css";
 import bookImage from "../../assets/image/detailImg-2.png";
-import { detailCampingInfo } from "../../constants/detailPageInfo";
+import { detailPageCampingInfo } from "../../constants/detailPageCampingInfo";
 
 const BookInfo = () => {
-  const mockInfo = detailCampingInfo[0];
+  const standardNum = detailPageCampingInfo[6];
+  const maxNum = detailPageCampingInfo[7];
+  const overCharge = detailPageCampingInfo[8];
 
   return (
     <div>
       <div className="book-info">
         <div className="book-contents">
-          <div className="camping-name">{mockInfo.title}</div>
+          <div className="camping-name">캠핑장 예약하기</div>
           <div className="camping-num">
-            기준수용인원: {mockInfo.standardNum}명 <br />
-            최대수용인원: {mockInfo.maxNum}명 <br />
-            초과인원당 추가비용: {mockInfo.overCharge}원
+            {standardNum.label}: {standardNum.value}명 <br />
+            {maxNum.label}: {maxNum.value}명 <br />
+            {overCharge.label}: {overCharge.value}원
           </div>
         </div>
         <img className="book-img" src={bookImage} alt="" />
