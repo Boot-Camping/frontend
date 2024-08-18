@@ -1,4 +1,5 @@
 import React from "react";
+import "./DeleteAccountInfo.css";
 
 const DeleteAccountInfo = () => {
   return (
@@ -9,23 +10,18 @@ const DeleteAccountInfo = () => {
       </ul>
       <ul className="delete-info delete-unrecover">
         <li className="delete-info-title">아이디 재사용 및 복구 불가</li>
-        <li>
-          사용하고 계신 아이디를 탈퇴하시면 본인과 타인 모두 재사용 및 복구가
-          불가합니다
+        <li className="delete-info-desc">
+          사용하고 계신 아이디를 탈퇴하시면, 해당 아이디로 본인과 타인 모두
+          재가입이 불가능합니다
         </li>
       </ul>
-      <div className="delete-info delete-keep">
-        <div className="delete-info-title">
-          아래 게시물은 유지되며 삭제를 원하는 게시글이 있다면 반드시 탈퇴 전
-          비공개 처리하거나 삭제하시기 바랍니다
-        </div>
-        <ul className="delete-keep-content">
-          <li>
-            <span>캠핑로그</span>
-            <span>게시물, 댓글, 찜내역 등</span>
-          </li>
-        </ul>
-      </div>
+      <ul className="delete-info delete-keep">
+        <li className="delete-info-title">리뷰 및 답글 유지</li>
+        <li className="delete-info-desc">
+          탈퇴 후에도 작성하신 리뷰 및 답글은 유지됩니다. 삭제를 원하시는 경우,
+          반드시 탈퇴 전 삭제해주시기 바랍니다
+        </li>
+      </ul>
     </>
   );
 };
