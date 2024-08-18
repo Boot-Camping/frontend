@@ -3,7 +3,12 @@ import "./PaidList.css";
 import { paidData, paidIcon } from "../../constants/paid";
 import { ReactSVG } from "react-svg";
 
-const PaidList = () => {
+const PaidList = ({ filter }) => {
+  const filteredData = paidData.filter((data) => {
+    if (filter === "all") return data;
+    return data.bookStatus === filter;
+  });
+
   const renderButton = (data, index) => {
     if (data.bookStatus === "예약 완료") {
       return (
@@ -24,7 +29,7 @@ const PaidList = () => {
 
   return (
     <div className="paid-list-wrap">
-      {paidData.map((data, index) => (
+      {filteredData.map((data, index) => (
         <div
           className={`paid-list ${
             data.bookStatus === "예약 완료" ? "book-list" : "usage-list"
