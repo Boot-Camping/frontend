@@ -1,0 +1,22 @@
+.login-title-wrap {
+  width: 100%;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.login-title1 {
+  font-size: var(--heading);
+}
+
+.login-title2 {
+  font-size: var(--sub-heading);
+}
+
+.login-img {
+  width: 40%;
+  margin: 4rem auto;
+}
+
+.login-img img {
+  width: 100%;
+}
