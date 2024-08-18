@@ -1,0 +1,72 @@
+/***********************************
+ *	비밀번호 영역
+*/
+.delete-confirm {
+  display: flex;
+  flex-direction: column;
+}
+.delete-confirm label {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+.delete-confirm input {
+  margin: 2rem 0;
+  padding: 1.5rem 1rem;
+  border: none;
+  background: var(--bg-gray-50);
+  border-radius: 0.5rem;
+  font-size: var(--content);
+}
+
+.delete-confirm input:focus-visible {
+  outline: 2px solid var(--dark-green);
+}
+
+.delete-confirm input::placeholder {
+  color: var(--light-gray);
+  font-size: var(--sub-content);
+}
+
+/***********************************
+ *	약관 동의 영역
+*/
+.delete-confirm-chk {
+  font-size: var(--sub-heading);
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 2rem;
+}
+
+#delete-chk {
+  display: none;
+}
+
+#delete-chk + label {
+  position: relative;
+  padding-left: var(--heading);
+}
+
+#delete-chk + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--sub-heading);
+  height: var(--sub-heading);
+  border: 1px solid var(--dark-green);
+  border-radius: 0.3rem;
+}
+
+#delete-chk:checked + label::before {
+  background: var(--dark-green);
+}
+
+.delete-chk-img {
+  position: absolute;
+  left: 0.1rem;
+  top: 0.1rem;
+  width: var(--sub-heading);
+  height: var(--sub-heading);
+}
