@@ -19,6 +19,7 @@ import AdminCampFixPage from "./pages/AdminCampFixPage";
 import AdminNoticeRegiPage from "./pages/AdminNoticeRegisterPage";
 import AdminNoticeList from "./pages/AdminNoticeListPage";
 import AdminNoticeFixPage from "./pages/AdminNoticeFixPage";
+import AdminBookListPage from "./pages/AdminBookListPage";
 import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
@@ -49,6 +50,7 @@ function App() {
           <Route path="/admin/notice-regi" element={<AdminNoticeRegiPage />} />
           <Route path="/admin/notice-list" element={<AdminNoticeList />} />
           <Route path="/admin/notice-fix" element={<AdminNoticeFixPage />} />
+          <Route path="/admin/book-list" element={<AdminBookListPage />} />
         </Routes>
       </main>
       <Footer />
