@@ -1,4 +1,5 @@
 import React from "react";
+import "./MyPageUser.css";
 import { mypageImgs, myPageData } from "../../constants/mypage";
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
