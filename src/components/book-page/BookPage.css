@@ -11,14 +11,14 @@
 .book-date {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
 }
 
-.book-date h3 {
+.book-date-title {
   font-weight: bold;
   font-size: var(--sub-heading);
   padding-bottom: 0.5rem;
+  margin: 1rem 0;
 }
 
 .date-confirm-button {
@@ -29,6 +29,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: var(--content);
+  margin: 2rem 0;
 }
 
 /* BookInfo.jsx */
@@ -53,4 +54,10 @@
   width: 20rem;
   height: 15rem;
   border-radius: 0.5rem;
+}
+
+.counter-title {
+  font-weight: bold;
+  font-size: var(--sub-heading);
+  padding-bottom: 1rem;
 }

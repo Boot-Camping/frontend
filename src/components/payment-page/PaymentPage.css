@@ -7,6 +7,7 @@
   margin-top: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  font-size: var(--heading);
 }
 
 .payment-button {
@@ -57,7 +58,7 @@
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 0.5rem;
 }
 
@@ -65,7 +66,7 @@
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
-  padding: 1.5rem 1rem;
+  padding: 1rem 12rem;
   border-radius: 0.5rem;
 }
 
@@ -188,12 +189,19 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+.payment-modal-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.payment-modal-button {
+  background-color: var(--dark-green);
+  color: white !important;
   border: none;
-  font-size: 16px;
+  padding: 0.8rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  font-size: var(--content);
 }

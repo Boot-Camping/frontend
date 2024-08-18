@@ -2,6 +2,7 @@ import React from "react";
 import "./BookPage.css";
 import bookImage from "../../assets/image/detailImg-2.png";
 import { detailPageCampingInfo } from "../../constants/detailPageCampingInfo";
+import NumCounter from "../../utils/numCounter";
 
 const BookInfo = () => {
   const standardNum = detailPageCampingInfo[6];
@@ -21,6 +22,8 @@ const BookInfo = () => {
         </div>
         <img className="book-img" src={bookImage} alt="" />
       </div>
+      <div className="counter-title">예약인원</div>
+      <NumCounter />
     </div>
   );
 };

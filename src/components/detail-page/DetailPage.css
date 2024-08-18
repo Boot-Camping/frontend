@@ -119,10 +119,16 @@
 /* KakaoMap.jsx */
 
 .map-title {
-  font-size: 2rem;
+  font-size: var(--heading);
   font-weight: bold;
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.map-api {
+  width: 40rem;
+  height: 30rem;
+  /* overflow: visible !important; */
 }
 
 /* ReviewPage.jsx */

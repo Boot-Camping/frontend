@@ -1,0 +1,17 @@
+.counter-box {
+  /* padding: 1rem; */
+}
+
+.counter-button {
+  background-color: var(--light-green);
+  color: white;
+  border: none;
+  padding: 0.2rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: var(--sub-content);
+}
+
+.counter-number {
+  font-size: var(--content);
+}
