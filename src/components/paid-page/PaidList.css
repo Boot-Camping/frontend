@@ -1,0 +1,121 @@
+.paid-list-wrap {
+  position: relative;
+  padding: 1rem 0;
+}
+
+.paid-list-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 150%;
+  height: 100%;
+  background: var(--bg-gray-50);
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.paid-list {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+/***********************************
+ *	상태, 날짜
+*/
+.paid-list-status {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--content);
+}
+
+.paid-status {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: var(--sub-content);
+}
+
+.paid-period {
+  color: var(--dark-gray);
+}
+
+/***********************************
+ *	캠핑장명, 가격, 인원
+*/
+.paid-list-price {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.paid-list-personnel {
+  font-size: var(--sub-heading);
+  width: 100%;
+  text-align: right;
+}
+
+/***********************************
+ *	요청사항
+*/
+.paid-list-request {
+  font-size: var(--content);
+  background: var(--bg-gray-50);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  line-height: 2;
+  margin: 3rem 0;
+}
+
+/***********************************
+ *	버튼
+*/
+.paid-list-btn {
+  display: flex;
+  justify-content: end;
+}
+.paid-list-btn button {
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--dark-green);
+  font-size: var(--sub-heading);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.paid-list-request div:first-child {
+  font-weight: bold;
+}
+
+.paid-list-img {
+  width: var(--heading);
+  height: var(--heading);
+}
+
+/***********************************
+ *	예약 완료
+*/
+.book-list .paid-status {
+  background: var(--light-green);
+  color: #fff;
+}
+
+/***********************************
+ *	이용 완료
+*/
+.usage-list {
+  color: var(--light-gray);
+}
+.usage-list .paid-status {
+  border: 1px solid var(--light-green);
+  color: var(--light-green);
+}
