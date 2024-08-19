@@ -63,8 +63,5 @@ export const userInfoModal = {
 
 export const userOldData = {
   userTel: 10011110000,
-  addr: {
-    address: "(13529) 경기 성남시 분당구 판교역로 166",
-    detailAddress: "카카오 판교 아지트",
-  },
+  addr: "(13529) 경기 성남시 분당구 판교역로 166 카카오 판교 아지트",
 };
