@@ -13,7 +13,7 @@ const MyPage = () => {
       <div className="mypage-btn-wrap">
         {mypageBtns.map((mypageBtn) => (
           <Link
-            to="/paid"
+            to={mypageBtn.link}
             className={`mypage-btn ${mypageBtn.key}`}
             key={mypageBtn.key}
           >

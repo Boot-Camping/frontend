@@ -1,0 +1,30 @@
+.login-btn {
+  width: 100%;
+  border: none;
+  background: var(--dark-green);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: var(--content);
+  margin-bottom: 1.5rem;
+}
+
+.login-kakao {
+  background: #f9e000;
+  color: #371a1a;
+}
+
+.login-google {
+  background: #4286f5;
+}
+
+.login-naver {
+  background: #03c157;
+}
+
+.signup {
+  background: none;
+  border: 1px solid var(--light-green);
+  color: var(--light-green);
+  margin-bottom: 3rem;
+}

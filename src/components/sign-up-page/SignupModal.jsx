@@ -1,4 +1,5 @@
 import React from "react";
+import "./SignupModal.css";
 import { createPortal } from "react-dom";
 import { signUpError } from "../../constants/signUp";
 import { closeModal } from "../../utils/closeModal";
@@ -17,7 +18,7 @@ const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
             document.getElementById("overlay-root")
           )}
           {createPortal(
-            <div className="signup-modal signup-error">
+            <div className="signup-modal modal signup-error">
               <div className="signup-modal-content">
                 {error && errorMessage()}
               </div>

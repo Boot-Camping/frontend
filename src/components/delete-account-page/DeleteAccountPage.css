@@ -1,6 +1,13 @@
 /***********************************
- *	DeleteAccountPage
+ *	탈퇴버튼
 */
-.delete-account-wrap {
-  font-size: var(--heading);
+.delete-account-btn {
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--dark-green);
+  color: #fff;
+  font-size: var(--sub-heading);
+  width: 100%;
+  padding: 1rem;
+  margin: 2rem 0 4rem;
 }

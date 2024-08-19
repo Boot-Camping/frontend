@@ -1,0 +1,18 @@
+.info-modal-submit {
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--dark-green);
+  color: #fff;
+  font-size: var(--sub-content);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin: 4rem auto 0;
+}
+
+.info-modal-img {
+  width: var(--content);
+  height: var(--content);
+  margin-right: 0.5rem;
+}

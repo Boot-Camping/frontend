@@ -1,6 +1,6 @@
 /* DetailPageInfo */
 .detail-content {
-  padding-top: 3rem;
+  padding: 2rem 0;
 }
 
 /* 평점 */
@@ -117,22 +117,23 @@
 }
 
 /* KakaoMap.jsx */
-.map {
-  border-top: 0.1rem solid black;
-  padding-top: 1rem;
-}
 
 .map-title {
-  font-size: 2rem;
+  font-size: var(--heading);
   font-weight: bold;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
+.map-api {
+  width: 40rem;
+  height: 30rem;
+  /* overflow: visible !important; */
+}
+
 /* ReviewPage.jsx */
 .review {
-  padding-top: 2rem;
-  border-top: 0.1rem solid black;
+  padding-top: 1rem;
 }
 
 .review-title {
@@ -175,7 +176,7 @@
 .book-button {
   display: flex;
   justify-content: center;
-  padding-top: 1rem;
+  padding: 2rem;
 }
 
 .book-emoji {

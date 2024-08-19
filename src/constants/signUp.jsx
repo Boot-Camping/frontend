@@ -1,4 +1,4 @@
-import check from "../assets/svg/check.svg";
+import check from "/src/assets/svg/check.svg";
 
 /*****************************
  * 	폼 상수데이터

@@ -1,4 +1,5 @@
 import React from "react";
+import "./LoginAccount.css";
 
 const LoginAccount = () => {
   const reloadHandle = () => {

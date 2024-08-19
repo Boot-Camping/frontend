@@ -6,7 +6,7 @@ import "../detail-page/DetailPage.css";
 const bookButton = ({ to }) => {
   return (
     <Link to={to}>
-      <div className="book-button">
+      <div className="book-button underline">
         <ReactSVG
           className="book-emoji"
           src="../src/assets/svg/heart.svg"
