@@ -5,7 +5,7 @@
 }
 
 .camping-title {
-  font-size: 2rem;
+  font-size: var(--heading);
   font-weight: bold;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -40,7 +40,7 @@
 }
 
 .camping-name {
-  font-size: 1.5rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
@@ -54,12 +54,12 @@
 }
 
 .camping-type {
-  font-size: 1.4rem;
+  font-size: var(--content);
   color: gray;
 }
 
 .camping-price {
-  font-size: 1.4rem;
+  font-size: var(--content);
 }
 
 .camping-info-star-wraper,
