@@ -65,7 +65,7 @@ const AdminMainPage = () => {
         <Link to={"/admin/notice-regi"}>
           <button className="noti-register-btn">+ 등록</button>
         </Link>
-        <Link to={"/admin/notice-fix"}>
+        <Link to={"/admin/notice-list"}>
           <button className="noti-correct-btn">수정</button>
         </Link>
       </div>

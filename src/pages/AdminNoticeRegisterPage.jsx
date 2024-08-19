@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../components/admin-notice-register/AdminNoticeRegister.css";
+import { ReactSVG } from "react-svg";
 
 const AdminNoticeRegisterPage = () => {
   // 상태 정의
@@ -48,7 +49,7 @@ const AdminNoticeRegisterPage = () => {
   return (
     <div>
       <Link to={"/admin"}>
-        <img
+        <ReactSVG
           className="admin-home-icon"
           src="../../src/assets/svg/home.svg"
           alt=""
