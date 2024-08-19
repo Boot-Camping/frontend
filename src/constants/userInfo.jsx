@@ -1,14 +1,14 @@
 /*****************************
  * 	이미지 불러오기
  */
-import userIcon from "../assets/svg/userImg.svg";
-import photo from "../assets/svg/photo.svg";
-import change from "../assets/svg/arrowChange.svg";
-import prev from "../assets/svg/arrowNext.svg";
-import phone from "../assets/svg/phone.svg";
-import home from "../assets/svg/home.svg";
-import lock from "../assets/svg/lockClosed.svg";
-import xMark from "../assets/svg/xMark.svg";
+import userIcon from "/src/assets/svg/userImg.svg";
+import photo from "/src/assets/svg/photo.svg";
+import change from "/src/assets/svg/arrowChange.svg";
+import prev from "/src/assets/svg/arrowNext.svg";
+import phone from "/src/assets/svg/phone.svg";
+import home from "/src/assets/svg/home.svg";
+import lock from "/src/assets/svg/lockClosed.svg";
+import xMark from "/src/assets/svg/xMark.svg";
 
 export const userInfoIcon = {
   prev,
@@ -63,8 +63,5 @@ export const userInfoModal = {
 
 export const userOldData = {
   userTel: 10011110000,
-  addr: {
-    address: "(13529) 경기 성남시 분당구 판교역로 166",
-    detailAddress: "카카오 판교 아지트",
-  },
+  addr: "(13529) 경기 성남시 분당구 판교역로 166 카카오 판교 아지트",
 };

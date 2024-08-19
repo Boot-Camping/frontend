@@ -1,4 +1,5 @@
 import React from "react";
+import "./HowToLogin.css";
 import { loginTitles } from "../../constants/login";
 import LoginButtons from "../login-page/LoginButtons";
 

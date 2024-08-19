@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./DaumPostCode.css";
 import useDaumPostCode from "../../hooks/useDaumPostCode";
 
 const DaumPostCode = ({
@@ -63,14 +64,6 @@ const DaumPostCode = ({
         onChange={(e) => setDetailAddress(e.target.value)}
         required
         ref={detailAddressRef}
-      />
-      <br />
-      <input
-        className="signup-input"
-        type="text"
-        value={extraAddress}
-        placeholder="참고항목"
-        readOnly
       />
     </div>
   );
