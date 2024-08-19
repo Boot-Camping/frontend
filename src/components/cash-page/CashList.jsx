@@ -3,10 +3,15 @@ import "./CashList.css";
 import { cashData, cashIcon } from "../../constants/cash";
 import { ReactSVG } from "react-svg";
 
-const CashList = () => {
+const CashList = ({ filter }) => {
+  const filteredData = cashData.filter((data) => {
+    if (filter === "all") return data;
+    return data.cashStatus === filter;
+  });
+
   return (
     <div className="cash-list-wrap">
-      {cashData.map((data, index) => (
+      {filteredData.map((data, index) => (
         <div
           className={`cash-list underline ${
             data.cashStatus === "충전" ? "charge-list" : "use-list"

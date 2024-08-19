@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../components/cash-page/CashPage.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
@@ -8,6 +8,12 @@ import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 
 const CashPage = () => {
+  const [filter, setFilter] = useState("all");
+
+  const filterChangeHandle = (status) => {
+    setFilter(status);
+  };
+
   return (
     <section className="cash-page-wrap">
       <div className="cash-title-wrap">
@@ -17,9 +23,9 @@ const CashPage = () => {
         <div>캐시 충전/사용 내역</div>
       </div>
 
-      <CashFilter />
+      <CashFilter filterChangeHandle={filterChangeHandle} />
 
-      <CashList />
+      <CashList filter={filter} />
 
       <CashChargeBtn />
     </section>
