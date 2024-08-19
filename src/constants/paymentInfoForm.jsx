@@ -14,7 +14,7 @@ export const paymentInfoForm = [
   {
     id: "request",
     label: "요청사항",
-    placeholder: "업체에 전달할 요청사항을 적어주세요",
+    placeholder: "요청사항을 적어주세요",
     type: "text",
   },
 ];

@@ -1,76 +1,80 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
-
 import "../detail-page/DetailPage.css";
-import stars from "../../assets/svg/star.svg";
-import views from "../../assets/svg/view.svg";
-import location from "../../assets/svg/location.svg";
-import phone from "../../assets/svg/phone.svg";
-import { mockDetailInfo } from "../../constants/mockDetailInfo";
+
+import { detailPageCampingInfo } from "../../constants/detailPageCampingInfo";
+import { detailPageTag } from "../../constants/detailPageTag";
+import { svgCollection } from "../../constants/svgCollection";
 import ReadMore from "./ReadMore";
 
 const DetailPageInfo = () => {
-  const mockInfo = mockDetailInfo[0];
-  const mockTag = mockDetailInfo[1];
+  const getDetailInfo = (id) => {
+    const info = detailPageCampingInfo.find((item) => item.id === id);
+    return info ? info.value : "";
+  };
+
+  const tag = detailPageTag;
+  const svg = svgCollection;
 
   return (
     <div>
-      <div className="detail-content">
-        <div class="rating">
+      <div className="detail-content underline">
+        <div className="rating">
           <div className="stars">
-            <ReactSVG src={stars} alt="" className="stars-img" />
-            {mockInfo.stars}
+            <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
+            {getDetailInfo("stars")}
           </div>
           <div className="views">
-            <ReactSVG src={views} alt="" className="views-img" />
-            {mockInfo.views}
+            <ReactSVG src={svg.views} alt="views" className="views-img" />
+            {getDetailInfo("views")}
           </div>
         </div>
 
         <div className="main">
-          <h2 className="title">{mockInfo.title}</h2>
-          <div className="price">{mockInfo.price}원/ 1박</div>
+          <h2 className="title">{getDetailInfo("name")}</h2>
+          <div className="price">{getDetailInfo("price")}원/ 1박</div>
         </div>
 
         <div className="tags">
-          <span className="tag">{mockTag.tag1}</span>
-          <span className="tag">{mockTag.tag2}</span>
-          <span className="tag">{mockTag.tag3}</span>
-          <span className="tag">{mockTag.tag4}</span>
-          <span className="tag">{mockTag.tag5}</span>
+          <span className="tag">{tag.tag1}</span>
+          <span className="tag">{tag.tag2}</span>
+          <span className="tag">{tag.tag3}</span>
+          <span className="tag">{tag.tag4}</span>
+          <span className="tag">{tag.tag5}</span>
         </div>
 
         <div className="detail-info">
           <div className="detail-title">기본정보</div>
           <div className="detail-item">
-            <ReactSVG className="detail-icon" src={location} />
-            {mockInfo.location}
+            <ReactSVG
+              className="detail-icon"
+              src={svg.location}
+              alt="location"
+            />
+            {getDetailInfo("location")}
           </div>
 
           <div className="detail-item">
-            <ReactSVG className="detail-icon" src={phone} alt="" />{" "}
-            {mockInfo.phone}
+            <ReactSVG className="detail-icon" src={svg.phone} alt="phone" />
+            {getDetailInfo("phone")}
+          </div>
+
+          <div className="detail-item">
+            <ReactSVG className="detail-icon" src={svg.group} alt="group" />
+            기준인원 {getDetailInfo("standardNum")}명 / 최대인원{" "}
+            {getDetailInfo("maxNum")}명
           </div>
 
           <div className="detail-item">
             <ReactSVG
               className="detail-icon"
-              src="../src/assets/svg/group.svg"
-              alt=""
+              src={svg.calculator}
+              alt="calculator"
             />
-            기준인원 {mockInfo.standardNum}명 / 최대인원 {mockInfo.maxNum}명
-          </div>
-
-          <div className="detail-item">
-            <ReactSVG
-              className="detail-icon"
-              src="../src/assets/svg/calculator.svg"
-              alt=""
-            />
-            인당 추가요금 {mockInfo.overCharge}원
+            인당 추가요금 {getDetailInfo("overCharge")}원
           </div>
         </div>
-        <ReadMore text={mockInfo.description} maxLength={80} />
+        <ReadMore text={getDetailInfo("description")} maxLength={80} />
       </div>
     </div>
   );
