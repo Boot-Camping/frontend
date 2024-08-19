@@ -6,7 +6,6 @@ export const detailPageCampingInfo = [
   },
   { id: "views", label: "조회수", value: 123 },
   { id: "name", label: "캠핑장", value: "캠프그라운드 화온" },
-  { id: "price", label: "1박 가격", value: 40000 },
   {
     id: "location",
     label: "위치",
@@ -15,7 +14,15 @@ export const detailPageCampingInfo = [
   { id: "phone", label: "전화번호", value: "050713733109" },
   { id: "standardNum", label: "기준인원", value: 4 },
   { id: "maxNum", label: "최대수용인원", value: 6 },
+  { id: "price", label: "1박 가격", value: 40000 },
+  { id: "extraNum", label: "추가인원", value: "" },
   { id: "overCharge", label: "인당 추가요금", value: 10000 },
+  {
+    id: "campingDays",
+    label: "캠핑일정",
+    value: 4,
+  },
+  { id: "totalAmount", label: "총 결제금액", value: "" },
   {
     id: "description",
     value:

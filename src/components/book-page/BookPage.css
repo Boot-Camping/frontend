@@ -55,9 +55,3 @@
   height: 15rem;
   border-radius: 0.5rem;
 }
-
-.counter-title {
-  font-weight: bold;
-  font-size: var(--sub-heading);
-  padding-bottom: 1rem;
-}

@@ -163,7 +163,11 @@ const KakaoMap = ({ address }) => {
     };
   }, [address]);
 
-  return <div id="map" className="map-api"></div>;
+  return (
+    <>
+      <div id="map" className="map-api"></div>
+    </>
+  );
 };
 
 export default KakaoMap;

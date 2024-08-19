@@ -14,6 +14,7 @@ const DetailPage = () => {
     <div>
       <ImageSlider sliderData={sliderData} />
       <DetailPageInfo />
+      <div className="map-title">근처 편의점 찾기</div>
       <KakaoMap address="서울 용산구 남산공원길 105" />
       <ReviewPage />
       <BookButton to="/book" />

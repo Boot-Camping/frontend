@@ -80,11 +80,11 @@
   font-weight: bold;
   padding-bottom: 1rem;
 }
-.payment-amount-oneday,
-.payment-amount-total-days,
-.payment-amount-overcharge,
-.payment-amount-coupon,
-.payment-amount-total {
+.standardNum,
+.campingDays,
+.extra-number,
+.overCharge,
+.paymetotalAmount {
   display: flex;
   padding: 0.5rem 0;
   justify-content: space-between;
@@ -106,6 +106,18 @@
   font-size: var(--sub-heading);
   padding-top: 2rem;
   color: var(--dark-green);
+}
+
+/* NumCounter.jsx */
+.number-counter {
+  display: flex;
+}
+
+.number-counter-title {
+  font-weight: bold;
+  font-size: var(--sub-heading);
+  padding-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 /* PaymentPolicy.jsx */
