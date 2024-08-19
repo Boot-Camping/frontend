@@ -184,7 +184,7 @@
 
 .camp-user-title {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .camping-explanaion {
@@ -209,7 +209,7 @@
 
 .camping-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .won {
