@@ -332,6 +332,7 @@
 
 .admin-home-icon {
   justify-content: left;
+  color: var(--dark-green);
   width: 2.5rem;
   height: auto;
 }

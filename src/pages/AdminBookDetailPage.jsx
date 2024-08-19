@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../components/admin-book-page/AdminBookDetail.css";
+import { ReactSVG } from "react-svg";
 
 const AdminBookDetailPage = () => {
   return (
     <div>
       <Link to={"/admin"}>
-        <img
+        <ReactSVG
           className="admin-home-icon"
           src="../../src/assets/svg/home.svg"
           alt=""
