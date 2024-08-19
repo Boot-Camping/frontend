@@ -89,7 +89,6 @@ const KakaoMap = ({ address }) => {
                           content: `<div style="padding:5px;">${data[i].place_name}</div>`,
                         });
                         infowindow.open(map, marker);
-
                         bounds.extend(position);
                       }
 
@@ -116,7 +115,7 @@ const KakaoMap = ({ address }) => {
     };
   }, [address]);
 
-  return <div id="map" style={{ width: "100%", height: "500px" }}></div>;
+  return <div id="map" className="map-api"></div>;
 };
 
 export default KakaoMap;
