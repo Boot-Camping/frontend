@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./SignupForm.css";
 import { signUp, signUpTerms } from "../../constants/signUp";
 import DaumPostCode from "./DaumPostCode";
 import SignupTerms from "../../components/sign-up-page/SignupTerms";

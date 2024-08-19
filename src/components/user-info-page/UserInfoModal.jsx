@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../user-info-page/UserInfoModal.css";
+import "./UserInfoModal.css";
 import {
   userInfoIcon,
   userInfoModal,
@@ -10,42 +10,49 @@ import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
 import DaumPostCode from "../sign-up-page/DaumPostCode";
 import useAddress from "../../hooks/useAddress";
+import UserInfoModalBtn from "./UserInfoModalBtn";
 
 const UserInfoModal = ({ isOpened, setIsOpened, modalType }) => {
   const { postcode, setPostcode } = useAddress();
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
 
-  // const submitHandle = (event) => {
-  //   event.preventDefault();
+  const renderOldData = () => {
+    if (modalType === "password") {
+      return (
+        <input type="text" name="oldPassword" placeholder="비밀번호 입력" />
+      );
+    }
+    return <div>{userOldData[modalType]}</div>;
+  };
 
-  //   if (postcode === "") {
-  //     setError(true);
-  //     setErrorType("post");
-  //     setIsOpened(true);
-  //     return;
-  //   }
-
-  //   setError(false); // 에러가 없으면 메시지 초기화
-  //   setIsOpened(false);
-
-  //   // 입력된 데이터를 formData에 저장
-  //   const formData = {};
-  //   signUp.forEach((signup) => {
-  //     const inputElement = document.querySelector(
-  //       `input[name="${signup.key}"]`
-  //     );
-  //     if (inputElement) {
-  //       formData[signup.key] = inputElement.value;
-  //     }
-  //   });
-  //   formData.addr = `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`; // 주소는 별도로 처리
-
-  //   // handleSubmit 호출
-  //   handleSubmit(formData);
-
-  //   console.log("제출 완료", formData);
-  // };
+  const renderNewInput = () => {
+    switch (modalType) {
+      case "userTel":
+        return <input type="text" name="userTel" placeholder="010-1234-5678" />;
+      case "addr":
+        return (
+          <DaumPostCode
+            postcode={postcode}
+            setPostcode={setPostcode}
+            addressRef={addressRef}
+            detailAddressRef={detailAddressRef}
+          />
+        );
+      case "password":
+        return (
+          <>
+            <input
+              type="text"
+              placeholder="알파벳 대문자 및 특수문자를 포함한 8자 이상"
+            />
+            <input type="text" name="newPassword" placeholder="비밀번호 확인" />
+          </>
+        );
+      default:
+        return <input type="text" placeholder="기본 입력" />;
+    }
+  };
 
   return (
     <>
@@ -58,40 +65,25 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType }) => {
           {createPortal(
             <div
               className={`user-info-modal modal ${
-                modalType === "addr" && `info-modal-addr`
-              }`}
+                modalType === "addr" ? `info-modal-addr` : ""
+              } ${modalType === "password" ? `info-modal-pw` : ""}`}
             >
               <div className="info-modal-title">
                 {userInfoModal[modalType].title}
               </div>
-              <ul className="info-modal-old info-modal-data">
-                <li>{userInfoModal[modalType].old}</li>
-                <li>{userOldData[modalType]}</li>
-              </ul>
+              <div className="info-modal-old info-modal-data">
+                <div>{userInfoModal[modalType].old}</div>
+                {renderOldData()}
+              </div>
               <div className="info-modal-new info-modal-data">
                 <div>{userInfoModal[modalType].new}</div>
-                {modalType !== "addr" ? (
-                  <input type="text" />
-                ) : (
-                  <DaumPostCode
-                    postcode={postcode}
-                    setPostcode={setPostcode}
-                    addressRef={addressRef}
-                    detailAddressRef={detailAddressRef}
-                  />
-                )}
+                {renderNewInput()}
               </div>
 
-              <button
-                className="info-modal-submit"
-                onClick={closeModal(setIsOpened)}
-              >
-                <ReactSVG
-                  src={userInfoModal[modalType].icon}
-                  className="info-modal-img"
-                />
-                <span>변경 완료</span>
-              </button>
+              <UserInfoModalBtn
+                setIsOpened={setIsOpened}
+                modalType={modalType}
+              />
 
               <ReactSVG
                 src={userInfoIcon.xMark}

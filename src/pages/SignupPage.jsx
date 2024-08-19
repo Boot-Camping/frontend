@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../components/sign-up-page/SignUp.css";
+import "../components/sign-up-page/SignupPage.css";
 import SignupForm from "../components/sign-up-page/SignupForm";
 import SignupModal from "../components/sign-up-page/SignupModal";
 import axios from "axios";
@@ -11,10 +11,13 @@ const SignupPage = () => {
 
   const handleSubmit = async (data) => {
     try {
-      const response = await axios.post('https://171c76df-906f-4132-bf39-844995b3eed9.mock.pstmn.io//api/user/signup', data);
-      console.log('Response:', response.data);
+      const response = await axios.post(
+        "https://171c76df-906f-4132-bf39-844995b3eed9.mock.pstmn.io//api/user/signup",
+        data
+      );
+      console.log("Response:", response.data);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 

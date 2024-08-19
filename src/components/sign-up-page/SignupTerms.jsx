@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SignupTerms.css";
 import { signUpImg, signUpTerms } from "../../constants/signUp";
 import { ReactSVG } from "react-svg";
 

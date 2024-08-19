@@ -1,4 +1,5 @@
 import React from "react";
+import "./UserProfile.css";
 import { ReactSVG } from "react-svg";
 import { userInfoIcon, userProfile } from "../../constants/userInfo";
 

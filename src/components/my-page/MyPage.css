@@ -1,6 +1,3 @@
-/***********************************
- *	MyPage
-*/
 .mypage-wrap {
   margin: 3rem 0;
 }
@@ -71,66 +68,4 @@
   fill: var(--light-gray);
 }
 
-/***********************************
- *	MyPageUser
-*/
-.mypage-user {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  padding-bottom: 2rem;
-}
 
-.mypage-user::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 150%;
-  height: 0.2rem;
-  background: var(--bg-gray);
-  transform: translateX(-50%);
-}
-
-.mypage-user-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--sub-heading);
-  font-weight: bold;
-}
-
-.mypage-user-icon {
-  width: 5rem;
-  height: 5rem;
-  margin-right: 0.5rem;
-}
-
-.mypage-user-icon svg {
-  fill: var(--bg-gray);
-}
-
-.user-setting {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--content);
-  color: var(--light-gray);
-}
-
-.user-setting:link,
-.user-setting:visited {
-  color: var(--light-gray);
-}
-
-.mypage-setting-icon {
-  width: var(--sub-heading);
-  height: var(--sub-heading);
-  margin-left: 0.5rem;
-}
-
-.mypage-setting-icon svg {
-  fill: var(--light-gray);
-}
