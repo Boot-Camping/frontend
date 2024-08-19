@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./SaveList.css";
-import { saveData, saveIcon } from "../../constants/save";
+import { saveIcon } from "../../constants/save";
 import { ReactSVG } from "react-svg";
 
-const SaveList = () => {
+const SaveList = ({ visibleItems, saveData }) => {
   const [savedItems, setSavedItems] = useState(
     Array(saveData.length).fill(true)
   );
@@ -20,7 +20,7 @@ const SaveList = () => {
 
   return (
     <div className="save-list-wrap">
-      {saveData.map((data, index) => (
+      {saveData.slice(0, visibleItems).map((data, index) => (
         <div className="save-list" key={`save-list${index + 1}`}>
           <div className="save-img">
             <img src={data.campImage} />
