@@ -57,7 +57,7 @@ const AdminMainPage = () => {
       </div>
       {focusedButton === "site" && (
         <div className="image-container">
-          <img src="assets/Site.png" alt="Site image" />
+          <img src="../../src/assets/image/Site.png" alt="Site image" />
         </div>
       )}
       <div className="noti-title">공지사항</div>
