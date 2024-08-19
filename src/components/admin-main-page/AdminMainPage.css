@@ -56,8 +56,8 @@
 }
 
 .statics-category-site {
-  width: 9rem;
-  height: 3.6rem;
+  width: 8rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -69,8 +69,8 @@
   cursor: pointer;
 }
 .statics-category-site:focus {
-  width: 9rem;
-  height: 3.6rem;
+  width: 8rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -84,7 +84,7 @@
 
 .statics-category-user {
   width: 10rem;
-  height: 3.6rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -98,7 +98,7 @@
 
 .statics-category-user:focus {
   width: 10rem;
-  height: 3.6rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -112,7 +112,7 @@
 
 .statics-category-review {
   width: 10rem;
-  height: 3.6rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -125,7 +125,7 @@
 }
 .statics-category-review:focus {
   width: 10rem;
-  height: 3.6rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -139,7 +139,7 @@
 
 .statics-category-sale {
   width: 7rem;
-  height: 3.6rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -152,7 +152,7 @@
 
 .statics-category-sale:focus {
   width: 7rem;
-  height: 3.6rem;
+  height: 3rem;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
@@ -218,7 +218,7 @@
 .reserve-see-btn {
   width: 20rem;
   height: 5rem;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 5rem 0;
   border-radius: 1rem;
   border: none;
   background-color: #038153;

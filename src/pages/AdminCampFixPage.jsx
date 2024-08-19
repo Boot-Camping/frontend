@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
+import { Link } from "react-router-dom";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+import { ReactSVG } from "react-svg";
 
 const AdminCampFixPage = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -51,6 +53,13 @@ const AdminCampFixPage = () => {
 
   return (
     <div>
+      <Link to={"/admin"}>
+        <ReactSVG
+          className="admin-home-icon"
+          src="../../src/assets/svg/home.svg"
+          alt=""
+        />
+      </Link>
       <div className="regi-title">캠핑지 수정</div>
       <div className="regi-category">
         <button
