@@ -16,3 +16,14 @@
   border-radius: 1rem;
   margin-bottom: 2rem;
 }
+
+.slider-main .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.8;
+}
+
+.slider-main .swiper-pagination-bullet-active {
+  width: var(--heading);
+  opacity: 1;
+  border-radius: 1rem;
+}
