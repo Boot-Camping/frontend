@@ -17,7 +17,7 @@ const AdminMainPage = () => {
     <div>
       <div className="capming-title">캠핑지</div>
       <div className="top-btn">
-        <Link to={"/admin/camping-regi"}>
+        <Link to={"/admin/camping"}>
           <button className="camping-register-btn">+ 등록</button>
         </Link>
         <Link to={"/admin/camping-fix"}>
