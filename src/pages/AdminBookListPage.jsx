@@ -17,8 +17,12 @@ const AdminBookListPage = () => {
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
@@ -37,48 +41,72 @@ const AdminBookListPage = () => {
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
       <div className="book-list-ex">
         <div>[캠핑지 이름] 8/12~8/16(금) 닉네임 n명 </div>
         <Link to={"/admin/book-detail"}>
-          <span className="book-list-chevron">
-            <ReactSVG src="../../src/assets/svg/chevron-right.svg" alt="" />
+          <span>
+            <ReactSVG
+              className="book-list-chevron"
+              src="../../src/assets/svg/chevron-right.svg"
+              alt=""
+            />
           </span>
         </Link>
       </div>
