@@ -10,19 +10,16 @@ const getDetailCampingInfo = (id) => {
 const { value: onedayPrice } = getDetailCampingInfo("price");
 const { value: overCharge } = getDetailCampingInfo("overCharge");
 const { value: campingDays } = getDetailCampingInfo("campingDays");
-const { value: standardNum } = getDetailCampingInfo("standardNum");
-
 const maxExtraNum = getDetailCampingInfo("extraNum").value;
 
 const PaymentAmount = () => {
-  const [extraNum, setExtraNum] = useState(
-    getDetailCampingInfo("extraNum").value
+  const [extraNum, setExtraNum] = useState(maxExtraNum);
+  const [totalAmount, setTotalAmount] = useState(
+    (onedayPrice + overCharge * maxExtraNum) * campingDays
   );
-  const [totalAmount, setTotalAmount] = useState(onedayPrice * campingDays);
 
   useEffect(() => {
-    const extraCharge = extraNum * overCharge;
-    setTotalAmount(onedayPrice * campingDays + extraCharge);
+    setTotalAmount((onedayPrice + overCharge * extraNum) * campingDays);
   }, [extraNum, onedayPrice, campingDays, overCharge]);
 
   const extraNumChangeHandle = (newCount) => {
@@ -39,14 +36,9 @@ const PaymentAmount = () => {
           <div>{onedayPrice.toLocaleString()} 원</div>
         </div>
 
-        <div className="camping-days">
-          <div>{getDetailCampingInfo("campingDays").label}</div>
-          <div>{campingDays} 박</div>
-        </div>
-
-        <div className="standard-num">
-          <div>{getDetailCampingInfo("standardNum").label}</div>
-          <div>{standardNum} 명</div>
+        <div className="over-charge">
+          <div>{getDetailCampingInfo("overCharge").label}</div>
+          <div>{overCharge.toLocaleString()} 원/명</div>
         </div>
 
         <div className="extra-number">
@@ -59,9 +51,9 @@ const PaymentAmount = () => {
           </div>
         </div>
 
-        <div className="over-charge">
-          <div>{getDetailCampingInfo("overCharge").label}</div>
-          <div>{overCharge.toLocaleString()} 원/명</div>
+        <div className="camping-days">
+          <div>{getDetailCampingInfo("campingDays").label}</div>
+          <div>{campingDays} 박</div>
         </div>
 
         <div className="total-amount">
