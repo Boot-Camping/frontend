@@ -1,0 +1,106 @@
+.cash-charge-modal {
+  display: block;
+  text-align: left;
+}
+
+.charge-title {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+/*****************************
+ * 	충전 금액 타이틀
+ */
+.charge-price-title-wrap {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.charge-price-title div:first-child {
+  font-size: var(--content);
+}
+
+.charge-price-title div:last-child {
+  font-size: var(--heading);
+}
+
+.charge-modal-img {
+  width: 6rem;
+  height: 6rem;
+  color: var(--light-green);
+}
+
+/*****************************
+ * 	충전 금액 버튼
+ */
+.charge-price-wrap {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.charge-price-btn {
+  width: calc((100% / 3) - 1.5rem);
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  text-align: center;
+  color: var(--light-gray);
+  padding: 1rem 0;
+  border: 1px solid var(--bg-gray);
+  border-radius: 0.5rem;
+}
+.charge-price-active {
+  border: 1px solid var(--light-green);
+  color: #fff;
+  background: var(--light-green);
+}
+
+/*****************************
+ * 	금액 확인
+ */
+.charge-confirm {
+  margin: 3rem 0;
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  line-height: 2;
+}
+.charge-confirm > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*****************************
+ * 	취소/결제 버튼
+ */
+.charge-modal-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--sub-heading);
+  margin-top: 3rem;
+}
+
+.charge-modal-btn button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  color: #fff;
+  font-size: var(--content);
+}
+
+.charge-cancel {
+  background: var(--red);
+}
+
+.charge-pay {
+  background: var(--light-green);
+}
