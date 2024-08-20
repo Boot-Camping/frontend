@@ -5,13 +5,15 @@
 .notice-list {
   font-size: var(--content);
   padding: 2rem 0;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /*****************************
  * 	공지사항, 이벤트 분류
  */
-.notice-info {
+.notice-list-title {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -41,4 +43,9 @@
   font-size: var(--content);
   margin-top: 1rem;
   /* margin-left: 7rem; */
+}
+
+.notice-list-img {
+  width: 2.5rem;
+  height: 2.5rem;
 }

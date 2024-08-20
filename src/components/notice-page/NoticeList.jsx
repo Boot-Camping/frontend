@@ -1,29 +1,33 @@
 import React from "react";
 import "./NoticeList.css";
-import { noticeData } from "../../constants/notice";
 import { Link } from "react-router-dom";
 import { shortDateDot } from "../../utils/shortDateDot";
+import { ReactSVG } from "react-svg";
+import { saveIcon } from "../../constants/save";
 
-const NoticeList = () => {
+const NoticeList = ({ visibleItems, noticeData }) => {
   return (
     <div className="notice-list-wrap">
-      {noticeData.map((data, index) => (
+      {noticeData.slice(0, visibleItems).map((data, index) => (
         <Link
           to={`/notice/${data.id}`}
           key={`notice-list-${index + 1}`}
           className="notice-list"
         >
           <div className="notice-info">
-            <div
-              className={`notice-status ${
-                data.noticeStatus === "이벤트" ? "notice-event" : ""
-              }`}
-            >
-              {data.noticeStatus}
+            <div className="notice-list-title">
+              <div
+                className={`notice-status ${
+                  data.noticeStatus === "이벤트" ? "notice-event" : ""
+                }`}
+              >
+                {data.noticeStatus}
+              </div>
+              <div>{data.title}</div>
             </div>
-            <div>{data.title}</div>
+            <div className="notice-date">{shortDateDot(data)}</div>
           </div>
-          <div className="notice-date">{shortDateDot(data)}</div>
+          <ReactSVG src={saveIcon.prev} className="notice-list-img" />
         </Link>
       ))}
     </div>
