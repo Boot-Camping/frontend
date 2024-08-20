@@ -72,21 +72,21 @@
   padding-top: 3rem;
 }
 
-.review-edit,
-.review-delete {
+.review-edit-btn,
+.review-delete-btn {
   font-size: var(--content);
-  font-weight: bold;
+
   border-radius: 0.3rem;
   padding: 0.2rem 0.5rem;
   margin-right: 0.5rem;
 }
 
-.review-edit {
+.review-edit-btn {
   color: var(--dark-gray);
   border: 0.1rem solid var(--dark-gray);
 }
 
-.review-delete {
+.review-delete-btn {
   color: var(--red);
   border: 0.1rem solid var(--red);
 }
@@ -106,10 +106,66 @@
 /* ReviewMoreBtn.jsx */
 .review-more-btn {
   border: none;
-  background: var(--dark-green);
+  border-radius: 0.3rem;
   font-size: var(--sub-heading);
-  color: #fff;
-  width: 100%;
-  padding: 1rem;
+  color: var(--dark-green);
+  width: 30%;
+  padding: 0.5rem;
   margin: 1rem 0 3rem;
+}
+
+/* ReviewReply.jsx */
+.reply-box {
+  background-color: var(--bg-gray);
+  border-radius: 0.3rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.reply-upper-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding-top: 1rem;
+}
+
+.reply-id {
+  font-size: var(--sub-content);
+  font-weight: bold;
+}
+
+.reply-date {
+  font-size: var(--sub-content);
+  color: var(--light-gray);
+}
+
+.reply-edit-box {
+  display: flex;
+}
+
+.reply-edit-btn,
+.reply-delete-btn {
+  display: flex;
+  font-size: var(--sub-content);
+  border-radius: 0.3rem;
+  padding: 0 0.5rem;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.reply-edit-btn {
+  color: var(--dark-gray);
+  border: 0.1rem solid var(--dark-gray);
+}
+
+.reply-delete-btn {
+  color: var(--red);
+  border: 0.1rem solid var(--red);
+}
+
+.reply-content {
+  font-size: var(--sub-content);
+  color: var(--dark-gray);
+  margin: 0 0.5rem;
+  padding: 0 0.6rem;
 }

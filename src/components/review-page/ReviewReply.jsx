@@ -1,0 +1,27 @@
+import React from "react";
+import "./ReviewPage.css";
+
+const ReviewReply = () => {
+  return (
+    <div className="reply-box">
+      <div className="reply-upper-box">
+        <div className="reply-writer-box">
+          <div className="reply-id">Reply Id</div>
+          <div className="reply-date">2024-08-20</div>
+        </div>
+
+        <div className="reply-edit-box">
+          <div className="reply-edit-btn">수정</div>
+          <div className="reply-delete-btn">삭제</div>
+        </div>
+      </div>
+
+      <div className="reply-content">
+        비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로
+        즐기고가세요~^^ 방문해 주셔서 감사합니다.
+      </div>
+    </div>
+  );
+};
+
+export default ReviewReply;

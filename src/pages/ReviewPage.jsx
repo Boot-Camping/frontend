@@ -4,6 +4,7 @@ import { mockReviewData } from "../constants/mockReviewData";
 import { svgCollection } from "../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 import ReviewMoreBtn from "../components/review-page/ReviewMoreBtn";
+import ReviewReply from "../components/review-page/ReviewReply";
 
 const svg = svgCollection;
 
@@ -47,8 +48,8 @@ const ReviewPage = () => {
                 </div>
 
                 <div className="review-edit-box">
-                  <div className="review-edit">수정</div>
-                  <div className="review-delete">삭제</div>
+                  <div className="review-edit-btn">수정</div>
+                  <div className="review-delete-btn">삭제</div>
                 </div>
               </div>
             </div>
@@ -61,6 +62,7 @@ const ReviewPage = () => {
                 댓글 {review.replyCount}개
               </div>
             </div>
+            <ReviewReply />
           </div>
         ))}
 
