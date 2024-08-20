@@ -13,11 +13,15 @@ const ImageSlider = ({ sliderData }) => {
           dynamicBullets: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
+        className="slider-detail"
       >
         {sliderData.map((slide, index) => (
           <SwiperSlide key={index}>
-            <img src={slide.image} className="img" alt={`Slide ${index + 1}`} />
+            <img
+              src={slide.image}
+              className="slider-img"
+              alt={`Slide ${index + 1}`}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
