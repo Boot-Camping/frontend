@@ -131,6 +131,22 @@
   /* overflow: visible !important; */
 }
 
+.current-window {
+  padding: 0 !important;
+  background-color: white !important;
+  border-radius: 3px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  font-size: 12px !important;
+}
+
+.info-window {
+  padding: 0 !important;
+  background-color: white !important;
+  border-radius: 3px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  font-size: 12px !important;
+}
+
 /* ReviewPage.jsx */
 .review {
   padding-top: 1rem;

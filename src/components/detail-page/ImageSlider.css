@@ -1,8 +1,24 @@
-.mySwiper {
+.slider-detail {
   width: 100%;
-  height: 30rem;
+  height: 20rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
 }
 
-.img {
+.slider-detail .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.8;
+}
+
+.slider-detail .swiper-pagination-bullet-active {
+  width: var(--heading);
+  opacity: 1;
+  border-radius: 1rem;
+}
+
+.slider-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
 }
