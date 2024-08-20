@@ -6,14 +6,13 @@
   background-color: var(--light-green);
   color: white;
   border: none;
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.5rem;
   border-radius: 0.3rem;
   cursor: pointer;
   font-size: var(--sub-content);
-  margin-right: 1rem;
 }
 
 .counter-number {
   font-size: var(--content);
-  margin-right: 1rem;
+  margin: 0 0.5rem;
 }

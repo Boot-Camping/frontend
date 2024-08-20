@@ -1,7 +1,7 @@
-export const detailPageCampingInfo = [
+export const detailCampingInfo = [
   {
     id: "stars",
-    labe: "평점",
+    label: "평점",
     value: 5.0,
   },
   { id: "views", label: "조회수", value: 123 },
@@ -12,17 +12,17 @@ export const detailPageCampingInfo = [
     value: "충남 아산시 영인면 고룡산로 512-37",
   },
   { id: "phone", label: "전화번호", value: "050713733109" },
-  { id: "standardNum", label: "기준인원", value: 4 },
-  { id: "maxNum", label: "최대수용인원", value: 6 },
+  { id: "standardNum", label: "기준 수용인원", value: 4 },
+  { id: "maxNum", label: "최대 수용인원", value: 6 },
   { id: "price", label: "1박 가격", value: 40000 },
-  { id: "extraNum", label: "추가인원", value: "" },
+  { id: "extraNum", label: "추가인원", value: 2 },
   { id: "overCharge", label: "인당 추가요금", value: 10000 },
   {
     id: "campingDays",
-    label: "캠핑일정",
+    label: "캠핑 일수",
     value: 4,
   },
-  { id: "totalAmount", label: "총 결제금액", value: "" },
+  { id: "totalAmount", label: "총 결제금액", value: 0 },
   {
     id: "description",
     value:

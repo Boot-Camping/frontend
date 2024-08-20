@@ -2,14 +2,14 @@ import React from "react";
 import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
 
-import { detailPageCampingInfo } from "../../constants/detailPageCampingInfo";
+import { detailCampingInfo } from "../../constants/detailCampingInfo";
 import { detailPageTag } from "../../constants/detailPageTag";
 import { svgCollection } from "../../constants/svgCollection";
 import ReadMore from "./ReadMore";
 
 const DetailPageInfo = () => {
   const getDetailInfo = (id) => {
-    const info = detailPageCampingInfo.find((item) => item.id === id);
+    const info = detailCampingInfo.find((item) => item.id === id);
     return info ? info.value : "";
   };
 
