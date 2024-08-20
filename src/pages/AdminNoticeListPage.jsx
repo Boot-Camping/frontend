@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../components/admin-notice-register/AdminNoticeListPage.css";
+import { ReactSVG } from "react-svg";
 
 const AdminNoticeListPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -11,7 +12,7 @@ const AdminNoticeListPage = () => {
   return (
     <div>
       <Link to={"/admin"}>
-        <img
+        <ReactSVG
           className="admin-home-icon"
           src="../../src/assets/svg/home.svg"
           alt=""
@@ -44,49 +45,73 @@ const AdminNoticeListPage = () => {
 
       <div className="notice-list-ex">
         <div>[공지사항] 개인정보 처리방침 개정 안내</div>
-        <span className="list-pencil">
+        <span>
           <Link to={"/admin/notice-fix"}>
-            <img src="../../src/assets/svg/pencil.svg" alt="" />
+            <ReactSVG
+              className="list-pencil"
+              src="../../src/assets/svg/pencil.svg"
+              alt=""
+            />
           </Link>
         </span>
       </div>
       <div className="notice-list-ex">
         <div>[공지사항] 6월 6일(목) 현충일 고객센터 휴무</div>
-        <span className="list-pencil">
+        <span>
           <Link to={"/admin/notice-fix"}>
-            <img src="../../src/assets/svg/pencil.svg" alt="" />
+            <ReactSVG
+              className="list-pencil"
+              src="../../src/assets/svg/pencil.svg"
+              alt=""
+            />
           </Link>
         </span>
       </div>
       <div className="notice-list-ex">
         <div>[공지사항] 개인정보 처리방침 개정 안내</div>
-        <span className="list-pencil">
+        <span>
           <Link to={"/admin/notice-fix"}>
-            <img src="../../src/assets/svg/pencil.svg" alt="" />
+            <ReactSVG
+              className="list-pencil"
+              src="../../src/assets/svg/pencil.svg"
+              alt=""
+            />
           </Link>
         </span>
       </div>
       <div className="notice-list-ex">
         <div>[공지사항] 6월 6일(목) 현충일 고객센터 휴무</div>
-        <span className="list-pencil">
+        <span>
           <Link to={"/admin/notice-fix"}>
-            <img src="../../src/assets/svg/pencil.svg" alt="" />
+            <ReactSVG
+              className="list-pencil"
+              src="../../src/assets/svg/pencil.svg"
+              alt=""
+            />
           </Link>
         </span>
       </div>
       <div className="notice-list-ex">
         <div>[공지사항] 개인정보 처리방침 개정 안내</div>
-        <span className="list-pencil">
+        <span>
           <Link to={"/admin/notice-fix"}>
-            <img src="../../src/assets/svg/pencil.svg" alt="" />
+            <ReactSVG
+              className="list-pencil"
+              src="../../src/assets/svg/pencil.svg"
+              alt=""
+            />
           </Link>
         </span>
       </div>
       <div className="notice-list-ex">
         <div>[공지사항] 6월 6일(목) 현충일 고객센터 휴무</div>
-        <span className="list-pencil">
+        <span>
           <Link to={"/admin/notice-fix"}>
-            <img src="../../src/assets/svg/pencil.svg" alt="" />
+            <ReactSVG
+              className="list-pencil"
+              src="../../src/assets/svg/pencil.svg"
+              alt=""
+            />
           </Link>
         </span>
       </div>

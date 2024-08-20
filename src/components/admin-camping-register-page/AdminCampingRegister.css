@@ -110,11 +110,11 @@
 
 .input-camp-name {
   margin-top: 1rem;
-  width: 20rem;
+  width: 35rem;
   height: 2rem;
-  border: solid 1px #666666;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: solid 1px var(--dark-green);
+  border-radius: 1rem;
+  font-size: 1.4rem;
 }
 
 .camp-number-title {
@@ -129,7 +129,8 @@
   margin-top: 1rem;
   width: 20rem;
   height: 2rem;
-  border: solid 1px #666666;
+  border: none;
+  background-color: var(--bg-gray);
   border-radius: 0.5rem;
   font-size: 1.2rem;
 }
@@ -164,7 +165,8 @@
   margin-top: 1rem;
   width: 8rem;
   height: 2rem;
-  border: solid 1px #666666;
+  background-color: var(--bg-gray);
+  border: none;
   border-radius: 0.5rem;
   font-size: 1.2rem;
 }
@@ -181,7 +183,7 @@
 
 .camp-user-title {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .camping-explanaion {
@@ -206,7 +208,7 @@
 
 .camping-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .won {
@@ -231,7 +233,8 @@
   margin-top: 1rem;
   width: 5rem;
   height: 2rem;
-  border: solid 1px #666666;
+  background-color: var(--bg-gray);
+  border: none;
   border-radius: 0.5rem;
   font-size: 1.2rem;
 }
