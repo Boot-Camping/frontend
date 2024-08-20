@@ -1,27 +1,29 @@
 import React from "react";
 import "./PaidFilter.css";
 
-const PaidFilter = ({ filterChangeHandle }) => {
+const PaidFilter = ({
+  filterChangeHandle,
+  filterType,
+  wrapClassName,
+  allClassName,
+}) => {
   return (
-    <div className="paid-filter">
+    <div className={wrapClassName}>
       <button
-        className="usage-filter"
+        className={allClassName}
         onClick={() => filterChangeHandle("all")}
       >
         전체 보기
       </button>
-      <button
-        className="book-filter"
-        onClick={() => filterChangeHandle("예약 완료")}
-      >
-        예약 완료
-      </button>
-      <button
-        className="usage-filter"
-        onClick={() => filterChangeHandle("이용 완료")}
-      >
-        이용 완료
-      </button>
+      {filterType.map((filtering) => (
+        <button
+          className={filtering.class}
+          key={filtering.type}
+          onClick={() => filterChangeHandle(filtering.type)}
+        >
+          {filtering.type}
+        </button>
+      ))}
     </div>
   );
 };
