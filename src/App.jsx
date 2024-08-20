@@ -13,6 +13,7 @@ import PaidPage from "./pages/PaidPage";
 import SavePage from "./pages/SavePage";
 import CashPage from "./pages/CashPage";
 import NoticePage from "./pages/NoticePage";
+import NoticeDetailPage from "./pages/NoticeDetailPage";
 import AdminMainPage from "./pages/AdminMainPage";
 import AdminCampingRegisterPage from "./pages/AdminCampingRegisterPage";
 import AdminCampFixPage from "./pages/AdminCampFixPage";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/save" element={<SavePage />} />
           <Route path="/cash" element={<CashPage />} />
           <Route path="/notice" element={<NoticePage />} />
+          <Route path="/notice/:id" element={<NoticeDetailPage />} />
           <Route path="/detail" element={<DetailPage />} />
           <Route path="/book" element={<BookPage />} />
           <Route path="/book" element={<BookingPaymentPage />} />
