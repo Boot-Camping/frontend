@@ -9,9 +9,14 @@ import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 
 const CashPage = () => {
   const [filter, setFilter] = useState("all");
+  const [totalCash, setTotalCash] = useState(0);
 
   const filterChangeHandle = (status) => {
     setFilter(status);
+  };
+
+  const totalCashUpdateHandle = (newTotalCash) => {
+    setTotalCash(newTotalCash);
   };
 
   return (
@@ -25,9 +30,9 @@ const CashPage = () => {
 
       <CashFilter filterChangeHandle={filterChangeHandle} />
 
-      <CashList filter={filter} />
+      <CashList filter={filter} onTotalCashUpdate={totalCashUpdateHandle} />
 
-      <CashChargeBtn />
+      <CashChargeBtn totalCash={totalCash} />
     </section>
   );
 };
