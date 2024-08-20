@@ -109,7 +109,7 @@ const PostCodeAddress = () => {
         className="signup-input"
         type="text"
         value={detailAddress}
-        placeholder="참고사항"
+        placeholder="상세 주소"
         onChange={(e) => setDetailAddress(e.target.value)}
         required
       />
