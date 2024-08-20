@@ -4,6 +4,8 @@ import { mockReviewData } from "../../constants/mockReviewData";
 import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 
+import ReadMore from "./ReadMore";
+
 const svg = svgCollection;
 
 const getMockReviewData = (id) => {
