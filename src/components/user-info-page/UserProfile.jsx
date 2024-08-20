@@ -40,7 +40,7 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
           <div>전화번호</div>
           <div>
             <div>{userProfile.userTel}</div>
-            <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+            <div className="profile-change">변경</div>
           </div>
         </div>
         <div className="profile-txt">
@@ -54,7 +54,7 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
               <div>{userProfile.addr.address}</div>
               <div>{userProfile.addr.detailAddress}</div>
             </div>
-            <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+            <div className="profile-change">변경</div>
           </div>
         </div>
       </div>
