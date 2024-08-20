@@ -9,4 +9,24 @@ export const filterType = {
       class: "usage-filter",
     },
   ],
+  cash: [
+    {
+      type: "충전",
+      class: "charge-filter",
+    },
+    {
+      type: "사용",
+      class: "use-filter",
+    },
+  ],
+  notice: [
+    {
+      type: "공지사항",
+      class: "notice-filter",
+    },
+    {
+      type: "이벤트",
+      class: "event-filter",
+    },
+  ],
 };
