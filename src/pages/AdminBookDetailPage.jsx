@@ -85,36 +85,36 @@ const AdminBookDetailPage = () => {
       <div className="camping-info">
         <div>
           <input
-            id="camp-user"
-            name="camp-user"
+            id="book-user-number"
+            name="book-user-number"
             type="number"
-            autoComplete="camp-user"
-            className="input-camp-user"
-            required
+            autoComplete="book-user-number"
+            className="input-book-user-number"
+            readOnly
           />
           <span className="camping-user">명</span>
         </div>
         <div>
           <input
-            id="camp-user"
-            name="camp-user"
+            id="max-user"
+            name="max-user"
             type="number"
-            autoComplete="camp-user"
-            className="input-camp-user"
-            required
+            autoComplete="max-user"
+            className="input-max-user"
+            readOnly
           />
           <span className="camping-user">명</span>
         </div>
         <div>
           <input
-            id="camp-price"
-            name="camp-price"
+            id="total-price"
+            name="total-price"
             type="number"
-            autoComplete="camp-price"
-            className="input-camp-price"
-            required
+            autoComplete="total-price"
+            className="input-total-price"
+            readOnly
           />
-          <span className="camping-user">명</span>
+          <span className="won">원</span>
         </div>
       </div>
     </div>
