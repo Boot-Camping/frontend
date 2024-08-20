@@ -1,5 +1,4 @@
 import React from "react";
-import "./PaidFilter.css";
 
 const PaidFilter = ({
   filterChangeHandle,

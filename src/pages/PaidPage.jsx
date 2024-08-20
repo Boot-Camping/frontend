@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../components/paid-page/PaidPage.css";
+import "../components/paid-page/PaidFilter.css";
 import { ReactSVG } from "react-svg";
 import { paidData, paidIcon } from "../constants/paid";
 import PaidFilter from "../components/paid-page/PaidFilter";
