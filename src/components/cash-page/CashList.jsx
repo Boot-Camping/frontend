@@ -40,7 +40,7 @@ const CashList = ({ filter, onTotalCashUpdate }) => {
           </div>
           <div className="cash-list-cash">
             <div>{data.transactionLog}</div>
-            <div>{formatPrice(data.cash)}원</div>
+            <div>{data.cash.toLocaleString()}원</div>
           </div>
           <div className="cash-list-total-cash">
             <div>잔액</div>
