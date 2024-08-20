@@ -20,8 +20,14 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
     <div className="user-profile-wrap">
       <div className="profile-img-wrap underline">
         <div className="profile-img">
-          <ReactSVG src={userProfile.userImage} className="profile-img-user" />
-          <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
+          <input type="file" id="profile-img-input" />
+          <label htmlFor="profile-img-input">
+            <ReactSVG
+              src={userProfile.userImage}
+              className="profile-img-user"
+            />
+            <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
+          </label>
         </div>
         <div>{userProfile.loginId}</div>
       </div>

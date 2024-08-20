@@ -44,7 +44,7 @@ const PaidList = ({ filter }) => {
           </div>
           <div className="paid-list-price">
             <div>{data.campName}</div>
-            <div>{data.totalPrice}원</div>
+            <div>{data.totalPrice.toLocaleString()}원</div>
           </div>
           <div className="paid-list-personnel">총 {data.bookNum}명</div>
           <div className="paid-list-request">

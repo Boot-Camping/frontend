@@ -1,0 +1,24 @@
+.cash-charge-btn {
+  border: none;
+  background: var(--dark-green);
+  color: #fff;
+  font-size: var(--sub-heading);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.cash-charge-img {
+  width: var(--heading);
+  height: var(--heading);
+}
+
+.footer-cash-page {
+  padding-bottom: 6rem;
+}
