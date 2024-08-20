@@ -1,0 +1,21 @@
+.notice-wrap {
+  margin-bottom: 5rem;
+}
+
+.notice-title-wrap {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notice-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.notice-move-prev svg {
+  stroke: #000;
+}
