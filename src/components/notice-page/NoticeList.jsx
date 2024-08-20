@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import { shortDateDot } from "../../utils/shortDateDot";
 import { ReactSVG } from "react-svg";
 import { saveIcon } from "../../constants/save";
+import { filterData } from "../../utils/filterData";
 
-const NoticeList = ({ visibleItems, noticeData }) => {
+const NoticeList = ({ visibleItems, noticeData, filter }) => {
+  const filteredData = filterData(noticeData, filter, "noticeStatus");
+
   return (
     <div className="notice-list-wrap">
-      {noticeData.slice(0, visibleItems).map((data, index) => (
+      {filteredData.slice(0, visibleItems).map((data, index) => (
         <Link
           to={`/notice/${data.id}`}
           key={`notice-list-${index + 1}`}
