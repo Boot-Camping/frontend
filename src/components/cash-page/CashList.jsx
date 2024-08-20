@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import "./CashList.css";
 import { cashData, cashIcon } from "../../constants/cash";
 import { ReactSVG } from "react-svg";
+import { filterData } from "../../utils/filterData";
 
 const CashList = ({ filter, onTotalCashUpdate }) => {
-  const filteredData = cashData.filter((data) => {
-    if (filter === "all") return data;
-    return data.cashStatus === filter;
-  });
+  const filteredData = filterData(cashData, filter, "cashStatus");
 
   useEffect(() => {
     if (filteredData.length > 0) {
