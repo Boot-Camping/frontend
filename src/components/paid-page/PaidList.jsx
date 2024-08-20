@@ -2,6 +2,7 @@ import React from "react";
 import "./PaidList.css";
 import { paidData, paidIcon } from "../../constants/paid";
 import { ReactSVG } from "react-svg";
+import { formatPrice } from "../../utils/formatPrice";
 
 const PaidList = ({ filter }) => {
   const filteredData = paidData.filter((data) => {
@@ -44,7 +45,7 @@ const PaidList = ({ filter }) => {
           </div>
           <div className="paid-list-price">
             <div>{data.campName}</div>
-            <div>{data.totalPrice}원</div>
+            <div>{formatPrice(data.totalPrice)}원</div>
           </div>
           <div className="paid-list-personnel">총 {data.bookNum}명</div>
           <div className="paid-list-request">
