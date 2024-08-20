@@ -209,7 +209,7 @@ const AdminCampingRegister = () => {
               name="camp-price"
               type="number"
               autoComplete="camp-price"
-              className="input-camp-price"
+              className="input-camp-plus-price"
               required
             />
             <span className="won">원</span>

@@ -77,20 +77,20 @@
   margin-top: 1rem;
   width: 10rem;
   height: 2rem;
-  background-color: var(--bg-gray);
-  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: none;
 }
 
 .input-plus-price {
   margin-top: 1rem;
   width: 10rem;
   height: 2rem;
-  background-color: var(--bg-gray);
-  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: none;
 }
 
 .admin-book-info {
@@ -120,28 +120,28 @@
   margin-top: 1rem;
   width: 6rem;
   height: 2rem;
-  background-color: var(--bg-gray);
-  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: none;
 }
 
 .input-max-user {
   margin-top: 1rem;
   width: 6rem;
   height: 2rem;
-  background-color: var(--bg-gray);
-  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: none;
 }
 
 .input-total-price {
   margin-top: 1rem;
   width: 10rem;
   height: 2rem;
-  background-color: var(--bg-gray);
-  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: none;
 }

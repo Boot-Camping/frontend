@@ -110,11 +110,13 @@
 
 .input-camp-name {
   margin-top: 1rem;
-  width: 35rem;
+  width: 38rem;
   height: 2rem;
-  border: solid 1px var(--dark-green);
-  border-radius: 1rem;
-  font-size: 1.4rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 
 .camp-number-title {
@@ -130,9 +132,9 @@
   width: 20rem;
   height: 2rem;
   border: none;
-  background-color: var(--bg-gray);
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
 }
 
 .camp-price-title {
@@ -163,12 +165,22 @@
 
 .input-camp-price {
   margin-top: 1rem;
-  width: 8rem;
+  width: 15rem;
   height: 2rem;
-  background-color: var(--bg-gray);
   border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+}
+
+.input-camp-plus-price {
+  margin-top: 1rem;
+  width: 10rem;
+  height: 2rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
 }
 
 .contact-info {
@@ -233,10 +245,10 @@
   margin-top: 1rem;
   width: 5rem;
   height: 2rem;
-  background-color: var(--bg-gray);
   border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
 }
 
 .camping-user {
