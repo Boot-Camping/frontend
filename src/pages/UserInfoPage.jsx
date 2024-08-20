@@ -24,7 +24,7 @@ const UserInfoPage = () => {
       <Link to={"/cash"} className="user-cash-wrap">
         <div>캐시</div>
         <div>
-          <div>{userProfile.cash}원</div>
+          <div>{userProfile.cash.toLocaleString()}원</div>
           <ReactSVG src={userInfoIcon.prev} className="user-arrow-img" />
         </div>
       </Link>

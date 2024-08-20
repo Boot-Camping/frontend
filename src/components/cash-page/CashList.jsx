@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "./CashList.css";
 import { cashData, cashIcon } from "../../constants/cash";
 import { ReactSVG } from "react-svg";
-import { formatPrice } from "../../utils/formatPrice";
 
 const CashList = ({ filter, onTotalCashUpdate }) => {
   const filteredData = cashData.filter((data) => {
@@ -45,7 +44,7 @@ const CashList = ({ filter, onTotalCashUpdate }) => {
           </div>
           <div className="cash-list-total-cash">
             <div>잔액</div>
-            <div>{formatPrice(data.totalCash)}원</div>
+            <div>{data.totalCash.toLocaleString()}원</div>
           </div>
         </div>
       ))}

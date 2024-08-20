@@ -4,7 +4,6 @@ import { ReactSVG } from "react-svg";
 import { cashIcon, chargePrice } from "../../constants/cash";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
-import { formatPrice } from "../../utils/formatPrice";
 
 const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -16,7 +15,7 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
   };
 
   const getTotalCash = () => {
-    return formatPrice(selectPrice + latestToTalCash);
+    return selectPrice + latestToTalCash.toLocaleString();
   };
 
   const cancleHandle = () => {
@@ -64,7 +63,7 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
               <div className="charge-confirm">
                 <div className="confirm-price">
                   <div>충전 금액</div>
-                  <div>{formatPrice(selectPrice)}원</div>
+                  <div>{selectPrice.toLocaleString()}원</div>
                 </div>
                 <div className="confirm-total-cash">
                   <div>{selectPrice > 0 ? "충전 후 잔액" : "잔액"}</div>
