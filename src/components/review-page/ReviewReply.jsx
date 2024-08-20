@@ -10,9 +10,9 @@ const ReviewReply = () => {
           <div className="reply-date">2024-08-20</div>
         </div>
 
-        <div className="reply-edit-box">
-          <div className="reply-edit-btn">수정</div>
-          <div className="reply-delete-btn">삭제</div>
+        <div className="reply-edit-btns">
+          <button className="reply-edit-btn">수정</button>
+          <button className="reply-delete-btn">삭제</button>
         </div>
       </div>
 

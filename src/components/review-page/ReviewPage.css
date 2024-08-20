@@ -74,11 +74,14 @@
 
 .review-edit-btn,
 .review-delete-btn {
-  font-size: var(--content);
-
+  display: flex;
+  font-size: var(--sub-content);
+  background-color: white;
   border-radius: 0.3rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0 0.5rem;
+  align-items: center;
   margin-right: 0.5rem;
+  height: 2rem;
 }
 
 .review-edit-btn {
@@ -129,9 +132,14 @@
   padding-top: 1rem;
 }
 
+.reply-writer-box {
+  display: flex;
+}
+
 .reply-id {
   font-size: var(--sub-content);
   font-weight: bold;
+  margin-right: 1rem;
 }
 
 .reply-date {
@@ -139,7 +147,7 @@
   color: var(--light-gray);
 }
 
-.reply-edit-box {
+.reply-edit-btns {
   display: flex;
 }
 
@@ -151,6 +159,7 @@
   padding: 0 0.5rem;
   align-items: center;
   margin-right: 0.5rem;
+  height: 2rem;
 }
 
 .reply-edit-btn {
@@ -168,4 +177,67 @@
   color: var(--dark-gray);
   margin: 0 0.5rem;
   padding: 0 0.6rem;
+}
+
+/* ReplyWriter.jsx */
+.reply-writer-box {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+.reply-writer-upper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.5rem;
+}
+
+.reply-writer-title {
+  font-size: var(--sub-content);
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.reply-input-box {
+  border: #999999 0.1rem solid;
+  border-radius: 0.3rem;
+  height: 4rem;
+}
+
+.reply-writer-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.reply-cancle-btn,
+.reply-complete-btn {
+  display: flex;
+  font-size: var(--sub-content);
+  border-radius: 0.2rem;
+  border: none;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.reply-complete-btn {
+  background-color: var(--dark-green);
+  border-radius: 0.3rem;
+  color: white;
+  align-items: center;
+}
+
+.pencil-icon {
+  width: 1.5rem;
+}
+
+.reply-cancle-btn {
+  background-color: var(--dark-gray);
+  border-radius: 0.3rem;
+  color: white;
+  align-items: center;
+}
+
+.xMark-icon {
+  width: 1.5rem;
 }

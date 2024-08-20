@@ -5,6 +5,7 @@ import { svgCollection } from "../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 import ReviewMoreBtn from "../components/review-page/ReviewMoreBtn";
 import ReviewReply from "../components/review-page/ReviewReply";
+import ReplyWriter from "../components/review-page/ReplyWriter";
 
 const svg = svgCollection;
 
@@ -48,8 +49,8 @@ const ReviewPage = () => {
                 </div>
 
                 <div className="review-edit-box">
-                  <div className="review-edit-btn">수정</div>
-                  <div className="review-delete-btn">삭제</div>
+                  <button className="review-edit-btn">수정</button>
+                  <button className="review-delete-btn">삭제</button>
                 </div>
               </div>
             </div>
@@ -63,6 +64,7 @@ const ReviewPage = () => {
               </div>
             </div>
             <ReviewReply />
+            <ReplyWriter />
           </div>
         ))}
 
