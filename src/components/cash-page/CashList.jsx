@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CashList.css";
 import { cashData, cashIcon } from "../../constants/cash";
 import { ReactSVG } from "react-svg";
 import { formatPrice } from "../../utils/formatPrice";
 
-const CashList = ({ filter }) => {
+const CashList = ({ filter, onTotalCashUpdate }) => {
   const filteredData = cashData.filter((data) => {
     if (filter === "all") return data;
     return data.cashStatus === filter;
   });
+
+  useEffect(() => {
+    if (filteredData.length > 0) {
+      const latestData = filteredData.reduce((latest, data) => {
+        return new Date(data.createdAt) > new Date(latest.createdAt)
+          ? data
+          : latest;
+      });
+      onTotalCashUpdate(latestData.totalCash);
+    } else {
+      onTotalCashUpdate(0);
+    }
+  }, [filteredData, onTotalCashUpdate]);
 
   return (
     <div className="cash-list-wrap">
