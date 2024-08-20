@@ -1,9 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./CashChargeBtn.css";
 import { ReactSVG } from "react-svg";
 import { cashIcon } from "../../constants/cash";
+import CashChargeModal from "./CashChargeModal";
 
-const CashChargeBtn = () => {
+const CashChargeBtn = ({ totalCash }) => {
+  const [isOpened, setIsOpened] = useState(false);
+
+  const chargeModalHandle = () => {
+    setIsOpened(true);
+  };
+
   useEffect(() => {
     const footer = document.querySelector(".footer");
 
@@ -19,10 +26,18 @@ const CashChargeBtn = () => {
   }, []);
 
   return (
-    <button className="cash-charge-btn">
-      <ReactSVG src={cashIcon.money} className="cash-charge-img" />
-      캐시 충전
-    </button>
+    <>
+      <button className="cash-charge-btn" onClick={chargeModalHandle}>
+        <ReactSVG src={cashIcon.money} className="cash-charge-img" />
+        캐시 충전
+      </button>
+
+      <CashChargeModal
+        isOpened={isOpened}
+        setIsOpened={setIsOpened}
+        latestToTalCash={totalCash}
+      />
+    </>
   );
 };
 
