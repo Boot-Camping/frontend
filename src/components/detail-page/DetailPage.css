@@ -147,47 +147,6 @@
   font-size: 12px !important;
 }
 
-/* ReviewPage.jsx */
-.review {
-  padding-top: 1rem;
-}
-
-.review-title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.review-info {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 1rem;
-}
-
-.review-img {
-  width: 15rem;
-  border-radius: 1rem;
-}
-
-.writer {
-  align-content: center;
-  padding-right: 15rem;
-}
-
-.id {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.date {
-  font-size: 1.4rem;
-  color: grey;
-}
-
-.content {
-  font-size: 1.5rem;
-  padding-top: 1.5rem;
-}
-
 /* BookButton.jsx */
 .book-button {
   display: flex;

@@ -7,10 +7,18 @@ const getDetailCampingInfo = (id) => {
   return detailCampingInfo.find((info) => info.id === id);
 };
 
-const { value: onedayPrice } = getDetailCampingInfo("price");
-const { value: overCharge } = getDetailCampingInfo("overCharge");
-const { value: campingDays } = getDetailCampingInfo("campingDays");
-const maxExtraNum = getDetailCampingInfo("extraNum").value;
+const { label: priceLabel, value: onedayPrice } = getDetailCampingInfo("price");
+
+const { label: overChargeLabel, value: overCharge } =
+  getDetailCampingInfo("overCharge");
+
+const { label: campingDaysLabel, value: campingDays } =
+  getDetailCampingInfo("campingDays");
+
+const { label: extraNumLabel, value: maxExtraNum } =
+  getDetailCampingInfo("extraNum");
+
+const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
 
 const PaymentAmount = () => {
   const [extraNum, setExtraNum] = useState(maxExtraNum);
@@ -32,17 +40,17 @@ const PaymentAmount = () => {
         <h3 className="payment-amount-title">결제금액</h3>
 
         <div className="oneday-price">
-          <div>{getDetailCampingInfo("price").label}</div>
+          <div>{priceLabel}</div>
           <div>{onedayPrice.toLocaleString()} 원</div>
         </div>
 
         <div className="over-charge">
-          <div>{getDetailCampingInfo("overCharge").label}</div>
+          <div>{overChargeLabel}</div>
           <div>{overCharge.toLocaleString()} 원/명</div>
         </div>
 
         <div className="extra-number">
-          <div>{getDetailCampingInfo("extraNum").label}</div>
+          <div>{extraNumLabel}</div>
           <div>
             <NumCounter
               onCountChange={extraNumChangeHandle}
@@ -52,12 +60,12 @@ const PaymentAmount = () => {
         </div>
 
         <div className="camping-days">
-          <div>{getDetailCampingInfo("campingDays").label}</div>
+          <div>{campingDaysLabel}</div>
           <div>{campingDays} 박</div>
         </div>
 
         <div className="total-amount">
-          <div>{getDetailCampingInfo("totalAmount").label}</div>
+          <div>{totalAmountLabel}</div>
           <div>{totalAmount.toLocaleString()} 원</div>
         </div>
       </div>
