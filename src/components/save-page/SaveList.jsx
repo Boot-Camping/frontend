@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SaveList.css";
 import { saveIcon } from "../../constants/save";
 import { ReactSVG } from "react-svg";
+import { formatPrice } from "../../utils/formatPrice";
 
 const SaveList = ({ visibleItems, saveData }) => {
   const [savedItems, setSavedItems] = useState(
@@ -37,10 +38,10 @@ const SaveList = ({ visibleItems, saveData }) => {
                 onClick={() => saveHandle(index)}
               />
             </div>
-            <div>1박 : {data.price}원</div>
+            <div>1박 : {formatPrice(data.price)}원</div>
             <div>기준인원 : {data.standardNum}명</div>
             <div>최대인원 : {data.maxNum}명</div>
-            <div>인당 추가요금 : {data.overCharge}원</div>
+            <div>인당 추가요금 : {formatPrice(data.overCharge)}원</div>
           </div>
         </div>
       ))}
