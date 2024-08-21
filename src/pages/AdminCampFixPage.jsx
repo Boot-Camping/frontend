@@ -1,14 +1,23 @@
 import React, { useState, useRef } from "react";
-import "../components/admin-camping-register-page/AdminCampingRegister.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
 import { ReactSVG } from "react-svg";
+import { saveData } from "../constants/save";
+import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import "../components/admin-camping-register-page/AdminCampingRegister.css";
 
 const AdminCampFixPage = () => {
+  const { id } = useParams();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [explanaion, setExplanaion] = useState(""); // 상태 변수 수정
+  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
+    useCampingPlaceFilter(saveData);
+
+  const selectedCampingPlace = campingPlaceFiltered.find(
+    (place) => place.id === parseInt(id)
+  );
 
   const toggleCategory = (category) => {
     setSelectedCategories((prev) => {
@@ -110,7 +119,7 @@ const AdminCampFixPage = () => {
           id="name"
           name="name"
           type="text"
-          autoComplete="name"
+          placeholder={selectedCampingPlace.campName}
           className="input-camp-name"
           required
         />
@@ -159,7 +168,7 @@ const AdminCampFixPage = () => {
             id="camp-number"
             name="camp-number"
             type="number"
-            autoComplete="camp-number"
+            placeholder={selectedCampingPlace.phoneNumber}
             className="input-camp-number"
             required
           />
@@ -168,7 +177,7 @@ const AdminCampFixPage = () => {
               id="camp-price"
               name="camp-price"
               type="number"
-              autoComplete="camp-price"
+              placeholder={selectedCampingPlace.price}
               className="input-camp-price"
               required
             />
@@ -186,7 +195,7 @@ const AdminCampFixPage = () => {
               id="camp-user"
               name="camp-user"
               type="number"
-              autoComplete="camp-user"
+              placeholder={selectedCampingPlace.standardNum}
               className="input-camp-user"
               required
             />
@@ -197,8 +206,8 @@ const AdminCampFixPage = () => {
               id="camp-user"
               name="camp-user"
               type="number"
-              autoComplete="camp-user"
-              className="input-camp-user"
+              placeholder={selectedCampingPlace.maxNum}
+              className="input-camp-max-user"
               required
             />
             <span className="camping-user">명</span>
@@ -208,8 +217,8 @@ const AdminCampFixPage = () => {
               id="camp-price"
               name="camp-price"
               type="number"
-              autoComplete="camp-price"
-              className="input-camp-price"
+              placeholder={selectedCampingPlace.overCharge}
+              className="input-camp-plus-price"
               required
             />
             <span className="won">원</span>
@@ -229,6 +238,7 @@ const AdminCampFixPage = () => {
           placeholder="캠핑장의 특징을 입력하세요."
         />
       </form>
+
       <div className="camp-center-container">
         <button className="camp-fix-btn">수정</button>
       </div>

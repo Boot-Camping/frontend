@@ -1,8 +1,4 @@
-.save-wrap {
-	margin-bottom: 5rem;
-}
-
-.save-title-wrap {
+.notice-title-wrap {
   font-size: var(--heading);
   font-weight: bold;
   display: flex;
@@ -10,12 +6,12 @@
   gap: 1rem;
 }
 
-.save-move-prev {
+.notice-move-prev {
   width: var(--heading);
   height: var(--heading);
   transform: scaleX(-1);
 }
 
-.save-move-prev svg {
+.notice-move-prev svg {
   stroke: #000;
 }

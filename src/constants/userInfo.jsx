@@ -30,10 +30,7 @@ export const userProfile = {
   userName: "홍길동",
   userTel: 10011110000,
   email: "camper123@gmail.com",
-  addr: {
-    address: "(13529) 경기 성남시 분당구 판교역로 166",
-    detailAddress: "카카오 판교 아지트",
-  },
+  addr: "(13529) 경기 성남시 분당구 판교역로 166 카카오 판교 아지트",
   cash: 100000,
 };
 
@@ -59,9 +56,4 @@ export const userInfoModal = {
     new: "새 비밀번호",
     icon: userInfoIcon.lock,
   },
-};
-
-export const userOldData = {
-  userTel: 10011110000,
-  addr: "(13529) 경기 성남시 분당구 판교역로 166 카카오 판교 아지트",
 };

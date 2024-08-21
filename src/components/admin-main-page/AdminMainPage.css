@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 .top-btn {
@@ -14,7 +15,6 @@
 .camping-register-btn {
   width: 20rem;
   height: 5rem;
-  margin-top: 3rem;
   margin-right: 0.5rem;
   border-radius: 1rem;
   border: none;
@@ -28,7 +28,6 @@
 .camping-correct-btn {
   width: 20rem;
   height: 5rem;
-  margin-top: 3rem;
   margin-left: 0.5rem;
   border-radius: 1rem;
   border: none;
@@ -176,12 +175,12 @@
   display: flex;
   justify-content: center;
   margin-top: 6rem;
+  margin-bottom: 3rem;
 }
 
 .noti-register-btn {
   width: 20rem;
   height: 5rem;
-  margin-top: 3rem;
   margin-right: 0.5rem;
   border-radius: 1rem;
   border: none;
@@ -195,7 +194,6 @@
 .noti-correct-btn {
   width: 20rem;
   height: 5rem;
-  margin-top: 3rem;
   margin-left: 0.5rem;
   border-radius: 1rem;
   border: none;
@@ -213,12 +211,13 @@
   display: flex;
   justify-content: center;
   margin-top: 4rem;
+  margin-bottom: 3rem;
 }
 
 .reserve-see-btn {
   width: 20rem;
   height: 5rem;
-  margin: 2rem 0 5rem 0;
+  margin-bottom: 5rem;
   border-radius: 1rem;
   border: none;
   background-color: #038153;

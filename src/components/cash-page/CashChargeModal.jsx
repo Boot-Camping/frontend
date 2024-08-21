@@ -15,7 +15,7 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
   };
 
   const getTotalCash = () => {
-    return selectPrice + latestToTalCash.toLocaleString();
+    return (selectPrice + latestToTalCash).toLocaleString();
   };
 
   const cancleHandle = () => {
@@ -40,7 +40,7 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
                   <div>충전 캐시</div>
                   <div>
                     {selectPrice > 0
-                      ? `${formatPrice(selectPrice)}원`
+                      ? `${selectPrice.toLocaleString()}원`
                       : "충전 금액을 선택하세요"}
                   </div>
                 </div>
@@ -61,9 +61,13 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
                 ))}
               </div>
               <div className="charge-confirm">
-                <div className="confirm-price">
-                  <div>충전 금액</div>
-                  <div>{selectPrice.toLocaleString()}원</div>
+                <div
+                  className={`confirm-price ${
+                    !selectPrice > 0 && "confirm-price-hide"
+                  }`}
+                >
+                  <div>잔액</div>
+                  <div>{latestToTalCash.toLocaleString()}원</div>
                 </div>
                 <div className="confirm-total-cash">
                   <div>{selectPrice > 0 ? "충전 후 잔액" : "잔액"}</div>

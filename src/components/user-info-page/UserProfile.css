@@ -76,10 +76,10 @@
   text-align: right;
 }
 
-.info-change-img {
-  width: var(--sub-heading);
-  height: var(--sub-heading);
-  margin-left: 0.5rem;
+.profile-change {
+  margin-left: 1rem;
+  color: var(--light-green);
+  font-size: var(--content);
 }
 
 .profile-address {

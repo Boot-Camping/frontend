@@ -36,6 +36,7 @@
 .paid-status {
   padding: 0.5rem;
   border-radius: 0.5rem;
+  border: 1px solid var(--light-green);
   font-size: var(--sub-content);
 }
 
@@ -116,6 +117,5 @@
   color: var(--light-gray);
 }
 .usage-list .paid-status {
-  border: 1px solid var(--light-green);
   color: var(--light-green);
 }
