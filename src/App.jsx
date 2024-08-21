@@ -26,6 +26,7 @@ import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
+import { saveData } from "./constants/save";
 
 function App() {
   return (
@@ -52,9 +53,9 @@ function App() {
           <Route path="/admin/camping" element={<AdminCampingRegisterPage />} />
           <Route
             path="/admin/camping-list"
-            element={<AdminCampingListPage />}
+            element={<AdminCampingListPage campingPlaces={saveData} />}
           />
-          <Route path="/admin/camping-fix" element={<AdminCampFixPage />} />
+          <Route path="/admin/camp-fix/:id" element={<AdminCampFixPage />} />
           <Route path="/admin/notice-regi" element={<AdminNoticeRegiPage />} />
           <Route path="/admin/notice-list" element={<AdminNoticeList />} />
           <Route path="/admin/notice-fix" element={<AdminNoticeFixPage />} />
