@@ -20,7 +20,7 @@ const AdminMainPage = () => {
         <Link to={"/admin/camping"}>
           <button className="camping-register-btn">+ 등록</button>
         </Link>
-        <Link to={"/admin/camping-fix"}>
+        <Link to={"/admin/camping-list"}>
           <button className="camping-correct-btn">수정</button>
         </Link>
       </div>

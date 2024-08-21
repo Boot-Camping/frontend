@@ -63,11 +63,12 @@
 
 .input-notice-title {
   margin-top: 1rem;
-  width: 33.5rem;
-  height: 2rem;
-  border: solid 1px #666666;
+  width: 35rem;
+  height: 3rem;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  border: none;
 }
 
 .notice-img-input-hidden {
@@ -78,19 +79,20 @@
   font-size: 1.4rem;
   font-weight: bold;
   margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 
 .notice-img-input {
   border: none;
+  border-radius: 1rem;
   width: 6rem;
-  height: 6rem;
+  height: 3rem;
   background-color: var(--light-green);
   color: white;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: normal;
   text-align: center;
   cursor: pointer;
-  margin-top: 2rem;
 }
 
 .input-notice {
@@ -98,10 +100,12 @@
   height: 35rem;
   border: solid 1px #666666;
   border-radius: 0.5rem;
+  padding: 0.5rem;
   font-size: 1.4rem;
   justify-content: start;
   align-content: flex-start;
   text-align: start;
+  margin-top: 2rem;
   margin-bottom: 3rem;
 }
 
@@ -116,9 +120,10 @@
   font-size: 1.4rem;
   font-weight: bold;
   border: none;
+  border-radius: 1rem;
   width: 15rem;
   height: 4rem;
-  margin: 1rem 0 3rem 0;
+  margin-bottom: 3rem;
   cursor: pointer;
 }
 
@@ -153,8 +158,9 @@
   font-size: 1.4rem;
   font-weight: bold;
   border: none;
+  border-radius: 1rem;
   width: 15rem;
   height: 4rem;
-  margin: 1rem 0 3rem 0;
+  margin-bottom: 3rem;
   cursor: pointer;
 }
