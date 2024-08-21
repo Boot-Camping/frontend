@@ -19,7 +19,7 @@ const UserAccount = ({ setIsOpened, setModalType }) => {
         <div>비밀번호</div>
         <div>
           <div>*******</div>
-          <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+          <div className="profile-change">변경</div>
         </div>
       </div>
     </div>
