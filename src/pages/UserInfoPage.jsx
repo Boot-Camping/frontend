@@ -33,6 +33,8 @@ const UserInfoPage = () => {
         isOpened={isOpened}
         setIsOpened={setIsOpened}
         modalType={modalType}
+        userTel={userProfile.userTel}
+        addr={userProfile.addr}
       />
     </section>
   );
