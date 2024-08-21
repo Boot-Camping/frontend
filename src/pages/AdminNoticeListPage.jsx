@@ -1,10 +1,27 @@
 import React, { useState, useRef } from "react";
+import "../components/notice-page/NoticePage.css";
+import "../components/notice-page/NoticeFilter.css";
+import { shortDateDot } from "../utils/shortDateDot";
+import { filterData } from "../utils/filterData";
 import { Link } from "react-router-dom";
 import "../components/admin-notice-register/AdminNoticeListPage.css";
 import { ReactSVG } from "react-svg";
+import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
+import { useLoadMore } from "../hooks/useLoadMore";
+import { noticeData } from "../constants/notice";
+import PaidFilter from "../components/paid-page/PaidFilter";
+import { filterType } from "../constants/filterType";
+import AdminNoticeList from "../components/admin-notice-register/AdminNoticeList";
 
 const AdminNoticeListPage = () => {
+  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(6, noticeData);
+  const [filter, setFilter] = useState("all");
+
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const filterChangeHandle = (status) => {
+    setFilter(status);
+  };
 
   const toggleCategory = (category) => {
     setSelectedCategory(category);
@@ -19,101 +36,28 @@ const AdminNoticeListPage = () => {
         />
       </Link>
       <div className="notice-page-title">공지사항</div>
-      <div className="list-notice-category">
-        <button
-          className={`list-category-notice ${
-            selectedCategory === "공지사항" ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("공지사항")}
-        >
-          공지사항
-        </button>
-        <button
-          className={`list-category-event ${
-            selectedCategory === "이벤트" ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("이벤트")}
-        >
-          이벤트
-        </button>
-      </div>
+
       <div className="notice-regi-btn">
         <Link to={"/admin/notice-regi"}>
           <button className="notice-register-btn">+ 등록</button>
         </Link>
       </div>
 
-      <div className="notice-list-ex">
-        <div>[공지사항] 개인정보 처리방침 개정 안내</div>
-        <span>
-          <Link to={"/admin/notice-fix"}>
-            <ReactSVG
-              className="list-pencil"
-              src="../../src/assets/svg/pencil.svg"
-              alt=""
-            />
-          </Link>
-        </span>
-      </div>
-      <div className="notice-list-ex">
-        <div>[공지사항] 6월 6일(목) 현충일 고객센터 휴무</div>
-        <span>
-          <Link to={"/admin/notice-fix"}>
-            <ReactSVG
-              className="list-pencil"
-              src="../../src/assets/svg/pencil.svg"
-              alt=""
-            />
-          </Link>
-        </span>
-      </div>
-      <div className="notice-list-ex">
-        <div>[공지사항] 개인정보 처리방침 개정 안내</div>
-        <span>
-          <Link to={"/admin/notice-fix"}>
-            <ReactSVG
-              className="list-pencil"
-              src="../../src/assets/svg/pencil.svg"
-              alt=""
-            />
-          </Link>
-        </span>
-      </div>
-      <div className="notice-list-ex">
-        <div>[공지사항] 6월 6일(목) 현충일 고객센터 휴무</div>
-        <span>
-          <Link to={"/admin/notice-fix"}>
-            <ReactSVG
-              className="list-pencil"
-              src="../../src/assets/svg/pencil.svg"
-              alt=""
-            />
-          </Link>
-        </span>
-      </div>
-      <div className="notice-list-ex">
-        <div>[공지사항] 개인정보 처리방침 개정 안내</div>
-        <span>
-          <Link to={"/admin/notice-fix"}>
-            <ReactSVG
-              className="list-pencil"
-              src="../../src/assets/svg/pencil.svg"
-              alt=""
-            />
-          </Link>
-        </span>
-      </div>
-      <div className="notice-list-ex">
-        <div>[공지사항] 6월 6일(목) 현충일 고객센터 휴무</div>
-        <span>
-          <Link to={"/admin/notice-fix"}>
-            <ReactSVG
-              className="list-pencil"
-              src="../../src/assets/svg/pencil.svg"
-              alt=""
-            />
-          </Link>
-        </span>
+      <div className="notice-list-wrap">
+        <PaidFilter
+          filterChangeHandle={filterChangeHandle}
+          filterType={filterType.notice}
+          wrapClassName="notice-page-filter"
+          allClassName="event-filter"
+        />
+
+        <AdminNoticeList
+          visibleItems={visibleItems}
+          noticeData={noticeData}
+          filter={filter}
+        />
+
+        <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
       </div>
     </div>
   );
