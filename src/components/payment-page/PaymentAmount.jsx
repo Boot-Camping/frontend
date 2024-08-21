@@ -7,22 +7,27 @@ const getDetailCampingInfo = (id) => {
   return detailCampingInfo.find((info) => info.id === id);
 };
 
-const { value: onedayPrice } = getDetailCampingInfo("price");
-const { value: overCharge } = getDetailCampingInfo("overCharge");
-const { value: campingDays } = getDetailCampingInfo("campingDays");
-const { value: standardNum } = getDetailCampingInfo("standardNum");
+const { label: priceLabel, value: onedayPrice } = getDetailCampingInfo("price");
 
-const maxExtraNum = getDetailCampingInfo("extraNum").value;
+const { label: overChargeLabel, value: overCharge } =
+  getDetailCampingInfo("overCharge");
+
+const { label: campingDaysLabel, value: campingDays } =
+  getDetailCampingInfo("campingDays");
+
+const { label: extraNumLabel, value: maxExtraNum } =
+  getDetailCampingInfo("extraNum");
+
+const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
 
 const PaymentAmount = () => {
-  const [extraNum, setExtraNum] = useState(
-    getDetailCampingInfo("extraNum").value
+  const [extraNum, setExtraNum] = useState(maxExtraNum);
+  const [totalAmount, setTotalAmount] = useState(
+    (onedayPrice + overCharge * maxExtraNum) * campingDays
   );
-  const [totalAmount, setTotalAmount] = useState(onedayPrice * campingDays);
 
   useEffect(() => {
-    const extraCharge = extraNum * overCharge;
-    setTotalAmount(onedayPrice * campingDays + extraCharge);
+    setTotalAmount((onedayPrice + overCharge * extraNum) * campingDays);
   }, [extraNum, onedayPrice, campingDays, overCharge]);
 
   const extraNumChangeHandle = (newCount) => {
@@ -35,22 +40,17 @@ const PaymentAmount = () => {
         <h3 className="payment-amount-title">결제금액</h3>
 
         <div className="oneday-price">
-          <div>{getDetailCampingInfo("price").label}</div>
+          <div>{priceLabel}</div>
           <div>{onedayPrice.toLocaleString()} 원</div>
         </div>
 
-        <div className="camping-days">
-          <div>{getDetailCampingInfo("campingDays").label}</div>
-          <div>{campingDays} 박</div>
-        </div>
-
-        <div className="standard-num">
-          <div>{getDetailCampingInfo("standardNum").label}</div>
-          <div>{standardNum} 명</div>
+        <div className="over-charge">
+          <div>{overChargeLabel}</div>
+          <div>{overCharge.toLocaleString()} 원/명</div>
         </div>
 
         <div className="extra-number">
-          <div>{getDetailCampingInfo("extraNum").label}</div>
+          <div>{extraNumLabel}</div>
           <div>
             <NumCounter
               onCountChange={extraNumChangeHandle}
@@ -59,13 +59,13 @@ const PaymentAmount = () => {
           </div>
         </div>
 
-        <div className="over-charge">
-          <div>{getDetailCampingInfo("overCharge").label}</div>
-          <div>{overCharge.toLocaleString()} 원/명</div>
+        <div className="camping-days">
+          <div>{campingDaysLabel}</div>
+          <div>{campingDays} 박</div>
         </div>
 
         <div className="total-amount">
-          <div>{getDetailCampingInfo("totalAmount").label}</div>
+          <div>{totalAmountLabel}</div>
           <div>{totalAmount.toLocaleString()} 원</div>
         </div>
       </div>

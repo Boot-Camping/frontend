@@ -1,0 +1,41 @@
+.review-writer-title {
+  font-size: var(--heading);
+  padding-bottom: 1rem;
+}
+
+.review-question-box {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+
+.review-question {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+}
+
+.review-stars {
+  width: 1.5rem;
+}
+
+.review-writer-tag {
+  color: var(--light-green);
+  font-size: var(--sub-content);
+  font-weight: bold;
+  border: 0.1rem solid var(--light-green);
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.review-content {
+  width: 100%;
+  height: 3rem;
+  border-radius: 0.3rem;
+}
+
+.img-input-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  padding: 1rem 0;
+}

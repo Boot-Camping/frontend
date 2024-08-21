@@ -94,6 +94,10 @@
   align-items: center;
 }
 
+.camping-days {
+  padding-top: 2rem;
+}
+
 .total-amount {
   font-weight: bold;
   font-size: var(--sub-heading);

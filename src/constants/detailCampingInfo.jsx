@@ -16,7 +16,7 @@ export const detailCampingInfo = [
   { id: "maxNum", label: "최대 수용인원", value: 6 },
   { id: "price", label: "1박 가격", value: 40000 },
   { id: "extraNum", label: "추가인원", value: 2 },
-  { id: "overCharge", label: "인당 추가요금", value: 10000 },
+  { id: "overCharge", label: "추가인원당 별도요금", value: 10000 },
   {
     id: "campingDays",
     label: "캠핑 일수",

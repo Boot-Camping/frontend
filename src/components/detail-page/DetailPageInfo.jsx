@@ -32,7 +32,9 @@ const DetailPageInfo = () => {
 
         <div className="main">
           <h2 className="title">{getDetailInfo("name")}</h2>
-          <div className="price">{getDetailInfo("price")}원/ 1박</div>
+          <div className="price">
+            {getDetailInfo("price").toLocaleString()}원/ 1박
+          </div>
         </div>
 
         <div className="tags">
@@ -61,8 +63,8 @@ const DetailPageInfo = () => {
 
           <div className="detail-item">
             <ReactSVG className="detail-icon" src={svg.group} alt="group" />
-            기준인원 {getDetailInfo("standardNum")}명 / 최대인원{" "}
-            {getDetailInfo("maxNum")}명
+            기준 수용인원: {getDetailInfo("standardNum")}명 <br />
+            최대 수용인원: {getDetailInfo("maxNum")}명
           </div>
 
           <div className="detail-item">
@@ -71,7 +73,7 @@ const DetailPageInfo = () => {
               src={svg.calculator}
               alt="calculator"
             />
-            인당 추가요금 {getDetailInfo("overCharge")}원
+            인당 추가요금 {getDetailInfo("overCharge").toLocaleString()}원
           </div>
         </div>
         <ReadMore text={getDetailInfo("description")} maxLength={80} />

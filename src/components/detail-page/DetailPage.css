@@ -147,52 +147,10 @@
   font-size: 12px !important;
 }
 
-/* ReviewPage.jsx */
-.review {
-  padding-top: 1rem;
-}
-
-.review-title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.review-info {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 1rem;
-}
-
-.review-img {
-  width: 15rem;
-  border-radius: 1rem;
-}
-
-.writer {
-  align-content: center;
-  padding-right: 15rem;
-}
-
-.id {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.date {
-  font-size: 1.4rem;
-  color: grey;
-}
-
-.content {
-  font-size: 1.5rem;
-  padding-top: 1.5rem;
-}
-
 /* BookButton.jsx */
 .book-button {
   display: flex;
-  justify-content: center;
-  padding: 2rem;
+  padding-bottom: 2rem;
 }
 
 .book-emoji {
@@ -206,10 +164,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: var(--sub-heading);
   color: white;
   background-color: var(--dark-green);
   border-radius: 0.5rem;
-  height: 3rem;
   width: 100%;
+  padding: 1rem;
 }
