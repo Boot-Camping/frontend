@@ -23,7 +23,8 @@ export const saveData = [
     standardNum: 4,
     maxNum: 6,
     overCharge: 10000,
-    phoneNumber: 123456789,
+    phoneNumber: "123456789",
+    onDate: "2024/08/10",
   },
   {
     wish: true,
@@ -35,7 +36,8 @@ export const saveData = [
     standardNum: 3,
     maxNum: 5,
     overCharge: 20000,
-    phoneNumber: 36732572,
+    phoneNumber: "01036732572",
+    onDate: "2024/08/11",
   },
   {
     wish: true,
@@ -48,6 +50,7 @@ export const saveData = [
     maxNum: 6,
     overCharge: 10000,
     phoneNumber: "03136732572",
+    onDate: "2024/08/12",
   },
   {
     wish: true,
@@ -59,7 +62,8 @@ export const saveData = [
     standardNum: 3,
     maxNum: 5,
     overCharge: 20000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
+    onDate: "2024/08/13",
   },
   {
     wish: true,
@@ -71,7 +75,8 @@ export const saveData = [
     standardNum: 4,
     maxNum: 6,
     overCharge: 10000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
+    onDate: "2024/08/14",
   },
   {
     wish: true,
@@ -83,7 +88,8 @@ export const saveData = [
     standardNum: 3,
     maxNum: 5,
     overCharge: 20000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
+    onDate: "2024/08/15",
   },
   {
     wish: true,
@@ -95,7 +101,8 @@ export const saveData = [
     standardNum: 4,
     maxNum: 6,
     overCharge: 10000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
+    onDate: "2024/08/21",
   },
   {
     wish: true,
@@ -107,7 +114,8 @@ export const saveData = [
     standardNum: 3,
     maxNum: 5,
     overCharge: 20000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
+    onDate: "2024/08/20",
   },
   {
     wish: true,
@@ -119,6 +127,7 @@ export const saveData = [
     standardNum: 3,
     maxNum: 5,
     overCharge: 20000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
+    onDate: "2024/08/19",
   },
 ];
