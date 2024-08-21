@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 
 import format from "date-fns/format";
-import { addDays } from "date-fns";
+import { addDays, differenceInDays } from "date-fns";
 
 import "../book-page/DateRangePicker.css";
 import "react-date-range/dist/styles.css";
@@ -38,12 +38,15 @@ const DateRangePicker = () => {
     }
   };
 
+  // startDate와 endDate 차이 일수 계산
+  const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
+
   return (
     <div className="calendar-wrap">
       <input
         value={`${format(range[0].startDate, "yyyy/MM/dd")} 부터 ${format(
           range[0].endDate,
-          "yyyy/MM/dddd"
+          "yyyy/MM/dd"
         )}까지`}
         readOnly
         className="inputbox"
@@ -62,6 +65,15 @@ const DateRangePicker = () => {
             className="calendar-element"
           />
         )}
+      </div>
+
+      <div className="nights-days-info">
+        선택하신 캠핑일정은{""}
+        <span className="nights-days-highlight-text">
+          {" "}
+          "{numberOfNights}박 {numberOfNights + 1}일"
+        </span>
+        {""} 입니다.
       </div>
     </div>
   );

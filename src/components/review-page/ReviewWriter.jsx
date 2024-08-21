@@ -51,7 +51,7 @@ const ReviewWriter = () => {
 
       <input
         type="text"
-        className="review-content"
+        className="review-writer-content"
         placeholder="리뷰를 입력해 주세요."
       />
 

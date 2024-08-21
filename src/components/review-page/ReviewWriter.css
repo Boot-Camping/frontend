@@ -26,7 +26,7 @@
   margin-right: 0.5rem;
 }
 
-.review-content {
+.review-writer-content {
   width: 100%;
   height: 3rem;
   border-radius: 0.3rem;
@@ -65,16 +65,17 @@
   cursor: pointer;
 }
 
-.review-content {
+.review-writer-content {
   border: 0.1rem solid var(--dark-gray);
   border-radius: 0.3rem;
+  padding-bottom: 3rem;
 }
 
-.review-content::placeholder {
+.review-writer-content::placeholder {
   color: var (--dark-gray);
 }
 
-.review-content:focus {
+.review-writer-content:focus {
   color: var(--dark-gray);
   outline: none;
 }
