@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../components/paid-page/PaidPage.css";
+import "../components/paid-page/PaidFilter.css";
 import { ReactSVG } from "react-svg";
-import { paidIcon } from "../constants/paid";
+import { paidData, paidIcon } from "../constants/paid";
 import PaidFilter from "../components/paid-page/PaidFilter";
 import PaidList from "../components/paid-page/PaidList";
 import { Link } from "react-router-dom";
+import { filterType } from "../constants/filterType";
 
 const PaidPage = () => {
   const [filter, setFilter] = useState("all");
@@ -22,9 +24,14 @@ const PaidPage = () => {
         <div>결제 내역</div>
       </div>
 
-      <PaidFilter filterChangeHandle={filterChangeHandle} />
+      <PaidFilter
+        filterChangeHandle={filterChangeHandle}
+        filterType={filterType.paid}
+        wrapClassName="paid-filter"
+        allClassName="usage-filter"
+      />
 
-      <PaidList filter={filter} />
+      <PaidList filter={filter} paidData={paidData} />
     </section>
   );
 };

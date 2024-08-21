@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "../components/save-page/SavePage.css";
 import { saveData, saveIcon } from "../constants/save";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import SaveList from "../components/save-page/SaveList";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
+import { useLoadMore } from "../hooks/useLoadMore";
 
 const SavePage = () => {
-  const [visibleItems, setVisibleItems] = useState(4);
-
-  const loadMore = () => {
-    setVisibleItems(visibleItems + 4);
-  };
-
-  const hasMoreItems = visibleItems < saveData.length;
+  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(4, saveData);
 
   return (
     <section className="save-wrap">
