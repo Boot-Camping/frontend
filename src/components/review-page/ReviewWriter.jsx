@@ -13,7 +13,7 @@ const ReviewWriter = () => {
   const lowerTags = reviewTag.slice(3, 6);
 
   const ratingChangeHandle = (rating) => {
-    console.log("선택된 별점:", rating); // 선택된 별점 로그 출력
+    console.log("선택된 별점:", rating);
   };
 
   return (
