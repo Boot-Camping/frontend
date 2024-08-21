@@ -252,6 +252,16 @@
   border-radius: 0.5rem;
 }
 
+.input-camp-max-user {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
 .camping-user {
   padding-top: 1.5rem;
   margin-left: 0.5rem;
