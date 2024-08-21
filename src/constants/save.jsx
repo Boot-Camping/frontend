@@ -47,7 +47,7 @@ export const saveData = [
     standardNum: 4,
     maxNum: 6,
     overCharge: 10000,
-    phoneNumber: 0o3136732572,
+    phoneNumber: "03136732572",
   },
   {
     wish: true,
