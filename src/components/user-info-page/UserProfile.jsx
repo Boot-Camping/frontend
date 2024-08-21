@@ -16,6 +16,10 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
     console.log("주소 변경");
   };
 
+  const addrParts = userProfile.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
+  const address = addrParts[1].trim();
+  const detailAddress = addrParts[3].trim();
+
   return (
     <div className="user-profile-wrap">
       <div className="profile-img-wrap underline">
@@ -51,8 +55,8 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
           <div className="">주소</div>
           <div>
             <div>
-              <div>{userProfile.addr.address}</div>
-              <div>{userProfile.addr.detailAddress}</div>
+              <div>{address}</div>
+              <div>{detailAddress}</div>
             </div>
             <div className="profile-change">변경</div>
           </div>
