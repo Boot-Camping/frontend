@@ -10,24 +10,31 @@ import ReplyWriter from "../components/review-page/ReplyWriter";
 const svg = svgCollection;
 
 const ReviewPage = () => {
-  const [visibleItems, setVisibleItems] = useState(2);
+  const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [visibleReplies, setVisibleReplies] = useState({});
 
   const loadMore = () => {
     if (isExpanded) {
-      setVisibleItems(2);
+      setvisibleReviews(1);
     } else {
-      setVisibleItems(mockReviewData.length);
+      setvisibleReviews(mockReviewData.length);
     }
     setIsExpanded(!isExpanded);
+  };
+
+  const toggleReply = (index) => {
+    setVisibleReplies((prevVisibleReplies) => ({
+      ...prevVisibleReplies,
+      [index]: !prevVisibleReplies[index],
+    }));
   };
 
   return (
     <>
       <div className="review">
         <div className="review-title">리뷰</div>
-
-        {mockReviewData.slice(0, visibleItems).map((review, index) => (
+        {mockReviewData.slice(0, visibleReviews).map((review, index) => (
           <div key={index} className="review-box">
             <div className="review-upper-box">
               <img className="review-img" src={review.reviewImage} alt="" />
@@ -58,12 +65,16 @@ const ReviewPage = () => {
             <div className="review-content">{review.reviewContent}</div>
 
             <div className="review-reply-box">
-              <ReactSVG src={svg.letter} className="review-letter-img" />
-              <div className="review-reply-count">
+              <ReactSVG src={svg.letter} className="review-letter-icon" />
+              <div
+                className="review-reply-count"
+                onClick={() => toggleReply(index)}
+              >
                 댓글 {review.replyCount}개
               </div>
             </div>
-            <ReviewReply />
+
+            {visibleReplies[index] && <ReviewReply />}
             <ReplyWriter />
           </div>
         ))}

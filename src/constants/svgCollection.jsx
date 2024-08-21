@@ -7,6 +7,7 @@ import calculator from "../assets/svg/calculator.svg";
 import letter from "../assets/svg/letter.svg";
 import xMark from "../assets/svg/xMark.svg";
 import pencilSquare from "../assets/svg/pencilSquare.svg";
+import pencilSolid from "../assets/svg/pencilSolid.svg";
 
 export const svgCollection = {
   stars,
@@ -18,4 +19,5 @@ export const svgCollection = {
   letter,
   xMark,
   pencilSquare,
+  pencilSolid,
 };

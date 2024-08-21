@@ -11,6 +11,10 @@ export const mockReviewData = [
     reviewTag: ["청결해요", "친절해요", "가까워요"],
     replyCount: 15,
     reviewReply: 50,
+    replyId: "댓글 작성자 ID",
+    replyCreatedAt: "2024-08-21",
+    replyContent:
+      "비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로 즐기고가세요~^^ 방문해 주셔서 감사합니다.",
   },
   {
     id: "reviewData",
@@ -22,6 +26,10 @@ export const mockReviewData = [
     reviewTag: ["청결해요", "친절해요", "가까워요"],
     replyCount: 15,
     reviewReply: 50,
+    replyId: "댓글 작성자 ID",
+    replyCreatedAt: "2024-08-21",
+    replyContent:
+      "비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로 즐기고가세요~^^ 방문해 주셔서 감사합니다.",
   },
   {
     id: "reviewData",
@@ -33,6 +41,10 @@ export const mockReviewData = [
     reviewTag: ["청결해요", "친절해요", "가까워요"],
     replyCount: 15,
     reviewReply: 50,
+    replyId: "댓글 작성자 ID",
+    replyCreatedAt: "2024-08-21",
+    replyContent:
+      "비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로 즐기고가세요~^^ 방문해 주셔서 감사합니다.",
   },
   {
     id: "reviewData",
@@ -44,6 +56,10 @@ export const mockReviewData = [
     reviewTag: ["청결해요", "친절해요", "가까워요"],
     replyCount: 15,
     reviewReply: 50,
+    replyId: "댓글 작성자 ID",
+    replyCreatedAt: "2024-08-21",
+    replyContent:
+      "비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로 즐기고가세요~^^ 방문해 주셔서 감사합니다.",
   },
   {
     id: "reviewData",
@@ -55,6 +71,10 @@ export const mockReviewData = [
     reviewTag: ["청결해요", "친절해요", "가까워요"],
     replyCount: 15,
     reviewReply: 50,
+    replyId: "댓글 작성자 ID",
+    replyCreatedAt: "2024-08-21",
+    replyContent:
+      "비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로 즐기고가세요~^^ 방문해 주셔서 감사합니다.",
   },
   {
     id: "reviewData",
@@ -66,5 +86,9 @@ export const mockReviewData = [
     reviewTag: ["청결해요", "친절해요", "가까워요"],
     replyCount: 15,
     reviewReply: 50,
+    replyId: "댓글 작성자 ID",
+    replyCreatedAt: "2024-08-21",
+    replyContent:
+      "비소식에 황급히 철수하셔서 아쉬웠어요 담에는 화창한 날씨에 제대로 즐기고가세요~^^ 방문해 주셔서 감사합니다.",
   },
 ];
