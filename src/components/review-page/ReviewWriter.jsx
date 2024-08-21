@@ -4,12 +4,17 @@ import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
 import { reviewTag } from "../../constants/reviewTag";
 import ReviewImgUploader from "./ReviewImgUploader";
+import StarRating from "./StarRating";
 
 const svg = svgCollection;
 
 const ReviewWriter = () => {
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
+
+  const ratingChangeHandle = (rating) => {
+    console.log("선택된 별점:", rating); // 선택된 별점 로그 출력
+  };
 
   return (
     <div>
@@ -18,9 +23,8 @@ const ReviewWriter = () => {
         <div className="review-question">
           해당 캠핑장에 대해 얼마나 만족하셨나요?
         </div>
-        <div className="review-stars">
-          <ReactSVG src={svg.stars} />
-        </div>
+
+        <StarRating totalStars={5} ratingChangeHandle={ratingChangeHandle} />
       </div>
 
       <div className="review-question-box">
@@ -30,17 +34,17 @@ const ReviewWriter = () => {
 
         <div className="tag-group">
           {upperTags.map((tag) => (
-            <div key={tag.id} className={tag.className}>
+            <button key={tag.id} className={tag.className}>
               {tag.label}
-            </div>
+            </button>
           ))}
         </div>
 
         <div className="tag-group">
           {lowerTags.map((tag) => (
-            <div key={tag.id} className={tag.className}>
+            <button key={tag.id} className={tag.className}>
               {tag.label}
-            </div>
+            </button>
           ))}
         </div>
       </div>

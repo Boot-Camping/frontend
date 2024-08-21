@@ -16,11 +16,6 @@
   margin-bottom: 0.8rem;
 }
 
-.review-stars {
-  width: 2rem;
-  color: var(--yellow);
-}
-
 .review-writer-tag {
   color: var(--light-green);
   font-size: var(--sub-content);
@@ -53,8 +48,10 @@
   background-color: var(--light-green);
   font-size: var(--content);
   border-radius: 0.3rem;
+  border: none;
   padding: 0.2rem 0.5rem;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .tag-bad {
@@ -62,8 +59,10 @@
   background-color: orange;
   font-size: var(--content);
   border-radius: 0.3rem;
+  border: none;
   padding: 0.2rem 0.5rem;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .review-content {
@@ -146,4 +145,23 @@
 
 .img-upload-label input[type="file"] {
   display: none;
+}
+
+/* StarRating.jsx */
+.star-rating {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.star-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: none;
+  stroke: #999;
+}
+
+.star-icon.filled {
+  fill: #ffd700;
+  stroke: #ffd700;
 }
