@@ -93,6 +93,16 @@
   border: none;
 }
 
+.input-total-date {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 2rem;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+  border: none;
+}
+
 .admin-book-info {
   display: flex;
   justify-content: space-between;
@@ -118,7 +128,7 @@
 
 .input-book-user-number {
   margin-top: 1rem;
-  width: 6rem;
+  width: 8rem;
   height: 2rem;
   background: var(--bg-gray-50);
   font-size: var(--content);
@@ -128,7 +138,7 @@
 
 .input-max-user {
   margin-top: 1rem;
-  width: 6rem;
+  width: 8rem;
   height: 2rem;
   background: var(--bg-gray-50);
   font-size: var(--content);

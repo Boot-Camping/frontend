@@ -52,6 +52,7 @@ const AdminBookDetailPage = () => {
       <div className="admin-book-info">
         <div className="book-price-title">금액 /1박</div>
         <div className="book-price-title">추가 요금 /인당</div>
+        <div className="book-price-title">예약 일수</div>
       </div>
       <div className="contact-info">
         <div>
@@ -75,6 +76,17 @@ const AdminBookDetailPage = () => {
             required
           />
           <span className="won">원</span>
+        </div>
+        <div>
+          <input
+            id="book-plus-price"
+            name="book-plus-price"
+            type="number"
+            autoComplete="camp-price"
+            className="input-total-date"
+            required
+          />
+          <span className="won">박</span>
         </div>
       </div>
       <div className="camp-user-title">
