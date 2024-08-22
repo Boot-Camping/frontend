@@ -43,16 +43,6 @@ const DateRangePicker = () => {
 
   return (
     <div className="calendar-wrap">
-      <input
-        value={`${format(range[0].startDate, "yyyy/MM/dd")} 부터 ${format(
-          range[0].endDate,
-          "yyyy/MM/dd"
-        )}까지`}
-        readOnly
-        className="inputbox"
-        onClick={() => setOpen((open) => !open)}
-      />
-
       <div ref={refOne}>
         {open && (
           <DateRange
@@ -66,6 +56,16 @@ const DateRangePicker = () => {
           />
         )}
       </div>
+
+      <input
+        value={`${format(range[0].startDate, "yyyy/MM/dd")} 부터 ${format(
+          range[0].endDate,
+          "yyyy/MM/dd"
+        )}까지`}
+        readOnly
+        className="inputbox"
+        onClick={() => setOpen((open) => !open)}
+      />
 
       <div className="nights-days-info">
         선택하신 캠핑일정은{""}

@@ -21,6 +21,7 @@
 
 .nights-days-info {
   font-size: var(--sub-heading);
+  padding-top: 1rem;
 }
 
 .nights-days-highlight-text {

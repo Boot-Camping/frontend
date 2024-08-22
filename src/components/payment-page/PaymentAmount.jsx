@@ -8,19 +8,16 @@ const getDetailCampingInfo = (id) => {
 };
 
 const { label: priceLabel, value: onedayPrice } = getDetailCampingInfo("price");
-
 const { label: overChargeLabel, value: overCharge } =
   getDetailCampingInfo("overCharge");
-
 const { label: campingDaysLabel, value: campingDays } =
   getDetailCampingInfo("campingDays");
-
 const { label: extraNumLabel, value: maxExtraNum } =
   getDetailCampingInfo("extraNum");
 
 const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
 
-const PaymentAmount = () => {
+const PaymentAmount = ({ campingDays }) => {
   const [extraNum, setExtraNum] = useState(maxExtraNum);
   const [totalAmount, setTotalAmount] = useState(
     (onedayPrice + overCharge * maxExtraNum) * campingDays
