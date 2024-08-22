@@ -11,10 +11,16 @@ const PaymentPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const openModal = () => {
-    if (isButtonEnabled) {
+    console.log("openModal 함수가 호출됨");
+    if (isButtonEnabled && isFormValid) {
       setIsModalOpen(true);
+      console.log("모달 열림");
+    } else if (!isFormValid) {
+      console.log("경고 알림 실행됨");
+      alert("필수 정보를 모두 입력해주세요.");
     }
   };
 
@@ -35,11 +41,15 @@ const PaymentPage = () => {
     setIsButtonEnabled(allChecked);
   };
 
+  const formValidChangeHandle = (isValid) => {
+    setIsFormValid(isValid);
+  };
+
   return (
     <>
       <div className="payment-page underline">
         <h2 className="payment-title">캠핑장 결제하기</h2>
-        <PaymentInfo />
+        <PaymentInfo onFormValidChange={formValidChangeHandle} />
         <PaymentAmount />
         <PaymentPolicy allCheckedHandle={allCheckedHandle} />
         <button
