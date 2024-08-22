@@ -1,3 +1,7 @@
+.login-account-wrap {
+  margin: 3rem 0;
+}
+
 .login-account-title {
   font-size: var(--heading);
   font-weight: bold;
