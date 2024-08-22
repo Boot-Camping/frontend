@@ -7,6 +7,7 @@ import useAddress from "../../hooks/useAddress";
 import { phoneNumber } from "../../utils/phoneNumber";
 import { validation } from "../../utils/validation";
 import { hashPassword } from "../../utils/hashPassword";
+import { post } from "../../utils/Api";
 
 const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
   const { postcode, setPostcode } = useAddress();
@@ -55,10 +56,17 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
     console.log(hashPassword(formData.password));
     delete formData.passwordChk;
 
-    // handleSubmit 호출
-    // handleSubmit(formData);
+    try {
+      await post("signup", formData);
+      console.log("제출 완료", formData);
+    } catch (error) {
+      const { status, message } = JSON.parse(error.message);
+      setError(true);
+      setIsOpened(true);
+      console.log(`상태 코드: ${status}, 에러 메시지: ${message}`);
+    }
 
-    console.log("제출 완료", formData);
+    console.log(formData);
   };
 
   return (
