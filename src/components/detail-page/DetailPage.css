@@ -55,7 +55,6 @@
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
   margin-bottom: 1.5rem;
   padding-top: 2rem;
 }
@@ -117,7 +116,6 @@
 }
 
 /* KakaoMap.jsx */
-
 .map-title {
   font-size: var(--heading);
   font-weight: bold;

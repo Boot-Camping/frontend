@@ -12,20 +12,16 @@ const ReviewWriter = () => {
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
 
-  // 선택된 태그들을 관리하는 상태
   const [selectedTags, setSelectedTags] = useState([]);
 
   const ratingChangeHandle = (rating) => {
     console.log("선택된 별점:", rating);
   };
 
-  // 태그 클릭 핸들러
   const toggleTagHandle = (tag) => {
     if (selectedTags.includes(tag.id)) {
-      // 이미 선택된 태그면 선택 해제
       setSelectedTags(selectedTags.filter((t) => t !== tag.id));
     } else {
-      // 선택되지 않은 태그면 선택
       setSelectedTags([...selectedTags, tag.id]);
     }
   };
