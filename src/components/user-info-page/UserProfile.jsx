@@ -6,7 +6,7 @@ import { userInfoIcon, userProfile } from "../../constants/userInfo";
 const UserProfile = ({ setIsOpened, setModalType }) => {
   const telChangeHandle = () => {
     setIsOpened(true);
-    setModalType("userTel");
+    setModalType("tel");
     console.log("전화번호 변경");
   };
 
@@ -43,7 +43,7 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
         <div className="profile-txt" onClick={telChangeHandle}>
           <div>전화번호</div>
           <div>
-            <div>{userProfile.userTel}</div>
+            <div>{userProfile.tel}</div>
             <div className="profile-change">변경</div>
           </div>
         </div>
