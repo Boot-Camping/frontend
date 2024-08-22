@@ -10,10 +10,15 @@ import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../constants/notice";
 import PaidFilter from "../components/paid-page/PaidFilter";
 import { filterType } from "../constants/filterType";
+import { filterData } from "../utils/filterData";
 
 const NoticePage = () => {
-  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(6, noticeData);
   const [filter, setFilter] = useState("all");
+  const filteredItems = filterData(noticeData, filter, "noticeStatus");
+  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(
+    3,
+    filteredItems
+  );
 
   const filterChangeHandle = (status) => {
     setFilter(status);
@@ -37,11 +42,13 @@ const NoticePage = () => {
 
       <NoticeList
         visibleItems={visibleItems}
-        noticeData={noticeData}
+        noticeData={filteredItems}
         filter={filter}
       />
 
-      <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
+      {hasMoreItems && (
+        <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
+      )}
     </section>
   );
 };
