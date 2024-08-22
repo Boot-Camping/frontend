@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+// import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+import PostCodeAddress from "../components/admin-camping-register-page/PostCodeAddress";
 import { ReactSVG } from "react-svg";
 import { saveData } from "../constants/save";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
@@ -159,7 +160,7 @@ const AdminCampFixPage = () => {
           ))}
         </div>
       </div>
-      <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+      <PostCodeAddress setError={setError} setIsOpened={setIsOpened} />
       <div>
         <div className="camp-info">
           <div className="camp-number-title">전화번호</div>
