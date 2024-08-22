@@ -62,7 +62,10 @@ function App() {
           <Route path="/admin/camp-fix/:id" element={<AdminCampFixPage />} />
           <Route path="/admin/notice-regi" element={<AdminNoticeRegiPage />} />
           <Route path="/admin/notice-list" element={<AdminNoticeList />} />
-          <Route path="/admin/notice-fix" element={<AdminNoticeFixPage />} />
+          <Route
+            path="/admin/notice-fix/:id"
+            element={<AdminNoticeFixPage />}
+          />
           <Route path="/admin/book-list" element={<AdminBookListPage />} />
           <Route path="/admin/book-detail" element={<AdminBookDetailPage />} />
         </Routes>

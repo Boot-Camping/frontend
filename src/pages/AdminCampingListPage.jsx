@@ -9,20 +9,23 @@ const AdminCampingListPage = () => {
     useCampingPlaceFilter(saveData);
   return (
     <div>
-      <div className="camping-title">캠핑장 리스트</div>
-      <div className="camping-list-wraper">
+      <Link to={"/admin"}>
+        <ReactSVG
+          className="admin-home-icon"
+          src="../../src/assets/svg/home.svg"
+          alt=""
+        />
+      </Link>
+      <div className="admin-camping-list-title">캠핑장 리스트</div>
+      <div className="admin-camping-list-wraper">
         {campingPlaceFiltered.map((campingPlace) => (
           <div key={campingPlace.id} className="camping-list">
             <Link to={`/admin/camp-fix/${campingPlace.id}`}>
-              <img
-                className="camping-img"
-                src={campingPlace.campImage}
-                alt=""
-              />
-              <div className="camping-name">{campingPlace.campName}</div>
-              <div className="camping-sub-title-wraper">
-                <div className="camping-type">{campingPlace.addr}</div>
-                <div className="camping-price">{campingPlace.price}</div>
+              <div className="admin-camping-name-list">
+                <div>{campingPlace.campName}</div>
+                <div className="admin-camping-date-list">
+                  {campingPlace.onDate}
+                </div>
               </div>
             </Link>
           </div>
