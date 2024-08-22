@@ -8,8 +8,9 @@ import { phoneNumber } from "../../utils/phoneNumber";
 import { validation } from "../../utils/validation";
 import { hashPassword } from "../../utils/hashPassword";
 import { post } from "../../utils/Api";
+import { useNavigate } from "react-router-dom";
 
-const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
+const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
   const { postcode, setPostcode } = useAddress();
   const [checkedTerms, setCheckedTerms] = useState(
     Array(signUpTerms.length).fill(false)
@@ -17,6 +18,7 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
   const checkboxRefs = useRef([]);
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
+  const navigate = useNavigate();
 
   const submitHandle = async (event) => {
     event.preventDefault();
@@ -49,24 +51,33 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
       return;
     }
 
-    setError(false); // 에러가 없으면 메시지 초기화
+    setError(false);
     setIsOpened(false);
 
-    formData.password = hashPassword(formData.password);
-    console.log(hashPassword(formData.password));
+    // formData.password = hashPassword(formData.password);
+    // console.log(hashPassword(formData.password));
     delete formData.passwordChk;
 
     try {
-      await post("signup", formData);
+      await post("user/signup", JSON.stringify(formData));
       console.log("제출 완료", formData);
+
+      navigate("/login?showAccount=true");
     } catch (error) {
-      const { status, message } = JSON.parse(error.message);
+      let status = "알 수 없는 오류";
+      let message = error.message;
+
+      if (error.response) {
+        status = error.response.status;
+        message = error.response.data.message || "오류가 발생했습니다";
+      } else if (error.request) {
+        message = "서버로부터 응답을 받지 못했습니다";
+      }
+
       setError(true);
       setIsOpened(true);
       console.log(`상태 코드: ${status}, 에러 메시지: ${message}`);
     }
-
-    console.log(formData);
   };
 
   return (
@@ -89,6 +100,7 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
                 placeholder={signup.placeholder}
                 name={signup.key}
                 required
+                autoComplete={signup.autocomplete}
                 onInput={
                   signup.label === "전화번호" ? (e) => phoneNumber(e) : null
                 }
