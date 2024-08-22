@@ -54,11 +54,10 @@ const AdminBookDetailPage = () => {
         />
       </div>
       <div className="admin-book-text">
-        <span className="admin-book-plus-text">요청사항</span>
-        <input
+        <div className="admin-book-plus-text">요청사항</div>
+        <textarea
           id="text"
           name="text"
-          type="text"
           value={booking.request}
           className="input-book-plus-text"
           readOnly
