@@ -61,7 +61,7 @@
 .admin-camping-name-list {
   font-size: 1.5rem;
   font-weight: bold;
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,9 +69,10 @@
 }
 
 .admin-camping-date-list {
-  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  font-size: var(--content);
   font-weight: normal;
-  color: var(--dark-gray);
+  color: var(--light-gray);
 }
 
 .camping-sub-title-wraper,

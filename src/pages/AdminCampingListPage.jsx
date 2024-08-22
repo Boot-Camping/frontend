@@ -22,10 +22,17 @@ const AdminCampingListPage = () => {
           <div key={campingPlace.id} className="camping-list">
             <Link to={`/admin/camp-fix/${campingPlace.id}`}>
               <div className="admin-camping-name-list">
-                <div>{campingPlace.campName}</div>
-                <div className="admin-camping-date-list">
-                  {campingPlace.onDate}
+                <div>
+                  {campingPlace.campName}{" "}
+                  <div className="admin-camping-date-list">
+                    {campingPlace.onDate}
+                  </div>
                 </div>
+                <ReactSVG
+                  className="list-pencil"
+                  src="../../src/assets/svg/pencil.svg"
+                  alt=""
+                />
               </div>
             </Link>
           </div>
