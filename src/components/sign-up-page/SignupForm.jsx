@@ -62,7 +62,7 @@ const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
       await post("user/signup", JSON.stringify(formData));
       console.log("제출 완료", formData);
 
-      navigate("/login?showAccount=true");
+      navigate("/login/account");
     } catch (error) {
       let status = "알 수 없는 오류";
       let message = error.message;
