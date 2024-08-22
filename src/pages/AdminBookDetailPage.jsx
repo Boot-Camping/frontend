@@ -91,7 +91,7 @@ const AdminBookDetailPage = () => {
       </div>
       <div className="camp-user-title">
         <div className="book-user-title">예약 인원</div>
-        <div className="camp-max-user-title">최대 인원</div>
+        <div className="camp-max-user-title">추가 인원</div>
         <div className="book-total-price-title">총 금액 /n박</div>
       </div>
       <div className="camping-info">
