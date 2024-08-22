@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { saveData } from "../constants/save";
+import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 
 const AdminCampingListPage = () => {
