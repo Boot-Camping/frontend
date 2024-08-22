@@ -4,6 +4,10 @@ import { signUp, signUpTerms } from "../../constants/signUp";
 import DaumPostCode from "./DaumPostCode";
 import SignupTerms from "../../components/sign-up-page/SignupTerms";
 import useAddress from "../../hooks/useAddress";
+import { phoneNumber } from "../../utils/phoneNumber";
+import { validation } from "../../utils/validation";
+import { hashPassword } from "../../utils/hashPassword";
+import { post } from "../../utils/Api";
 
 const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
   const { postcode, setPostcode } = useAddress();
@@ -14,31 +18,8 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
 
-  const submitHandle = (event) => {
+  const submitHandle = async (event) => {
     event.preventDefault();
-
-    if (postcode === "") {
-      setError(true);
-      setErrorType("post");
-      setIsOpened(true);
-      return;
-    }
-
-    if (!checkedTerms.every(Boolean)) {
-      setError(true);
-      setErrorType("terms");
-      setIsOpened(true);
-      checkboxRefs.current.forEach((ref, index) => {
-        if (ref && !checkedTerms[index]) {
-          ref.focus();
-          return;
-        }
-      });
-      return;
-    }
-
-    setError(false); // 에러가 없으면 메시지 초기화
-    setIsOpened(false);
 
     // 입력된 데이터를 formData에 저장
     const formData = {};
@@ -52,10 +33,40 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
     });
     formData.addr = `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`; // 주소는 별도로 처리
 
-    // handleSubmit 호출
-    handleSubmit(formData);
+    if (
+      !validation({
+        password: formData.password,
+        passwordChk: formData.passwordChk,
+        email: formData.email,
+        postcode,
+        checkedTerms,
+        checkboxRefs,
+        setError,
+        setErrorType,
+        setIsOpened,
+      })
+    ) {
+      return;
+    }
 
-    console.log("제출 완료", formData);
+    setError(false); // 에러가 없으면 메시지 초기화
+    setIsOpened(false);
+
+    formData.password = hashPassword(formData.password);
+    console.log(hashPassword(formData.password));
+    delete formData.passwordChk;
+
+    try {
+      await post("signup", formData);
+      console.log("제출 완료", formData);
+    } catch (error) {
+      const { status, message } = JSON.parse(error.message);
+      setError(true);
+      setIsOpened(true);
+      console.log(`상태 코드: ${status}, 에러 메시지: ${message}`);
+    }
+
+    console.log(formData);
   };
 
   return (
@@ -78,6 +89,9 @@ const SignupForm = ({ setError, setErrorType, setIsOpened, handleSubmit }) => {
                 placeholder={signup.placeholder}
                 name={signup.key}
                 required
+                onInput={
+                  signup.label === "전화번호" ? (e) => phoneNumber(e) : null
+                }
               />
             )}
           </div>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../components/review-page/ReviewPage.css";
-import { mockReviewData } from "../constants/mockReviewData";
-import { svgCollection } from "../constants/svgCollection";
-import { ReactSVG } from "react-svg";
 import ReviewMoreBtn from "../components/review-page/ReviewMoreBtn";
 import ReviewReply from "../components/review-page/ReviewReply";
 import ReplyWriter from "../components/review-page/ReplyWriter";
+import { mockReviewData } from "../constants/mockReviewData";
+import { svgCollection } from "../constants/svgCollection";
+import { ReactSVG } from "react-svg";
 
 const svg = svgCollection;
 

@@ -17,13 +17,19 @@ export const signUp = [
     placeholder: "알파벳 대문자 및 특수문자를 포함한 8자 이상의 비밀번호",
   },
   {
-    key: "userName",
+    key: "passwordChk",
+    label: "비밀번호 확인",
+    type: "password",
+    placeholder: "비밀번호를 다시 한번 입력해주세요",
+  },
+  {
+    key: "name",
     label: "이름",
     type: "text",
     placeholder: "이름을 입력해주세요",
   },
   {
-    key: "userTel",
+    key: "tel",
     label: "전화번호",
     type: "text",
     placeholder: "전화번호를 입력해주세요",
@@ -70,4 +76,7 @@ export const signUpImg = {
 export const signUpError = {
   post: "우편번호와 주소는 필수 입력사항입니다",
   terms: "필수 약관에 동의해주세요",
+  pw: "알파벳 대문자 및 특수문자를 포함한 8자 이상의 비밀번호를 입력해주세요",
+  pwChk: "입력한 비밀번호가 일치하지 않습니다. 다시 확인해주세요",
+  email: "유효한 이메일 주소를 입력해 주세요",
 };
