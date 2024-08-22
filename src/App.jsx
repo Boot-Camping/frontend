@@ -67,7 +67,10 @@ function App() {
             element={<AdminNoticeFixPage />}
           />
           <Route path="/admin/book-list" element={<AdminBookListPage />} />
-          <Route path="/admin/book-detail" element={<AdminBookDetailPage />} />
+          <Route
+            path="/admin/book-detail/:id"
+            element={<AdminBookDetailPage />}
+          />
         </Routes>
       </main>
       <Footer />
