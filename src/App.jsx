@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import DetailPage from "./pages/DetailPage";
 import BookPage from "./pages/BookPage";
-import BookingPaymentPage from "./pages/PaymentPage";
+import PaymentPage from "./pages/PaymentPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MyPage from "./pages/MyPage";
@@ -51,9 +51,8 @@ function App() {
             <Route path="/cash" element={<CashPage />} />
             <Route path="/notice" element={<NoticePage />} />
             <Route path="/notice/:id" element={<NoticeDetailPage />} />
-            <Route path="/detail" element={<DetailPage />} />
-            <Route path="/book" element={<BookPage />} />
-            <Route path="/book" element={<BookingPaymentPage />} />
+            <Route path="/camping/detail" element={<DetailPage />} />
+            <Route path="/camping/book" element={<BookPage />} />
             <Route path="/admin" element={<AdminMainPage />} />
             <Route path="/SearchPage" element={<SearchPage />} />
             <Route

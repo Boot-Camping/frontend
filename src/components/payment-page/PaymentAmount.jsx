@@ -19,11 +19,11 @@ const PaymentAmount = () => {
   const { campingDays } = useCampingDays();
   const [extraNum, setExtraNum] = useState(maxExtraNum);
   const [totalAmount, setTotalAmount] = useState(
-    (onedayPrice + overCharge * maxExtraNum) * campingDays
+    (onedayPrice + overCharge * maxExtraNum) * (campingDays - 1)
   );
 
   useEffect(() => {
-    setTotalAmount((onedayPrice + overCharge * extraNum) * campingDays);
+    setTotalAmount((onedayPrice + overCharge * extraNum) * (campingDays - 1));
   }, [extraNum, onedayPrice, campingDays, overCharge]);
 
   const extraNumChangeHandle = (newCount) => {

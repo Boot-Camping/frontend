@@ -78,7 +78,7 @@ const PaymentPage = () => {
             <Link to="/" className="payment-modal-button">
               홈으로 이동
             </Link>
-            <Link to="/mypage" className="payment-modal-button">
+            <Link to="/paid" className="payment-modal-button">
               예약내역 보러가기
             </Link>
           </div>
