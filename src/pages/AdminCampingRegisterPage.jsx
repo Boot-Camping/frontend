@@ -1,14 +1,16 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
 import { ReactSVG } from "react-svg";
+import { saveIcon } from "../constants/save";
 
 const AdminCampingRegister = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [explanaion, setExplanaion] = useState(""); // 상태 변수 수정
+  const navigate = useNavigate();
 
   const toggleCategory = (category) => {
     setSelectedCategories((prev) => {
@@ -61,6 +63,11 @@ const AdminCampingRegister = () => {
         />
       </Link>
       <div className="regi-title">캠핑지 등록</div>
+      <ReactSVG
+        src={saveIcon.prev}
+        className="notice-move-prev"
+        onClick={() => navigate(-1)}
+      />
       <div className="regi-category">
         <button
           className={`regi-category-san ${
