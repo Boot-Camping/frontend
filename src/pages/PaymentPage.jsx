@@ -14,13 +14,10 @@ const PaymentPage = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const openModal = () => {
-    console.log("openModal 함수가 호출됨");
     if (isButtonEnabled && isFormValid) {
       setIsModalOpen(true);
-      console.log("모달 열림");
     } else if (!isFormValid) {
-      console.log("경고 알림 실행됨");
-      alert("필수 정보를 모두 입력해주세요.");
+      alert("*필수 정보를 모두 입력해주세요.");
     }
   };
 
@@ -62,12 +59,14 @@ const PaymentPage = () => {
 
         <PaymentModal isModalOpen={isModalOpen} closeModal={closeModal}>
           <p className="payment-modal-title">결제를 진행하시겠습니까?</p>
-          <button className="payment-modal-button" onClick={closeModal}>
-            취소
-          </button>
-          <button className="payment-modal-button" onClick={openSecondModal}>
-            결제하기
-          </button>
+          <div className="modal-box">
+            <button className="payment-modal-button" onClick={closeModal}>
+              취소
+            </button>
+            <button className="payment-modal-button" onClick={openSecondModal}>
+              결제하기
+            </button>
+          </div>
         </PaymentModal>
 
         <PaymentModal
@@ -75,12 +74,14 @@ const PaymentPage = () => {
           closeModal={closeSecondModal}
         >
           <p className="payment-modal-title">결제가 완료되었습니다!</p>
-          <Link to="/" className="payment-modal-button">
-            홈으로 이동
-          </Link>
-          <Link to="/mypage" className="payment-modal-button">
-            예약내역 보러가기
-          </Link>
+          <div className="modal-box">
+            <Link to="/" className="payment-modal-button">
+              홈으로 이동
+            </Link>
+            <Link to="/mypage" className="payment-modal-button">
+              예약내역 보러가기
+            </Link>
+          </div>
         </PaymentModal>
       </div>
     </>
