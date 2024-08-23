@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/login-account-page/LoginAccountPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "../utils/Api";
 
 const LoginAccountPage = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandle = async (event) => {
     event.preventDefault();
@@ -16,23 +17,10 @@ const LoginAccountPage = () => {
     try {
       const response = await post("user/login", jsonData);
       const accessToken = response.tokenRequest.accessToken;
-      const refreshToken = response.tokenRequest.refreshToken;
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
       navigate("/");
     } catch (error) {
-      let status = "알 수 없는 오류";
-      let message = error.message;
-
-      if (error.response) {
-        status = error.response.status;
-        message = error.response.data.message || "오류가 발생했습니다";
-        console.log();
-      } else if (error.request) {
-        message = "서버로부터 응답을 받지 못했습니다";
-      }
-      console.log(jsonData);
-      console.log(`상태 코드: ${status}, 에러 메시지: ${message}`);
+      setErrorMessage(error.message);
     }
   };
 
