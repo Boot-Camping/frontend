@@ -29,7 +29,9 @@ const AdminCampFixPage = () => {
     });
   };
 
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(
+    selectedCampingPlace?.campImage ? [selectedCampingPlace.campImage] : []
+  );
   const fileInputRef = useRef(null);
 
   const handleChange = (event) => {
@@ -119,7 +121,7 @@ const AdminCampFixPage = () => {
           id="name"
           name="name"
           type="text"
-          placeholder={selectedCampingPlace.campName}
+          value={selectedCampingPlace.campName}
           className="input-camp-name"
           required
         />
@@ -168,7 +170,7 @@ const AdminCampFixPage = () => {
             id="camp-number"
             name="camp-number"
             type="number"
-            placeholder={selectedCampingPlace.phoneNumber}
+            value={selectedCampingPlace.phoneNumber}
             className="input-camp-number"
             required
           />
@@ -177,7 +179,7 @@ const AdminCampFixPage = () => {
               id="camp-price"
               name="camp-price"
               type="number"
-              placeholder={selectedCampingPlace.price}
+              value={selectedCampingPlace.price}
               className="input-camp-price"
               required
             />
@@ -195,7 +197,7 @@ const AdminCampFixPage = () => {
               id="camp-user"
               name="camp-user"
               type="number"
-              placeholder={selectedCampingPlace.standardNum}
+              value={selectedCampingPlace.standardNum}
               className="input-camp-user"
               required
             />
@@ -206,7 +208,7 @@ const AdminCampFixPage = () => {
               id="camp-user"
               name="camp-user"
               type="number"
-              placeholder={selectedCampingPlace.maxNum}
+              value={selectedCampingPlace.maxNum}
               className="input-camp-max-user"
               required
             />
@@ -217,7 +219,7 @@ const AdminCampFixPage = () => {
               id="camp-price"
               name="camp-price"
               type="number"
-              placeholder={selectedCampingPlace.overCharge}
+              value={selectedCampingPlace.overCharge}
               className="input-camp-plus-price"
               required
             />
