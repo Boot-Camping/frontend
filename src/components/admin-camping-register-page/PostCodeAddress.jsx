@@ -49,6 +49,7 @@ const PostCodeAddress = () => {
       />
       <br />
       <input
+        id="detail-address"
         type="text"
         className="signup-input"
         value={detailAddress}
