@@ -1,5 +1,5 @@
 .slider-title {
-  font-size: 2rem;
+  font-size: var(--heading);
   margin-bottom: 1rem;
 }
 

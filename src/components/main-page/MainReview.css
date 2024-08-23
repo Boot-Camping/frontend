@@ -1,5 +1,5 @@
 .main-review-title {
-  font-size: 2rem;
+  font-size: var(--heading);
   margin-bottom: 1rem;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .main-review-text {
-  font-size: 1.4rem;
+  font-size: var(--content);
   padding: 1rem 0;
 }
 
@@ -41,6 +41,6 @@
 }
 
 .main-review-place {
-  font-size: 1.4rem;
+  font-size: var(--content);
   font-weight: bold;
 }

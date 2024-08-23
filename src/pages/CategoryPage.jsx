@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "../components/category-page/CategoryPage.css";
 import { campingPlaceData } from "../constants/campingPlaceData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
@@ -8,12 +9,28 @@ import star from "../assets//svg/star.svg";
 import { ReactSVG } from "react-svg";
 
 const CategoryPage = () => {
+  const locations = useLocation();
+  console.log(locations.state);
+
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaceData);
+
+  // 전달된 state에서 title 값을 가져옵니다. 기본값은 "전체"
+  const [categoryTitle, setCategoryTitle] = useState(
+    locations.state?.title || "전체"
+  );
+
+  useEffect(() => {
+    // location.state가 변경될 때마다 categoryTitle을 업데이트합니다.
+    if (locations.state?.title) {
+      setCategoryTitle(locations.state.title);
+    }
+  }, [locations.state]);
+
   return (
     <>
       <div className="category-title-wraper">
-        <div className="category-title">전체</div>
+        <div className="category-title">{categoryTitle}</div>
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
