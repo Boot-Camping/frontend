@@ -43,3 +43,9 @@ export const get = (endpoint, customHeaders) =>
 
 export const post = (endpoint, data, customHeaders) =>
   apiRequest("POST", endpoint, data, customHeaders);
+
+export const put = (endpoint, data, customHeaders) =>
+  apiRequest("PUT", endpoint, data, customHeaders);
+
+export const deleteRequest = (endpoint, customHeaders) =>
+  apiRequest("DELETE", endpoint, {}, customHeaders);
