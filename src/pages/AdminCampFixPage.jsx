@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
-import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import PostCodeAddress from "../components/admin-camping-register-page/PostCodeAddress";
 import { ReactSVG } from "react-svg";
 import { saveData } from "../constants/save";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import { saveIcon } from "../constants/save";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 
 const AdminCampFixPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -72,6 +74,11 @@ const AdminCampFixPage = () => {
         />
       </Link>
       <div className="regi-title">캠핑지 수정</div>
+      <ReactSVG
+        src={saveIcon.prev}
+        className="notice-move-prev"
+        onClick={() => navigate(-1)}
+      />
       <div className="regi-category">
         <button
           className={`regi-category-san ${
@@ -159,7 +166,7 @@ const AdminCampFixPage = () => {
           ))}
         </div>
       </div>
-      <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+      <PostCodeAddress setError={setError} setIsOpened={setIsOpened} />
       <div>
         <div className="camp-info">
           <div className="camp-number-title">전화번호</div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
 import { campingPlaceData } from "../../constants/campingPlaceData";
@@ -10,6 +10,15 @@ import { ReactSVG } from "react-svg";
 const MainCampingList = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaceData);
+
+  const [heartClick, setHeartClick] = useState({});
+
+  const heartClickHandler = (id) => {
+    setHeartClick((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   return (
     <>
@@ -31,7 +40,18 @@ const MainCampingList = () => {
           <div key={campingPlace.id} className="camping-list">
             <Link to={"/camping/detail"}>
               <img className="camping-img" src={campingPlace.img} alt="" />
-              <ReactSVG className="camping-img-heart" src={heart} alt="" />
+              <ReactSVG
+                className={`camping-img-heart ${
+                  heartClick[campingPlace.id] ? "liked" : ""
+                }`}
+                src={heart}
+                alt=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  heartClickHandler(campingPlace.id);
+                }}
+              />
+
               <div className="camping-name">{campingPlace.name}</div>
               <div className="camping-sub-title-wraper">
                 <div className="camping-type">{campingPlace.type}</div>

@@ -1,26 +1,20 @@
 export const phoneNumber = (event) => {
   const input = event.target;
-  let rawValue = input.value.replace(/[^0-9]/g, "");
+  let rawValue = input.value.replace(/-/g, "");
   let formattedValue = "";
 
-  if (rawValue.length >= 3) {
-    formattedValue += rawValue.substring(0, 3) + "-";
-  } else {
-    formattedValue += rawValue;
+  if (rawValue.length > 0) {
+    formattedValue += rawValue.substring(0, 3);
   }
-
-  if (rawValue.length > 3) {
-    formattedValue += rawValue.substring(3, 7);
+  if (rawValue.length >= 4) {
+    formattedValue += "-" + rawValue.substring(3, 7);
   }
-
-  if (rawValue.length >= 7) {
-    formattedValue += "-";
-    formattedValue += rawValue.substring(7, 11);
-  }
-
-  if (formattedValue.length > 13) {
-    formattedValue = formattedValue.substring(0, 13);
+  if (rawValue.length >= 8) {
+    formattedValue += "-" + rawValue.substring(7, 11);
   }
 
   input.value = formattedValue;
+
+  const cursorPos = formattedValue.length;
+  input.setSelectionRange(cursorPos, cursorPos);
 };

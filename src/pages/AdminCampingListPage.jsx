@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { saveData } from "../constants/save";
+import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 
 const AdminCampingListPage = () => {
@@ -22,10 +23,17 @@ const AdminCampingListPage = () => {
           <div key={campingPlace.id} className="camping-list">
             <Link to={`/admin/camp-fix/${campingPlace.id}`}>
               <div className="admin-camping-name-list">
-                <div>{campingPlace.campName}</div>
-                <div className="admin-camping-date-list">
-                  {campingPlace.onDate}
+                <div>
+                  {campingPlace.campName}{" "}
+                  <div className="admin-camping-date-list">
+                    {campingPlace.onDate}
+                  </div>
                 </div>
+                <ReactSVG
+                  className="list-pencil"
+                  src="../../src/assets/svg/pencil.svg"
+                  alt=""
+                />
               </div>
             </Link>
           </div>

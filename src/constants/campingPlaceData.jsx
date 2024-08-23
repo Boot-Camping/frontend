@@ -18,7 +18,7 @@ export const campingPlaceData = [
     price: "60,000~",
     people: "기준4인/최대8인",
     location: "강원 평창군",
-    type: "글램핑",
+    type: "숲속",
     rating: 2,
     reviews: 98,
     heart: 189,

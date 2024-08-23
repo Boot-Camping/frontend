@@ -59,12 +59,12 @@ const AdminNoticeFixPage = () => {
           alt=""
         />
       </Link>
+      <div className="notice-title">공지사항 수정</div>
       <ReactSVG
         src={saveIcon.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />
-      <div className="notice-title">공지사항 수정</div>
       <div className="notice-category">
         <div className="notice-category-title">카테고리</div>
         <button

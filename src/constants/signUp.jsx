@@ -9,42 +9,49 @@ export const signUp = [
     label: "아이디",
     type: "text",
     placeholder: "사용하고 싶은 아이디를 입력해주세요",
+    autocomplete: "username",
   },
   {
     key: "password",
     label: "비밀번호",
-    type: "password",
-    placeholder: "알파벳 대문자 및 특수문자를 포함한 8자 이상의 비밀번호",
+    type: "text",
+    placeholder: "숫자, 특수문자를 포함한 8자 이상의 비밀번호",
+    autocomplete: "new-password",
   },
   {
     key: "passwordChk",
     label: "비밀번호 확인",
-    type: "password",
+    type: "text",
     placeholder: "비밀번호를 다시 한번 입력해주세요",
+    autocomplete: "new-password",
   },
   {
     key: "name",
     label: "이름",
     type: "text",
     placeholder: "이름을 입력해주세요",
+    autocomplete: "name",
   },
   {
     key: "tel",
     label: "전화번호",
     type: "text",
     placeholder: "전화번호를 입력해주세요",
+    autocomplete: "tel",
   },
   {
     key: "email",
     label: "이메일",
     type: "text",
     placeholder: "이메일 주소를 입력해주세요",
+    autocomplete: "email",
   },
   {
     key: "addr",
     label: "주소",
     type: "text",
     placeholder: "상세주소를 입력해주세요",
+    autocomplete: "address-line1",
   },
 ];
 
@@ -76,7 +83,7 @@ export const signUpImg = {
 export const signUpError = {
   post: "우편번호와 주소는 필수 입력사항입니다",
   terms: "필수 약관에 동의해주세요",
-  pw: "알파벳 대문자 및 특수문자를 포함한 8자 이상의 비밀번호를 입력해주세요",
+  pw: "숫자, 특수문자를 포함한 8자 이상의 비밀번호를 입력해주세요",
   pwChk: "입력한 비밀번호가 일치하지 않습니다. 다시 확인해주세요",
   email: "유효한 이메일 주소를 입력해 주세요",
 };
