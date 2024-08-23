@@ -6,6 +6,7 @@ import DetailPage from "./pages/DetailPage";
 import BookPage from "./pages/BookPage";
 import PaymentPage from "./pages/PaymentPage";
 import LoginPage from "./pages/LoginPage";
+import LoginAccountPage from "./pages/LoginAccountPage";
 import SignupPage from "./pages/SignupPage";
 import MyPage from "./pages/MyPage";
 import UserInfoPage from "./pages/UserInfoPage";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/login" element={<LoginPage />} />
+						<Route path="/login/account" element={<LoginAccountPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/user/delete" element={<DeleteAccountPage />} />
             <Route path="/mypage" element={<MyPage />} />
