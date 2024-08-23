@@ -10,7 +10,7 @@ import "../components/detail-page/DetailPage.css";
 
 const DetailPage = () => {
   const campId = 21;
-  const { detailInfo, loading, error } = useCampInfo(campId);
+  const { detailInfo, loading, error } = useCampInfo(campId, "detailInfo");
 
   if (loading) {
     return <div>Loading...</div>;
