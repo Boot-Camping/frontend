@@ -1,11 +1,18 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ReactSVG } from "react-svg";
+import { noticeDetailData } from "../constants/notice";
+import { saveIcon } from "../constants/save";
 
 const AdminNoticeFixPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [images, setImages] = useState([]);
-  const [explanaion, setExplanaion] = useState("");
+  const { id } = useParams();
+  const notice = noticeDetailData.find((data) => data.id === parseInt(id));
+
+  const [selectedCategory, setSelectedCategory] = useState(notice.noticeStatus);
+  const [images, setImages] = useState(notice.images || []);
+  const [explanaion, setExplanaion] = useState(notice.noticeRequest || "");
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   // 카테고리 선택 핸들러
   const toggleCategory = (category) => {
@@ -42,16 +49,22 @@ const AdminNoticeFixPage = () => {
   const handleChange = (event) => {
     setExplanaion(event.target.value);
   };
+
   return (
     <div>
       <Link to={"/admin"}>
-        <img
+        <ReactSVG
           className="admin-home-icon"
           src="../../src/assets/svg/home.svg"
           alt=""
         />
       </Link>
       <div className="notice-title">공지사항 수정</div>
+      <ReactSVG
+        src={saveIcon.prev}
+        className="notice-move-prev"
+        onClick={() => navigate(-1)}
+      />
       <div className="notice-category">
         <div className="notice-category-title">카테고리</div>
         <button
@@ -78,7 +91,7 @@ const AdminNoticeFixPage = () => {
           id="notice-title"
           name="notice-title"
           type="text"
-          autoComplete="notice-title"
+          value={notice.title}
           className="input-notice-title"
           required
         />

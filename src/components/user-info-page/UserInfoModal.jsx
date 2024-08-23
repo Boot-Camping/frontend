@@ -1,10 +1,6 @@
 import React, { useRef } from "react";
 import "./UserInfoModal.css";
-import {
-  userInfoIcon,
-  userInfoModal,
-  userOldData,
-} from "../../constants/userInfo";
+import { userInfoIcon, userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
@@ -12,7 +8,7 @@ import DaumPostCode from "../sign-up-page/DaumPostCode";
 import useAddress from "../../hooks/useAddress";
 import UserInfoModalBtn from "./UserInfoModalBtn";
 
-const UserInfoModal = ({ isOpened, setIsOpened, modalType }) => {
+const UserInfoModal = ({ isOpened, setIsOpened, modalType, userTel, addr }) => {
   const { postcode, setPostcode } = useAddress();
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
@@ -22,8 +18,11 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType }) => {
       return (
         <input type="text" name="oldPassword" placeholder="비밀번호 입력" />
       );
+    } else if (modalType === "userTel") {
+      return <div>{userTel}</div>;
+    } else if (modalType === "addr") {
+      return <div>{addr}</div>;
     }
-    return <div>{userOldData[modalType]}</div>;
   };
 
   const renderNewInput = () => {

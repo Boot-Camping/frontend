@@ -1,14 +1,19 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./PaymentPage.css";
 import { paymentInfoForm } from "../../constants/paymentInfoForm";
 
-const PaymentInfo = () => {
+const PaymentInfo = ({ onFormValidChange }) => {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
     request: "",
   });
+
+  useEffect(() => {
+    const isFormValid = formData.name !== "" && formData.phoneNumber !== "";
+    onFormValidChange(isFormValid);
+  }, [formData, onFormValidChange]);
 
   const resetFormHandle = () => {
     setFormData({

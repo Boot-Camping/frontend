@@ -6,7 +6,7 @@ import { userInfoIcon, userProfile } from "../../constants/userInfo";
 const UserProfile = ({ setIsOpened, setModalType }) => {
   const telChangeHandle = () => {
     setIsOpened(true);
-    setModalType("userTel");
+    setModalType("tel");
     console.log("전화번호 변경");
   };
 
@@ -16,12 +16,22 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
     console.log("주소 변경");
   };
 
+  const addrParts = userProfile.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
+  const address = addrParts[1].trim();
+  const detailAddress = addrParts[3].trim();
+
   return (
     <div className="user-profile-wrap">
       <div className="profile-img-wrap underline">
         <div className="profile-img">
-          <ReactSVG src={userProfile.userImage} className="profile-img-user" />
-          <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
+          <input type="file" id="profile-img-input" />
+          <label htmlFor="profile-img-input">
+            <ReactSVG
+              src={userProfile.userImage}
+              className="profile-img-user"
+            />
+            <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
+          </label>
         </div>
         <div>{userProfile.loginId}</div>
       </div>
@@ -33,8 +43,8 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
         <div className="profile-txt" onClick={telChangeHandle}>
           <div>전화번호</div>
           <div>
-            <div>{userProfile.userTel}</div>
-            <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+            <div>{userProfile.tel}</div>
+            <div className="profile-change">변경</div>
           </div>
         </div>
         <div className="profile-txt">
@@ -45,10 +55,10 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
           <div className="">주소</div>
           <div>
             <div>
-              <div>{userProfile.addr.address}</div>
-              <div>{userProfile.addr.detailAddress}</div>
+              <div>{address}</div>
+              <div>{detailAddress}</div>
             </div>
-            <ReactSVG src={userInfoIcon.change} className="info-change-img" />
+            <div className="profile-change">변경</div>
           </div>
         </div>
       </div>

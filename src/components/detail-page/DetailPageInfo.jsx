@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
-
-import { detailPageCampingInfo } from "../../constants/detailPageCampingInfo";
 import { detailPageTag } from "../../constants/detailPageTag";
 import { svgCollection } from "../../constants/svgCollection";
 import ReadMore from "./ReadMore";
+import { get } from "../../utils/Api";
 
 const DetailPageInfo = () => {
-  const getDetailInfo = (id) => {
-    const info = detailPageCampingInfo.find((item) => item.id === id);
-    return info ? info.value : "";
-  };
-
+  const [detailInfo, setDetailInfo] = useState(null);
   const tag = detailPageTag;
   const svg = svgCollection;
+
+  useEffect(() => {
+    const fetchCampInfo = async () => {
+      try {
+        const response = await get("camp/2");
+        setDetailInfo(response);
+      } catch (error) {
+        console.error("캠핑장 정보 가져오기 실패:", error);
+      }
+    };
+    fetchCampInfo();
+  }, []);
+
+  if (!detailInfo) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -22,27 +33,26 @@ const DetailPageInfo = () => {
         <div className="rating">
           <div className="stars">
             <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
-            {getDetailInfo("stars")}
+            {detailInfo.stars}
           </div>
           <div className="views">
             <ReactSVG src={svg.views} alt="views" className="views-img" />
-            {getDetailInfo("views")}
+            {detailInfo.views}
           </div>
         </div>
-
         <div className="main">
-          <h2 className="title">{getDetailInfo("name")}</h2>
-          <div className="price">{getDetailInfo("price")}원/ 1박</div>
+          <h2 className="title">{detailInfo.name}</h2>{" "}
+          <div className="price">
+            {detailInfo.price?.toLocaleString()}원/ 1박{" "}
+          </div>
         </div>
-
         <div className="tags">
-          <span className="tag">{tag.tag1}</span>
-          <span className="tag">{tag.tag2}</span>
-          <span className="tag">{tag.tag3}</span>
-          <span className="tag">{tag.tag4}</span>
-          <span className="tag">{tag.tag5}</span>
+          {detailInfo.categories?.map((category, index) => (
+            <span key={index} className="tag">
+              {category}
+            </span>
+          ))}
         </div>
-
         <div className="detail-info">
           <div className="detail-title">기본정보</div>
           <div className="detail-item">
@@ -51,18 +61,18 @@ const DetailPageInfo = () => {
               src={svg.location}
               alt="location"
             />
-            {getDetailInfo("location")}
+            {detailInfo.addr}
           </div>
 
           <div className="detail-item">
             <ReactSVG className="detail-icon" src={svg.phone} alt="phone" />
-            {getDetailInfo("phone")}
+            {detailInfo.phone}
           </div>
 
           <div className="detail-item">
             <ReactSVG className="detail-icon" src={svg.group} alt="group" />
-            기준인원 {getDetailInfo("standardNum")}명 / 최대인원{" "}
-            {getDetailInfo("maxNum")}명
+            기준 수용인원: {detailInfo.standardNum}명 <br />
+            최대 수용인원: {detailInfo.maxNum}명{" "}
           </div>
 
           <div className="detail-item">
@@ -71,10 +81,10 @@ const DetailPageInfo = () => {
               src={svg.calculator}
               alt="calculator"
             />
-            인당 추가요금 {getDetailInfo("overCharge")}원
+            인당 추가요금 {detailInfo.overCharge?.toLocaleString()}원{" "}
           </div>
         </div>
-        <ReadMore text={getDetailInfo("description")} maxLength={80} />
+        <ReadMore text={detailInfo.description} maxLength={80} />{" "}
       </div>
     </div>
   );

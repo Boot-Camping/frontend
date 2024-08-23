@@ -15,6 +15,17 @@
   position: relative;
   margin-bottom: 0.5rem;
 }
+#profile-img-input {
+  display: none;
+}
+
+#profile-img-input + label {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
 
 .profile-img-user {
   width: 10rem;
@@ -65,10 +76,10 @@
   text-align: right;
 }
 
-.info-change-img {
-  width: var(--sub-heading);
-  height: var(--sub-heading);
-  margin-left: 0.5rem;
+.profile-change {
+  margin-left: 1rem;
+  color: var(--light-green);
+  font-size: var(--content);
 }
 
 .profile-address {

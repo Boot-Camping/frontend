@@ -7,11 +7,6 @@ const bookButton = ({ to }) => {
   return (
     <Link to={to}>
       <div className="book-button underline">
-        <ReactSVG
-          className="book-emoji"
-          src="../src/assets/svg/heart.svg"
-          alt=""
-        />
         <div className="book-text">예약하기</div>
       </div>
     </Link>

@@ -1,12 +1,15 @@
 import React from "react";
 import "../components/save-page/SavePage.css";
-import { saveIcon } from "../constants/save";
+import { saveData, saveIcon } from "../constants/save";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import SaveList from "../components/save-page/SaveList";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
+import { useLoadMore } from "../hooks/useLoadMore";
 
 const SavePage = () => {
+  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(4, saveData);
+
   return (
     <section className="save-wrap">
       <div className="save-title-wrap">
@@ -16,9 +19,9 @@ const SavePage = () => {
         <div>찜 목록</div>
       </div>
 
-      <SaveList />
+      <SaveList visibleItems={visibleItems} saveData={saveData} />
 
-      <SaveMoreBtn />
+      <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
     </section>
   );
 };

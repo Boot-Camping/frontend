@@ -55,7 +55,6 @@
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
   margin-bottom: 1.5rem;
   padding-top: 2rem;
 }
@@ -117,7 +116,6 @@
 }
 
 /* KakaoMap.jsx */
-
 .map-title {
   font-size: var(--heading);
   font-weight: bold;
@@ -131,52 +129,26 @@
   /* overflow: visible !important; */
 }
 
-/* ReviewPage.jsx */
-.review {
-  padding-top: 1rem;
+.current-window {
+  padding: 0 !important;
+  background-color: white !important;
+  border-radius: 3px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  font-size: 12px !important;
 }
 
-.review-title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.review-info {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 1rem;
-}
-
-.review-img {
-  width: 15rem;
-  border-radius: 1rem;
-}
-
-.writer {
-  align-content: center;
-  padding-right: 15rem;
-}
-
-.id {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.date {
-  font-size: 1.4rem;
-  color: grey;
-}
-
-.content {
-  font-size: 1.5rem;
-  padding-top: 1.5rem;
+.info-window {
+  padding: 0 !important;
+  background-color: white !important;
+  border-radius: 3px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  font-size: 12px !important;
 }
 
 /* BookButton.jsx */
 .book-button {
   display: flex;
-  justify-content: center;
-  padding: 2rem;
+  padding-bottom: 2rem;
 }
 
 .book-emoji {
@@ -190,10 +162,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: var(--sub-heading);
   color: white;
   background-color: var(--dark-green);
   border-radius: 0.5rem;
-  height: 3rem;
   width: 100%;
+  padding: 1rem;
 }

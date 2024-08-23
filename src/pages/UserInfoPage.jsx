@@ -10,6 +10,7 @@ import UserInfoModal from "../components/user-info-page/UserInfoModal";
 const UserInfoPage = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [modalType, setModalType] = useState("");
+  const [error, setError] = useState(false);
 
   return (
     <section className="user-info-wrap">
@@ -24,7 +25,7 @@ const UserInfoPage = () => {
       <Link to={"/cash"} className="user-cash-wrap">
         <div>캐시</div>
         <div>
-          <div>{userProfile.cash}원</div>
+          <div>{userProfile.cash.toLocaleString()}원</div>
           <ReactSVG src={userInfoIcon.prev} className="user-arrow-img" />
         </div>
       </Link>
@@ -33,6 +34,9 @@ const UserInfoPage = () => {
         isOpened={isOpened}
         setIsOpened={setIsOpened}
         modalType={modalType}
+        tel={userProfile.tel}
+        addr={userProfile.addr}
+        setError={setError}
       />
     </section>
   );

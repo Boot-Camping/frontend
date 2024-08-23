@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../components/admin-main-page/AdminMainPage.css";
 
 const AdminMainPage = () => {
-  const [focusedButton, setFocusedButton] = useState(null);
+  const [focusedButton, setFocusedButton] = useState("site");
 
   const handleFocus = (button) => {
     setFocusedButton(button);
@@ -20,7 +20,7 @@ const AdminMainPage = () => {
         <Link to={"/admin/camping"}>
           <button className="camping-register-btn">+ 등록</button>
         </Link>
-        <Link to={"/admin/camping-fix"}>
+        <Link to={"/admin/camping-list"}>
           <button className="camping-correct-btn">수정</button>
         </Link>
       </div>
@@ -65,7 +65,7 @@ const AdminMainPage = () => {
         <Link to={"/admin/notice-regi"}>
           <button className="noti-register-btn">+ 등록</button>
         </Link>
-        <Link to={"/admin/notice-fix"}>
+        <Link to={"/admin/notice-list"}>
           <button className="noti-correct-btn">수정</button>
         </Link>
       </div>

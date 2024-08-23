@@ -1,6 +1,6 @@
 import React from "react";
 import DetailPageInfo from "../components/detail-page/DetailPageInfo";
-import ReviewPage from "../components/detail-page/ReviewPage";
+import ReviewPage from "./ReviewPage";
 import BookButton from "../components/detail-page/BookButton";
 import ImageSlider from "../components/detail-page/ImageSlider";
 import KakaoMap from "../components/detail-page/KakaoMap";
@@ -14,9 +14,10 @@ const DetailPage = () => {
     <div>
       <ImageSlider sliderData={sliderData} />
       <DetailPageInfo />
-      <KakaoMap address="서울 용산구 한강대로 405" />
+      <div className="map-title">근처 편의점 찾기</div>
+      <KakaoMap address="서울 용산구 남산공원길 105" />
       <ReviewPage />
-      <BookButton to="/book" />
+      <BookButton to="/camping/book" />
     </div>
   );
 };

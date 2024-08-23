@@ -28,12 +28,9 @@ export const userProfile = {
   userImage: userInfoIcon.userIcon,
   loginId: "camper123",
   userName: "홍길동",
-  userTel: 10011110000,
+  tel: "010-1234-5678",
   email: "camper123@gmail.com",
-  addr: {
-    address: "(13529) 경기 성남시 분당구 판교역로 166",
-    detailAddress: "카카오 판교 아지트",
-  },
+  addr: "(13529) 경기 성남시 분당구 판교역로 166 카카오 판교 아지트",
   cash: 100000,
 };
 
@@ -41,7 +38,7 @@ export const userProfile = {
  * 	변경 모달 상수데이터
  */
 export const userInfoModal = {
-  userTel: {
+  tel: {
     title: "전화번호 변경",
     old: "기존 전화번호",
     new: "변경 전화번호",
@@ -59,9 +56,4 @@ export const userInfoModal = {
     new: "새 비밀번호",
     icon: userInfoIcon.lock,
   },
-};
-
-export const userOldData = {
-  userTel: 10011110000,
-  addr: "(13529) 경기 성남시 분당구 판교역로 166 카카오 판교 아지트",
 };
