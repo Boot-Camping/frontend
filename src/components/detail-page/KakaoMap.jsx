@@ -22,7 +22,7 @@ const KakaoMap = ({ address }) => {
 
               const mapContainer = document.getElementById("map");
               const mapOptions = {
-                center: addressCoords, // 검색된 주소를 중심으로 설정
+                center: addressCoords,
                 level: 4,
               };
               const map = new window.kakao.maps.Map(mapContainer, mapOptions);
