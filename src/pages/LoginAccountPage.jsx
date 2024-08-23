@@ -1,13 +1,10 @@
 import React from "react";
-import "./LoginAccount.css";
+import "../components/login-account-page/LoginAccountPage.css";
+import { Link } from "react-router-dom";
 
-const LoginAccount = () => {
-  const reloadHandle = () => {
-    location.reload();
-  };
-
+const LoginAccountPage = () => {
   return (
-    <>
+    <section className="login-account-wrap">
       <div className="login-account-title">
         <div>아이디로 로그인 하기</div>
       </div>
@@ -34,11 +31,11 @@ const LoginAccount = () => {
         <button className="login-submit-btn">로그인</button>
       </form>
 
-      <button className="move-howtologin" onClick={reloadHandle}>
-        다른 방법으로 로그인
-      </button>
-    </>
+      <Link to={"/login"}>
+        <button className="move-howtologin">다른 방법으로 로그인</button>
+      </Link>
+    </section>
   );
 };
 
-export default LoginAccount;
+export default LoginAccountPage;

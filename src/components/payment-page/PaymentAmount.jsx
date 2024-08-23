@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./PaymentPage.css";
 import NumCounter from "../../utils/numCounter";
 import { detailCampingInfo } from "../../constants/detailCampingInfo";
+import { useCampingDays } from "../../hooks/CampingDaysContext";
 
 const getDetailCampingInfo = (id) => {
   return detailCampingInfo.find((info) => info.id === id);
@@ -10,21 +11,19 @@ const getDetailCampingInfo = (id) => {
 const { label: priceLabel, value: onedayPrice } = getDetailCampingInfo("price");
 const { label: overChargeLabel, value: overCharge } =
   getDetailCampingInfo("overCharge");
-const { label: campingDaysLabel, value: campingDays } =
-  getDetailCampingInfo("campingDays");
 const { label: extraNumLabel, value: maxExtraNum } =
   getDetailCampingInfo("extraNum");
-
 const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
 
-const PaymentAmount = ({ campingDays }) => {
+const PaymentAmount = () => {
+  const { campingDays } = useCampingDays();
   const [extraNum, setExtraNum] = useState(maxExtraNum);
   const [totalAmount, setTotalAmount] = useState(
-    (onedayPrice + overCharge * maxExtraNum) * campingDays
+    (onedayPrice + overCharge * maxExtraNum) * (campingDays - 1)
   );
 
   useEffect(() => {
-    setTotalAmount((onedayPrice + overCharge * extraNum) * campingDays);
+    setTotalAmount((onedayPrice + overCharge * extraNum) * (campingDays - 1));
   }, [extraNum, onedayPrice, campingDays, overCharge]);
 
   const extraNumChangeHandle = (newCount) => {
@@ -57,8 +56,8 @@ const PaymentAmount = ({ campingDays }) => {
         </div>
 
         <div className="camping-days">
-          <div>{campingDaysLabel}</div>
-          <div>{campingDays} 박</div>
+          <div>캠핑일수</div>
+          <div>{campingDays - 1} 박</div>
         </div>
 
         <div className="total-amount">

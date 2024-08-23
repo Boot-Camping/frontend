@@ -20,13 +20,11 @@ const LoginButtons = ({ setclickLoginAccount }) => {
 
         if (loginType.key === "login-account") {
           return (
-            <button
-              key={loginType.key}
-              className={`login-btn ${loginType.key}`}
-              onClick={loginAccountHandle}
-            >
-              {loginType.text}
-            </button>
+            <Link to={"/login/account"} key={loginType.key}>
+              <button className={`login-btn ${loginType.key}`}>
+                {loginType.text}
+              </button>
+            </Link>
           );
         } else if (loginType.key === "signup") {
           return (

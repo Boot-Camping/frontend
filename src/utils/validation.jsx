@@ -9,7 +9,7 @@ export const validation = ({
   setErrorType,
   setIsOpened,
 }) => {
-  const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+  const regex = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
   if (!regex.test(password)) {
     setError(true);
     setIsOpened(true);

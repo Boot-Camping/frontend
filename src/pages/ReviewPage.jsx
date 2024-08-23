@@ -6,6 +6,7 @@ import ReplyWriter from "../components/review-page/ReplyWriter";
 import { mockReviewData } from "../constants/mockReviewData";
 import { svgCollection } from "../constants/svgCollection";
 import { ReactSVG } from "react-svg";
+import { get } from "../utils/Api";
 
 const svg = svgCollection;
 
@@ -13,6 +14,7 @@ const ReviewPage = () => {
   const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
+  const [campReview, setCampReview] = useState("");
 
   const loadMore = () => {
     if (isExpanded) {
