@@ -3,24 +3,32 @@ import "../components/review-page/ReviewPage.css";
 import ReviewMoreBtn from "../components/review-page/ReviewMoreBtn";
 import ReviewReply from "../components/review-page/ReviewReply";
 import ReplyWriter from "../components/review-page/ReplyWriter";
-import { mockReviewData } from "../constants/mockReviewData";
 import { svgCollection } from "../constants/svgCollection";
 import { ReactSVG } from "react-svg";
-import { get } from "../utils/Api";
+import useCampReview from "../hooks/useCampReview";
 
 const svg = svgCollection;
 
-const ReviewPage = () => {
+const ReviewPage = ({ campId }) => {
   const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
-  const [campReview, setCampReview] = useState("");
+
+  const { campReviews, loading, error } = useCampReview(campId);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>캠핑장 리뷰 가져오기 실패: {error.message}</div>;
+  }
 
   const loadMore = () => {
     if (isExpanded) {
       setvisibleReviews(1);
     } else {
-      setvisibleReviews(mockReviewData.length);
+      setvisibleReviews(campReviews.length);
     }
     setIsExpanded(!isExpanded);
   };
@@ -36,21 +44,19 @@ const ReviewPage = () => {
     <>
       <div className="review">
         <div className="review-title">리뷰</div>
-        {mockReviewData.slice(0, visibleReviews).map((review, index) => (
+        {campReviews.slice(0, visibleReviews).map((review, index) => (
           <div key={index} className="review-box">
             <div className="review-upper-box">
-              <img className="review-img" src={review.reviewImage} alt="" />
+              <img className="review-img" src={review.reviewImages} alt="" />
 
               <div className="review-upper-right">
                 <div className="review-upper-writer">
                   <div className="review-id">{review.loginId}</div>
-                  <div className="review-date">
-                    작성일: {review.reviewCreatedAt}
-                  </div>
+                  <div className="review-date">작성일: {review.createdAt}</div>
                 </div>
 
                 <div className="review-upper-tag">
-                  {review.reviewTag.map((tag, tagIndex) => (
+                  {review.reviewTags.map((tag, tagIndex) => (
                     <div key={tagIndex} className="review-tag">
                       {tag}
                     </div>
@@ -76,7 +82,7 @@ const ReviewPage = () => {
               </div>
             </div>
 
-            {visibleReplies[index] && <ReviewReply />}
+            {visibleReplies[index] && <ReviewReply reviewId={review.id} />}
             <ReplyWriter />
           </div>
         ))}

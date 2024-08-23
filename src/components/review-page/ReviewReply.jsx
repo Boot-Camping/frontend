@@ -1,17 +1,27 @@
 import React from "react";
-import { mockReviewData } from "../../constants/mockReviewData";
 import "./ReviewPage.css";
-import { get } from "../../utils/Api";
+import useReviewReplies from "../../hooks/useReviewRepies";
 
-const ReviewReply = () => {
+const ReviewReply = ({ reviewId }) => {
+  const { replies, loading, error } = useReviewReplies(reviewId);
+  console.log("reviewId:", reviewId);
+
+  if (loading) {
+    return <div>Loading replies...</div>;
+  }
+
+  if (error) {
+    return <div>댓글 가져오기 실패: {error.message}</div>;
+  }
+
   return (
     <div>
-      {mockReviewData.map((review, index) => (
+      {replies.map((reply, index) => (
         <div key={index} className="reply-box">
           <div className="reply-upper-box">
             <div className="reply-writer-box">
-              <div className="reply-id">{review.replyId}</div>
-              <div className="reply-date">{review.replyCreatedAt}</div>
+              <div className="reply-id">{reply.userLoginId}</div>
+              <div className="reply-date">{reply.createdAt}</div>
             </div>
 
             <div className="reply-edit-btns">
@@ -20,7 +30,7 @@ const ReviewReply = () => {
             </div>
           </div>
 
-          <div className="reply-content">{review.replyContent}</div>
+          <div className="reply-content">{reply.comment}</div>
         </div>
       ))}
     </div>
