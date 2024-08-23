@@ -6,19 +6,14 @@ import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import heart from "../../assets/svg/heart.svg";
 import star from "../../assets/svg/star.svg";
 import { ReactSVG } from "react-svg";
+import useHeartClick from "../../hooks/useHeartClick";
 
 const MainCampingList = () => {
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaceData);
 
-  const [heartClick, setHeartClick] = useState({});
-
-  const heartClickHandler = (id) => {
-    setHeartClick((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  //이거
+  const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
 
   return (
     <>
@@ -36,19 +31,20 @@ const MainCampingList = () => {
       </div>
 
       <div className="camping-list-wraper">
-        {campingPlaceFiltered.map((campingPlace) => (
+        {campingPlaceFiltered.map((campingPlace, index) => (
           <div key={campingPlace.id} className="camping-list">
             <Link to={"/camping/detail"}>
               <img className="camping-img" src={campingPlace.img} alt="" />
+              {/* 이거 */}
               <ReactSVG
                 className={`camping-img-heart ${
-                  heartClick[campingPlace.id] ? "liked" : ""
+                  !heartClick[index] && "camping-img-heart-delete"
                 }`}
-                src={heart}
+                src={heartIcon.heart}
                 alt=""
                 onClick={(e) => {
                   e.preventDefault();
-                  heartClickHandler(campingPlace.id);
+                  heartClickHandler(index);
                 }}
               />
 
