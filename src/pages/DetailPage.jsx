@@ -9,7 +9,7 @@ import useCampInfo from "../hooks/useCampInfo";
 import "../components/detail-page/DetailPage.css";
 
 const DetailPage = () => {
-  const campId = 21; // 필요한 캠핑장 ID 설정
+  const campId = 21;
   const { detailInfo, loading, error } = useCampInfo(campId);
 
   if (loading) {
@@ -26,7 +26,7 @@ const DetailPage = () => {
       <DetailPageInfo detailInfo={detailInfo} />
       <div className="map-title">근처 편의점 찾기</div>
       <KakaoMap address={detailInfo.addr} />
-      <ReviewPage />
+      <ReviewPage campId={campId} />
       <BookButton to="/camping/book" />
     </div>
   );

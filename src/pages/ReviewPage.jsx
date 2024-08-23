@@ -1,26 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../components/review-page/ReviewPage.css";
 import ReviewMoreBtn from "../components/review-page/ReviewMoreBtn";
 import ReviewReply from "../components/review-page/ReviewReply";
 import ReplyWriter from "../components/review-page/ReplyWriter";
-import { mockReviewData } from "../constants/mockReviewData";
 import { svgCollection } from "../constants/svgCollection";
 import { ReactSVG } from "react-svg";
-import { get } from "../utils/Api";
+import useCampReview from "../hooks/useCampReview";
 
 const svg = svgCollection;
 
-const ReviewPage = () => {
+const ReviewPage = ({ campId }) => {
   const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
-  const [campReviews, setCampReviews] = useState([]);
+
+  const { campReviews, loading, error } = useCampReview(campId);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>캠핑장 리뷰 가져오기 실패: {error.message}</div>;
+  }
 
   const loadMore = () => {
     if (isExpanded) {
       setvisibleReviews(1);
     } else {
-      setvisibleReviews(mockReviewData.length);
+      setvisibleReviews(campReviews.length);
     }
     setIsExpanded(!isExpanded);
   };
@@ -31,18 +39,6 @@ const ReviewPage = () => {
       [index]: !prevVisibleReplies[index],
     }));
   };
-
-  useEffect(() => {
-    const fetchCampReview = async () => {
-      try {
-        const response = await get("review/camp/2");
-        setCampReviews(response);
-      } catch (error) {
-        console.error("캠핑장 리뷰 가져오기 실패:", error);
-      }
-    };
-    fetchCampReview();
-  }, []);
 
   return (
     <>
@@ -86,7 +82,7 @@ const ReviewPage = () => {
               </div>
             </div>
 
-            {visibleReplies[index] && <ReviewReply />}
+            {visibleReplies[index] && <ReviewReply reviewId={review.id} />}
             <ReplyWriter />
           </div>
         ))}

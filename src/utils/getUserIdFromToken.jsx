@@ -16,17 +16,17 @@ export const getUserIdFromToken = () => {
   const accessToken = localStorage.getItem("accessToken");
   if (!accessToken) {
     console.error("엑세스 토큰이 없습니다");
-    return { accessToken: null, useId: null };
+    return { accessToken: null, userId: null };
   }
 
   const payload = decodeToken(accessToken);
   const userId = payload ? payload.userId || null : null;
 
-	if (userId) {
-		console.log("추출된 userId", userId);
-	} else {
-		console.error("userId를 추출할 수 없습니다");
-	}
+  if (userId) {
+    console.log("추출된 userId", userId);
+  } else {
+    console.error("userId를 추출할 수 없습니다");
+  }
 
   return { accessToken, userId };
 };
