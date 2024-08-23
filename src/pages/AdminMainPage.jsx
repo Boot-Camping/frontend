@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../components/admin-main-page/AdminMainPage.css";
 
 const AdminMainPage = () => {
-  const [focusedButton, setFocusedButton] = useState(null);
+  const [focusedButton, setFocusedButton] = useState("site");
 
   const handleFocus = (button) => {
     setFocusedButton(button);

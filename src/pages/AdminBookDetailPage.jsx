@@ -1,9 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "../components/admin-book-page/AdminBookDetail.css";
+import { campBookData } from "../constants/campBookData";
 import { ReactSVG } from "react-svg";
+import { saveIcon } from "../constants/save";
 
 const AdminBookDetailPage = () => {
+  const { id } = useParams();
+  const booking = campBookData.find((item) => item.id === parseInt(id));
+  const navigate = useNavigate();
+
+  if (!booking) {
+    return <div>예약 정보를 찾을 수 없습니다.</div>;
+  }
+
   return (
     <div>
       <Link to={"/admin"}>
@@ -14,7 +24,12 @@ const AdminBookDetailPage = () => {
         />
       </Link>
       <div className="admin-book-detail-title">예약 상세 조회</div>
-      <div className="admin-book-camping-title">캠핑장 이름</div>
+      <ReactSVG
+        src={saveIcon.prev}
+        className="notice-move-prev"
+        onClick={() => navigate(-1)}
+      />
+      <div className="admin-book-camping-title">[{booking.campName}]</div>
       <div className="admin-book-person-title">예약자 정보</div>
       <div>
         <span className="admin-book-name">이름</span>
@@ -22,7 +37,7 @@ const AdminBookDetailPage = () => {
           id="name"
           name="name"
           type="text"
-          autoComplete="name"
+          value={booking.userName}
           className="input-book-name"
           readOnly
         />
@@ -33,18 +48,17 @@ const AdminBookDetailPage = () => {
           id="phone"
           name="phone"
           type="number"
-          autoComplete="phone"
+          value={booking.phoneNum}
           className="input-book-phone-number"
           readOnly
         />
       </div>
       <div className="admin-book-text">
-        <span className="admin-book-plus-text">요청사항</span>
-        <input
+        <div className="admin-book-plus-text">요청사항</div>
+        <textarea
           id="text"
           name="text"
-          type="text"
-          autoComplete="text"
+          value={booking.request}
           className="input-book-plus-text"
           readOnly
         />
@@ -52,6 +66,7 @@ const AdminBookDetailPage = () => {
       <div className="admin-book-info">
         <div className="book-price-title">금액 /1박</div>
         <div className="book-price-title">추가 요금 /인당</div>
+        <div className="book-price-title">예약 일수</div>
       </div>
       <div className="contact-info">
         <div>
@@ -59,7 +74,7 @@ const AdminBookDetailPage = () => {
             id="book-price"
             name="book-price"
             type="number"
-            autoComplete="book-price"
+            value={booking.price}
             className="input-book-price"
             required
           />
@@ -70,16 +85,27 @@ const AdminBookDetailPage = () => {
             id="book-plus-price"
             name="book-plus-price"
             type="number"
-            autoComplete="camp-price"
+            value={booking.overCharge}
             className="input-plus-price"
             required
           />
           <span className="won">원</span>
         </div>
+        <div>
+          <input
+            id="book-plus-price"
+            name="book-plus-price"
+            type="number"
+            value={booking.totalDate}
+            className="input-total-date"
+            required
+          />
+          <span className="won">박</span>
+        </div>
       </div>
       <div className="camp-user-title">
         <div className="book-user-title">예약 인원</div>
-        <div className="camp-max-user-title">최대 인원</div>
+        <div className="camp-max-user-title">추가 인원</div>
         <div className="book-total-price-title">총 금액 /n박</div>
       </div>
       <div className="camping-info">
@@ -88,7 +114,7 @@ const AdminBookDetailPage = () => {
             id="book-user-number"
             name="book-user-number"
             type="number"
-            autoComplete="book-user-number"
+            value={booking.bookNum}
             className="input-book-user-number"
             readOnly
           />
@@ -99,7 +125,7 @@ const AdminBookDetailPage = () => {
             id="max-user"
             name="max-user"
             type="number"
-            autoComplete="max-user"
+            value={booking.plusNum}
             className="input-max-user"
             readOnly
           />
@@ -110,7 +136,7 @@ const AdminBookDetailPage = () => {
             id="total-price"
             name="total-price"
             type="number"
-            autoComplete="total-price"
+            value={booking.totalPrice}
             className="input-total-price"
             readOnly
           />

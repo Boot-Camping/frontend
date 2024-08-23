@@ -42,7 +42,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/login" element={<LoginPage />} />
-						<Route path="/login/account" element={<LoginAccountPage />} />
+            <Route path="/login/account" element={<LoginAccountPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/user/delete" element={<DeleteAccountPage />} />
             <Route path="/mypage" element={<MyPage />} />
@@ -71,10 +71,13 @@ function App() {
               element={<AdminNoticeRegiPage />}
             />
             <Route path="/admin/notice-list" element={<AdminNoticeList />} />
-            <Route path="/admin/notice-fix" element={<AdminNoticeFixPage />} />
+            <Route
+              path="/admin/notice-fix/:id"
+              element={<AdminNoticeFixPage />}
+            />
             <Route path="/admin/book-list" element={<AdminBookListPage />} />
             <Route
-              path="/admin/book-detail"
+              path="/admin/book-detail/:id"
               element={<AdminBookDetailPage />}
             />
           </Routes>
