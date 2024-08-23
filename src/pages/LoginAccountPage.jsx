@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../components/login-account-page/LoginAccountPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "../utils/Api";
@@ -16,7 +16,9 @@ const LoginAccountPage = () => {
     try {
       const response = await post("user/login", jsonData);
       const accessToken = response.tokenRequest.accessToken;
+      const refreshToken = response.tokenRequest.refreshToken;
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
       navigate("/");
     } catch (error) {
       let status = "알 수 없는 오류";
