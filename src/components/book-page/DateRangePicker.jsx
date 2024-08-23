@@ -8,6 +8,7 @@ import { addDays, differenceInDays } from "date-fns";
 import "../book-page/DateRangePicker.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useCampingDays } from "../../hooks/CampingDaysContext";
 
 const DateRangePicker = () => {
   const [range, setRange] = useState([
@@ -20,6 +21,8 @@ const DateRangePicker = () => {
 
   const [open, setOpen] = useState(false);
   const refOne = useRef(null);
+
+  const { setCampingDays } = useCampingDays();
 
   useEffect(() => {
     document.addEventListener("keydown", hideOnEscape, true);
@@ -40,6 +43,10 @@ const DateRangePicker = () => {
 
   // startDate와 endDate 차이 일수 계산
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
+
+  useEffect(() => {
+    setCampingDays(numberOfNights + 1);
+  }, [numberOfNights, setCampingDays]);
 
   return (
     <div className="calendar-wrap">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
@@ -12,8 +12,18 @@ const ReviewWriter = () => {
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
 
+  const [selectedTags, setSelectedTags] = useState([]);
+
   const ratingChangeHandle = (rating) => {
     console.log("선택된 별점:", rating);
+  };
+
+  const toggleTagHandle = (tag) => {
+    if (selectedTags.includes(tag.id)) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag.id));
+    } else {
+      setSelectedTags([...selectedTags, tag.id]);
+    }
   };
 
   return (
@@ -34,17 +44,45 @@ const ReviewWriter = () => {
 
         <div className="tag-group">
           {upperTags.map((tag) => (
-            <button key={tag.id} className={tag.className}>
-              {tag.label}
-            </button>
+            <div key={tag.id} className="tag-checkbox-wrapper">
+              <input
+                type="checkbox"
+                id={`tag-${tag.id}`}
+                className="tag-checkbox"
+                checked={selectedTags.includes(tag.id)}
+                onChange={() => toggleTagHandle(tag)}
+              />
+              <label
+                htmlFor={`tag-${tag.id}`}
+                className={`tag-label good ${
+                  selectedTags.includes(tag.id) ? "selected" : ""
+                }`}
+              >
+                {tag.label}
+              </label>
+            </div>
           ))}
         </div>
 
         <div className="tag-group">
           {lowerTags.map((tag) => (
-            <button key={tag.id} className={tag.className}>
-              {tag.label}
-            </button>
+            <div key={tag.id} className="tag-checkbox-wrapper">
+              <input
+                type="checkbox"
+                id={`tag-${tag.id}`}
+                className="tag-checkbox"
+                checked={selectedTags.includes(tag.id)}
+                onChange={() => toggleTagHandle(tag)}
+              />
+              <label
+                htmlFor={`tag-${tag.id}`}
+                className={`tag-label bad ${
+                  selectedTags.includes(tag.id) ? "selected" : ""
+                }`}
+              >
+                {tag.label}
+              </label>
+            </div>
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@ export const detailCampingInfo = [
   { id: "views", label: "조회수", value: 123 },
   { id: "name", label: "캠핑장", value: "캠프그라운드 화온" },
   {
-    id: "location",
+    id: "campAddr",
     label: "위치",
     value: "충남 아산시 영인면 고룡산로 512-37",
   },

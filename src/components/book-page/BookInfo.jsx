@@ -1,13 +1,26 @@
 import React from "react";
 import "./BookPage.css";
 import bookImage from "../../assets/image/detailImg-2.png";
-import { detailCampingInfo } from "../../constants/detailCampingInfo";
+import { useState, useEffect } from "react";
+import { get } from "../../utils/Api";
 
 const BookInfo = () => {
-  const standardNum = detailCampingInfo[5];
-  const maxNum = detailCampingInfo[6];
-  const price = detailCampingInfo[7];
-  const overCharge = detailCampingInfo[9];
+  const [detailInfo, setDetailInfo] = useState(null);
+  useEffect(() => {
+    const fetchCampInfo = async () => {
+      try {
+        const response = await get("camp/2");
+        setDetailInfo(response);
+      } catch (error) {
+        console.error("캠핑장 정보 가져오기 실패:", error);
+      }
+    };
+    fetchCampInfo();
+  }, []);
+
+  if (!detailInfo) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -15,13 +28,15 @@ const BookInfo = () => {
         <div className="book-contents">
           <div className="camping-name">캠핑장 정보</div>
           <div className="camping-num">
-            {standardNum.label}: {standardNum.value} 명 <br />
-            {maxNum.label}: {maxNum.value} 명 <br />
-            {price.label}: {price.value.toLocaleString()} 원<br />
-            {overCharge.label}: {overCharge.value.toLocaleString()} 원
+            {detailInfo.name}
+            <br />
+            기준 수용인원: {detailInfo.standardNum} 명 <br />
+            최대 수용인원: {detailInfo.maxNum} 명 <br />
+            1박 가격: {detailInfo.price.toLocaleString()} 원<br />
+            초과 인원당 추가비용: {detailInfo.overCharge.toLocaleString()} 원
           </div>
         </div>
-        <img className="book-img" src={bookImage} alt="" />
+        <img className="book-img" src={detailInfo.imageUrls[0]} alt="" />
       </div>
     </div>
   );

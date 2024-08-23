@@ -1,11 +1,8 @@
 /* BookPage.jsx */
-.book-page {
-}
-
 .book-page-title {
   font-size: var(--heading);
   font-weight: bold;
-  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 .book-date {
@@ -43,11 +40,12 @@
 .camping-name {
   font-size: var(--sub-heading);
   font-weight: bold;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .camping-num {
   font-size: var(--content);
+  line-height: 1.5;
 }
 
 .book-img {

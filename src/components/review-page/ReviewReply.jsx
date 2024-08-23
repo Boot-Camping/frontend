@@ -1,6 +1,7 @@
 import React from "react";
 import { mockReviewData } from "../../constants/mockReviewData";
 import "./ReviewPage.css";
+import { get } from "../../utils/Api";
 
 const ReviewReply = () => {
   return (
