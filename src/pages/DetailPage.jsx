@@ -4,7 +4,6 @@ import ReviewPage from "./ReviewPage";
 import BookButton from "../components/detail-page/BookButton";
 import ImageSlider from "../components/detail-page/ImageSlider";
 import KakaoMap from "../components/detail-page/KakaoMap";
-import { sliderData } from "../constants/sliderData";
 import useCampInfo from "../hooks/useCampInfo";
 
 import "../components/detail-page/DetailPage.css";
