@@ -3,6 +3,11 @@
   padding: 2rem 0;
 }
 
+.rating-and-save-box {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* 평점 */
 .rating {
   display: flex;
@@ -32,6 +37,25 @@
   width: 1.5rem;
   padding-right: 0.2rem;
   color: var(--light-green);
+}
+
+.save {
+  display: flex;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: white;
+  align-items: center;
+}
+
+.save-btn-img {
+  width: 2rem;
+  padding-right: 0.2rem;
+  color: var(--red);
+  fill: var(--light-green);
+}
+
+.save-btn-text {
+  font-size: 1.4rem;
 }
 
 /* 업체 기본정보 */

@@ -10,16 +10,25 @@ const DetailPageInfo = ({ detailInfo }) => {
   return (
     <div>
       <div className="detail-content underline">
-        <div className="rating">
-          <div className="stars">
-            <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
-            {detailInfo.stars}
+        <div className="rating-and-save-box">
+          <div className="rating">
+            <div className="stars">
+              <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
+              {detailInfo.stars}
+            </div>
+
+            <div className="views">
+              <ReactSVG src={svg.views} alt="views" className="views-img" />
+              {detailInfo.views}
+            </div>
           </div>
-          <div className="views">
-            <ReactSVG src={svg.views} alt="views" className="views-img" />
-            {detailInfo.views}
-          </div>
+
+          <button className="save">
+            <ReactSVG src={svg.heart} alt="heart" className="save-btn-img" />
+            <div className="save-btn-text">찜하기</div>
+          </button>
         </div>
+
         <div className="main">
           <h2 className="title">{detailInfo.name}</h2>
           <div className="price">
