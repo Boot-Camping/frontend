@@ -4,18 +4,29 @@ import ReviewPage from "./ReviewPage";
 import BookButton from "../components/detail-page/BookButton";
 import ImageSlider from "../components/detail-page/ImageSlider";
 import KakaoMap from "../components/detail-page/KakaoMap";
-
 import { sliderData } from "../constants/sliderData";
+import useCampInfo from "../hooks/useCampInfo";
 
 import "../components/detail-page/DetailPage.css";
 
 const DetailPage = () => {
+  const campId = 21; // 필요한 캠핑장 ID 설정
+  const { detailInfo, loading, error } = useCampInfo(campId);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>캠핑장 정보 가져오기 실패: {error.message}</div>;
+  }
+
   return (
     <div>
-      <ImageSlider sliderData={sliderData} />
-      <DetailPageInfo />
+      <ImageSlider detailImages={detailInfo.imageUrls} />
+      <DetailPageInfo detailInfo={detailInfo} />
       <div className="map-title">근처 편의점 찾기</div>
-      <KakaoMap address="서울 용산구 남산공원길 105" />
+      <KakaoMap address={detailInfo.addr} />
       <ReviewPage />
       <BookButton to="/camping/book" />
     </div>
