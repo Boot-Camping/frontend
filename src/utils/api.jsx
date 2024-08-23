@@ -21,8 +21,15 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
   } catch (error) {
     if (error.response) {
       const statusCode = error.response.status;
-      const errorMessage = error.response.data.message || "오류가 발생했습니다";
-      throw new Error(JSON.stringify({ status: statusCode, message: errorMessage }));
+      let errorMessage;
+      if (typeof error.response.data === "object") {
+        // 객체일 경우 "message" 값을 추출
+        errorMessage =
+          error.response.data.message || JSON.stringify(error.response.data);
+      } else {
+        errorMessage = error.response.data || "오류가 발생했습니다";
+      }
+      throw new Error(`Status: ${statusCode}, Message: ${errorMessage}`);
     } else if (error.request) {
       throw new Error("서버로부터 응답을 받지 못했습니다");
     } else {
