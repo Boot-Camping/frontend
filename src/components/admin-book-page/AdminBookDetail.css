@@ -7,18 +7,13 @@
 }
 
 .admin-book-camping-title {
-  font-size: 1.6rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
+  background-color: var(--dark-green);
+  color: white;
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
-}
-
-.admin-book-person-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: flex;
-  justify-content: left;
+  padding: 1rem;
   margin-top: 2rem;
   margin-bottom: 3rem;
 }
