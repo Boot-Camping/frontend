@@ -22,7 +22,9 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
     if (error.response) {
       const statusCode = error.response.status;
       const errorMessage = error.response.data.message || "오류가 발생했습니다";
-      throw new Error(JSON.stringify({ status: statusCode, message: errorMessage }));
+      throw new Error(
+        JSON.stringify({ status: statusCode, message: errorMessage })
+      );
     } else if (error.request) {
       throw new Error("서버로부터 응답을 받지 못했습니다");
     } else {
