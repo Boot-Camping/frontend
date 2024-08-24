@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
 import { svgCollection } from "../../constants/svgCollection";
 import ReadMore from "./ReadMore";
+import { post } from "../../utils/Api";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const DetailPageInfo = ({ detailInfo }) => {
   const svg = svgCollection;
+  const [isSaved, setIsSaved] = useState(false);
+  const [error, setError] = useState(null);
+  const { userId, accessToken } = getUserIdFromToken();
+
+  const toggleSave = async () => {
+    // 요청에 보낼 데이터 준비
+    const data = {
+      id: detailInfo.id,
+      name: detailInfo.name,
+      addr: detailInfo.addr,
+      price: detailInfo.price,
+      campImages: Array.isArray(detailInfo.imageUrls)
+        ? detailInfo.imageUrls.join(", ") // 배열을 콤마로 구분된 문자열로 변환
+        : detailInfo.imageUrls, // 단일 URL일 경우 그대로 사용
+    };
+
+    console.log("전송하려는 데이터:", JSON.stringify(data, null, 2));
+    console.log("찜하려는 campId:", detailInfo.id);
+
+    try {
+      const response = await post(
+        `userprofile/wishlist/add/${detailInfo.id}/${userId}`,
+        data,
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      );
+      setIsSaved(!isSaved);
+      console.log("찜하기 성공! 😄:", response);
+    } catch (error) {
+      setError("찜하기 오류 발생 🥲");
+      console.error("찜하기 요청 오류🥲:", error);
+      if (error.response) {
+        console.error("서버 응답 상태 코드:", error.response.status);
+        console.error("서버 응답 데이터:", error.response.data);
+      } else {
+        console.error("요청 오류:", error.message);
+      }
+    }
+  };
 
   return (
     <div>
@@ -23,8 +65,18 @@ const DetailPageInfo = ({ detailInfo }) => {
             </div>
           </div>
 
-          <button className="save">
-            <ReactSVG src={svg.heart} alt="heart" className="save-btn-img" />
+          {/* 찜하기 버튼 */}
+          <button className="save" onClick={toggleSave}>
+            <ReactSVG
+              src={svg.heart}
+              alt="heart"
+              className="save-btn-img"
+              beforeInjection={(svg) => {
+                svg
+                  .querySelector("path")
+                  .setAttribute("fill", isSaved ? "red" : "none");
+              }}
+            />
             <div className="save-btn-text">찜하기</div>
           </button>
         </div>

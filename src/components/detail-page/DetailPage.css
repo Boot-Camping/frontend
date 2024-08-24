@@ -51,7 +51,14 @@
   width: 2rem;
   padding-right: 0.2rem;
   color: var(--red);
-  fill: var(--light-green);
+}
+
+.save-btn-img,
+.saved {
+  width: 2rem;
+  padding-right: 0.2rem;
+  color: var(--red);
+  fill: var(--red);
 }
 
 .save-btn-text {
