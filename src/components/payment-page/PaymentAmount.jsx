@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PaymentPage.css";
 import NumCounter from "../../utils/numCounter";
-import { detailCampingInfo } from "../../constants/detailCampingInfo";
 import { useCampingDays } from "../../hooks/CampingDaysContext";
-
-// const getDetailCampingInfo = (id) => {
-//   return detailCampingInfo.find((info) => info.id === id);
-// };
-
-// const { label: priceLabel, value: paymentInfo.price } = getDetailCampingInfo("price");
-// const { label: paymentInfo.overChargeLabel, value: paymentInfo.overCharge } =
-//   getDetailCampingInfo("paymentInfo.overCharge");
-// const { label: maxNumLabel, value: paymentInfo.maxNum } =
-//   getDetailCampingInfo("maxNum");
-// const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
 
 const PaymentAmount = ({ paymentInfo }) => {
   const { campingDays } = useCampingDays();
@@ -43,13 +31,23 @@ const PaymentAmount = ({ paymentInfo }) => {
           <div>{paymentInfo.price.toLocaleString()} 원</div>
         </div>
 
+        <div className="standard-num">
+          <div>캠핑 예약인원</div>
+          <div>
+            <NumCounter
+              onCountChange={maxNumChangeHandle}
+              maxCount={paymentInfo.standardNum}
+            />
+          </div>
+        </div>
+
         <div className="over-charge">
           <div>초과인원당 추가비용</div>
           <div>{paymentInfo.overCharge.toLocaleString()} 원/명</div>
         </div>
 
-        <div className="extra-number">
-          <div>최대 수용인원</div>
+        <div className="extra-num">
+          <div>초과인원</div>
           <div>
             <NumCounter
               onCountChange={maxNumChangeHandle}
