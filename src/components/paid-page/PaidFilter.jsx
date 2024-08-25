@@ -18,7 +18,7 @@ const PaidFilter = ({
         <button
           className={filtering.class}
           key={filtering.type}
-          onClick={() => filterChangeHandle(filtering.type)}
+          onClick={() => filterChangeHandle(filtering.status)}
         >
           {filtering.type}
         </button>

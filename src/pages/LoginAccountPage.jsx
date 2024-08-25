@@ -19,6 +19,8 @@ const LoginAccountPage = () => {
       const accessToken = response.tokenRequest.accessToken;
       localStorage.setItem("accessToken", accessToken);
       navigate("/");
+
+      window.location.reload();
     } catch (error) {
       setErrorMessage(error.message);
     }

@@ -4,8 +4,12 @@ import { ReactSVG } from "react-svg";
 import { cashIcon, chargePrice } from "../../constants/cash";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
+import { put } from "../../utils/Api";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
+  const { accessToken, userId } = getUserIdFromToken();
+  const [errorMessage, setErrorMessage] = useState("");
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectPrice, setSelectPrice] = useState(0);
 
@@ -22,6 +26,23 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
     closeModal(setIsOpened)();
     setActiveIndex(null);
     setSelectPrice(0);
+  };
+
+  const submitHandle = async () => {
+    const customHeaders = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+
+    try {
+			const requestBody = {
+				cash: selectPrice,
+			};
+      console.log("requestBody", requestBody);
+      const response = await put(`user/chargeCash/${userId}`, requestBody, customHeaders);
+      console.log("response", response);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
   return (
@@ -78,7 +99,9 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
                 <button className="charge-cancel" onClick={cancleHandle}>
                   취소
                 </button>
-                <button className="charge-pay">결제</button>
+                <button className="charge-pay" onClick={submitHandle}>
+                  결제
+                </button>
               </div>
             </div>,
             document.getElementById("modal-root")
