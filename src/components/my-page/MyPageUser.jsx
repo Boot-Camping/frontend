@@ -9,6 +9,7 @@ import MyPageLogout from "./MyPageLogout";
 
 const MyPageUser = () => {
   const { accessToken, userId } = getUserIdFromToken();
+  const [errorMessage, setErrorMessage] = useState("");
   const [name, setName] = useState("");
 
   useEffect(() => {
@@ -19,22 +20,12 @@ const MyPageUser = () => {
 
       try {
         const response = await get(`userprofile/${userId}`, customHeaders);
-        console.log(response);
         if (response.length > 0) {
           setName(response[0].name);
         }
       } catch (error) {
-        let status = "알 수 없는 오류";
-        let message = error.message;
-
-        if (error.response) {
-          status = error.response.status;
-          message = error.response.data.message || "오류가 발생했습니다";
-          console.log();
-        } else if (error.request) {
-          message = "서버로부터 응답을 받지 못했습니다";
-        }
-        console.log(`상태 코드: ${status}, 에러 메시지: ${message}`);
+        setErrorMessage(error.message);
+        console.log(errorMessage);
       }
     };
 
