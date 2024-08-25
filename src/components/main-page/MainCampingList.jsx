@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
-import heart from "../../assets/svg/heart.svg";
 import star from "../../assets/svg/star.svg";
 import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
@@ -12,22 +10,26 @@ import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const MainCampingList = () => {
   const [campingPlaces, setCampingPlaces] = useState([]);
-
   const [error, setError] = useState(null);
+  const { accessToken } = getUserIdFromToken();
 
   // API에서 데이터 가져오기
   useEffect(() => {
     const fetchCampingPlaces = async () => {
+      const customHeaders = {
+        Authorization: `Bearer ${accessToken}`,
+      };
       try {
-        const response = await get("camp");
-        setCampingPlaces(response.data);
+        const response = await get("camp", customHeaders);
+        console.log(response.content);
+        setCampingPlaces(response.content); // 응답 데이터의 'content' 사용
       } catch (err) {
         setError(err.message);
       }
     };
 
     fetchCampingPlaces();
-  }, []);
+  }, [accessToken]);
 
   // useCampingPlaceFilter 훅에 API 데이터를 전달
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -39,7 +41,7 @@ const MainCampingList = () => {
 
   return (
     <>
-      <div className="camping-title-wraper">
+      <div className="camping-title-wrapper">
         <div className="camping-title">캠핑장 리스트</div>
         <select
           value={selectedFilter}
@@ -48,15 +50,18 @@ const MainCampingList = () => {
           <option value="reservation">예약 많은 순</option>
           <option value="review">리뷰 많은 순</option>
           <option value="star">평점 좋은 순</option>
-          <option value="heart">찜 많은 순</option>
         </select>
       </div>
 
-      <div className="camping-list-wraper">
+      <div className="camping-list-wrapper">
         {campingPlaceFiltered.map((campingPlace, index) => (
-          <div key={index} className="camping-list">
+          <div key={campingPlace.id} className="camping-list">
             <Link to={`/camping/detail/${campingPlace.id}`}>
-              <img className="camping-img" src={campingPlace.img} alt="" />
+              <img
+                className="camping-img"
+                src={campingPlace.imageUrls[0] || "default-image-url.jpg"}
+                alt={campingPlace.name}
+              />
 
               <ReactSVG
                 className={`camping-img-heart ${
@@ -71,25 +76,24 @@ const MainCampingList = () => {
               />
 
               <div className="camping-name">{campingPlace.name}</div>
-              <div className="camping-sub-title-wraper">
-                <div className="camping-type">{campingPlace.type}</div>
-                <div className="camping-price">{campingPlace.price}</div>
+              <div className="camping-sub-title-wrapper">
+                <div className="camping-type">
+                  {campingPlace.categories.join(". ")}
+                </div>
+                <div className="camping-price">{campingPlace.price}원</div>
               </div>
             </Link>
-            <div className="camping-info-icons-wraper">
-              <div className="camping-info-star-wraper">
+            <div className="camping-info-icons-wrapper">
+              <div className="camping-info-star-wrapper">
                 <ReactSVG className="camping-info-star" src={star} alt="" />
-                <div className="camping-info">{campingPlace.rating}</div>
+                <div className="camping-info">{campingPlace.gradeCount}</div>
                 <div className="camping-info">
-                  ・리뷰({campingPlace.reviews})
+                  ・리뷰({campingPlace.reviewCount})
                 </div>
               </div>
-              <div className="camping-info-heart-wraper">
-                <ReactSVG className="camping-info-heart" src={heart} alt="" />
-                <div className="camping-info">{campingPlace.heart}</div>
-                <div className="camping-info">
-                  ・예약({campingPlace.reservations})
-                </div>
+
+              <div className="camping-info">
+                예약자 수({campingPlace.reviewCount})
               </div>
             </div>
           </div>
