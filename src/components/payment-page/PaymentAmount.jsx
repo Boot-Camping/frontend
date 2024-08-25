@@ -4,7 +4,6 @@ import NumCounter from "../../utils/numCounter";
 import { useCampingDays } from "../../hooks/CampingDaysContext";
 
 const PaymentAmount = ({ paymentInfo, checkIn, checkOut }) => {
-  // 이 줄 수정
   if (!paymentInfo) {
     return <div>Loading...</div>;
   }
