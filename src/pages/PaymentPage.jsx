@@ -72,7 +72,7 @@ const PaymentPage = () => {
           onClick={openModal}
           disabled={!isButtonEnabled}
         >
-          캠핑장 결제하기
+          결제 및 예약하기
         </button>
 
         <PaymentModal isModalOpen={isModalOpen} closeModal={closeModal}>

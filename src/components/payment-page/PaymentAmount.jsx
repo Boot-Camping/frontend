@@ -4,7 +4,7 @@ import NumCounter from "../../utils/numCounter";
 import { useCampingDays } from "../../hooks/CampingDaysContext";
 
 const PaymentAmount = ({ paymentInfo }) => {
-  const { campingDays } = useCampingDays();
+  const { campingDays, checkIn, checkOut } = useCampingDays();
   const [maxNum, setmaxNum] = useState(paymentInfo.maxNum);
   const [totalAmount, setTotalAmount] = useState(
     (paymentInfo.price + paymentInfo.overCharge * paymentInfo.maxNum) *
@@ -59,6 +59,17 @@ const PaymentAmount = ({ paymentInfo }) => {
         <div className="camping-days">
           <div>캠핑일수</div>
           <div>{campingDays - 1} 박</div>
+        </div>
+        <div className="checkIn-checkOut-box">
+          <div className="checkIn-box">
+            <div>체크인</div>
+            <div>{checkIn.toLocaleString()}</div>
+          </div>
+
+          <div className="checkOut-box">
+            <div>체크아웃</div>
+            <div>{checkOut.toLocaleString()}</div>
+          </div>
         </div>
 
         <div className="total-amount">

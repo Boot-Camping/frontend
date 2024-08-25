@@ -115,6 +115,25 @@
   font-size: var(--sub-content);
 }
 
+.checkIn-checkOut-box {
+  padding-top: 0.2rem;
+}
+
+.checkIn-checkOut-box div {
+  font-size: var(--content);
+  color: var(--dark-gray);
+}
+
+.checkIn-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkOut-box {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* PaymentPolicy.jsx */
 .payment-policy {
   padding-top: 3rem;
