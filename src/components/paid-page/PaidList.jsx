@@ -4,12 +4,13 @@ import { paidIcon } from "../../constants/paid";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
 import EmptyContent from "./EmptyContent";
+import { shortPeriodHyphen } from "../../utils/shortPeriodHyphen";
 
 const PaidList = ({ filter, paidData, errorMessage }) => {
   const filteredData = filterData(paidData, filter, "bookStatus");
 
   const renderButton = (data, index) => {
-    if (data.bookStatus === "예약 완료") {
+    if (data.bookStatus === "BOOKING") {
       return (
         <button>
           <ReactSVG src={paidIcon.cancel} className="paid-list-img" />
@@ -33,14 +34,16 @@ const PaidList = ({ filter, paidData, errorMessage }) => {
           {filteredData.map((data, index) => (
             <div
               className={`paid-list ${
-                data.bookStatus === "예약 완료" ? "book-list" : "usage-list"
+                data.bookStatus === "BOOKING" ? "book-list" : "usage-list"
               } `}
               key={`paid-list-${index}`}
             >
               <div className="paid-list-status">
-                <div className="paid-status">{data.bookStatus}</div>
+                <div className="paid-status">
+                  {data.bookStatus === "BOOKING" ? "예약 완료" : "이용 완료"}
+                </div>
                 <div className="paid-period">
-                  <span>{data.startDate}</span> ~ <span>{data.endDate}</span>
+                  <span>{shortPeriodHyphen(data)}</span>
                 </div>
               </div>
               <div className="paid-list-price">
