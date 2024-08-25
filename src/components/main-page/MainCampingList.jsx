@@ -1,19 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
-import { campingPlaceData } from "../../constants/campingPlaceData";
-import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
+import { ReactSVG } from "react-svg";
 import heart from "../../assets/svg/heart.svg";
 import star from "../../assets/svg/star.svg";
-import { ReactSVG } from "react-svg";
 import useHeartClick from "../../hooks/useHeartClick";
+import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
+import { get } from "../../utils/Api";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const MainCampingList = () => {
-  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlaceData);
+  const [campingPlaces, setCampingPlaces] = useState([]);
 
-  //이거
+  const [error, setError] = useState(null);
+
+  // API에서 데이터 가져오기
+  useEffect(() => {
+    const fetchCampingPlaces = async () => {
+      try {
+        const response = await get("camp");
+        setCampingPlaces(response.data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchCampingPlaces();
+  }, []);
+
+  // useCampingPlaceFilter 훅에 API 데이터를 전달
+  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
+    useCampingPlaceFilter(campingPlaces);
+
   const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
+
+  if (error) return <div>Error: {error}</div>; // 에러 발생 시 보여줄 UI
 
   return (
     <>
@@ -24,7 +46,7 @@ const MainCampingList = () => {
           onChange={(e) => setSelectedFilter(e.target.value)}
         >
           <option value="reservation">예약 많은 순</option>
-          <option value="review">리뷰 많은순</option>
+          <option value="review">리뷰 많은 순</option>
           <option value="star">평점 좋은 순</option>
           <option value="heart">찜 많은 순</option>
         </select>
@@ -32,10 +54,10 @@ const MainCampingList = () => {
 
       <div className="camping-list-wraper">
         {campingPlaceFiltered.map((campingPlace, index) => (
-          <div key={campingPlace.id} className="camping-list">
-            <Link to={"/camping/detail"}>
+          <div key={index} className="camping-list">
+            <Link to={`/camping/detail/${campingPlace.id}`}>
               <img className="camping-img" src={campingPlace.img} alt="" />
-              {/* 이거 */}
+
               <ReactSVG
                 className={`camping-img-heart ${
                   !heartClick[index] && "camping-img-heart-delete"
