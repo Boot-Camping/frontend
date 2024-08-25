@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./PaymentPage.css";
 import NumCounter from "../../utils/numCounter";
-import { detailCampingInfo } from "../../constants/detailCampingInfo";
 import { useCampingDays } from "../../hooks/CampingDaysContext";
 
-// const getDetailCampingInfo = (id) => {
-//   return detailCampingInfo.find((info) => info.id === id);
-// };
+const PaymentAmount = ({ paymentInfo, checkIn, checkOut }) => {
+  if (!paymentInfo) {
+    return <div>Loading...</div>;
+  }
 
-// const { label: priceLabel, value: paymentInfo.price } = getDetailCampingInfo("price");
-// const { label: paymentInfo.overChargeLabel, value: paymentInfo.overCharge } =
-//   getDetailCampingInfo("paymentInfo.overCharge");
-// const { label: maxNumLabel, value: paymentInfo.maxNum } =
-//   getDetailCampingInfo("maxNum");
-// const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
-
-const PaymentAmount = ({ paymentInfo }) => {
   const { campingDays } = useCampingDays();
-  const [maxNum, setmaxNum] = useState(paymentInfo.maxNum);
+  const [maxNum, setMaxNum] = useState(paymentInfo.maxNum);
   const [totalAmount, setTotalAmount] = useState(
     (paymentInfo.price + paymentInfo.overCharge * paymentInfo.maxNum) *
       (campingDays - 1)
@@ -30,7 +22,7 @@ const PaymentAmount = ({ paymentInfo }) => {
   }, [maxNum, paymentInfo.price, campingDays, paymentInfo.overCharge]);
 
   const maxNumChangeHandle = (newCount) => {
-    setmaxNum(newCount);
+    setMaxNum(newCount);
   };
 
   return (
@@ -40,16 +32,23 @@ const PaymentAmount = ({ paymentInfo }) => {
 
         <div className="oneday-price">
           <div>1박 가격</div>
-          <div>{paymentInfo.price.toLocaleString()} 원</div>
+          <div>{paymentInfo.price?.toLocaleString()} 원</div>
+        </div>
+
+        <div className="standard-num">
+          <div>캠핑 예약인원</div>
+          <div>
+            <NumCounter maxCount={paymentInfo.standardNum} />
+          </div>
         </div>
 
         <div className="over-charge">
           <div>초과인원당 추가비용</div>
-          <div>{paymentInfo.overCharge.toLocaleString()} 원/명</div>
+          <div>{paymentInfo.overCharge?.toLocaleString()} 원/명</div>
         </div>
 
-        <div className="extra-number">
-          <div>최대 수용인원</div>
+        <div className="extra-num">
+          <div>초과인원</div>
           <div>
             <NumCounter
               onCountChange={maxNumChangeHandle}
@@ -63,9 +62,16 @@ const PaymentAmount = ({ paymentInfo }) => {
           <div>{campingDays - 1} 박</div>
         </div>
 
-        <div className="total-amount">
-          <div>총 결제금액</div>
-          <div>{totalAmount.toLocaleString()} 원</div>
+        <div className="checkIn-checkOut-box">
+          <div className="check-in-out">
+            <div className="checkIn-box">체크인: {checkIn}</div>
+            <div className="checkOut-box">체크아웃: {checkOut}</div>
+          </div>
+
+          <div className="total-amount">
+            <div>총 결제금액</div>
+            <div>{totalAmount.toLocaleString()} 원</div>
+          </div>
         </div>
       </div>
     </div>
