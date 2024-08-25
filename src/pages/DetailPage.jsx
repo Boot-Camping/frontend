@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import DetailPageInfo from "../components/detail-page/DetailPageInfo";
 import ReviewPage from "./ReviewPage";
 import BookButton from "../components/detail-page/BookButton";
@@ -9,8 +10,9 @@ import useCampInfo from "../hooks/useCampInfo";
 import "../components/detail-page/DetailPage.css";
 
 const DetailPage = () => {
-  const campId = 21;
-  const { detailInfo, loading, error } = useCampInfo(campId, "detailInfo");
+  // const campId = 21;
+  const { id } = useParams();
+  const { detailInfo, loading, error } = useCampInfo(id, "detailInfo");
 
   if (loading) {
     return <div>Loading...</div>;
@@ -25,7 +27,7 @@ const DetailPage = () => {
       <DetailPageInfo detailInfo={detailInfo} />
       <div className="map-title">근처 편의점 찾기</div>
       <KakaoMap address={detailInfo.addr} />
-      <ReviewPage campId={campId} />
+      <ReviewPage campId={id} />
       <BookButton to="/camping/book" />
     </div>
   );
