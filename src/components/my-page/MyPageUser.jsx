@@ -5,6 +5,7 @@ import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 import { get } from "../../utils/Api";
+import MyPageLogout from "./MyPageLogout";
 
 const MyPageUser = () => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -41,15 +42,21 @@ const MyPageUser = () => {
   }, [accessToken, userId]);
 
   return (
-    <div className="mypage-user">
-      <div className="mypage-user-info">
+    <div className="mypage-user-wrap">
+      <div className="mypage-user">
         <ReactSVG src={mypageImgs.user} className="mypage-user-icon" />
-        <div>{name}</div>
+        <div className="mypage-user-info">
+          <div>{name}</div>
+          <Link to="/userinfo" className="user-setting">
+            <div>내 정보 관리</div>
+            <ReactSVG
+              src={mypageImgs.setting}
+              className="mypage-setting-icon"
+            />
+          </Link>
+        </div>
       </div>
-      <Link to="/userinfo" className="user-setting">
-        <div>내 정보 관리</div>
-        <ReactSVG src={mypageImgs.setting} className="mypage-setting-icon" />
-      </Link>
+      <MyPageLogout />
     </div>
   );
 };
