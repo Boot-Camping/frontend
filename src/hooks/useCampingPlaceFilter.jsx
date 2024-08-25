@@ -13,8 +13,6 @@ const useCampingPlaceFilter = (campingPlace) => {
       campingPlaceSorted.sort((a, b) => b.reviews - a.reviews);
     } else if (selectedFilter === "star") {
       campingPlaceSorted.sort((a, b) => b.rating - a.rating);
-    } else if (selectedFilter === "hart") {
-      campingPlaceSorted.sort((a, b) => b.heart - a.heart);
     }
     setCampingPlaceFiltered(campingPlaceSorted);
   }, [selectedFilter, campingPlace]);
