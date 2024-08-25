@@ -186,7 +186,7 @@ const AdminCampFixPage = () => {
               id="camp-price"
               name="camp-price"
               type="number"
-              value={selectedCampingPlace.price.toLocaleString()}
+              value={selectedCampingPlace.price}
               className="input-camp-price"
               required
             />
@@ -226,7 +226,7 @@ const AdminCampFixPage = () => {
               id="camp-price"
               name="camp-price"
               type="number"
-              value={selectedCampingPlace.overCharge.toLocaleString()}
+              value={selectedCampingPlace.overCharge}
               className="input-camp-plus-price"
               required
             />
