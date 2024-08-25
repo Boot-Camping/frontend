@@ -15,7 +15,10 @@ const MainReview = () => {
     const fetchReviews = async () => {
       try {
         const response = await get("review/all");
-        setReviews(response);
+        const sortedReviews = response.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        );
+        setReviews(sortedReviews);
       } catch (error) {
         setError(error.message);
       }
