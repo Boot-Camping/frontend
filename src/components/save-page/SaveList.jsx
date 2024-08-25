@@ -3,16 +3,21 @@ import "./SaveList.css";
 import { saveIcon } from "../../constants/save";
 import { ReactSVG } from "react-svg";
 import EmptyContent from "../paid-page/EmptyContent";
+import SaveModal from "./SaveModal";
 
 const SaveList = ({ saveData, errorMessage }) => {
   const [savedItems, setSavedItems] = useState(
     Array(saveData.length).fill(true)
   );
+  const [isOpened, setIsOpened] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
 
   const saveHandle = (index) => {
     const newSavedItems = [...savedItems];
     newSavedItems[index] = false;
     setSavedItems(newSavedItems);
+    setSelectedData(saveData[index]);
+    setIsOpened(true);
   };
 
   const shortAddr = (address) => {
@@ -47,6 +52,12 @@ const SaveList = ({ saveData, errorMessage }) => {
               </div>
             </div>
           ))}
+
+          <SaveModal
+            isOpened={isOpened}
+            setIsOpened={setIsOpened}
+            selectedData={selectedData}
+          />
         </>
       ) : (
         <EmptyContent errorMessage={errorMessage} />
