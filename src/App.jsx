@@ -58,8 +58,8 @@ function App() {
               <Route path="/cash" element={<CashPage />} />
               <Route path="/notice" element={<NoticePage />} />
               <Route path="/notice/:id" element={<NoticeDetailPage />} />
-              <Route path="/camping/detail/:id" element={<DetailPage />} />
-              <Route path="/camping/book" element={<BookPage />} />
+              <Route path="/camping/detail/:campId" element={<DetailPage />} />
+              <Route path="/camping/book/:campId" element={<BookPage />} />
               <Route path="/admin" element={<AdminMainPage />} />
               <Route path="/SearchPage" element={<SearchPage />} />
               <Route

@@ -10,9 +10,8 @@ import useCampInfo from "../hooks/useCampInfo";
 import "../components/detail-page/DetailPage.css";
 
 const DetailPage = () => {
-  // const campId = 21;
-  const { id } = useParams();
-  const { detailInfo, loading, error } = useCampInfo(id, "detailInfo");
+  const { campId } = useParams();
+  const { detailInfo, loading, error } = useCampInfo(campId, "detailInfo");
 
   if (loading) {
     return <div>Loading...</div>;
@@ -27,8 +26,8 @@ const DetailPage = () => {
       <DetailPageInfo detailInfo={detailInfo} />
       <div className="map-title">근처 편의점 찾기</div>
       <KakaoMap address={detailInfo.addr} />
-      <ReviewPage campId={id} />
-      <BookButton to="/camping/book" />
+      <ReviewPage campId={campId} />
+      <BookButton to={`/camping/book/${campId}`} />
     </div>
   );
 };
