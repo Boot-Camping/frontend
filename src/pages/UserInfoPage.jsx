@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/user-info-page/UserInfoPage.css";
 import UserProfile from "../components/user-info-page/UserProfile";
 import UserAccount from "../components/user-info-page/UserAccount";
@@ -6,11 +6,37 @@ import { Link } from "react-router-dom";
 import { userInfoIcon, userProfile } from "../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import UserInfoModal from "../components/user-info-page/UserInfoModal";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { get } from "../utils/Api";
 
 const UserInfoPage = () => {
+  const { accessToken, userId } = getUserIdFromToken();
+  const [userDataArray, setUserDataArray] = useState([]);
+  const [errorMessage, setErrorMessage] = useState();
   const [isOpened, setIsOpened] = useState(false);
   const [modalType, setModalType] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const customHeaders = {
+        Authorization: `Bearer ${accessToken}`,
+      };
+
+      try {
+        const response = await get(`userprofile/${userId}`, customHeaders);
+        setUserDataArray(response);
+      } catch (error) {
+        setErrorMessage(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getUserData();
+  }, [accessToken, userId]);
+  const userData = userDataArray.length > 0 ? userDataArray[0] : null;
 
   return (
     <section className="user-info-wrap">
@@ -20,24 +46,40 @@ const UserInfoPage = () => {
         </Link>
         <div>내 정보 관리</div>
       </div>
-      <UserProfile setIsOpened={setIsOpened} setModalType={setModalType} />
-      <UserAccount setIsOpened={setIsOpened} setModalType={setModalType} />
-      <Link to={"/cash"} className="user-cash-wrap">
-        <div>캐시</div>
-        <div>
-          <div>{userProfile.cash.toLocaleString()}원</div>
-          <ReactSVG src={userInfoIcon.prev} className="user-arrow-img" />
-        </div>
-      </Link>
+      {loading ? (
+        <div>로딩중</div>
+      ) : userData ? (
+        <>
+          <UserProfile
+            setIsOpened={setIsOpened}
+            setModalType={setModalType}
+            userData={userData}
+          />
+          <UserAccount
+            setIsOpened={setIsOpened}
+            setModalType={setModalType}
+            userData={userData}
+          />
+          <Link to={"/cash"} className="user-cash-wrap">
+            <div>캐시</div>
+            <div>
+              <div>{userData.balance.toLocaleString()}원</div>
+              <ReactSVG src={userInfoIcon.prev} className="user-arrow-img" />
+            </div>
+          </Link>
 
-      <UserInfoModal
-        isOpened={isOpened}
-        setIsOpened={setIsOpened}
-        modalType={modalType}
-        tel={userProfile.tel}
-        addr={userProfile.addr}
-        setError={setError}
-      />
+          <UserInfoModal
+            isOpened={isOpened}
+            setIsOpened={setIsOpened}
+            modalType={modalType}
+            tel={userData.tel}
+            addr={userData.addr}
+            setError={setError}
+          />
+        </>
+      ) : (
+        <div>사용자 정보를 찾을 수 없습니다</div>
+      )}
     </section>
   );
 };
