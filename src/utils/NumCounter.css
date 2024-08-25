@@ -1,5 +1,6 @@
 .counter-box {
-  /* padding: 1rem; */
+  display: flex;
+  align-items: center;
 }
 
 .counter-button {
@@ -13,6 +14,6 @@
 }
 
 .counter-number {
-  font-size: var(--content);
+  font-size: var(--sub-heading);
   margin: 0 0.5rem;
 }

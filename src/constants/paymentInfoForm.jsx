@@ -12,7 +12,7 @@ export const paymentInfoForm = [
     type: "number",
   },
   {
-    id: "request",
+    id: "bookRequest",
     label: "요청사항",
     placeholder: "요청사항을 적어주세요",
     type: "text",
