@@ -1,4 +1,4 @@
-.category-title-wraper {
+.category-title-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,9 +46,9 @@
   margin-bottom: 0.5rem;
 }
 
-.category-camping-sub-title-wraper,
-.category-camping-location-wraper,
-.category-camping-info-icons-wraper {
+.category-camping-sub-title-wrapper,
+.category-camping-addr-wrapper,
+.category-camping-info-icons-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,36 +64,27 @@
   font-size: var(--heading);
 }
 
-.category-camping-location-icon-wraper {
+.category-camping-addr-icon-wrapper,
+.category-camping-info-star-wrapper {
   display: flex;
 }
 
-.category-camping-location-icon {
+.category-camping-addr-icon {
   width: 1.5rem;
   height: 1.5rem;
   color: green;
 }
 
-.category-camping-location,
+.category-camping-addr,
 .category-camping-people {
   font-size: var(--sub-heading);
   color: gray;
-}
-
-.category-camping-info-star-wraper,
-.category-camping-info-heart-wraper {
-  display: flex;
 }
 
 .category-camping-info-star {
   width: 1.2rem;
   height: 1.2rem;
   color: yellow;
-}
-.category-camping-info-heart {
-  width: 1.2rem;
-  height: 1.2rem;
-  color: red;
 }
 
 .category-camping-info {
