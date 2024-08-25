@@ -15,7 +15,7 @@ const useFetchCampingList = () => {
       try {
         const response = await get("camp", customHeaders);
         setCampingPlaces(response.content); // 응답 데이터의 'content' 사용
-      } catch (err) {
+      } catch (error) {
         setError(err.message);
       }
     };
