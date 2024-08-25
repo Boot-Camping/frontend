@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "../components/category-page/CategoryPage.css";
 import { campingPlaceData } from "../constants/campingPlaceData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
@@ -9,23 +9,13 @@ import star from "../assets//svg/star.svg";
 import { ReactSVG } from "react-svg";
 
 const CategoryPage = () => {
-  const locations = useLocation();
-  console.log(locations.state);
+  const { category } = useParams(); // useParams를 사용하여 URL에서 title 값을 가져옵니다.
 
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaceData);
 
-  // 전달된 state에서 title 값을 가져옵니다. 기본값은 "전체"
-  const [categoryTitle, setCategoryTitle] = useState(
-    locations.state?.title || "전체"
-  );
-
-  useEffect(() => {
-    // location.state가 변경될 때마다 categoryTitle을 업데이트합니다.
-    if (locations.state?.title) {
-      setCategoryTitle(locations.state.title);
-    }
-  }, [locations.state]);
+  // 전달된 title 값을 사용하여 categoryTitle을 설정합니다. 기본값은 "전체"
+  const categoryTitle = category || "전체";
 
   return (
     <>
