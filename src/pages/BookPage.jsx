@@ -42,7 +42,7 @@ const BookPage = () => {
           className="hidden-component"
           style={{ display: isVisible ? "block" : "none" }}
         >
-          <PaymentPage />
+          <PaymentPage campInfo={campInfo} />
         </div>
       </div>
     </>

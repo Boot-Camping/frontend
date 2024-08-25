@@ -12,7 +12,7 @@ const DateRangePicker = () => {
   const [range, setRange] = useState([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 7), // 초기 endDate를 명확하게 설정
+      endDate: addDays(new Date(), 7),
       key: "selection",
     },
   ]);
@@ -43,11 +43,10 @@ const DateRangePicker = () => {
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
 
   useEffect(() => {
-    // endDate가 undefined가 아닌 경우에만 상태 업데이트
     if (range[0].endDate) {
       setCampingDays(numberOfNights + 1);
-      setCheckIn(format(range[0].startDate, "yyyy년 MM월 dd일"));
-      setCheckOut(format(range[0].endDate, "yyyy년 MM월 dd일"));
+      setCheckIn(range[0].startDate);
+      setCheckOut(range[0].endDate);
     }
   }, [numberOfNights, range, setCampingDays, setCheckIn, setCheckOut]);
 

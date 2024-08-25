@@ -1,6 +1,5 @@
 import React from "react";
 import "./BookPage.css";
-import useCampInfo from "../../hooks/useCampInfo";
 
 const BookInfo = ({ campInfo }) => {
   return (
