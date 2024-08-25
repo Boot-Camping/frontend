@@ -1,0 +1,38 @@
+.logout-btn {
+  font-size: var(--sub-heading);
+  border: none;
+  background: transparent;
+  color: var(--light-green);
+  font-family: "Pretendard-regular";
+}
+
+/***********************************
+ *	로그아웃 모달
+*/
+.logout-txt {
+  font-size: var(--heading);
+}
+
+.logout-btn-wrap {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logout-btn-wrap button {
+  border: 1px solid var(--light-green);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.logout-cancel-btn {
+  background: transparent;
+  color: var(--light-green);
+}
+
+.logout-confirm-btn {
+  background: var(--light-green);
+  color: #fff;
+}
