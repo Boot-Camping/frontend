@@ -1,17 +1,32 @@
 import React, { useState } from "react";
 import "../components/payment-page/PaymentPage.css";
-
 import PaymentInfo from "../components/payment-page/PaymentInfo";
 import PaymentAmount from "../components/payment-page/PaymentAmount";
 import PaymentPolicy from "../components/payment-page/PaymentPolicy";
 import PaymentModal from "../components/payment-page/PaymentModal";
 import { Link } from "react-router-dom";
+import useCampInfo from "../hooks/useCampInfo";
 
 const PaymentPage = () => {
+  const campId = 21;
+  const {
+    campInfo: paymentInfo,
+    loading,
+    error,
+  } = useCampInfo(campId, "campInfo");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>캠핑장 정보 가져오기 실패: {error.message}</div>;
+  }
 
   const openModal = () => {
     if (isButtonEnabled && isFormValid) {
@@ -46,8 +61,11 @@ const PaymentPage = () => {
     <>
       <div className="payment-page underline">
         <h2 className="payment-title">캠핑장 결제하기</h2>
-        <PaymentInfo onFormValidChange={formValidChangeHandle} />
-        <PaymentAmount />
+        <PaymentInfo
+          paymentInfo={paymentInfo}
+          onFormValidChange={formValidChangeHandle}
+        />
+        <PaymentAmount paymentInfo={paymentInfo} />
         <PaymentPolicy allCheckedHandle={allCheckedHandle} />
         <button
           className="payment-button"

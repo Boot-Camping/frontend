@@ -4,30 +4,33 @@ import NumCounter from "../../utils/numCounter";
 import { detailCampingInfo } from "../../constants/detailCampingInfo";
 import { useCampingDays } from "../../hooks/CampingDaysContext";
 
-const getDetailCampingInfo = (id) => {
-  return detailCampingInfo.find((info) => info.id === id);
-};
+// const getDetailCampingInfo = (id) => {
+//   return detailCampingInfo.find((info) => info.id === id);
+// };
 
-const { label: priceLabel, value: onedayPrice } = getDetailCampingInfo("price");
-const { label: overChargeLabel, value: overCharge } =
-  getDetailCampingInfo("overCharge");
-const { label: extraNumLabel, value: maxExtraNum } =
-  getDetailCampingInfo("extraNum");
-const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
+// const { label: priceLabel, value: paymentInfo.price } = getDetailCampingInfo("price");
+// const { label: paymentInfo.overChargeLabel, value: paymentInfo.overCharge } =
+//   getDetailCampingInfo("paymentInfo.overCharge");
+// const { label: maxNumLabel, value: paymentInfo.maxNum } =
+//   getDetailCampingInfo("maxNum");
+// const totalAmountLabel = getDetailCampingInfo("totalAmount").label;
 
-const PaymentAmount = () => {
+const PaymentAmount = ({ paymentInfo }) => {
   const { campingDays } = useCampingDays();
-  const [extraNum, setExtraNum] = useState(maxExtraNum);
+  const [maxNum, setmaxNum] = useState(paymentInfo.maxNum);
   const [totalAmount, setTotalAmount] = useState(
-    (onedayPrice + overCharge * maxExtraNum) * (campingDays - 1)
+    (paymentInfo.price + paymentInfo.overCharge * paymentInfo.maxNum) *
+      (campingDays - 1)
   );
 
   useEffect(() => {
-    setTotalAmount((onedayPrice + overCharge * extraNum) * (campingDays - 1));
-  }, [extraNum, onedayPrice, campingDays, overCharge]);
+    setTotalAmount(
+      (paymentInfo.price + paymentInfo.overCharge * maxNum) * (campingDays - 1)
+    );
+  }, [maxNum, paymentInfo.price, campingDays, paymentInfo.overCharge]);
 
-  const extraNumChangeHandle = (newCount) => {
-    setExtraNum(newCount);
+  const maxNumChangeHandle = (newCount) => {
+    setmaxNum(newCount);
   };
 
   return (
@@ -36,21 +39,21 @@ const PaymentAmount = () => {
         <h3 className="payment-amount-title">결제금액</h3>
 
         <div className="oneday-price">
-          <div>{priceLabel}</div>
-          <div>{onedayPrice.toLocaleString()} 원</div>
+          <div>1박 가격</div>
+          <div>{paymentInfo.price.toLocaleString()} 원</div>
         </div>
 
         <div className="over-charge">
-          <div>{overChargeLabel}</div>
-          <div>{overCharge.toLocaleString()} 원/명</div>
+          <div>초과인원당 추가비용</div>
+          <div>{paymentInfo.overCharge.toLocaleString()} 원/명</div>
         </div>
 
         <div className="extra-number">
-          <div>{extraNumLabel}</div>
+          <div>최대 수용인원</div>
           <div>
             <NumCounter
-              onCountChange={extraNumChangeHandle}
-              maxCount={maxExtraNum}
+              onCountChange={maxNumChangeHandle}
+              maxCount={paymentInfo.maxNum}
             />
           </div>
         </div>
@@ -61,7 +64,7 @@ const PaymentAmount = () => {
         </div>
 
         <div className="total-amount">
-          <div>{totalAmountLabel}</div>
+          <div>총 결제금액</div>
           <div>{totalAmount.toLocaleString()} 원</div>
         </div>
       </div>

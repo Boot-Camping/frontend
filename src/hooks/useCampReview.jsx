@@ -10,7 +10,6 @@ const useCampReview = (campId) => {
     const fetchCampReview = async () => {
       try {
         const response = await get(`review/camp/${campId}`);
-        console.log("캠핑장 정보 가져오기 성공:", response);
         setCampReviews(response);
         setLoading(false);
       } catch (error) {

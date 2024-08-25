@@ -31,12 +31,14 @@ import DeleteAccountPage from "./pages/DeleteAccountPage";
 import ReviewWriter from "./components/review-page/ReviewWriter";
 import { saveData } from "./constants/save";
 import { CampingDaysProvider } from "./hooks/CampingDaysContext";
+import { AuthProvider } from "./hooks/authContext";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <CampingDaysProvider>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <CampingDaysProvider>
         <main>
           <Routes>
             <Route path="/" element={<MainPage />} />
@@ -83,8 +85,9 @@ function App() {
           </Routes>
         </main>
       </CampingDaysProvider>
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
