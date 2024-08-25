@@ -1,4 +1,4 @@
-.mypage-user {
+.mypage-user-wrap {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -7,7 +7,7 @@
   padding-bottom: 2rem;
 }
 
-.mypage-user::after {
+.mypage-user-wrap::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -18,7 +18,10 @@
   transform: translateX(-50%);
 }
 
-.mypage-user-info {
+/***********************************
+ *	유저 이미지
+*/
+.mypage-user {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,8 +30,8 @@
 }
 
 .mypage-user-icon {
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   margin-right: 0.5rem;
 }
 
@@ -36,11 +39,20 @@
   fill: var(--bg-gray);
 }
 
+/***********************************
+ *	유저 이름, 수정, 로그아웃
+*/
+.mypage-user-info {
+  line-height: 1.3;
+  font-size: var(--sub-heading);
+}
+
 .user-setting {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: var(--content);
+  font-weight: normal;
   color: var(--light-gray);
 }
 
