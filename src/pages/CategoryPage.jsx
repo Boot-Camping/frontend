@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../components/category-page/CategoryPage.css";
-import { campingPlaceData } from "../constants/campingPlaceData";
-import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import { ReactSVG } from "react-svg";
 import heart from "../assets/svg/heart.svg";
 import location from "../assets/svg/location.svg";
 import star from "../assets//svg/star.svg";
-import { ReactSVG } from "react-svg";
+import useHeartClick from "../hooks/useHeartClick";
+import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import { get } from "../utils/Api";
 
 const CategoryPage = () => {
-  const { category } = useParams(); // useParams를 사용하여 URL에서 title 값을 가져옵니다.
+  const { category } = useParams(); // URL에서 category 값을 가져옴
+  const [campingPlaces, setCampingPlaces] = useState([]);
 
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCampingPlaces = async () => {
+      try {
+        const response = await get("/api/camp"); // API 호출
+        console.log(response.data);
+        setCampingPlaces(response.data); // 받아온 데이터를 상태에 저장
+      } catch (err) {
+        setError(err.message); // 에러 메시지 상태에 저장
+      }
+    };
+
+    fetchCampingPlaces();
+  }, []);
+
+  // useCampingPlaceFilter 훅에 API 데이터를 전달
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlaceData);
+    useCampingPlaceFilter(campingPlaces);
 
-  // 전달된 title 값을 사용하여 categoryTitle을 설정합니다. 기본값은 "전체"
+  const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
+
+  if (error) return <div>Error: {error}</div>; // 에러 발생 시 표시할 UI
+
+  // 전달된 category 값을 사용하여 categoryTitle을 설정합니다. 기본값은 "전체"
   const categoryTitle = category || "전체";
 
   return (
@@ -32,14 +56,22 @@ const CategoryPage = () => {
         </select>
       </div>
 
-      {campingPlaceFiltered.map((campingPlace) => (
+      {campingPlaceFiltered.map((campingPlace, index) => (
         <div key={campingPlace.id} className="category-camping-list">
           <img className="category-camping-img" src={campingPlace.img} alt="" />
+
           <ReactSVG
-            className="category-camping-img-heart"
-            src={heart}
-            alt="찜"
+            className={`category-camping-img-heart ${
+              !heartClick[index] && "category-camping-img-heart-delete"
+            }`}
+            src={heartIcon.heart}
+            alt=""
+            onClick={(e) => {
+              e.preventDefault();
+              heartClickHandler(index);
+            }}
           />
+
           <div className="category-camping-type">{campingPlace.type}</div>
           <div className="category-camping-sub-title-wraper">
             <div className="category-camping-name">{campingPlace.name}</div>

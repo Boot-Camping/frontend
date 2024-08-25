@@ -29,7 +29,15 @@
   right: 1rem;
   width: 2.5rem;
   height: 2.5rem;
-  color: red;
+}
+
+.category-camping-img-heart svg {
+  stroke: var(--red);
+  fill: var(--red);
+}
+
+.category-camping-img-heart-delete svg {
+  fill: none;
 }
 
 .category-camping-type {
