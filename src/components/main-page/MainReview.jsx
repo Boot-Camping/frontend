@@ -25,11 +25,11 @@ const MainReview = () => {
         spaceBetween={20}
       >
         {mainReviewData.map((review, index) => (
-          <SwiperSlide key={index} className="main-review-wraper">
-            <div className="main-review-img-wraper">
+          <SwiperSlide key={index} className="main-review-wrapper">
+            <div className="main-review-img-wrapper">
               <img className="main-review-img" src={review.img} alt="" />
             </div>
-            <div className="main-review-info-wraper">
+            <div className="main-review-info-wrapper">
               <div className="main-review-text">{review.text}</div>
               <div className="main-review-time">{review.time}</div>
               <div className="main-review-place">{review.place}</div>

@@ -1,20 +1,18 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
-
 import format from "date-fns/format";
 import { addDays, differenceInDays } from "date-fns";
+import { useCampingDays } from "../../hooks/CampingDaysContext";
 
 import "../book-page/DateRangePicker.css";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { useCampingDays } from "../../hooks/CampingDaysContext";
 
 const DateRangePicker = () => {
   const [range, setRange] = useState([
     {
       startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      endDate: addDays(new Date(), 7), // 초기 endDate를 명확하게 설정
       key: "selection",
     },
   ]);
@@ -22,7 +20,7 @@ const DateRangePicker = () => {
   const [open, setOpen] = useState(false);
   const refOne = useRef(null);
 
-  const { setCampingDays } = useCampingDays();
+  const { setCampingDays, setCheckIn, setCheckOut } = useCampingDays();
 
   useEffect(() => {
     document.addEventListener("keydown", hideOnEscape, true);
@@ -45,8 +43,13 @@ const DateRangePicker = () => {
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
 
   useEffect(() => {
-    setCampingDays(numberOfNights + 1);
-  }, [numberOfNights, setCampingDays]);
+    // endDate가 undefined가 아닌 경우에만 상태 업데이트
+    if (range[0].endDate) {
+      setCampingDays(numberOfNights + 1);
+      setCheckIn(format(range[0].startDate, "yyyy년 MM월 dd일"));
+      setCheckOut(format(range[0].endDate, "yyyy년 MM월 dd일"));
+    }
+  }, [numberOfNights, range, setCampingDays, setCheckIn, setCheckOut]);
 
   return (
     <div className="calendar-wrap">

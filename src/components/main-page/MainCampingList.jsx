@@ -1,77 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
-import { campingPlaceData } from "../../constants/campingPlaceData";
-import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
-import heart from "../../assets/svg/heart.svg";
-import star from "../../assets/svg/star.svg";
 import { ReactSVG } from "react-svg";
+import star from "../../assets/svg/star.svg";
+import useHeartClick from "../../hooks/useHeartClick";
+import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
+import useFetchCampingList from "../../hooks/useFetchCampingList";
 
 const MainCampingList = () => {
+  const { campingPlaces, error } = useFetchCampingList();
+
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlaceData);
+    useCampingPlaceFilter(campingPlaces);
 
-  const [heartClick, setHeartClick] = useState({});
+  const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
 
-  const heartClickHandler = (id) => {
-    setHeartClick((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
-      <div className="camping-title-wraper">
+      <div className="camping-title-wrapper">
         <div className="camping-title">캠핑장 리스트</div>
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
         >
           <option value="reservation">예약 많은 순</option>
-          <option value="review">리뷰 많은순</option>
+          <option value="review">리뷰 많은 순</option>
           <option value="star">평점 좋은 순</option>
-          <option value="heart">찜 많은 순</option>
         </select>
       </div>
 
-      <div className="camping-list-wraper">
-        {campingPlaceFiltered.map((campingPlace) => (
+      <div className="camping-list-wrapper">
+        {campingPlaceFiltered.map((campingPlace, index) => (
           <div key={campingPlace.id} className="camping-list">
-            <Link to={"/camping/detail"}>
-              <img className="camping-img" src={campingPlace.img} alt="" />
+            <Link to={`/camping/detail/${campingPlace.id}`}>
+              <img
+                className="camping-img"
+                src={campingPlace.imageUrls[0] || "default-image-url.jpg"}
+                alt={campingPlace.name}
+              />
+
               <ReactSVG
                 className={`camping-img-heart ${
-                  heartClick[campingPlace.id] ? "liked" : ""
+                  !heartClick[index] && "camping-img-heart-delete"
                 }`}
-                src={heart}
+                src={heartIcon.heart}
                 alt=""
                 onClick={(e) => {
                   e.preventDefault();
-                  heartClickHandler(campingPlace.id);
+                  heartClickHandler(index);
                 }}
               />
 
               <div className="camping-name">{campingPlace.name}</div>
-              <div className="camping-sub-title-wraper">
-                <div className="camping-type">{campingPlace.type}</div>
-                <div className="camping-price">{campingPlace.price}</div>
+              <div className="camping-sub-title-wrapper">
+                <div className="camping-type">
+                  {campingPlace.categories.join(". ")}
+                </div>
+                <div className="camping-price">{campingPlace.price}원</div>
               </div>
             </Link>
-            <div className="camping-info-icons-wraper">
-              <div className="camping-info-star-wraper">
+            <div className="camping-info-icons-wrapper">
+              <div className="camping-info-star-wrapper">
                 <ReactSVG className="camping-info-star" src={star} alt="" />
-                <div className="camping-info">{campingPlace.rating}</div>
+                <div className="camping-info">{campingPlace.gradeCount}</div>
                 <div className="camping-info">
-                  ・리뷰({campingPlace.reviews})
+                  ・리뷰({campingPlace.reviewCount})
                 </div>
               </div>
-              <div className="camping-info-heart-wraper">
-                <ReactSVG className="camping-info-heart" src={heart} alt="" />
-                <div className="camping-info">{campingPlace.heart}</div>
-                <div className="camping-info">
-                  ・예약({campingPlace.reservations})
-                </div>
+
+              <div className="camping-info">
+                예약자 수({campingPlace.reviewCount})
               </div>
             </div>
           </div>

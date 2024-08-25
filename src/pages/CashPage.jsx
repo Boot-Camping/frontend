@@ -1,17 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/cash-page/CashPage.css";
 import "../components/cash-page/CashFilter.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { cashData, cashIcon } from "../constants/cash";
+import { cashIcon } from "../constants/cash";
 import PaidFilter from "../components/paid-page/PaidFilter";
 import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 import { filterType } from "../constants/filterType";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { get } from "../utils/Api";
 
 const CashPage = () => {
+  const { accessToken, userId } = getUserIdFromToken();
+  const [cashData, setCashData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [totalCash, setTotalCash] = useState(0);
+
+  useEffect(() => {
+    const getCashData = async () => {
+      const customHeaders = {
+        Authorization: `Bearer ${accessToken}`,
+      };
+
+      try {
+        const response = await get(
+          `userprofile/cashTransaction/${userId}`,
+          customHeaders
+        );
+        setCashData(response);
+        setLoading(false);
+        console.log("response", response);
+      } catch (error) {
+        setErrorMessage(error.message);
+      }
+    };
+
+    getCashData();
+  }, [accessToken, userId]);
+  console.log("cashData", cashData);
 
   const filterChangeHandle = (status) => {
     setFilter(status);
@@ -30,18 +59,26 @@ const CashPage = () => {
         <div>캐시 충전/사용 내역</div>
       </div>
 
-      <PaidFilter
-        filterChangeHandle={filterChangeHandle}
-        filterType={filterType.cash}
-        wrapClassName="cash-filter"
-        allClassName="cash-all-filter"
-      />
-
-      <CashList
-        filter={filter}
-        onTotalCashUpdate={totalCashUpdateHandle}
-        cashData={cashData}
-      />
+      {loading ? (
+        <div>로딩중</div>
+      ) : cashData ? (
+        <>
+          <PaidFilter
+            filterChangeHandle={filterChangeHandle}
+            filterType={filterType.cash}
+            wrapClassName="cash-filter"
+            allClassName="cash-all-filter"
+          />
+          <CashList
+            filter={filter}
+            onTotalCashUpdate={totalCashUpdateHandle}
+            cashData={cashData}
+            errorMessage={errorMessage}
+          />
+        </>
+      ) : (
+        <div>사용자 정보를 찾을 수 없습니다</div>
+      )}
 
       <CashChargeBtn totalCash={totalCash} />
     </section>

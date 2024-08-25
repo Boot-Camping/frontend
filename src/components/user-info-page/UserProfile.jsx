@@ -3,7 +3,7 @@ import "./UserProfile.css";
 import { ReactSVG } from "react-svg";
 import { userInfoIcon, userProfile } from "../../constants/userInfo";
 
-const UserProfile = ({ setIsOpened, setModalType }) => {
+const UserProfile = ({ setIsOpened, setModalType, userData }) => {
   const telChangeHandle = () => {
     setIsOpened(true);
     setModalType("tel");
@@ -16,7 +16,7 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
     console.log("주소 변경");
   };
 
-  const addrParts = userProfile.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
+  const addrParts = userData.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
   const address = addrParts[1].trim();
   const detailAddress = addrParts[3].trim();
 
@@ -27,29 +27,29 @@ const UserProfile = ({ setIsOpened, setModalType }) => {
           <input type="file" id="profile-img-input" />
           <label htmlFor="profile-img-input">
             <ReactSVG
-              src={userProfile.userImage}
+              src={userInfoIcon.userIcon}
               className="profile-img-user"
             />
             <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
           </label>
         </div>
-        <div>{userProfile.loginId}</div>
+        <div>{userData.name}</div>
       </div>
       <div className="profile-txt-wrap underline">
         <div className="profile-txt">
           <div>이름</div>
-          <div>{userProfile.userName}</div>
+          <div>{userData.name}</div>
         </div>
         <div className="profile-txt" onClick={telChangeHandle}>
           <div>전화번호</div>
           <div>
-            <div>{userProfile.tel}</div>
+            <div>{userData.tel}</div>
             <div className="profile-change">변경</div>
           </div>
         </div>
         <div className="profile-txt">
           <div>이메일</div>
-          <div>{userProfile.email}</div>
+          <div>{userData.email}</div>
         </div>
         <div className="profile-txt profile-address" onClick={addrChangeHandle}>
           <div className="">주소</div>

@@ -69,7 +69,3 @@
   stroke: var(--red);
   fill: var(--red);
 }
-
-.save-delete svg {
-  fill: none;
-}
