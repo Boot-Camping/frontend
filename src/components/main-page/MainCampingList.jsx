@@ -5,39 +5,17 @@ import { ReactSVG } from "react-svg";
 import star from "../../assets/svg/star.svg";
 import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
-import { get } from "../../utils/Api";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
+import useFetchCampingList from "../../hooks/useFetchCampingList";
 
 const MainCampingList = () => {
-  const [campingPlaces, setCampingPlaces] = useState([]);
-  const [error, setError] = useState(null);
-  const { accessToken } = getUserIdFromToken();
+  const { campingPlaces, error } = useFetchCampingList();
 
-  // API에서 데이터 가져오기
-  useEffect(() => {
-    const fetchCampingPlaces = async () => {
-      const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
-      };
-      try {
-        const response = await get("camp", customHeaders);
-        console.log(response.content);
-        setCampingPlaces(response.content); // 응답 데이터의 'content' 사용
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchCampingPlaces();
-  }, [accessToken]);
-
-  // useCampingPlaceFilter 훅에 API 데이터를 전달
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
 
   const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
 
-  if (error) return <div>Error: {error}</div>; // 에러 발생 시 보여줄 UI
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
