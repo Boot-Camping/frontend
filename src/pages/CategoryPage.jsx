@@ -6,39 +6,19 @@ import location from "../assets/svg/location.svg";
 import star from "../assets//svg/star.svg";
 import useHeartClick from "../hooks/useHeartClick";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { get } from "../utils/Api";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import useFetchCampingList from "../hooks/useFetchCampingList";
 
 const CategoryPage = () => {
   const { category } = useParams(); // URL에서 category 값을 가져옴
 
-  const [campingPlaces, setCampingPlaces] = useState([]);
-  const [error, setError] = useState(null);
-  const { accessToken } = getUserIdFromToken();
+  const { campingPlaces, error } = useFetchCampingList();
 
-  useEffect(() => {
-    const fetchCampingPlaces = async () => {
-      const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
-      };
-      try {
-        const response = await get("camp", customHeaders);
-        setCampingPlaces(response.content); // 응답 데이터의 'content' 사용
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchCampingPlaces();
-  }, [accessToken]);
-
-  // useCampingPlaceFilter 훅에 API 데이터를 전달
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
 
   const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
 
-  if (error) return <div>Error: {error}</div>; // 에러 발생 시 표시할 UI
+  if (error) return <div>Error: {error}</div>;
 
   // 전달된 category 값을 사용하여 categoryTitle을 설정합니다. 기본값은 "전체"
   const categoryTitle = category || "전체";
