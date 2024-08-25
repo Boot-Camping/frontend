@@ -9,12 +9,12 @@
   padding-bottom: 0.5rem;
 }
 
-.main-review-wraper {
+.main-review-wrapper {
   display: flex;
   justify-content: center;
 }
 
-.main-review-img-wraper {
+.main-review-img-wrapper {
   max-width: 10rem;
   max-height: 10rem;
   width: 100%;
