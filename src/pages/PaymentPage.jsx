@@ -4,17 +4,25 @@ import PaymentInfo from "../components/payment-page/PaymentInfo";
 import PaymentAmount from "../components/payment-page/PaymentAmount";
 import PaymentPolicy from "../components/payment-page/PaymentPolicy";
 import PaymentModal from "../components/payment-page/PaymentModal";
+import PaymentFailAlert from "../components/payment-page/PaymentFailAlert";
 import { Link } from "react-router-dom";
 import { useCampingDays } from "../hooks/CampingDaysContext";
 import { post } from "../utils/Api";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
 const PaymentPage = ({ campInfo }) => {
+  const campId = campInfo.id;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
   const { checkIn, checkOut } = useCampingDays();
   const [bookRequest, setBookRequest] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalBookNum, setTotalBookNum] = useState(0);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const { userId, accessToken } = getUserIdFromToken();
 
   if (!campInfo) {
     return <div>캠핑장 정보가 없습니다.</div>;
@@ -22,6 +30,11 @@ const PaymentPage = ({ campInfo }) => {
 
   const submitRequestHandle = (request) => {
     setBookRequest(request);
+  };
+
+  const paymentDataHandle = (totalPrice, totalBookNum) => {
+    setTotalPrice(totalPrice);
+    setTotalBookNum(totalBookNum);
   };
 
   const openModal = () => {
@@ -45,12 +58,38 @@ const PaymentPage = ({ campInfo }) => {
     setIsSecondModalOpen(false);
   };
 
+  const closeAlert = () => {
+    setAlertMessage("");
+  };
+
   const allCheckedHandle = (allChecked) => {
     setIsButtonEnabled(allChecked);
   };
 
-  const formValidChangeHandle = (isValid) => {
-    setIsFormValid(isValid);
+  const paymentHandle = async () => {
+    const data = {
+      totalPrice: totalPrice,
+      checkIn: new Date(checkIn).toISOString(),
+      checkOut: new Date(checkOut).toISOString(),
+      bookRequest: bookRequest,
+      bookNum: totalBookNum,
+    };
+    console.log("전송하려는 예약정보:", data);
+
+    try {
+      const response = await post(`book/${campId}/${userId}`, data, {
+        Authorization: `Bearer ${accessToken}`,
+      });
+      console.log("예약 성공! 😄:", response);
+      openSecondModal();
+    } catch (error) {
+      console.error("예약실패 🥲");
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "결제 중 문제가 발생했습니다.";
+      setAlertMessage(errorMessage);
+    }
   };
 
   return (
@@ -62,7 +101,9 @@ const PaymentPage = ({ campInfo }) => {
           campInfo={campInfo}
           checkIn={checkIn}
           checkOut={checkOut}
+          paymentDataHandle={paymentDataHandle}
         />
+
         <PaymentPolicy allCheckedHandle={allCheckedHandle} />
         <button
           className="payment-button"
@@ -78,7 +119,7 @@ const PaymentPage = ({ campInfo }) => {
             <button className="payment-modal-button" onClick={closeModal}>
               취소
             </button>
-            <button className="payment-modal-button" onClick={openSecondModal}>
+            <button className="payment-modal-button" onClick={paymentHandle}>
               결제하기
             </button>
           </div>
@@ -98,6 +139,8 @@ const PaymentPage = ({ campInfo }) => {
             </Link>
           </div>
         </PaymentModal>
+
+        <PaymentFailAlert message={alertMessage} onClose={closeAlert} />
       </div>
     </>
   );

@@ -3,21 +3,30 @@ import "./PaymentPage.css";
 import NumCounter from "../../utils/numCounter";
 import { useCampingDays } from "../../hooks/CampingDaysContext";
 
-const PaymentAmount = ({ campInfo, checkIn, checkOut }) => {
+const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
   const { campingDays } = useCampingDays();
-  const [maxNum, setMaxNum] = useState(campInfo.maxNum);
-  const [totalAmount, setTotalAmount] = useState(
-    (campInfo.price + campInfo.overCharge * campInfo.maxNum) * (campingDays - 1)
-  );
+  const [standardNum, setStandardNum] = useState(campInfo.standardNum);
+  const [extraNum, setExtraNum] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const totalBookNum = standardNum + extraNum;
 
   useEffect(() => {
-    setTotalAmount(
-      (campInfo.price + campInfo.overCharge * maxNum) * (campingDays - 1)
-    );
-  }, [maxNum, campInfo.price, campingDays, campInfo.overCharge]);
+    const calculatedTotalAmount =
+      campInfo.price * (campingDays - 1) +
+      campInfo.overCharge * extraNum * (campingDays - 1);
 
-  const maxNumChangeHandle = (newCount) => {
-    setMaxNum(newCount);
+    setTotalAmount(calculatedTotalAmount);
+
+    paymentDataHandle(calculatedTotalAmount, totalBookNum);
+  }, [standardNum, extraNum, campInfo.price, campingDays, campInfo.overCharge]);
+
+  const standardNumHandle = (newCount) => {
+    setStandardNum(newCount);
+  };
+
+  const extraNumHandle = (newCount) => {
+    setExtraNum(newCount);
   };
 
   const formattedCheckIn =
@@ -51,7 +60,10 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut }) => {
         <div className="standard-num">
           <div>캠핑 예약인원</div>
           <div>
-            <NumCounter maxCount={campInfo.standardNum} />
+            <NumCounter
+              maxCount={campInfo.standardNum}
+              onCountChange={standardNumHandle}
+            />
           </div>
         </div>
 
@@ -64,10 +76,15 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut }) => {
           <div>초과인원</div>
           <div>
             <NumCounter
-              onCountChange={maxNumChangeHandle}
-              maxCount={campInfo.maxNum}
+              maxCount={campInfo.maxNum - standardNum}
+              onCountChange={extraNumHandle}
             />
           </div>
+        </div>
+
+        <div className="total-num">
+          <div>총 예약인원</div>
+          <div>{totalBookNum}명</div>
         </div>
 
         <div className="camping-days">
