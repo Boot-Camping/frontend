@@ -13,6 +13,7 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
     url: `${API_BASE_URL}/api/${endpoint}`,
     headers,
     ...(method === "POST" && { data }),
+    ...(method === "PUT" && { data }),
   };
 
   try {
