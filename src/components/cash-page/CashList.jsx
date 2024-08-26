@@ -3,8 +3,9 @@ import "./CashList.css";
 import { cashIcon } from "../../constants/cash";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
+import EmptyContent from "../paid-page/EmptyContent";
 
-const CashList = ({ filter, onTotalCashUpdate, cashData }) => {
+const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
   const filteredData = filterData(cashData, filter, "transactionType");
 
   const sortedData = [...filteredData].sort((a, b) => {

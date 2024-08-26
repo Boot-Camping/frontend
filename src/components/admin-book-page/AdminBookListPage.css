@@ -39,3 +39,8 @@
   margin: 1rem 0 3rem 0;
   cursor: pointer;
 }
+
+.admin-book-list-ex {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+}
