@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
 import format from "date-fns/format";
 import { addDays, differenceInDays } from "date-fns";
-import { useCampingDays } from "../../hooks/CampingDaysContext";
+import { useCampingDays } from "../../context/campingDaysContext";
 
 import "../book-page/DateRangePicker.css";
 import "react-date-range/dist/styles.css";
