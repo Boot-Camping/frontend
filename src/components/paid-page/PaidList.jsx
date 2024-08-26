@@ -1,6 +1,6 @@
 import React from "react";
 import "./PaidList.css";
-import { paidIcon } from "../../constants/paid";
+import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
 import EmptyContent from "../common/EmptyContent";
@@ -19,14 +19,17 @@ const PaidList = ({ filter, paidData, errorMessage }) => {
     if (data.bookStatus === "BOOKING") {
       return (
         <button>
-          <ReactSVG src={paidIcon.cancel} className="paid-list-img" />
+          <ReactSVG src={svgCollection.xMark} className="paid-list-img" />
           예약 취소
         </button>
       );
     } else {
       return (
         <button onClick={() => reviewClickHandle(data)}>
-          <ReactSVG src={paidIcon.write} className="paid-list-img" />
+          <ReactSVG
+            src={svgCollection.pencilSquare}
+            className="paid-list-img"
+          />
           리뷰 작성
         </button>
       );

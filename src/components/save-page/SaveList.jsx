@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SaveList.css";
-import { saveIcon } from "../../constants/save";
+import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 import EmptyContent from "../common/EmptyContent";
 import SaveModal from "./SaveModal";
@@ -39,7 +39,7 @@ const SaveList = ({ visibleItems, saveData, errorMessage, onUpdate }) => {
                 <div className="save-name-wrap">
                   <div className="save-name">{data.name}</div>
                   <ReactSVG
-                    src={saveIcon.heart}
+                    src={svgCollection.heart}
                     className={`save-heart-img ${
                       !savedItems[index] && "save-delete"
                     }`}

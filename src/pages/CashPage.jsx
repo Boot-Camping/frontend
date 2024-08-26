@@ -3,7 +3,7 @@ import "../components/cash-page/CashPage.css";
 import "../components/cash-page/CashFilter.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { cashIcon } from "../constants/cash";
+import { svgCollection } from "../constants/svgCollection";
 import PaidFilter from "../components/paid-page/PaidFilter";
 import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
@@ -53,7 +53,7 @@ const CashPage = () => {
     <section className="cash-page-wrap">
       <div className="cash-title-wrap">
         <Link to={"/mypage"}>
-          <ReactSVG src={cashIcon.prev} className="cash-move-prev" />
+          <ReactSVG src={svgCollection.prev} className="cash-move-prev" />
         </Link>
         <div>캐시 충전/사용 내역</div>
       </div>

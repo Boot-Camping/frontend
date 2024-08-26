@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./CashList.css";
-import { cashIcon } from "../../constants/cash";
+import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
 import EmptyContent from "../common/EmptyContent";
@@ -33,7 +33,10 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
           >
             <div className="cash-list-status">
               <div className="cash-status">
-                <ReactSVG src={cashIcon.money} className="cash-filter-img" />
+                <ReactSVG
+                  src={svgCollection.money}
+                  className="cash-filter-img"
+                />
                 {data.transactionType === "DEPOSIT" ? "충전" : "사용"}
               </div>
               <div className="cash-date">

@@ -3,7 +3,7 @@ import "../components/notice-detail-page/NoticeDetailPage.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { noticeDetailData } from "../constants/notice";
 import { ReactSVG } from "react-svg";
-import { saveIcon } from "../constants/save";
+import { svgCollection } from "../constants/svgCollection";
 import { shortDateDot } from "../utils/shortDateDot";
 
 const NoticeDetailPage = () => {
@@ -19,7 +19,7 @@ const NoticeDetailPage = () => {
             <div className="notice-detail-info-wrap">
               <div className="move-prev">
                 <ReactSVG
-                  src={saveIcon.prev}
+                  src={svgCollection.prev}
                   className="notice-move-prev"
                   onClick={() => navigate(-1)}
                 />

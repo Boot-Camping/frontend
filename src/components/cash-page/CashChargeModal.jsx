@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./CashChargeModal.css";
 import { ReactSVG } from "react-svg";
-import { cashIcon, chargePrice } from "../../constants/cash";
+import { chargePrice } from "../../constants/cash";
+import { svgCollection } from "../../constants/svgCollection";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
 import { put } from "../../utils/Api";
@@ -42,11 +43,7 @@ const CashChargeModal = ({
       const requestBody = {
         cash: selectPrice,
       };
-      await put(
-        `user/chargeCash/${userId}`,
-        requestBody,
-        customHeaders
-      );
+      await put(`user/chargeCash/${userId}`, requestBody, customHeaders);
       cancleHandle();
       onSuccess();
     } catch (error) {
@@ -74,7 +71,10 @@ const CashChargeModal = ({
                       : "충전 금액을 선택하세요"}
                   </div>
                 </div>
-                <ReactSVG src={cashIcon.money} className="charge-modal-img" />
+                <ReactSVG
+                  src={svgCollection.money}
+                  className="charge-modal-img"
+                />
               </div>
               <div className="charge-price-wrap">
                 {chargePrice.map((price, index) => (

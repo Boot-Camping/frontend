@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 import "./UserInfoModal.css";
-import { userInfoIcon, userInfoModal } from "../../constants/userInfo";
+import { userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
 import DaumPostCode from "../sign-up-page/DaumPostCode";
 import useAddress from "../../hooks/useAddress";
 import UserInfoModalBtn from "./UserInfoModalBtn";
+import { svgCollection } from "../../constants/svgCollection";
 
 const UserInfoModal = ({ isOpened, setIsOpened, modalType, userTel, addr }) => {
   const { postcode, setPostcode } = useAddress();
@@ -85,7 +86,7 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, userTel, addr }) => {
               />
 
               <ReactSVG
-                src={userInfoIcon.xMark}
+                src={svgCollection.xMark}
                 className="info-modal-close"
                 onClick={closeModal(setIsOpened)}
               />

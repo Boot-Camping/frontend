@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import "../components/paid-page/PaidPage.css";
 import "../components/paid-page/PaidFilter.css";
 import { ReactSVG } from "react-svg";
-import { paidData, paidIcon } from "../constants/paid";
 import PaidFilter from "../components/paid-page/PaidFilter";
 import PaidList from "../components/paid-page/PaidList";
 import { Link } from "react-router-dom";
 import { filterType } from "../constants/filterType";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { get } from "../utils/Api";
+import { svgCollection } from "../constants/svgCollection";
 
 const PaidPage = () => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -43,7 +43,7 @@ const PaidPage = () => {
     <section className="paid-wrap">
       <div className="paid-title-wrap">
         <Link to={"/mypage"}>
-          <ReactSVG src={paidIcon.prev} className="paid-move-prev" />
+          <ReactSVG src={svgCollection.prev} className="paid-move-prev" />
         </Link>
         <div>결제 내역</div>
       </div>

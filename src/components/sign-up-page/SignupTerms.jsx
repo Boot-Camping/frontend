@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./SignupTerms.css";
-import { signUpImg, signUpTerms } from "../../constants/signUp";
+import { signUpTerms } from "../../constants/signUp";
 import { ReactSVG } from "react-svg";
+import { svgCollection } from "../../constants/svgCollection";
 
 const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
   const checkAllHandle = (event) => {
@@ -29,7 +30,7 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
           onChange={checkAllHandle}
         />
         <label className="chk-content" htmlFor="chk-all">
-          <ReactSVG src={signUpImg.check} className="signup-check-img" />
+          <ReactSVG src={svgCollection.check} className="signup-check-img" />
           <div className="chk-all-content">
             <div>모두 동의</div>
             <div>서비스 이용을 위해 아래 약관에 모두 동의합니다</div>
@@ -51,7 +52,7 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
             }}
           />
           <label className="chk-content" htmlFor={terms.key}>
-            <ReactSVG src={signUpImg.check} className="signup-check-img" />
+            <ReactSVG src={svgCollection.check} className="signup-check-img" />
             {terms.content}
           </label>
         </div>

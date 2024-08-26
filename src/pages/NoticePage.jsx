@@ -4,7 +4,7 @@ import "../components/notice-page/NoticeFilter.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import NoticeList from "../components/notice-page/NoticeList";
-import { saveIcon } from "../constants/save";
+import { svgCollection } from "../constants/svgCollection";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../constants/notice";
@@ -28,7 +28,7 @@ const NoticePage = () => {
     <section className="notice-page-wrap">
       <div className="notice-title-wrap">
         <Link to={"/mypage"}>
-          <ReactSVG src={saveIcon.prev} className="notice-move-prev" />
+          <ReactSVG src={svgCollection.prev} className="notice-move-prev" />
         </Link>
         <div>공지사항 및 이벤트</div>
       </div>

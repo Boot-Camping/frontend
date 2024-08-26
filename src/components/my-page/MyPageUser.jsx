@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./MyPageUser.css";
-import { mypageImgs, myPageData } from "../../constants/mypage";
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
@@ -35,7 +34,7 @@ const MyPageUser = () => {
   return (
     <div className="mypage-user-wrap">
       <div className="mypage-user">
-        <ReactSVG src={mypageImgs.user} className="mypage-user-icon" />
+        <ReactSVG src={mypageImgs.userImg} className="mypage-user-icon" />
         <div className="mypage-user-info">
           <div>{name}</div>
           <Link to="/userinfo" className="user-setting">

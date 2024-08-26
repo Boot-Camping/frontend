@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../components/save-page/SavePage.css";
-import { saveData, saveIcon } from "../constants/save";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import SaveList from "../components/save-page/SaveList";
@@ -8,6 +7,7 @@ import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { get } from "../utils/Api";
+import { svgCollection } from "../constants/svgCollection";
 
 const SavePage = () => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -39,7 +39,7 @@ const SavePage = () => {
     <section className="save-wrap">
       <div className="save-title-wrap">
         <Link to={"/mypage"}>
-          <ReactSVG src={saveIcon.prev} className="save-move-prev" />
+          <ReactSVG src={svgCollection.prev} className="save-move-prev" />
         </Link>
         <div>찜 목록</div>
       </div>
