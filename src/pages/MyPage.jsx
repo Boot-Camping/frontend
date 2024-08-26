@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../components/my-page/MyPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { mypageBtns, mypageImgs } from "../constants/mypage";
 import MyPageUser from "../components/my-page/MyPageUser";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
 const MyPage = () => {
+  const { accessToken } = getUserIdFromToken();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/login");
+    }
+  }, [accessToken]);
+
   return (
     <section className="mypage-wrap">
       <MyPageUser />

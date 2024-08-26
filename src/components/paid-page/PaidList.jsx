@@ -4,12 +4,13 @@ import { paidIcon } from "../../constants/paid";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
 import EmptyContent from "./EmptyContent";
+import { shortPeriodHyphen } from "../../utils/shortPeriodHyphen";
 
 const PaidList = ({ filter, paidData, errorMessage }) => {
   const filteredData = filterData(paidData, filter, "bookStatus");
 
   const renderButton = (data, index) => {
-    if (data.bookStatus === "예약 완료") {
+    if (data.bookStatus === "BOOKING") {
       return (
         <button>
           <ReactSVG src={paidIcon.cancel} className="paid-list-img" />
@@ -28,34 +29,34 @@ const PaidList = ({ filter, paidData, errorMessage }) => {
 
   return (
     <div className="paid-list-wrap">
-      {paidData.length > 0 ? (
-        <>
-          {filteredData.map((data, index) => (
-            <div
-              className={`paid-list ${
-                data.bookStatus === "예약 완료" ? "book-list" : "usage-list"
-              } `}
-              key={`paid-list-${index}`}
-            >
-              <div className="paid-list-status">
-                <div className="paid-status">{data.bookStatus}</div>
-                <div className="paid-period">
-                  <span>{data.startDate}</span> ~ <span>{data.endDate}</span>
-                </div>
+      {paidData.length > 0 && filteredData.length > 0 ? (
+        filteredData.map((data, index) => (
+          <div
+            className={`paid-list ${
+              data.bookStatus === "BOOKING" ? "book-list" : "usage-list"
+            } `}
+            key={`paid-list-${index}`}
+          >
+            <div className="paid-list-status">
+              <div className="paid-status">
+                {data.bookStatus === "BOOKING" ? "예약 완료" : "이용 완료"}
               </div>
-              <div className="paid-list-price">
-                <div>{data.campName}</div>
-                <div>{data.totalPrice.toLocaleString()}원</div>
+              <div className="paid-period">
+                <span>{shortPeriodHyphen(data)}</span>
               </div>
-              <div className="paid-list-personnel">총 {data.bookNum}명</div>
-              <div className="paid-list-request">
-                <div>요청 사항</div>
-                <div>{data.bookRequest}</div>
-              </div>
-              <div className="paid-list-btn">{renderButton(data, index)}</div>
             </div>
-          ))}
-        </>
+            <div className="paid-list-price">
+              <div>{data.campName}</div>
+              <div>{data.totalPrice.toLocaleString()}원</div>
+            </div>
+            <div className="paid-list-personnel">총 {data.bookNum}명</div>
+            <div className="paid-list-request">
+              <div>요청 사항</div>
+              <div>{data.bookRequest}</div>
+            </div>
+            <div className="paid-list-btn">{renderButton(data, index)}</div>
+          </div>
+        ))
       ) : (
         <EmptyContent errorMessage={errorMessage} />
       )}

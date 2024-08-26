@@ -1,18 +1,7 @@
 import React from "react";
 import "./BookPage.css";
-import useCampInfo from "../../hooks/useCampInfo";
 
-const BookInfo = () => {
-  const campId = 21;
-  const { campInfo, loading, error } = useCampInfo(campId, "campInfo");
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>캠핑장 정보 가져오기 실패: {error.message}</div>;
-  }
+const BookInfo = ({ campInfo }) => {
   return (
     <div>
       <div className="book-info">
