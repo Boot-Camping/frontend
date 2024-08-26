@@ -1,15 +1,4 @@
 /*****************************
- * 	이미지 불러오기
- */
-import prev from "/src/assets/svg/arrowNext.svg";
-import money from "/src/assets/svg/banknotes.svg";
-
-export const cashIcon = {
-  prev,
-  money,
-};
-
-/*****************************
  * 	캐시 충전/사용 데이터
  */
 export const cashData = [
