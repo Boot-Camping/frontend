@@ -29,8 +29,7 @@ const AdminBookDetailPage = () => {
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />
-      <div className="admin-book-camping-title">[{booking.campName}]</div>
-      <div className="admin-book-person-title">예약자 정보</div>
+      <span className="admin-book-camping-title">[ {booking.campName} ]</span>
       <div>
         <span className="admin-book-name">이름</span>
         <input
@@ -106,7 +105,7 @@ const AdminBookDetailPage = () => {
       <div className="camp-user-title">
         <div className="book-user-title">예약 인원</div>
         <div className="camp-max-user-title">추가 인원</div>
-        <div className="book-total-price-title">총 금액 /n박</div>
+        <div className="book-total-price-title">총 금액</div>
       </div>
       <div className="camping-info">
         <div>

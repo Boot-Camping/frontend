@@ -13,7 +13,7 @@ const useFetchCampingList = () => {
         Authorization: `Bearer ${accessToken}`,
       };
       try {
-        const response = await get("camp", customHeaders);
+        const response = await get("camps", customHeaders);
 
         const sortedCampingPlaces = response.content.sort(
           (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
@@ -21,7 +21,7 @@ const useFetchCampingList = () => {
 
         setCampingPlaces(sortedCampingPlaces);
       } catch (error) {
-        setError(err.message);
+        setError(error.message);
       }
     };
 
