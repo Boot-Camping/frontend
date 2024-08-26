@@ -15,23 +15,23 @@ const SavePage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { visibleItems, loadMore, hasMoreItems } = useLoadMore(4, saveData);
 
-  useEffect(() => {
-    const getSaveData = async () => {
-      const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
-      };
-
-      try {
-        const response = await get(
-          `userprofile/wishlist/${userId}`,
-          customHeaders
-        );
-        setSaveData(response);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
+  const getSaveData = async () => {
+    const customHeaders = {
+      Authorization: `Bearer ${accessToken}`,
     };
 
+    try {
+      const response = await get(
+        `userprofile/wishlist/${userId}`,
+        customHeaders
+      );
+      setSaveData(response);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
+  useEffect(() => {
     getSaveData();
   }, []);
 
@@ -48,6 +48,7 @@ const SavePage = () => {
         visibleItems={visibleItems}
         saveData={saveData}
         errorMessage={errorMessage}
+        onUpdate={getSaveData}
       />
 
       <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
