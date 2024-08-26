@@ -14,6 +14,7 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
     headers,
     ...(method === "POST" && { data }),
     ...(method === "PUT" && { data }),
+    ...(method === "DELETE" && { data }),
   };
 
   try {
@@ -48,5 +49,5 @@ export const post = (endpoint, data, customHeaders) =>
 export const put = (endpoint, data, customHeaders) =>
   apiRequest("PUT", endpoint, data, customHeaders);
 
-export const deleteRequest = (endpoint, customHeaders) =>
-  apiRequest("DELETE", endpoint, {}, customHeaders);
+export const deleteRequest = (endpoint, data, customHeaders) =>
+  apiRequest("DELETE", endpoint, data, customHeaders);

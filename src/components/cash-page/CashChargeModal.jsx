@@ -7,7 +7,12 @@ import { closeModal } from "../../utils/closeModal";
 import { put } from "../../utils/Api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
-const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
+const CashChargeModal = ({
+  isOpened,
+  setIsOpened,
+  latestToTalCash,
+  onSuccess,
+}) => {
   const { accessToken, userId } = getUserIdFromToken();
   const [errorMessage, setErrorMessage] = useState("");
   const [activeIndex, setActiveIndex] = useState(null);
@@ -34,12 +39,16 @@ const CashChargeModal = ({ isOpened, setIsOpened, latestToTalCash }) => {
     };
 
     try {
-			const requestBody = {
-				cash: selectPrice,
-			};
-      console.log("requestBody", requestBody);
-      const response = await put(`user/chargeCash/${userId}`, requestBody, customHeaders);
-      console.log("response", response);
+      const requestBody = {
+        cash: selectPrice,
+      };
+      await put(
+        `user/chargeCash/${userId}`,
+        requestBody,
+        customHeaders
+      );
+      cancleHandle();
+      onSuccess();
     } catch (error) {
       setErrorMessage(error.message);
     }

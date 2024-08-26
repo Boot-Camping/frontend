@@ -1,0 +1,28 @@
+.save-modal-txt {
+  font-size: var(--heading);
+  margin-bottom: 2rem;
+}
+
+.save-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.save-btn-wrap button {
+  border: 1px solid var(--light-green);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: var(--content);
+}
+
+.save-cancel-btn {
+  background: transparent;
+  color: var(--light-green);
+}
+
+.save-confirm-btn {
+  background: var(--light-green);
+  color: #fff;
+}

@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 import { cashIcon } from "../../constants/cash";
 import CashChargeModal from "./CashChargeModal";
 
-const CashChargeBtn = ({ totalCash }) => {
+const CashChargeBtn = ({ totalCash, onSuccess }) => {
   const [isOpened, setIsOpened] = useState(false);
 
   const chargeModalHandle = () => {
@@ -36,6 +36,7 @@ const CashChargeBtn = ({ totalCash }) => {
         isOpened={isOpened}
         setIsOpened={setIsOpened}
         latestToTalCash={totalCash}
+        onSuccess={onSuccess}
       />
     </>
   );
