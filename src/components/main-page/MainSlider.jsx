@@ -4,9 +4,13 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../main-page/MainSlider.css";
-import { sliderData } from "../../constants/sliderData";
+import useFetchCampingList from "../../hooks/useFetchCampingList";
 
 const MainSlider = () => {
+  const { campingPlaces } = useFetchCampingList();
+
+  const newCampingPlace = campingPlaces.length > 0 ? campingPlaces[0] : null;
+
   return (
     <div>
       <div className="slider-title">새로 등록된 캠핑장소</div>
@@ -17,11 +21,15 @@ const MainSlider = () => {
         modules={[Pagination]}
         className="slider-main"
       >
-        {sliderData.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <img className="slider-img" src={slide.image} alt="" />
+        {newCampingPlace && (
+          <SwiperSlide>
+            <img
+              className="slider-img"
+              src={newCampingPlace.imageUrls}
+              alt=""
+            />
           </SwiperSlide>
-        ))}
+        )}
       </Swiper>
     </div>
   );

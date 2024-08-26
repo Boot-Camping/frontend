@@ -25,9 +25,10 @@ const MainCampingList = () => {
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
         >
-          <option value="reservation">예약 많은 순</option>
-          <option value="review">리뷰 많은 순</option>
-          <option value="star">평점 좋은 순</option>
+          <option value="updatedAt">최근 등록 순</option>
+          <option value="bookCount">예약 많은 순</option>
+          <option value="reviewCount">리뷰 많은 순</option>
+          <option value="gradeCount">평점 좋은 순</option>
         </select>
       </div>
 
@@ -71,7 +72,7 @@ const MainCampingList = () => {
               </div>
 
               <div className="camping-info">
-                예약자 수({campingPlace.reviewCount})
+                예약자 수({campingPlace.bookCount})
               </div>
             </div>
           </div>
