@@ -31,7 +31,7 @@ import DeleteAccountPage from "./pages/DeleteAccountPage";
 import ReviewWriter from "./components/review-page/ReviewWriter";
 import { saveData } from "./constants/save";
 import { CampingDaysProvider } from "./hooks/CampingDaysContext";
-import { AuthProvider } from "./hooks/authContext";
+import { AuthProvider } from "./contexts/authContext";
 
 function App() {
   return (
