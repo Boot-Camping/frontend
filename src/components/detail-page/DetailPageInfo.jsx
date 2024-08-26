@@ -13,15 +13,14 @@ const DetailPageInfo = ({ detailInfo }) => {
   const { userId, accessToken } = getUserIdFromToken();
 
   const toggleSave = async () => {
-    // 요청에 보낼 데이터 준비
     const data = {
       id: detailInfo.id,
       name: detailInfo.name,
       addr: detailInfo.addr,
       price: detailInfo.price,
       campImages: Array.isArray(detailInfo.imageUrls)
-        ? detailInfo.imageUrls.join(", ") // 배열을 콤마로 구분된 문자열로 변환
-        : detailInfo.imageUrls, // 단일 URL일 경우 그대로 사용
+        ? detailInfo.imageUrls.join(", ")
+        : detailInfo.imageUrls,
     };
 
     console.log("전송하려는 데이터:", JSON.stringify(data, null, 2));
