@@ -9,7 +9,7 @@ const useCampInfo = (campId, infoType = "campInfo") => {
   useEffect(() => {
     const fetchCampInfo = async () => {
       try {
-        const response = await get(`camp/${campId}`);
+        const response = await get(`camps/${campId}`);
         setInfo(response);
         setLoading(false);
       } catch (error) {
