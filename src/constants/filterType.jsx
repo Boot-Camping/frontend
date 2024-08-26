@@ -6,7 +6,7 @@ export const filterType = {
       class: "book-filter",
     },
     {
-      status: "이용 완료",
+      status: "DECIDE",
       type: "이용 완료",
       class: "usage-filter",
     },
