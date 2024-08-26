@@ -5,9 +5,15 @@ import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
 import EmptyContent from "./EmptyContent";
 import { shortPeriodHyphen } from "../../utils/shortPeriodHyphen";
+import { useNavigate } from "react-router-dom";
 
 const PaidList = ({ filter, paidData, errorMessage }) => {
+  const navigate = useNavigate();
   const filteredData = filterData(paidData, filter, "bookStatus");
+
+  const reviewClickHandle = (data) => {
+    navigate("/mypage/review", { state: { reviewData: data } });
+  };
 
   const renderButton = (data, index) => {
     if (data.bookStatus === "BOOKING") {
@@ -19,7 +25,7 @@ const PaidList = ({ filter, paidData, errorMessage }) => {
       );
     } else {
       return (
-        <button>
+        <button onClick={() => reviewClickHandle(data)}>
           <ReactSVG src={paidIcon.write} className="paid-list-img" />
           리뷰 작성
         </button>
