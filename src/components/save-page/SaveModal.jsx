@@ -5,7 +5,7 @@ import { closeModal } from "../../utils/closeModal";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 import { deleteRequest } from "../../utils/Api";
 
-const SaveModal = ({ isOpened, setIsOpened, selectedData }) => {
+const SaveModal = ({ isOpened, setIsOpened, selectedData, onUpdate }) => {
   const { accessToken } = getUserIdFromToken();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -16,15 +16,21 @@ const SaveModal = ({ isOpened, setIsOpened, selectedData }) => {
       Authorization: `Bearer ${accessToken}`,
     };
 
+    const wishId = selectedData.wishId[0];
+    console.log("wishId", wishId);
+
     try {
       await deleteRequest(
         `userprofile/wishlist/remove/${wishId}`,
+        {},
         customHeaders
       );
       closeModal(setIsOpened)();
       setIsOpened(false);
+      onUpdate();
     } catch (error) {
       setErrorMessage(error.message);
+      console.log(errorMessage);
     }
   };
 
