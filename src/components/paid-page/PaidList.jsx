@@ -51,7 +51,9 @@ const PaidList = ({ filter, paidData, errorMessage }) => {
             </div>
             <div className="paid-list-personnel">총 {data.bookNum}명</div>
             <div className="paid-list-request">
-              <div>요청 사항</div>
+              <div>
+                {data.bookRequest === "" ? "요청사항이 없습니다" : "요청사항"}
+              </div>
               <div>{data.bookRequest}</div>
             </div>
             <div className="paid-list-btn">{renderButton(data, index)}</div>
