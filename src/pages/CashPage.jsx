@@ -19,28 +19,27 @@ const CashPage = () => {
   const [filter, setFilter] = useState("all");
   const [totalCash, setTotalCash] = useState(0);
 
-  useEffect(() => {
-    const getCashData = async () => {
-      const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
-      };
-
-      try {
-        const response = await get(
-          `userprofile/cashTransaction/${userId}`,
-          customHeaders
-        );
-        setCashData(response);
-        setLoading(false);
-        console.log("response", response);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
+  const getCashData = async () => {
+    const customHeaders = {
+      Authorization: `Bearer ${accessToken}`,
     };
 
+    try {
+      const response = await get(
+        `userprofile/cashTransaction/${userId}`,
+        customHeaders
+      );
+      setCashData(response);
+      setLoading(false);
+      console.log("response", response);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
+  useEffect(() => {
     getCashData();
   }, [accessToken, userId]);
-  console.log("cashData", cashData);
 
   const filterChangeHandle = (status) => {
     setFilter(status);
@@ -80,7 +79,7 @@ const CashPage = () => {
         <div>사용자 정보를 찾을 수 없습니다</div>
       )}
 
-      <CashChargeBtn totalCash={totalCash} />
+      <CashChargeBtn totalCash={totalCash} onSuccess={getCashData} />
     </section>
   );
 };

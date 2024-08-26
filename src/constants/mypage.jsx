@@ -42,7 +42,7 @@ export const mypageBtns = [
   },
   {
     key: "mypage-btn-review",
-    link: "/",
+    link: "/mypage/review",
     src: "pencilSquare",
     txt: "나의 리뷰",
   },

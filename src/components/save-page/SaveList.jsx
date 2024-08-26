@@ -3,16 +3,22 @@ import "./SaveList.css";
 import { saveIcon } from "../../constants/save";
 import { ReactSVG } from "react-svg";
 import EmptyContent from "../paid-page/EmptyContent";
+import SaveModal from "./SaveModal";
 
-const SaveList = ({ saveData, errorMessage }) => {
+const SaveList = ({ visibleItems, saveData, errorMessage, onUpdate }) => {
   const [savedItems, setSavedItems] = useState(
     Array(saveData.length).fill(true)
   );
+  const [isOpened, setIsOpened] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
 
   const saveHandle = (index) => {
     const newSavedItems = [...savedItems];
     newSavedItems[index] = false;
     setSavedItems(newSavedItems);
+    setSelectedData(saveData[index]);
+    setIsOpened(true);
+    console.log("selectedData", selectedData);
   };
 
   const shortAddr = (address) => {
@@ -23,7 +29,7 @@ const SaveList = ({ saveData, errorMessage }) => {
     <div className="save-list-wrap">
       {saveData.length > 0 ? (
         <>
-          {saveData.map((data, index) => (
+          {saveData.slice(0, visibleItems).map((data, index) => (
             <div className="save-list" key={`save-list${index + 1}`}>
               <div className="save-img">
                 <img src={data.campImages[0]} />
@@ -47,6 +53,13 @@ const SaveList = ({ saveData, errorMessage }) => {
               </div>
             </div>
           ))}
+
+          <SaveModal
+            isOpened={isOpened}
+            setIsOpened={setIsOpened}
+            selectedData={selectedData}
+            onUpdate={onUpdate}
+          />
         </>
       ) : (
         <EmptyContent errorMessage={errorMessage} />
