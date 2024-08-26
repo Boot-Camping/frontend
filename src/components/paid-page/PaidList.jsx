@@ -3,7 +3,7 @@ import "./PaidList.css";
 import { paidIcon } from "../../constants/paid";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../../utils/filterData";
-import EmptyContent from "./EmptyContent";
+import EmptyContent from "../common/EmptyContent";
 import { shortPeriodHyphen } from "../../utils/shortPeriodHyphen";
 import { useNavigate } from "react-router-dom";
 

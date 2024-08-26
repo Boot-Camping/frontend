@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SaveList.css";
 import { saveIcon } from "../../constants/save";
 import { ReactSVG } from "react-svg";
-import EmptyContent from "../paid-page/EmptyContent";
+import EmptyContent from "../common/EmptyContent";
 import SaveModal from "./SaveModal";
 
 const SaveList = ({ visibleItems, saveData, errorMessage, onUpdate }) => {
