@@ -5,10 +5,15 @@ import "./ReviewWriter.css";
 import { reviewTag } from "../../constants/reviewTag";
 import ReviewImgUploader from "./ReviewImgUploader";
 import StarRating from "./StarRating";
+import { useLocation } from "react-router-dom";
 
 const svg = svgCollection;
 
 const ReviewWriter = () => {
+  const location = useLocation();
+  const reviewData = location.state?.reviewData;
+  console.log(reviewData);
+
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
 
