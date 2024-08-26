@@ -1,31 +1,19 @@
 import React, { useState, useRef } from "react";
 
-const AdminImgPlus = () => {
+const AdminImgPlus = ({ onImagesChange }) => {
+  // onImagesChange 콜백 추가
   const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
 
   const handleRemoveImage = (index) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+    onImagesChange(images.filter((_, i) => i !== index)); // 콜백 호출
   };
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
-    const fileReaders = files.map((file) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    });
-
-    Promise.all(fileReaders)
-      .then((urls) => {
-        setImages((prevImages) => [...prevImages, ...urls]);
-      })
-      .catch((error) => {
-        console.error("Error reading files:", error);
-      });
+    setImages((prevImages) => [...prevImages, ...files]);
+    onImagesChange([...images, ...files]); // 콜백 호출
   };
 
   return (
@@ -46,11 +34,11 @@ const AdminImgPlus = () => {
           onChange={handleImageChange}
         />
         <div className="img-previews">
-          {images.map((src, index) => (
+          {images.map((file, index) => (
             <div key={index} className="img-preview-container">
               <div
                 className="img-preview"
-                style={{ backgroundImage: `url(${src})` }}
+                style={{ backgroundImage: `url(${URL.createObjectURL(file)})` }}
               ></div>
               <button
                 className="img-remove-btn"
