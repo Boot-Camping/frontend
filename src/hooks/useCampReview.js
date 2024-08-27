@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { get } from "../utils/Api";
+import { get } from "../utils/api";
 
 const useCampReview = (campId) => {
   const [campReviews, setCampReviews] = useState(null);

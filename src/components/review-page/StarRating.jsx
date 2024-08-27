@@ -4,13 +4,13 @@ import "./ReviewWriter.css";
 
 const svg = svgCollection;
 
-const StarRating = ({ totalStars = 5, ratingChangeHandle }) => {
+const StarRating = ({ totalStars = 5, gradeChangeHandle }) => {
   const [rating, setRating] = useState(0);
 
   const clickStarHandle = (starIndex) => {
     setRating(starIndex + 1);
-    if (ratingChangeHandle) {
-      ratingChangeHandle(starIndex + 1);
+    if (gradeChangeHandle) {
+      gradeChangeHandle(starIndex + 1);
     }
   };
 

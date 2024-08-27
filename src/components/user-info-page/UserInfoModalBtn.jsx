@@ -4,7 +4,7 @@ import { closeModal } from "../../utils/closeModal";
 import { userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { put } from "../../utils/Api";
+import { put } from "../../utils/api";
 
 const UserInfoModalBtn = ({ setIsOpened, modalType, inputValue, onUpdate }) => {
   const { accessToken, userId } = getUserIdFromToken();
