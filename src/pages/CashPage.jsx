@@ -9,7 +9,7 @@ import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 import { filterType } from "../constants/filterType";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/Api";
+import { get } from "../utils/api";
 
 const CashPage = () => {
   const { accessToken, userId } = getUserIdFromToken();

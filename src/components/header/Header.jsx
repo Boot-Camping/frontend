@@ -6,7 +6,7 @@ import { ReactSVG } from "react-svg";
 import logo from "/src/assets/image/camping.png";
 import userImg from "/src/assets/svg/userImg.svg";
 import searchImg from "/src/assets/svg/search.svg";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken.jsx";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const Header = () => {
   const { userId } = getUserIdFromToken();

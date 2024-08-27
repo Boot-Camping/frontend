@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "../main-page/MainReview.css";
-import { get } from "../../utils/Api";
+import { get } from "../../utils/api";
 
 const MainReview = () => {
   const [reviews, setReviews] = useState([]);

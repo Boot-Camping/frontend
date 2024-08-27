@@ -7,7 +7,7 @@ import PaidList from "../components/paid-page/PaidList";
 import { Link } from "react-router-dom";
 import { filterType } from "../constants/filterType";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/Api";
+import { get } from "../utils/api";
 import { svgCollection } from "../constants/svgCollection";
 
 const PaidPage = () => {
