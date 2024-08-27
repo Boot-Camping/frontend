@@ -4,7 +4,7 @@ import "../components/cash-page/CashFilter.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
-import PaidFilter from "../components/paid-page/PaidFilter";
+import Filter from "../components/common/Filter";
 import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 import { filterType } from "../constants/filterType";
@@ -62,7 +62,7 @@ const CashPage = () => {
         <div>로딩중</div>
       ) : cashData ? (
         <>
-          <PaidFilter
+          <Filter
             filterChangeHandle={filterChangeHandle}
             filterType={filterType.cash}
             wrapClassName="cash-filter"

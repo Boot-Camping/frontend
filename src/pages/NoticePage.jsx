@@ -8,7 +8,7 @@ import { svgCollection } from "../constants/svgCollection";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../constants/notice";
-import PaidFilter from "../components/paid-page/PaidFilter";
+import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
 import { filterData } from "../utils/filterData";
 
@@ -33,7 +33,7 @@ const NoticePage = () => {
         <div>공지사항 및 이벤트</div>
       </div>
 
-      <PaidFilter
+      <Filter
         filterChangeHandle={filterChangeHandle}
         filterType={filterType.notice}
         wrapClassName="notice-page-filter"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../components/paid-page/PaidPage.css";
 import "../components/paid-page/PaidFilter.css";
 import { ReactSVG } from "react-svg";
-import PaidFilter from "../components/paid-page/PaidFilter";
+import Filter from "../components/common/Filter";
 import PaidList from "../components/paid-page/PaidList";
 import { Link } from "react-router-dom";
 import { filterType } from "../constants/filterType";
@@ -48,7 +48,7 @@ const PaidPage = () => {
         <div>결제 내역</div>
       </div>
 
-      <PaidFilter
+      <Filter
         filterChangeHandle={filterChangeHandle}
         filterType={filterType.paid}
         wrapClassName="paid-filter"

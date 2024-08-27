@@ -9,7 +9,7 @@ import { ReactSVG } from "react-svg";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../constants/notice";
-import PaidFilter from "../components/paid-page/PaidFilter";
+import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
 import AdminNoticeList from "../components/admin-notice-register/AdminNoticeList";
 
@@ -44,7 +44,7 @@ const AdminNoticeListPage = () => {
       </div>
 
       <div className="notice-list-wrap">
-        <PaidFilter
+        <Filter
           filterChangeHandle={filterChangeHandle}
           filterType={filterType.notice}
           wrapClassName="notice-page-filter"
