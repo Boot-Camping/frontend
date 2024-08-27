@@ -1,9 +1,4 @@
 import { useState } from "react";
-import heart from "/src/assets/svg/heart.svg";
-
-export const heartIcon = {
-  heart,
-};
 
 const useHeartClick = () => {
   const [heartClick, setHeartClick] = useState([]);
@@ -17,7 +12,6 @@ const useHeartClick = () => {
   return {
     heartClick,
     heartClickHandler,
-    heartIcon,
   };
 };
 
