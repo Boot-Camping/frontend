@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import "./UserInfoModal.css";
-import { userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
@@ -8,6 +7,8 @@ import DaumPostCode from "../common/DaumPostCode";
 import useAddress from "../../hooks/useAddress";
 import UserInfoModalBtn from "./UserInfoModalBtn";
 import { svgCollection } from "../../constants/svgCollection";
+import { userInfoModal } from "../../constants/userInfo";
+import PortalModal from "../common/PortalModal";
 
 const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
   const { postcode, setPostcode } = useAddress();
@@ -57,43 +58,33 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
   return (
     <>
       {isOpened && (
-        <>
-          {createPortal(
-            <div className="overlay" onClick={closeModal(setIsOpened)}></div>,
-            document.getElementById("overlay-root")
-          )}
-          {createPortal(
-            <div
-              className={`user-info-modal modal ${
-                modalType === "addr" ? `info-modal-addr` : ""
-              } ${modalType === "password" ? `info-modal-pw` : ""}`}
-            >
-              <div className="info-modal-title">
-                {userInfoModal[modalType].title}
-              </div>
-              <div className="info-modal-old info-modal-data">
-                <div>{userInfoModal[modalType].old}</div>
-                {renderOldData()}
-              </div>
-              <div className="info-modal-new info-modal-data">
-                <div>{userInfoModal[modalType].new}</div>
-                {renderNewInput()}
-              </div>
+        <PortalModal setIsOpened={setIsOpened}>
+          <div
+            className={`user-info-modal modal ${
+              modalType === "addr" ? `info-modal-addr` : ""
+            } ${modalType === "password" ? `info-modal-pw` : ""}`}
+          >
+            <div className="info-modal-title">
+              {userInfoModal[modalType].title}
+            </div>
+            <div className="info-modal-old info-modal-data">
+              <div>{userInfoModal[modalType].old}</div>
+              {renderOldData()}
+            </div>
+            <div className="info-modal-new info-modal-data">
+              <div>{userInfoModal[modalType].new}</div>
+              {renderNewInput()}
+            </div>
 
-              <UserInfoModalBtn
-                setIsOpened={setIsOpened}
-                modalType={modalType}
-              />
+            <UserInfoModalBtn setIsOpened={setIsOpened} modalType={modalType} />
 
-              <ReactSVG
-                src={svgCollection.xMark}
-                className="info-modal-close"
-                onClick={closeModal(setIsOpened)}
-              />
-            </div>,
-            document.getElementById("modal-root")
-          )}
-        </>
+            <ReactSVG
+              src={svgCollection.xMark}
+              className="info-modal-close"
+              onClick={closeModal(setIsOpened)}
+            />
+          </div>
+        </PortalModal>
       )}
     </>
   );
