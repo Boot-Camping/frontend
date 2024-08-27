@@ -3,6 +3,7 @@ import "./SignupModal.css";
 import { createPortal } from "react-dom";
 import { signUpError } from "../../constants/signUp";
 import { closeModal } from "../../utils/closeModal";
+import PortalModal from "../common/PortalModal";
 
 const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
   const errorMessage = () => {
@@ -12,27 +13,20 @@ const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
   return (
     <>
       {isOpened && (
-        <>
-          {createPortal(
-            <div className="overlay" onClick={closeModal(setIsOpened)}></div>,
-            document.getElementById("overlay-root")
-          )}
-          {createPortal(
-            <div className="signup-modal modal signup-error">
-              <div className="signup-modal-content">
-                {error && errorMessage()}
-              </div>
-              <button
-                type="button"
-                className="signup-modal-btn"
-                onClick={closeModal(setIsOpened)}
-              >
-                확인
-              </button>
-            </div>,
-            document.getElementById("modal-root")
-          )}
-        </>
+        <PortalModal setIsOpened={setIsOpened}>
+          <div className="signup-modal modal signup-error">
+            <div className="signup-modal-content">
+              {error && errorMessage()}
+            </div>
+            <button
+              type="button"
+              className="signup-modal-btn"
+              onClick={closeModal(setIsOpened)}
+            >
+              확인
+            </button>
+          </div>
+        </PortalModal>
       )}
     </>
   );

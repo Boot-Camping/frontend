@@ -1,6 +1,6 @@
 import React from "react";
 
-const PaidFilter = ({
+const Filter = ({
   filterChangeHandle,
   filterType,
   wrapClassName,
@@ -27,4 +27,4 @@ const PaidFilter = ({
   );
 };
 
-export default PaidFilter;
+export default Filter;

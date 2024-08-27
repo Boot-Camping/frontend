@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { noticeDetailData } from "../constants/notice";
-import { saveIcon } from "../constants/save";
+import { noticeDetailData } from "../mock/noticeData";
+import { svgCollection } from "../constants/svgCollection";
 
 const AdminNoticeFixPage = () => {
   const { id } = useParams();
@@ -61,7 +61,7 @@ const AdminNoticeFixPage = () => {
       </Link>
       <div className="notice-title">공지사항 수정</div>
       <ReactSVG
-        src={saveIcon.prev}
+        src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />

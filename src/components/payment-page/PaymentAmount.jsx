@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PaymentPage.css";
-import NumCounter from "../../utils/numCounter";
-import { useCampingDays } from "../../hooks/CampingDaysContext";
+import NumCounter from "./NumCounter";
+import { useCampingDays } from "../../context/campingDaysContext";
 
 const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
   const { campingDays } = useCampingDays();
