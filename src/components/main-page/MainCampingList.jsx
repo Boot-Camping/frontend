@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
-import star from "../../assets/svg/star.svg";
 import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
+import { svgCollection } from "../../constants/svgCollection";
 
 const MainCampingList = () => {
   const { campingPlaces, error } = useFetchCampingList();
@@ -46,7 +46,7 @@ const MainCampingList = () => {
                 className={`camping-img-heart ${
                   !heartClick[index] && "camping-img-heart-delete"
                 }`}
-                src={heartIcon.heart}
+                src={svgCollection.heart}
                 alt=""
                 onClick={(e) => {
                   e.preventDefault();
@@ -64,7 +64,11 @@ const MainCampingList = () => {
             </Link>
             <div className="camping-info-icons-wrapper">
               <div className="camping-info-star-wrapper">
-                <ReactSVG className="camping-info-star" src={star} alt="" />
+                <ReactSVG
+                  className="camping-info-star"
+                  src={svgCollection.stars}
+                  alt=""
+                />
                 <div className="camping-info">{campingPlace.averageGrade}</div>
                 <div className="camping-info">
                   ・리뷰({campingPlace.reviewCount})
