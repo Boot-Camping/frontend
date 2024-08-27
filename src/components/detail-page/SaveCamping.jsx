@@ -4,7 +4,7 @@ import { svgCollection } from "../../constants/svgCollection";
 import { useState } from "react";
 import { ReactSVG } from "react-svg";
 import axios from "axios";
-import { post } from "../../utils/Api";
+import { post } from "../../utils/api";
 
 const SaveCamping = ({ campId }) => {
   const svg = svgCollection;

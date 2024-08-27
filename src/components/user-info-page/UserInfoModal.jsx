@@ -34,12 +34,12 @@ const UserInfoModal = ({
     setInputValue({ ...inputValue, [name]: value });
   };
 
-	const addrSelectHandle = (selectedAddress) => {
-		setInputValue({
-			...inputValue,
-			addr: selectedAddress
-		})
-	}
+  const addrSelectHandle = (selectedAddress) => {
+    setInputValue({
+      ...inputValue,
+      addr: selectedAddress,
+    });
+  };
 
   const renderOldData = () => {
     if (modalType === "password") {

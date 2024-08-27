@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import "./ReviewWriter.css";
 
-const ReviewImgUploader = ({ maxImages }) => {
+const ReviewImgUploader = ({ maxImages, setReviewImages }) => {
   const [selectedImgs, setSelectedImgs] = useState([]);
 
   const imageChangeHandle = (e) => {
     const files = Array.from(e.target.files);
-    const newImages = files.map((file) => URL.createObjectURL(file));
+    const newImages = files.map((file) => ({
+      url: URL.createObjectURL(file),
+      file,
+    }));
 
-    setSelectedImgs((prevImages) =>
-      [...prevImages, ...newImages].slice(0, maxImages)
-    );
+    const updatedImages = [...selectedImgs, ...newImages].slice(0, maxImages);
+    setSelectedImgs(updatedImages);
+    setReviewImages(updatedImages.map((img) => img.file));
   };
 
   const imageRemoveHandle = (indexToRemove) => {
-    prevImages.filter((_, index) => index !== indexToRemove);
+    const updatedImages = selectedImgs.filter(
+      (_, index) => index !== indexToRemove
+    );
+    setSelectedImgs(updatedImages);
+    setReviewImages(updatedImages.map((img) => img.file));
   };
 
   return (

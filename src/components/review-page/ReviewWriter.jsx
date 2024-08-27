@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
 import { reviewTag } from "../../constants/reviewTag";
 import ReviewImgUploader from "./ReviewImgUploader";
 import StarRating from "./StarRating";
 import { useLocation } from "react-router-dom";
+import { post } from "../../utils/api";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const svg = svgCollection;
 
@@ -14,12 +15,45 @@ const ReviewWriter = () => {
   const reviewData = location.state?.reviewData;
   console.log(reviewData);
 
+  const [reviewGrade, setReviewGrade] = useState(0);
+  const [reviewContent, setReviewContent] = useState("");
+  const [reviewTags, setReviewTags] = useState([]);
+  const [reviewImages, setReviewImages] = useState([]);
+  const [error, setError] = useState(null);
+  const { userId, accessToken } = getUserIdFromToken();
+
+  const reviewSubmit = async () => {
+    const reviewData = {
+      // campName: reviewData.campName,
+      grade: reviewGrade,
+      reviewContent: reviewContent,
+      reviewTags: reviewTags,
+      reviewImages: reviewImages,
+    };
+    console.log("제출하려는 리뷰:", reviewData);
+    try {
+      const response = await post(`review/${campId}/${userId}`, reviewData, {
+        Authorization: `Bearer ${accessToken}`,
+      });
+    } catch (error) {
+      setError("리뷰제출 에러 발생 🥲");
+      console.error("리뷰제출 에러 발생 🥲:", error);
+      if (error.response) {
+        console.error("서버 응답 상태 코드:", error.response.status);
+        console.error("서버 응답 데이터:", error.response.data);
+      } else {
+        console.error("요청 오류:", error.message);
+      }
+    }
+  };
+
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
 
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const ratingChangeHandle = (rating) => {
+  const gradeChangeHandle = (rating) => {
+    setReviewGrade(rating);
     console.log("선택된 별점:", rating);
   };
 
@@ -39,7 +73,7 @@ const ReviewWriter = () => {
           해당 캠핑장에 대해 얼마나 만족하셨나요?
         </div>
 
-        <StarRating totalStars={5} ratingChangeHandle={ratingChangeHandle} />
+        <StarRating totalStars={5} gradeChangeHandle={gradeChangeHandle} />
       </div>
 
       <div className="review-question-box">
@@ -92,18 +126,22 @@ const ReviewWriter = () => {
         </div>
       </div>
 
-      <input
+      <textarea
         type="text"
         className="review-writer-content"
-        placeholder="리뷰를 입력해 주세요."
+        placeholder="캠핑장에 대한 의견을 남겨주세요!"
+        value={reviewContent}
+        onChange={(e) => setReviewContent(e.target.value)}
       />
 
       <div className="img-input-box">
         <div className="img-input-title">이미지를 등록해주세요.</div>
-        <ReviewImgUploader maxImages={5} />
+        <ReviewImgUploader maxImages={5} setReviewImages={setReviewImages} />
       </div>
 
-      <button className="review-regi-btn">리뷰 등록</button>
+      <button className="review-regi-btn" onClick={reviewSubmit}>
+        리뷰 등록
+      </button>
     </div>
   );
 };
