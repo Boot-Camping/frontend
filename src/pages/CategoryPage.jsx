@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../components/category-page/CategoryPage.css";
 import { ReactSVG } from "react-svg";
-import location from "../assets/svg/location.svg";
-import star from "../assets//svg/star.svg";
 import useHeartClick from "../hooks/useHeartClick";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../hooks/useFetchCampingList";
+import { svgCollection } from "../constants/svgCollection";
 
 const CategoryPage = () => {
   const { category } = useParams(); // URL에서 category 값을 가져옴
@@ -69,7 +68,7 @@ const CategoryPage = () => {
             <div className="category-camping-addr-icon-wrapper">
               <ReactSVG
                 className="category-camping-addr-icon"
-                src={location}
+                src={svgCollection.location}
                 alt="위치"
               />
               <div className="category-camping-addr">{campingPlace.addr}</div>
@@ -82,7 +81,7 @@ const CategoryPage = () => {
             <div className="category-camping-info-star-wrapper">
               <ReactSVG
                 className="category-camping-info-star"
-                src={star}
+                src={svgCollection.stars}
                 alt=""
               />
               <div className="category-camping-info">
