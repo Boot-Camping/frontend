@@ -3,8 +3,8 @@ import "../components/cash-page/CashPage.css";
 import "../components/cash-page/CashFilter.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { cashIcon } from "../constants/cash";
-import PaidFilter from "../components/paid-page/PaidFilter";
+import { svgCollection } from "../constants/svgCollection";
+import Filter from "../components/common/Filter";
 import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 import { filterType } from "../constants/filterType";
@@ -21,7 +21,7 @@ const CashPage = () => {
 
   const getCashData = async () => {
     const customHeaders = {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `${accessToken}`,
     };
 
     try {
@@ -53,7 +53,7 @@ const CashPage = () => {
     <section className="cash-page-wrap">
       <div className="cash-title-wrap">
         <Link to={"/mypage"}>
-          <ReactSVG src={cashIcon.prev} className="cash-move-prev" />
+          <ReactSVG src={svgCollection.prev} className="cash-move-prev" />
         </Link>
         <div>캐시 충전/사용 내역</div>
       </div>
@@ -62,7 +62,7 @@ const CashPage = () => {
         <div>로딩중</div>
       ) : cashData ? (
         <>
-          <PaidFilter
+          <Filter
             filterChangeHandle={filterChangeHandle}
             filterType={filterType.cash}
             wrapClassName="cash-filter"

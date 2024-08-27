@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CashChargeBtn.css";
 import { ReactSVG } from "react-svg";
-import { cashIcon } from "../../constants/cash";
+import { svgCollection } from "../../constants/svgCollection";
 import CashChargeModal from "./CashChargeModal";
 
 const CashChargeBtn = ({ totalCash, onSuccess }) => {
@@ -28,7 +28,7 @@ const CashChargeBtn = ({ totalCash, onSuccess }) => {
   return (
     <>
       <button className="cash-charge-btn" onClick={chargeModalHandle}>
-        <ReactSVG src={cashIcon.money} className="cash-charge-img" />
+        <ReactSVG src={svgCollection.money} className="cash-charge-img" />
         캐시 충전
       </button>
 

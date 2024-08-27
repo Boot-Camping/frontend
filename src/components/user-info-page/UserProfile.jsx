@@ -1,7 +1,7 @@
 import React from "react";
 import "./UserProfile.css";
 import { ReactSVG } from "react-svg";
-import { userInfoIcon, userProfile } from "../../constants/userInfo";
+import { svgCollection } from "../../constants/svgCollection";
 
 const UserProfile = ({ setIsOpened, setModalType, userData }) => {
   const telChangeHandle = () => {
@@ -27,10 +27,10 @@ const UserProfile = ({ setIsOpened, setModalType, userData }) => {
           <input type="file" id="profile-img-input" />
           <label htmlFor="profile-img-input">
             <ReactSVG
-              src={userInfoIcon.userIcon}
+              src={svgCollection.userImg}
               className="profile-img-user"
             />
-            <ReactSVG src={userInfoIcon.photo} className="profile-img-photo" />
+            <ReactSVG src={svgCollection.photo} className="profile-img-photo" />
           </label>
         </div>
         <div>{userData.name}</div>

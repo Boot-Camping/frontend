@@ -1,15 +1,4 @@
 /*****************************
- * 	이미지 불러오기
- */
-import prev from "/src/assets/svg/arrowNext.svg";
-import heart from "/src/assets/svg/heart.svg";
-
-export const saveIcon = {
-  prev,
-  heart,
-};
-
-/*****************************
  * 	찜목록 데이터
  */
 export const saveData = [

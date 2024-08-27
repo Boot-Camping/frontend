@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
 import { ReactSVG } from "react-svg";
-import { saveIcon } from "../constants/save";
+import { svgCollection } from "../constants/svgCollection";
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
@@ -22,7 +22,7 @@ const AdminCampingRegister = () => {
     <div>
       <div className="regi-title">캠핑지 등록</div>
       <ReactSVG
-        src={saveIcon.prev}
+        src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />

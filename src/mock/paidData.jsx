@@ -1,17 +1,4 @@
 /*****************************
- * 	이미지 불러오기
- */
-import prev from "/src/assets/svg/arrowNext.svg";
-import write from "/src/assets/svg/pencilSquare.svg";
-import cancel from "/src/assets/svg/xMark.svg";
-
-export const paidIcon = {
-  prev,
-  write,
-  cancel,
-};
-
-/*****************************
  * 	예약/이용 완료 데이터
  */
 export const paidData = [

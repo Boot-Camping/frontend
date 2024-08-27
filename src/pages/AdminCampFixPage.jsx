@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import PostCodeAddress from "../components/admin-camping-register-page/PostCodeAddress";
 import { ReactSVG } from "react-svg";
-import { saveData } from "../constants/save";
+import { saveData } from "../mock/saveData";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { saveIcon } from "../constants/save";
+import { svgCollection } from "../constants/svgCollection";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 
 const AdminCampFixPage = () => {
@@ -75,7 +75,7 @@ const AdminCampFixPage = () => {
       </Link>
       <div className="regi-title">캠핑지 수정</div>
       <ReactSVG
-        src={saveIcon.prev}
+        src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />
