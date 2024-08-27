@@ -49,7 +49,7 @@ const CategoryPage = () => {
             className={`category-camping-img-heart ${
               !heartClick[index] && "category-camping-img-heart-delete"
             }`}
-            src={heartIcon.heart}
+            src={svgCollection.heart}
             alt=""
             onClick={(e) => {
               e.preventDefault();
