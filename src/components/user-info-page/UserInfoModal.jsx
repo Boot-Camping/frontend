@@ -4,7 +4,7 @@ import { userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
-import DaumPostCode from "../sign-up-page/DaumPostCode";
+import DaumPostCode from "../common/DaumPostCode";
 import useAddress from "../../hooks/useAddress";
 import UserInfoModalBtn from "./UserInfoModalBtn";
 import { svgCollection } from "../../constants/svgCollection";
