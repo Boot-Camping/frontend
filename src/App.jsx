@@ -30,7 +30,7 @@ import SearchPage from "./pages/SearchPage";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
 import ReviewWriter from "./components/review-page/ReviewWriter";
 import { saveData } from "./constants/save";
-import { CampingDaysProvider } from "./hooks/CampingDaysContext";
+import { CampingDaysProvider } from "./context/campingDaysContext";
 import { AuthProvider } from "./hooks/authContext";
 
 function App() {
