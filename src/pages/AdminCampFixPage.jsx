@@ -9,7 +9,7 @@ import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { get, put } from "../utils/Api";
+import { put } from "../utils/Api";
 
 const AdminCampFixPage = () => {
   const navigate = useNavigate();
