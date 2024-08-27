@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../components/login-account-page/LoginAccountPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "../utils/Api";
+import { ReactSVG } from "react-svg";
+import { svgCollection } from "../constants/svgCollection";
 
 const LoginAccountPage = () => {
   const navigate = useNavigate();
@@ -17,16 +19,14 @@ const LoginAccountPage = () => {
 
     try {
       const response = await post("user/login", jsonData);
-      console.log("응답", response);
-      console.log("응답 메시지", response.message);
-      console.log("응답 데이터", response.data);
 
-      const accessToken = response.headers.get("access");
+      const accessToken =
+        response.headers["authorization"] || response.headers["Authorization"];
       console.log(accessToken);
 
       localStorage.setItem("accessToken", accessToken);
-      navigate("/");
 
+      navigate("/");
       window.location.reload();
     } catch (error) {
       setErrorMessage(error.message);
@@ -55,7 +55,6 @@ const LoginAccountPage = () => {
         <div className="login-input-wrap">
           <label htmlFor="login-pw">비밀번호</label>
           <input
-            type="password"
             id="login-pw"
             className="login-input"
             name="password"

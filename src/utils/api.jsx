@@ -19,6 +19,11 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
 
   try {
     const response = await axios(config);
+
+    if (endpoint === "user/login") {
+      return response;
+    }
+
     return response.data;
   } catch (error) {
     if (error.response) {
