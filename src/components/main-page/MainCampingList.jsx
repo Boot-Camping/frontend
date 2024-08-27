@@ -65,14 +65,14 @@ const MainCampingList = () => {
             <div className="camping-info-icons-wrapper">
               <div className="camping-info-star-wrapper">
                 <ReactSVG className="camping-info-star" src={star} alt="" />
-                <div className="camping-info">{campingPlace.gradeCount}</div>
+                <div className="camping-info">{campingPlace.averageGrade}</div>
                 <div className="camping-info">
                   ・리뷰({campingPlace.reviewCount})
                 </div>
               </div>
 
               <div className="camping-info">
-                예약자 수({campingPlace.bookCount})
+                예약자 수({campingPlace.reservedDateCount})
               </div>
             </div>
           </div>
