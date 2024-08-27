@@ -9,7 +9,7 @@ import useAddress from "../../hooks/useAddress";
 import UserInfoModalBtn from "./UserInfoModalBtn";
 import { svgCollection } from "../../constants/svgCollection";
 
-const UserInfoModal = ({ isOpened, setIsOpened, modalType, userTel, addr }) => {
+const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
   const { postcode, setPostcode } = useAddress();
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
@@ -19,8 +19,8 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, userTel, addr }) => {
       return (
         <input type="text" name="oldPassword" placeholder="비밀번호 입력" />
       );
-    } else if (modalType === "userTel") {
-      return <div>{userTel}</div>;
+    } else if (modalType === "tel") {
+      return <div>{tel}</div>;
     } else if (modalType === "addr") {
       return <div>{addr}</div>;
     }
@@ -28,8 +28,8 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, userTel, addr }) => {
 
   const renderNewInput = () => {
     switch (modalType) {
-      case "userTel":
-        return <input type="text" name="userTel" placeholder="010-1234-5678" />;
+      case "tel":
+        return <input type="text" name="tel" placeholder="010-1234-5678" />;
       case "addr":
         return (
           <DaumPostCode
