@@ -177,7 +177,7 @@ const AdminCampingRegister = () => {
         </div>
       </div>
 
-      <div className="camping-explanation">캠핑지 소개</div>
+      <div className="camping-explanaion">캠핑지 소개</div>
       <form onSubmit={handleSubmit}>
         <textarea
           className="input-camp-exp"
