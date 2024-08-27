@@ -9,10 +9,10 @@ import CashList from "../components/cash-page/CashList";
 import CashChargeBtn from "../components/cash-page/CashChargeBtn";
 import { filterType } from "../constants/filterType";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/Api";
+import { get } from "../utils/api";
 
 const CashPage = () => {
-  const { accessToken, userId } = getUserIdFromToken();
+  const { accessToken } = getUserIdFromToken();
   const [cashData, setCashData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -25,10 +25,7 @@ const CashPage = () => {
     };
 
     try {
-      const response = await get(
-        `userprofile/cashTransaction/${userId}`,
-        customHeaders
-      );
+      const response = await get(`userprofile/cashTransaction`, customHeaders);
       setCashData(response);
       setLoading(false);
       console.log("response", response);
@@ -39,7 +36,7 @@ const CashPage = () => {
 
   useEffect(() => {
     getCashData();
-  }, [accessToken, userId]);
+  }, [accessToken]);
 
   const filterChangeHandle = (status) => {
     setFilter(status);
