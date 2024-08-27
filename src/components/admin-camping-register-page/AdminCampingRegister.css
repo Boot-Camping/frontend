@@ -101,7 +101,7 @@
 }
 
 .camp-name {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   display: flex;
   justify-content: left;
@@ -120,7 +120,7 @@
 }
 
 .camp-number-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   display: flex;
   justify-content: left;
@@ -138,7 +138,7 @@
 }
 
 .camp-price-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   display: flex;
   justify-content: left;
@@ -146,19 +146,19 @@
 }
 
 .camp-standard-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
 
 .camp-max-user-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
 
 .camp-plus-price-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
@@ -200,7 +200,7 @@
 
 .camping-explanaion {
   justify-content: space-between;
-  font-size: 1.5rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
@@ -237,7 +237,7 @@
 }
 
 .camp-img-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
@@ -368,9 +368,9 @@
   background-color: var(--red);
   font-size: var(--content);
   font-weight: bold;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   border: none;
-  width: 4.5rem;
+  width: 5rem;
   height: 2.5rem;
   cursor: pointer;
 }
