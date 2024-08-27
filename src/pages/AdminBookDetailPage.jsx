@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import "../components/admin-book-page/AdminBookDetail.css";
 import { campBookData } from "../mock/campBookData";
 import { ReactSVG } from "react-svg";
-import { saveIcon } from "../constants/save";
+import { svgCollection } from "../constants/svgCollection";
 
 const AdminBookDetailPage = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const AdminBookDetailPage = () => {
       </Link>
       <div className="admin-book-detail-title">예약 상세 조회</div>
       <ReactSVG
-        src={saveIcon.prev}
+        src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />

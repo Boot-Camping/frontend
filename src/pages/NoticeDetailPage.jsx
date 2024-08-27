@@ -1,7 +1,7 @@
 import React from "react";
 import "../components/notice-detail-page/NoticeDetailPage.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { noticeDetailData } from "../constants/notice";
+import { noticeDetailData } from "../mock/noticeData";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 import { shortDateDot } from "../utils/shortDateDot";

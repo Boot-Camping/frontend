@@ -8,7 +8,7 @@ import "../components/admin-notice-register/AdminNoticeListPage.css";
 import { ReactSVG } from "react-svg";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../constants/notice";
+import { noticeData } from "../mock/noticeData";
 import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
 import AdminNoticeList from "../components/admin-notice-register/AdminNoticeList";

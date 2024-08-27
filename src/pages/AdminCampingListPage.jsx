@@ -68,10 +68,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { saveData } from "../constants/save";
+import { saveData } from "../mock/saveData";
 import { filterData } from "../utils/filterData";
 import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../constants/notice";
+import { noticeData } from "../mock/noticeData";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 

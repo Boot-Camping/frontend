@@ -7,7 +7,7 @@ import NoticeList from "../components/notice-page/NoticeList";
 import { svgCollection } from "../constants/svgCollection";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../constants/notice";
+import { noticeData } from "../mock/noticeData";
 import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
 import { filterData } from "../utils/filterData";
