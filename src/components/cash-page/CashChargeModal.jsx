@@ -5,7 +5,7 @@ import { chargePrice } from "../../constants/cash";
 import { svgCollection } from "../../constants/svgCollection";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
-import { put } from "../../utils/Api";
+import { put } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 import PortalModal from "../common/PortalModal";
 

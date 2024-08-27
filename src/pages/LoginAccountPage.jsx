@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../components/login-account-page/LoginAccountPage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { post } from "../utils/Api";
+import { post } from "../utils/api";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 

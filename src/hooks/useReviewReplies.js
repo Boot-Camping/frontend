@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/Api";
+import { get } from "../utils/api";
 
 const useReviewReplies = (reviewId) => {
   const [replies, setReplies] = useState([]);

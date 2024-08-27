@@ -5,7 +5,7 @@ import { reviewTag } from "../../constants/reviewTag";
 import ReviewImgUploader from "./ReviewImgUploader";
 import StarRating from "./StarRating";
 import { useLocation } from "react-router-dom";
-import { post } from "../../utils/Api";
+import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const svg = svgCollection;

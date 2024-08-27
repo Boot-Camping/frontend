@@ -3,7 +3,7 @@ import "./MyPageUser.css";
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { get } from "../../utils/Api";
+import { get } from "../../utils/api";
 import MyPageLogout from "./MyPageLogout";
 import { svgCollection } from "../../constants/svgCollection";
 

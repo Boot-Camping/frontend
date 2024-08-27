@@ -7,7 +7,7 @@ import PaymentModal from "../components/payment-page/PaymentModal";
 import PaymentFailAlert from "../components/payment-page/PaymentFailAlert";
 import { Link } from "react-router-dom";
 import { useCampingDays } from "../context/campingDaysContext";
-import { post } from "../utils/Api";
+import { post } from "../utils/api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
 const PaymentPage = ({ campInfo }) => {
