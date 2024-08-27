@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 import { get } from "../../utils/Api";
 import MyPageLogout from "./MyPageLogout";
+import { svgCollection } from "../../constants/svgCollection";
 
 const MyPageUser = () => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -14,7 +15,7 @@ const MyPageUser = () => {
   useEffect(() => {
     const getUserData = async () => {
       const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `${accessToken}`,
       };
 
       try {
@@ -34,13 +35,13 @@ const MyPageUser = () => {
   return (
     <div className="mypage-user-wrap">
       <div className="mypage-user">
-        <ReactSVG src={mypageImgs.userImg} className="mypage-user-icon" />
+        <ReactSVG src={svgCollection.userImg} className="mypage-user-icon" />
         <div className="mypage-user-info">
           <div>{name}</div>
           <Link to="/userinfo" className="user-setting">
             <div>내 정보 관리</div>
             <ReactSVG
-              src={mypageImgs.setting}
+              src={svgCollection.setting}
               className="mypage-setting-icon"
             />
           </Link>

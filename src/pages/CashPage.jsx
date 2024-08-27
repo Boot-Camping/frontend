@@ -21,7 +21,7 @@ const CashPage = () => {
 
   const getCashData = async () => {
     const customHeaders = {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `${accessToken}`,
     };
 
     try {

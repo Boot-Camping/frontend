@@ -21,7 +21,7 @@ const UserInfoPage = () => {
   useEffect(() => {
     const getUserData = async () => {
       const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `${accessToken}`,
       };
 
       try {

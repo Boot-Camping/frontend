@@ -19,7 +19,7 @@ const PaidPage = () => {
   useEffect(() => {
     const getPaidData = async () => {
       const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `${accessToken}`,
       };
 
       try {

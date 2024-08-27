@@ -17,7 +17,7 @@ const SavePage = () => {
 
   const getSaveData = async () => {
     const customHeaders = {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `${accessToken}`,
     };
 
     try {

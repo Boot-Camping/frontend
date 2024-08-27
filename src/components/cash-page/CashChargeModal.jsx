@@ -36,7 +36,7 @@ const CashChargeModal = ({
 
   const submitHandle = async () => {
     const customHeaders = {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `${accessToken}`,
     };
 
     try {

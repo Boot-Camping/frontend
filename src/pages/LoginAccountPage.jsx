@@ -13,16 +13,24 @@ const LoginAccountPage = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const jsonData = JSON.stringify(data);
+    console.log(jsonData);
 
     try {
       const response = await post("user/login", jsonData);
-      const accessToken = response.tokenRequest.accessToken;
+      console.log("응답", response);
+      console.log("응답 메시지", response.message);
+      console.log("응답 데이터", response.data);
+
+      const accessToken = response.headers.get("access");
+      console.log(accessToken);
+
       localStorage.setItem("accessToken", accessToken);
       navigate("/");
 
       window.location.reload();
     } catch (error) {
       setErrorMessage(error.message);
+      console.log(error.message);
     }
   };
 
