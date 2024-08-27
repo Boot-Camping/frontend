@@ -6,7 +6,7 @@ import PaymentPolicy from "../components/payment-page/PaymentPolicy";
 import PaymentModal from "../components/payment-page/PaymentModal";
 import PaymentFailAlert from "../components/payment-page/PaymentFailAlert";
 import { Link } from "react-router-dom";
-import { useCampingDays } from "../hooks/CampingDaysContext";
+import { useCampingDays } from "../context/campingDaysContext";
 import { post } from "../utils/Api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
