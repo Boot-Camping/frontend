@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { campBookData } from "../constants/campBookData"; // 목업 데이터 가져오기
+import { campBookData } from "../mock/campBookData"; // 목업 데이터 가져오기
 import { filterData } from "../utils/filterData";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../constants/notice";
+import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import "../components/admin-book-page/AdminBookListPage.css";
 
@@ -18,13 +19,7 @@ const AdminBookListPage = () => {
 
   return (
     <div>
-      <Link to={"/admin"}>
-        <ReactSVG
-          className="admin-home-icon"
-          src="../../src/assets/svg/home.svg"
-          alt=""
-        />
-      </Link>
+      <AdminMainLink />
       <div className="admin-book-title">예약 조회</div>
       {campBookData.map((booking) => (
         <div key={booking.id} className="book-list-ex">
