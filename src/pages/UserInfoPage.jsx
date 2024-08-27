@@ -18,24 +18,25 @@ const UserInfoPage = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const customHeaders = {
-        Authorization: `${accessToken}`,
-      };
-
-      try {
-        const response = await get(`userprofile/${userId}`, customHeaders);
-        setUserDataArray(response);
-      } catch (error) {
-        setErrorMessage(error.message);
-      } finally {
-        setLoading(false);
-      }
+  const getUserData = async () => {
+    const customHeaders = {
+      Authorization: `${accessToken}`,
     };
 
+    try {
+      const response = await get(`userprofile/${userId}`, customHeaders);
+      setUserDataArray(response);
+    } catch (error) {
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     getUserData();
   }, [accessToken, userId]);
+
   const userData = userDataArray.length > 0 ? userDataArray[0] : null;
 
   return (
@@ -75,6 +76,7 @@ const UserInfoPage = () => {
             tel={userData.tel}
             addr={userData.addr}
             setError={setError}
+            onUpdate={getUserData}
           />
         </>
       ) : (
