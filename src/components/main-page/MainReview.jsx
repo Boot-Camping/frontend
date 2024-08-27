@@ -14,7 +14,7 @@ const MainReview = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await get("review/all");
+        const response = await get("reviews");
         const sortedReviews = response.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );

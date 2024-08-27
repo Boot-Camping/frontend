@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 
 const useCampingPlaceFilter = (campingPlace) => {
-  const [selectedFilter, setSelectedFilter] = useState("reservation");
+  const [selectedFilter, setSelectedFilter] = useState("updatedAt");
   const [campingPlaceFiltered, setCampingPlaceFiltered] =
     useState(campingPlace);
 
   useEffect(() => {
     let campingPlaceSorted = [...campingPlace];
-    if (selectedFilter === "reservation") {
-      campingPlaceSorted.sort((a, b) => b.reservations - a.reservations);
-    } else if (selectedFilter === "review") {
-      campingPlaceSorted.sort((a, b) => b.reviews - a.reviews);
-    } else if (selectedFilter === "star") {
-      campingPlaceSorted.sort((a, b) => b.rating - a.rating);
+    if (selectedFilter === "updatedAt") {
+      campingPlaceSorted.sort((a, b) => b.updatedAt - a.updatedAt);
+    } else if (selectedFilter === "reservedDateCount") {
+      campingPlaceSorted.sort(
+        (a, b) => b.reservedDateCount - a.reservedDateCount
+      );
+    } else if (selectedFilter === "reviewCount") {
+      campingPlaceSorted.sort((a, b) => b.reviewCount - a.reviewCount);
+    } else if (selectedFilter === "averageGrade") {
+      campingPlaceSorted.sort((a, b) => b.averageGrade - a.averageGrade);
     }
     setCampingPlaceFiltered(campingPlaceSorted);
   }, [selectedFilter, campingPlace]);
