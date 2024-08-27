@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { filterData } from "../utils/filterData";
 import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../constants/notice";
+import { noticeData } from "../mock/noticeData";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
