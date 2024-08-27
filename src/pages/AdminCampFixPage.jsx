@@ -206,7 +206,7 @@ const AdminCampFixPage = () => {
           </div>
         </div>
         <div className="camping-explanaion">캠핑지 소개</div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <textarea
             className="input-camp-exp"
             id="camp-exp"
@@ -220,8 +220,8 @@ const AdminCampFixPage = () => {
         </form>
       </div>
 
-      <div onSubmit={handleSubmit} className="camp-center-container">
-        <button onClick={handleSubmit} className="camp-fix-btn">
+      <div className="camp-center-container">
+        <button type="submit" className="camp-fix-btn">
           수정
         </button>
       </div>
