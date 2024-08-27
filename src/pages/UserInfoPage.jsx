@@ -3,11 +3,11 @@ import "../components/user-info-page/UserInfoPage.css";
 import UserProfile from "../components/user-info-page/UserProfile";
 import UserAccount from "../components/user-info-page/UserAccount";
 import { Link } from "react-router-dom";
-import { userInfoIcon, userProfile } from "../constants/userInfo";
 import { ReactSVG } from "react-svg";
 import UserInfoModal from "../components/user-info-page/UserInfoModal";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { get } from "../utils/Api";
+import { svgCollection } from "../constants/svgCollection";
 
 const UserInfoPage = () => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -21,7 +21,7 @@ const UserInfoPage = () => {
   useEffect(() => {
     const getUserData = async () => {
       const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `${accessToken}`,
       };
 
       try {
@@ -42,7 +42,7 @@ const UserInfoPage = () => {
     <section className="user-info-wrap">
       <div className="user-info-title">
         <Link to={"/mypage"}>
-          <ReactSVG src={userInfoIcon.prev} className="user-info-prev" />
+          <ReactSVG src={svgCollection.prev} className="user-info-prev" />
         </Link>
         <div>내 정보 관리</div>
       </div>
@@ -64,7 +64,7 @@ const UserInfoPage = () => {
             <div>캐시</div>
             <div>
               <div>{userData.balance.toLocaleString()}원</div>
-              <ReactSVG src={userInfoIcon.prev} className="user-arrow-img" />
+              <ReactSVG src={svgCollection.prev} className="user-arrow-img" />
             </div>
           </Link>
 

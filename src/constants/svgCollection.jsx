@@ -12,6 +12,14 @@ import starEmpty from "../assets/svg/starEmpty.svg";
 import userImg from "../assets/svg/userImg.svg";
 import search from "../assets/svg/search.svg";
 import heart from "../assets/svg/heart.svg";
+import prev from "/src/assets/svg/arrowNext.svg";
+import money from "/src/assets/svg/banknotes.svg";
+import check from "/src/assets/svg/check.svg";
+import setting from "/src/assets/svg/cog6Tooth.svg";
+import calendar from "/src/assets/svg/calendarDays.svg";
+import photo from "/src/assets/svg/photo.svg";
+import home from "/src/assets/svg/home.svg";
+import lock from "/src/assets/svg/lockClosed.svg";
 
 export const svgCollection = {
   stars,
@@ -28,4 +36,12 @@ export const svgCollection = {
   userImg,
   search,
   heart,
+  prev,
+  money,
+	check,
+	setting,
+	calendar,
+	photo,
+	home,
+	lock,
 };

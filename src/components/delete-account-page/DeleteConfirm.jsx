@@ -1,7 +1,7 @@
 import React from "react";
 import "./DeleteConfirm.css";
 import { ReactSVG } from "react-svg";
-import check from "/src/assets/svg/check.svg";
+import { svgCollection } from "../../constants/svgCollection";
 
 const DeleteConfirm = ({ passwordRef, checkboxRef }) => {
   return (
@@ -20,7 +20,7 @@ const DeleteConfirm = ({ passwordRef, checkboxRef }) => {
       <div className="delete-confirm-chk">
         <input type="checkbox" id="delete-chk" ref={checkboxRef} />
         <label htmlFor="delete-chk">
-          <ReactSVG src={check} className="delete-chk-img" />
+          <ReactSVG src={svgCollection.check} className="delete-chk-img" />
           <div>위 내용을 모두 확인하였으며, 이에 동의합니다</div>
         </label>
       </div>

@@ -3,7 +3,7 @@ import "./NoticeList.css";
 import { Link } from "react-router-dom";
 import { shortDateDot } from "../../utils/shortDateDot";
 import { ReactSVG } from "react-svg";
-import { saveIcon } from "../../constants/save";
+import { svgCollection } from "../../constants/svgCollection";
 
 const NoticeList = ({ visibleItems, noticeData }) => {
   return (
@@ -27,7 +27,7 @@ const NoticeList = ({ visibleItems, noticeData }) => {
             </div>
             <div className="notice-date">{shortDateDot(data)}</div>
           </div>
-          <ReactSVG src={saveIcon.prev} className="notice-list-img" />
+          <ReactSVG src={svgCollection.prev} className="notice-list-img" />
         </Link>
       ))}
     </div>
