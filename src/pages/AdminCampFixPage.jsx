@@ -1,255 +1,248 @@
-import React, { useState, useRef } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import PostCodeAddress from "../components/admin-camping-register-page/PostCodeAddress";
-import { ReactSVG } from "react-svg";
-import { saveData } from "../mock/saveData";
-import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { svgCollection } from "../constants/svgCollection";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
+import { ReactSVG } from "react-svg";
+import { svgCollection } from "../constants/svgCollection";
+import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
+import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
+import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
+import useFetchCampingList from "../hooks/useFetchCampingList";
+import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
+import { put, deleteRequest } from "../utils/Api";
 
 const AdminCampFixPage = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const { id } = useParams();
+  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
-  const [explanaion, setExplanaion] = useState(""); // 상태 변수 수정
-  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(saveData);
+  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+  const [tel, setTel] = useState("");
+  const [price, setPrice] = useState("");
+  const [standardNum, setStandardNum] = useState("");
+  const [maxNum, setMaxNum] = useState("");
+  const [overCharge, setOverCharge] = useState("");
+  const [imageUrls, setImageUrls] = useState([]);
+  const [category, setCategory] = useState([]);
 
-  const selectedCampingPlace = campingPlaceFiltered.find(
+  const { campingPlaces } = useFetchCampingList();
+  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
+    useCampingPlaceFilter(campingPlaces);
+
+  // 현재 id에 맞는 캠핑장 데이터 찾기
+  const currentCampingPlace = campingPlaceFiltered.find(
     (place) => place.id === parseInt(id)
   );
 
-  const toggleCategory = (category) => {
-    setSelectedCategories((prev) => {
-      if (prev.includes(category)) {
-        return prev.filter((item) => item !== category);
+  useEffect(() => {
+    if (currentCampingPlace) {
+      setDescription(currentCampingPlace.description);
+      setName(currentCampingPlace.name);
+      setTel(currentCampingPlace.tel);
+      setPrice(currentCampingPlace.price);
+      setStandardNum(currentCampingPlace.standardNum);
+      setMaxNum(currentCampingPlace.maxNum);
+      setOverCharge(currentCampingPlace.overCharge);
+      setImageUrls(currentCampingPlace.imageUrls || []);
+      setCategory(currentCampingPlace.category || []);
+    }
+  }, [currentCampingPlace]);
+
+  const handleImagesChange = (newImages) => {
+    setImages(newImages);
+  };
+
+  const handleCategoriesChange = (newCategories) => {
+    setCategory(newCategories);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("tel", tel);
+    formData.append("price", price);
+    formData.append("standardNum", standardNum);
+    formData.append("maxNum", maxNum);
+    formData.append("overCharge", overCharge);
+    formData.append("description", description);
+
+    category.forEach((category, index) => {
+      formData.append(`category[${index}]`, category);
+    });
+
+    imageUrls.forEach((image, index) => {
+      if (typeof image === "string") {
+        formData.append(`imageUrls[${index}]`, image);
       } else {
-        return [...prev, category];
+        formData.append(`imageUrls[${index}]`, image);
       }
     });
-  };
 
-  const [images, setImages] = useState(
-    selectedCampingPlace?.campImage ? [selectedCampingPlace.campImage] : []
-  );
-  const fileInputRef = useRef(null);
-
-  const handleChange = (event) => {
-    setExplanaion(event.target.value); // 상태 변수 수정
-  };
-
-  const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
-    const fileReaders = files.map((file) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
+    try {
+      await put(`camps/${id}`, formData, {
+        "Content-Type": "multipart/form-data",
       });
-    });
-
-    Promise.all(fileReaders)
-      .then((urls) => {
-        setImages((prevImages) => [...prevImages, ...urls]);
-      })
-      .catch((error) => {
-        console.error("Error reading files:", error);
-      });
+      alert("캠핑장 정보가 수정되었습니다.");
+      navigate("/admin");
+    } catch (error) {
+      alert(`수정 실패: ${error.message}`);
+    }
   };
 
-  const handleRemoveImage = (index) => {
-    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  const removeHandle = async () => {
+    try {
+      // 단순히 리소스의 식별자(id)만 DELETE 요청에 사용합니다.
+      await deleteRequest(`camps/${id}`);
+      alert("캠핑장 정보가 삭제되었습니다.");
+      navigate("/admin");
+    } catch (error) {
+      alert(`삭제 실패: ${error.message}`);
+    }
   };
+
+  if (!currentCampingPlace) {
+    return <div>캠핑장 정보를 찾을 수 없습니다.</div>;
+  }
+
+  if (error) {
+    return <div>캠핑장 정보 가져오기 실패: {error.message}</div>;
+  }
 
   return (
     <div>
-      <Link to={"/admin"}>
-        <ReactSVG
-          className="admin-home-icon"
-          src="../../src/assets/svg/home.svg"
-          alt=""
-        />
-      </Link>
+      <AdminMainLink />
       <div className="regi-title">캠핑지 수정</div>
       <ReactSVG
         src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />
-      <div className="regi-category">
+
+      <div className="camp-right-container">
         <button
-          className={`regi-category-san ${
-            selectedCategories.includes("산") ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("산")}
+          onClick={removeHandle}
+          type="submit"
+          className="camp-remove-btn"
         >
-          산
-        </button>
-        <button
-          className={`regi-category-sea ${
-            selectedCategories.includes("바다") ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("바다")}
-        >
-          바다
-        </button>
-        <button
-          className={`regi-category-gog ${
-            selectedCategories.includes("계곡") ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("계곡")}
-        >
-          계곡
-        </button>
-        <button
-          className={`regi-category-dog ${
-            selectedCategories.includes("반려견동반가능") ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("반려견동반가능")}
-        >
-          반려견동반가능
-        </button>
-        <button
-          className={`regi-category-NoKids ${
-            selectedCategories.includes("노키즈") ? "selected" : ""
-          }`}
-          onClick={() => toggleCategory("노키즈")}
-        >
-          노키즈
+          삭제
         </button>
       </div>
-      <div className="hashTag">#중복 선택 가능</div>
+      <AdminCategoryBtn onCategoryChange={handleCategoriesChange} />
       <div className="camp-name">캠핑장 이름</div>
-      <div>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          value={selectedCampingPlace.campName}
-          className="input-camp-name"
-          required
-        />
-      </div>
-      <div className="camp-img-title">사진</div>
-      <div className="image-uploader-container">
-        <button
-          className="camp-img-input"
-          onClick={() => fileInputRef.current.click()}
-        >
-          + 등록
-        </button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          className="camp-img-input-hidden"
-          accept="image/png, image/jpeg, image/gif"
-          multiple
-          onChange={handleImageChange}
-        />
-        <div className="img-previews">
-          {images.map((src, index) => (
-            <div key={index} className="img-preview-container">
-              <div
-                className="img-preview"
-                style={{ backgroundImage: `url(${src})` }}
-              ></div>
-              <button
-                className="img-remove-btn"
-                onClick={() => handleRemoveImage(index)}
-              >
-                ×
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-      <PostCodeAddress setError={setError} setIsOpened={setIsOpened} />
-      <div>
-        <div className="camp-info">
-          <div className="camp-number-title">전화번호</div>
-          <div className="camp-price-title">금액 /1박</div>
-        </div>
-        <div className="contact-info">
+      <div className="camping-list">
+        <div>
           <input
-            id="camp-number"
-            name="camp-number"
-            type="number"
-            value={selectedCampingPlace.phoneNumber}
-            className="input-camp-number"
+            id="name"
+            name="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="input-camp-name"
             required
           />
-          <div>
-            <input
-              id="camp-price"
-              name="camp-price"
-              type="number"
-              value={selectedCampingPlace.price}
-              className="input-camp-price"
-              required
-            />
-            <span className="won">원</span>
-          </div>
         </div>
-        <div className="camp-user-title">
-          <div className="camp-standard-title">기준 인원</div>
-          <div className="camp-max-user-title">최대 인원</div>
-          <div className="camp-plus-price-title">추가 요금 /인당</div>
-        </div>
-        <div className="camping-info">
-          <div>
-            <input
-              id="camp-user"
-              name="camp-user"
-              type="number"
-              value={selectedCampingPlace.standardNum}
-              className="input-camp-user"
-              required
-            />
-            <span className="camping-user">명</span>
-          </div>
-          <div>
-            <input
-              id="camp-user"
-              name="camp-user"
-              type="number"
-              value={selectedCampingPlace.maxNum}
-              className="input-camp-max-user"
-              required
-            />
-            <span className="camping-user">명</span>
-          </div>
-          <div>
-            <input
-              id="camp-price"
-              name="camp-price"
-              type="number"
-              value={selectedCampingPlace.overCharge}
-              className="input-camp-plus-price"
-              required
-            />
-            <span className="won">원</span>
-          </div>
-        </div>
-      </div>
-      <div className="camping-explanaion">캠핑지 소개</div>
-      <form>
-        <textarea
-          className="input-camp-exp"
-          id="camp-exp"
-          name="camp-exp"
-          value={explanaion}
-          onChange={handleChange}
-          rows="30"
-          cols="50"
-          placeholder="캠핑장의 특징을 입력하세요."
+        <div className="camp-img-title">사진</div>
+        <AdminImgPlus
+          initialImages={imageUrls}
+          onImagesChange={handleImagesChange}
         />
-      </form>
+        <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+
+        <div>
+          <div className="camp-info">
+            <div className="camp-number-title">전화번호</div>
+            <div className="camp-price-title">금액 /1박</div>
+          </div>
+          <div className="contact-info">
+            <input
+              id="camp-number"
+              name="camp-number"
+              type="number"
+              value={tel}
+              onChange={(e) => setTel(e.target.value)}
+              className="input-camp-number"
+              required
+            />
+            <div>
+              <input
+                id="camp-price"
+                name="camp-price"
+                type="number"
+                value={price}
+                className="input-camp-price"
+                required
+                onChange={(e) => setPrice(e.target.value)}
+              />
+              <span className="won">원</span>
+            </div>
+          </div>
+          <div className="camp-user-title">
+            <div className="camp-standard-title">기준 인원</div>
+            <div className="camp-max-user-title">최대 인원</div>
+            <div className="camp-plus-price-title">추가 요금 /인당</div>
+          </div>
+          <div className="camping-info">
+            <div>
+              <input
+                id="camp-user"
+                name="camp-user"
+                type="number"
+                value={standardNum}
+                onChange={(e) => setStandardNum(e.target.value)}
+                className="input-camp-user"
+                required
+              />
+              <span className="camping-user">명</span>
+            </div>
+            <div>
+              <input
+                id="camp-user"
+                name="camp-user"
+                type="number"
+                value={maxNum}
+                className="input-camp-max-user"
+                required
+                onChange={(e) => setMaxNum(e.target.value)}
+              />
+              <span className="camping-user">명</span>
+            </div>
+            <div>
+              <input
+                id="camp-price"
+                name="camp-price"
+                type="number"
+                value={overCharge}
+                onChange={(e) => setOverCharge(e.target.value)}
+                className="input-camp-plus-price"
+                required
+              />
+              <span className="won">원</span>
+            </div>
+          </div>
+        </div>
+        <div className="camping-explanaion">캠핑지 소개</div>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            className="input-camp-exp"
+            id="camp-exp"
+            name="camp-exp"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows="30"
+            cols="50"
+            placeholder="캠핑장의 특징을 입력하세요."
+          />
+        </form>
+      </div>
 
       <div className="camp-center-container">
-        <button className="camp-fix-btn">수정</button>
+        <button type="submit" className="camp-fix-btn">
+          수정
+        </button>
       </div>
     </div>
   );

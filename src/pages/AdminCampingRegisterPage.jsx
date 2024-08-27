@@ -1,25 +1,73 @@
-import React, { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
-import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
+import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
+import { post } from "../utils/Api";
 
 const AdminCampingRegister = () => {
+  const svg = svgCollection;
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
-  const [explanaion, setExplanaion] = useState(""); // 상태 변수 수정
+  const [description, setDescription] = useState(""); // 상태 변수 수정
+  const [name, setName] = useState("");
+  const [tel, setTel] = useState("");
+  const [price, setPrice] = useState("");
+  const [standardNum, setStandardNum] = useState("");
+  const [maxNum, setMaxNum] = useState("");
+  const [overCharge, setOverCharge] = useState("");
+  const [imageUrls, setImageUrls] = useState([]); // 이미지 상태 추가
+  const [category, setCategory] = useState([]);
+  const [addr, setAddr] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    setExplanaion(event.target.value); // 상태 변수 수정
+  const handleImagesChange = (newImages) => {
+    setImageUrls(newImages);
+  };
+
+  const handleCategoriesChange = (newCategories) => {
+    setCategory(newCategories);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("tel", tel);
+    formData.append("price", price);
+    formData.append("standardNum", standardNum);
+    formData.append("maxNum", maxNum);
+    formData.append("overCharge", overCharge);
+    formData.append("description", description);
+    formData.append("addr", addr);
+
+    category.forEach((category, index) => {
+      formData.append(`category[${index}]`, category);
+    });
+
+    imageUrls.forEach((image, index) => {
+      formData.append(`imageUrls[${index}]`, image);
+    });
+
+    try {
+      await post("camps", formData, {
+        "Content-Type": "multipart/form-data", // FormData를 사용할 때는 multipart/form-data 헤더를 사용
+      });
+      alert("캠핑장 등록이 완료되었습니다.");
+      navigate("/admin");
+    } catch (error) {
+      alert(`등록 실패: ${error.message}`);
+    }
   };
 
   return (
     <div>
+      <AdminMainLink />
       <div className="regi-title">캠핑지 등록</div>
       <ReactSVG
         src={svgCollection.prev}
@@ -27,7 +75,7 @@ const AdminCampingRegister = () => {
         onClick={() => navigate(-1)}
       />
 
-      <AdminCategoryBtn />
+      <AdminCategoryBtn onCategoryChange={handleCategoriesChange} />
 
       <div className="camp-name">캠핑장 이름</div>
       <div>
@@ -38,11 +86,18 @@ const AdminCampingRegister = () => {
           autoComplete="name"
           className="input-camp-name"
           required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="camp-img-title">사진</div>
-      <AdminImgPlus />
-      <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+      <AdminImgPlus onImagesChange={handleImagesChange} />
+      <AdminCampAddress
+        addr={addr}
+        setAddr={setAddr}
+        setError={setError}
+        setIsOpened={setIsOpened}
+      />
 
       <div>
         <div className="camp-info">
@@ -57,6 +112,8 @@ const AdminCampingRegister = () => {
             autoComplete="camp-number"
             className="input-camp-number"
             required
+            value={tel}
+            onChange={(e) => setTel(e.target.value)}
           />
           <div>
             <input
@@ -66,6 +123,8 @@ const AdminCampingRegister = () => {
               autoComplete="camp-price"
               className="input-camp-price"
               required
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
             <span className="won">원</span>
           </div>
@@ -78,34 +137,40 @@ const AdminCampingRegister = () => {
         <div className="camping-info">
           <div>
             <input
-              id="camp-user"
-              name="camp-user"
+              id="standard-num"
+              name="standard-num"
               type="number"
-              autoComplete="camp-user"
+              autoComplete="standard-num"
               className="input-camp-user"
               required
+              value={standardNum}
+              onChange={(e) => setStandardNum(e.target.value)}
             />
             <span className="camping-user">명</span>
           </div>
           <div>
             <input
-              id="camp-user"
-              name="camp-user"
+              id="max-num"
+              name="max-num"
               type="number"
-              autoComplete="camp-user"
+              autoComplete="max-num"
               className="input-camp-user"
               required
+              value={maxNum}
+              onChange={(e) => setMaxNum(e.target.value)}
             />
             <span className="camping-user">명</span>
           </div>
           <div>
             <input
-              id="camp-price"
-              name="camp-price"
+              id="additional-charge"
+              name="additional-charge"
               type="number"
-              autoComplete="camp-price"
+              autoComplete="additional-charge"
               className="input-camp-plus-price"
               required
+              value={overCharge}
+              onChange={(e) => setOverCharge(e.target.value)}
             />
             <span className="won">원</span>
           </div>
@@ -113,21 +178,23 @@ const AdminCampingRegister = () => {
       </div>
 
       <div className="camping-explanaion">캠핑지 소개</div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <textarea
           className="input-camp-exp"
           id="camp-exp"
           name="camp-exp"
-          value={explanaion}
-          onChange={handleChange}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           rows="30"
           cols="50"
           placeholder="캠핑장의 특징을 입력하세요."
         />
+        <div className="camp-center-container">
+          <button type="submit" className="camp-perpect-regi">
+            등록
+          </button>
+        </div>
       </form>
-      <div className="camp-center-container">
-        <button className="camp-perpect-regi">등록</button>
-      </div>
     </div>
   );
 };
