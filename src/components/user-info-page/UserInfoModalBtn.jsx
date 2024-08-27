@@ -1,43 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import "./UserInfoModalBtn.css";
 import { closeModal } from "../../utils/closeModal";
 import { userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
+import { put } from "../../utils/Api";
 
-const UserInfoModalBtn = ({ setIsOpened, modalType }) => {
-  // const submitHandle = (event) => {
-  //   event.preventDefault();
+const UserInfoModalBtn = ({ setIsOpened, modalType, inputValue, onUpdate }) => {
+  const { accessToken, userId } = getUserIdFromToken();
+  const [errorMessage, setErrorMessage] = useState("");
 
-  //   if (postcode === "") {
-  //     setError(true);
-  //     setErrorType("post");
-  //     setIsOpened(true);
-  //     return;
-  //   }
+  const submitHandle = async () => {
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
 
-  //   setError(false); // 에러가 없으면 메시지 초기화
-  //   setIsOpened(false);
+    const params = new URLSearchParams();
 
-  //   // 입력된 데이터를 formData에 저장
-  //   const formData = {};
-  //   signUp.forEach((signup) => {
-  //     const inputElement = document.querySelector(
-  //       `input[name="${signup.key}"]`
-  //     );
-  //     if (inputElement) {
-  //       formData[signup.key] = inputElement.value;
-  //     }
-  //   });
-  //   formData.addr = `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`; // 주소는 별도로 처리
+    if (modalType === "tel") {
+      params.set("tel", inputValue.tel);
+    } else if (modalType === "addr") {
+      params.set("tel", inputValue.addr);
+    } else if (modalType === "password") {
+      params.oldPassword = inputValue.oldPassword;
+      params.newPassword = inputValue.newPassword;
+    }
 
-  //   // handleSubmit 호출
-  //   handleSubmit(formData);
-
-  //   console.log("제출 완료", formData);
-  // };
+    try {
+      const response = await put(
+        `userprofile/${userId}`,
+        params.toString(),
+        customHeaders
+      );
+      console.log("response", response);
+      console.log("params", params.toString());
+      setIsOpened(false);
+      closeModal(setIsOpened)();
+      onUpdate();
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
 
   return (
-    <button className="info-modal-submit" onClick={closeModal(setIsOpened)}>
+    <button className="info-modal-submit" onClick={submitHandle}>
       <ReactSVG
         src={userInfoModal[modalType].icon}
         className="info-modal-img"
