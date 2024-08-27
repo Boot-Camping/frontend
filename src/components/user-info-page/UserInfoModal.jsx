@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./UserInfoModal.css";
 import { ReactSVG } from "react-svg";
 import { createPortal } from "react-dom";
@@ -9,16 +9,47 @@ import UserInfoModalBtn from "./UserInfoModalBtn";
 import { svgCollection } from "../../constants/svgCollection";
 import { userInfoModal } from "../../constants/userInfo";
 import PortalModal from "../common/PortalModal";
+import { phoneNumber } from "../../utils/phoneNumber";
 
-const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
+const UserInfoModal = ({
+  isOpened,
+  setIsOpened,
+  modalType,
+  tel,
+  addr,
+  onUpdate,
+}) => {
   const { postcode, setPostcode } = useAddress();
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
+  const [inputValue, setInputValue] = useState({
+    tel: "",
+    addr: "",
+    oldPassword: "",
+    newPassword: "",
+  });
+
+  const changeHandle = (e) => {
+    const { name, value } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+	const addrSelectHandle = (selectedAddress) => {
+		setInputValue({
+			...inputValue,
+			addr: selectedAddress
+		})
+	}
 
   const renderOldData = () => {
     if (modalType === "password") {
       return (
-        <input type="text" name="oldPassword" placeholder="비밀번호 입력" />
+        <input
+          type="text"
+          name="oldPassword"
+          placeholder="비밀번호 입력"
+          onChange={changeHandle}
+        />
       );
     } else if (modalType === "tel") {
       return <div>{tel}</div>;
@@ -30,7 +61,15 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
   const renderNewInput = () => {
     switch (modalType) {
       case "tel":
-        return <input type="text" name="tel" placeholder="010-1234-5678" />;
+        return (
+          <input
+            type="text"
+            name="tel"
+            placeholder="010-1234-5678"
+            onChange={changeHandle}
+            onInput={(e) => phoneNumber(e)}
+          />
+        );
       case "addr":
         return (
           <DaumPostCode
@@ -47,7 +86,12 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
               type="text"
               placeholder="알파벳 대문자 및 특수문자를 포함한 8자 이상"
             />
-            <input type="text" name="newPassword" placeholder="비밀번호 확인" />
+            <input
+              type="text"
+              name="newPassword"
+              placeholder="비밀번호 확인"
+              onChange={changeHandle}
+            />
           </>
         );
       default:
@@ -76,7 +120,12 @@ const UserInfoModal = ({ isOpened, setIsOpened, modalType, tel, addr }) => {
               {renderNewInput()}
             </div>
 
-            <UserInfoModalBtn setIsOpened={setIsOpened} modalType={modalType} />
+            <UserInfoModalBtn
+              setIsOpened={setIsOpened}
+              modalType={modalType}
+              inputValue={inputValue}
+              onUpdate={onUpdate}
+            />
 
             <ReactSVG
               src={svgCollection.xMark}
