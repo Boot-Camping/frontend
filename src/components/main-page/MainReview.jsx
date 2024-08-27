@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "../main-page/MainReview.css";
-import { get } from "../../utils/Api";
+import { get } from "../../utils/api";
 
 const MainReview = () => {
   const [reviews, setReviews] = useState([]);
@@ -14,7 +14,7 @@ const MainReview = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await get("review/all");
+        const response = await get("reviews");
         const sortedReviews = response.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );

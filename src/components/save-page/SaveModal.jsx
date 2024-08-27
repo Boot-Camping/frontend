@@ -3,7 +3,7 @@ import "./SaveModal.css";
 import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { deleteRequest } from "../../utils/Api";
+import { deleteRequest } from "../../utils/api";
 
 const SaveModal = ({ isOpened, setIsOpened, selectedData, onUpdate }) => {
   const { accessToken } = getUserIdFromToken();

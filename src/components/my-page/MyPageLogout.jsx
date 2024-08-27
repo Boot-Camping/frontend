@@ -43,8 +43,18 @@ const MyPageLogout = () => {
                 <div className="logout-txt">
                   <div>로그아웃 하시겠습니까?</div>
                   <div className="logout-btn-wrap">
-                    <button className="logout-cancel-btn" onClick={closeModal(setIsOpened)}>취소</button>
-                    <button className="logout-confirm-btn" onClick={logoutHandle}>확인</button>
+                    <button
+                      className="logout-cancel-btn"
+                      onClick={closeModal(setIsOpened)}
+                    >
+                      취소
+                    </button>
+                    <button
+                      className="logout-confirm-btn"
+                      onClick={logoutHandle}
+                    >
+                      확인
+                    </button>
                   </div>
                 </div>
               </div>,

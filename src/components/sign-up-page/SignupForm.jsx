@@ -7,7 +7,7 @@ import useAddress from "../../hooks/useAddress";
 import { phoneNumber } from "../../utils/phoneNumber";
 import { validation } from "../../utils/validation";
 import { hashPassword } from "../../utils/hashPassword";
-import { post } from "../../utils/Api";
+import { post } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 const SignupForm = ({ setError, setErrorType, setIsOpened }) => {

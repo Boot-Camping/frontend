@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
-import star from "../../assets/svg/star.svg";
 import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
+import { svgCollection } from "../../constants/svgCollection";
 
 const MainCampingList = () => {
   const { campingPlaces, error } = useFetchCampingList();
@@ -26,9 +26,9 @@ const MainCampingList = () => {
           onChange={(e) => setSelectedFilter(e.target.value)}
         >
           <option value="updatedAt">최근 등록 순</option>
-          <option value="bookCount">예약 많은 순</option>
+          <option value="reservedDateCount">예약 많은 순</option>
           <option value="reviewCount">리뷰 많은 순</option>
-          <option value="gradeCount">평점 좋은 순</option>
+          <option value="averageGrade">평점 좋은 순</option>
         </select>
       </div>
 
@@ -46,7 +46,7 @@ const MainCampingList = () => {
                 className={`camping-img-heart ${
                   !heartClick[index] && "camping-img-heart-delete"
                 }`}
-                src={heartIcon.heart}
+                src={svgCollection.heart}
                 alt=""
                 onClick={(e) => {
                   e.preventDefault();
@@ -64,15 +64,19 @@ const MainCampingList = () => {
             </Link>
             <div className="camping-info-icons-wrapper">
               <div className="camping-info-star-wrapper">
-                <ReactSVG className="camping-info-star" src={star} alt="" />
-                <div className="camping-info">{campingPlace.gradeCount}</div>
+                <ReactSVG
+                  className="camping-info-star"
+                  src={svgCollection.stars}
+                  alt=""
+                />
+                <div className="camping-info">{campingPlace.averageGrade}</div>
                 <div className="camping-info">
                   ・리뷰({campingPlace.reviewCount})
                 </div>
               </div>
 
               <div className="camping-info">
-                예약자 수({campingPlace.bookCount})
+                예약자 수({campingPlace.reservedDateCount})
               </div>
             </div>
           </div>

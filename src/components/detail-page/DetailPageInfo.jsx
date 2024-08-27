@@ -3,7 +3,7 @@ import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
 import { svgCollection } from "../../constants/svgCollection";
 import ReadMore from "./ReadMore";
-import { post } from "../../utils/Api";
+import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const DetailPageInfo = ({ detailInfo }) => {
