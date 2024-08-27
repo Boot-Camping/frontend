@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { campBookData } from "../constants/campBookData"; // 목업 데이터 가져오기
+import { campBookData } from "../mock/campBookData"; // 목업 데이터 가져오기
 import { filterData } from "../utils/filterData";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../constants/notice";

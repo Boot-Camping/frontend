@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "../components/admin-book-page/AdminBookDetail.css";
-import { campBookData } from "../constants/campBookData";
+import { campBookData } from "../mock/campBookData";
 import { ReactSVG } from "react-svg";
 import { saveIcon } from "../constants/save";
 

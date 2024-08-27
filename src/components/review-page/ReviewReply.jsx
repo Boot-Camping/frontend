@@ -1,6 +1,6 @@
 import React from "react";
 import "./ReviewPage.css";
-import useReviewReplies from "../../hooks/useReviewRepies";
+import useReviewReplies from "../../hooks/useReviewReplies";
 
 const ReviewReply = ({ reviewId }) => {
   const { replies, loading, error } = useReviewReplies(reviewId);
