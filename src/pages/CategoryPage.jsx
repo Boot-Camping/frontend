@@ -31,9 +31,9 @@ const CategoryPage = () => {
           onChange={(e) => setSelectedFilter(e.target.value)}
         >
           <option value="updatedAt">최근 등록 순</option>
-          <option value="bookCount">예약 많은 순</option>
+          <option value="reservedDateCount">예약 많은 순</option>
           <option value="reviewCount">리뷰 많은 순</option>
-          <option value="gradeCount">평점 좋은 순</option>
+          <option value="averageGrade">평점 좋은 순</option>
         </select>
       </div>
 
@@ -85,14 +85,14 @@ const CategoryPage = () => {
                 alt=""
               />
               <div className="category-camping-info">
-                {campingPlace.gradeCount}
+                {campingPlace.averageGrade}
               </div>
               <div className="category-camping-info">
                 ・리뷰({campingPlace.reviewCount})
               </div>
             </div>
             <div className="category-camping-info">
-              예약({campingPlace.bookCount})
+              예약({campingPlace.reservedDateCount})
             </div>
           </div>
         </div>
