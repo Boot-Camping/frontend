@@ -17,7 +17,7 @@
 .regi-category {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -355,6 +355,23 @@
   width: 15rem;
   height: 4rem;
   margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.camp-right-container {
+  display: flex;
+  justify-content: right;
+}
+
+.camp-remove-btn {
+  color: white;
+  background-color: var(--red);
+  font-size: var(--content);
+  font-weight: bold;
+  border-radius: 2rem;
+  border: none;
+  width: 4.5rem;
+  height: 2.5rem;
   cursor: pointer;
 }
 

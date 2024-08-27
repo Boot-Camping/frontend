@@ -9,11 +9,10 @@ import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { put } from "../utils/Api";
+import { put, deleteRequest } from "../utils/Api";
 
 const AdminCampFixPage = () => {
   const navigate = useNavigate();
-  const svg = svgCollection;
   const { id } = useParams();
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
@@ -94,6 +93,17 @@ const AdminCampFixPage = () => {
     }
   };
 
+  const removeHandle = async () => {
+    try {
+      // 단순히 리소스의 식별자(id)만 DELETE 요청에 사용합니다.
+      await deleteRequest(`camps/${id}`);
+      alert("캠핑장 정보가 삭제되었습니다.");
+      navigate("/admin");
+    } catch (error) {
+      alert(`삭제 실패: ${error.message}`);
+    }
+  };
+
   if (!currentCampingPlace) {
     return <div>캠핑장 정보를 찾을 수 없습니다.</div>;
   }
@@ -112,6 +122,15 @@ const AdminCampFixPage = () => {
         onClick={() => navigate(-1)}
       />
 
+      <div className="camp-right-container">
+        <button
+          onClick={removeHandle}
+          type="submit"
+          className="camp-remove-btn"
+        >
+          삭제
+        </button>
+      </div>
       <AdminCategoryBtn onCategoryChange={handleCategoriesChange} />
       <div className="camp-name">캠핑장 이름</div>
       <div className="camping-list">
