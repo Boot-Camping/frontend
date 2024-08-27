@@ -107,7 +107,7 @@ const AdminCampFixPage = () => {
       <AdminMainLink />
       <div className="regi-title">캠핑지 수정</div>
       <ReactSVG
-        src={svg.prev}
+        src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />

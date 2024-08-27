@@ -70,7 +70,7 @@ const AdminCampingRegister = () => {
       <AdminMainLink />
       <div className="regi-title">캠핑지 등록</div>
       <ReactSVG
-        src={svg.prev}
+        src={svgCollection.prev}
         className="notice-move-prev"
         onClick={() => navigate(-1)}
       />

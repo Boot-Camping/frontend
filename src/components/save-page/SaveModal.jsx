@@ -13,7 +13,7 @@ const SaveModal = ({ isOpened, setIsOpened, selectedData, onUpdate }) => {
     event.preventDefault();
 
     const customHeaders = {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `${accessToken}`,
     };
 
     const wishId = selectedData.wishId[0];

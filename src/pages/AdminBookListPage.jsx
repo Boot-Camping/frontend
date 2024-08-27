@@ -4,8 +4,8 @@ import { ReactSVG } from "react-svg";
 import { campBookData } from "../mock/campBookData"; // 목업 데이터 가져오기
 import { filterData } from "../utils/filterData";
 import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../constants/notice";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
+import { noticeData } from "../mock/noticeData";
 import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 import "../components/admin-book-page/AdminBookListPage.css";
 

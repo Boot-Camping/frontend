@@ -29,9 +29,9 @@ import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
 import ReviewWriter from "./components/review-page/ReviewWriter";
-import { saveData } from "./constants/save";
+import { saveData } from "./mock/saveData";
 import { CampingDaysProvider } from "./context/campingDaysContext";
-import { AuthProvider } from "./hooks/authContext";
+import { AuthProvider } from "./context/authContext";
 
 function App() {
   return (
