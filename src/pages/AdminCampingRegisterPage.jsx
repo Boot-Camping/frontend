@@ -22,6 +22,7 @@ const AdminCampingRegister = () => {
   const [overCharge, setOverCharge] = useState("");
   const [imageUrls, setImageUrls] = useState([]); // 이미지 상태 추가
   const [category, setCategory] = useState([]);
+  const [addr, setAddr] = useState("");
   const navigate = useNavigate();
 
   const handleImagesChange = (newImages) => {
@@ -43,6 +44,7 @@ const AdminCampingRegister = () => {
     formData.append("maxNum", maxNum);
     formData.append("overCharge", overCharge);
     formData.append("description", description);
+    formData.append("addr", addr);
 
     category.forEach((category, index) => {
       formData.append(`category[${index}]`, category);
@@ -90,7 +92,12 @@ const AdminCampingRegister = () => {
       </div>
       <div className="camp-img-title">사진</div>
       <AdminImgPlus onImagesChange={handleImagesChange} />
-      <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+      <AdminCampAddress
+        addr={addr}
+        setAddr={setAddr}
+        setError={setError}
+        setIsOpened={setIsOpened}
+      />
 
       <div>
         <div className="camp-info">
