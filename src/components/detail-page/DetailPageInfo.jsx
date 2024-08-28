@@ -12,42 +12,21 @@ const DetailPageInfo = ({ detailInfo }) => {
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
 
-  // 단순 데이터 구분을 위한 변수선언
-  const detailData = {
-    id: detailInfo.id,
-    name: detailInfo.name,
-    price: detailInfo.price,
-    addr: detailInfo.addr,
-    tel: detailInfo.tel,
-    campImages: Array.isArray(detailInfo.imageUrls)
-      ? detailInfo.imageUrls.join(", ")
-      : detailInfo.imageUrls,
-    categories: detailInfo.categories,
-    viewCount: detailInfo.viewCount,
-    averageGrade: detailInfo.averageGrade,
-  };
-
   // 찜하기(POST)
   const toggleSave = async () => {
-    // const wishListData = {
-    //   campId: detailInfo.id,
-    //   userId: userId,
-    // };
-
-    // console.log("전송하려는 데이터:", JSON.stringify(wishListData, null, 2));
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+    };
 
     try {
       const response = await post(
         `userprofile/wishlist/add/${detailInfo.id}`,
-        null,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
+        {},
+        customHeaders
       );
+      console.log("찜하기 요청 성공🥳:", response);
       setIsSaved(!isSaved);
-      console.log("찜하기 성공! 😄:", response);
     } catch (error) {
-      setError("찜하기 오류 발생 🥲");
       console.error("찜하기 요청 오류🥲:", error);
       if (error.response) {
         console.error("서버 응답 상태 코드:", error.response.status);
@@ -55,6 +34,7 @@ const DetailPageInfo = ({ detailInfo }) => {
       } else {
         console.error("요청 오류:", error.message);
       }
+      setError("찜하기 오류 발생 🥲");
     }
   };
 
