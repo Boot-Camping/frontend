@@ -17,8 +17,8 @@ const UserProfile = ({ setIsOpened, setModalType, userData }) => {
   };
 
   const addrParts = userData.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
-  const address = addrParts[1].trim();
-  const detailAddress = addrParts[3].trim();
+  const address = addrParts ? addrParts[1].trim() : userData.addr;
+  const detailAddress = addrParts ? addrParts[3].trim() : "";
 
   return (
     <div className="user-profile-wrap">
@@ -54,10 +54,14 @@ const UserProfile = ({ setIsOpened, setModalType, userData }) => {
         <div className="profile-txt profile-address" onClick={addrChangeHandle}>
           <div className="">주소</div>
           <div>
-            <div>
-              <div>{address}</div>
-              <div>{detailAddress}</div>
-            </div>
+            {addrParts ? (
+              <div>
+                <div>{address}</div>
+                <div>{detailAddress}</div>
+              </div>
+            ) : (
+              <div>{userData.addr}</div>
+            )}
             <div className="profile-change">변경</div>
           </div>
         </div>
