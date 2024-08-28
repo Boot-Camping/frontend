@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./UserProfile.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
+import { post } from "../../utils/api";
 
-const UserProfile = ({ setIsOpened, setModalType, userData }) => {
+const UserProfile = ({
+  setIsOpened,
+  setModalType,
+  userData,
+  setErrorMessage,
+  onUpdate,
+}) => {
+  const { accessToken } = getUserIdFromToken();
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const telChangeHandle = () => {
     setIsOpened(true);
     setModalType("tel");
@@ -16,20 +27,49 @@ const UserProfile = ({ setIsOpened, setModalType, userData }) => {
     console.log("주소 변경");
   };
 
+  const customHeaders = {
+    Authorization: `${accessToken}`,
+    "Content-Type": "multipart/form-data",
+  };
+
+  const fileUploadHandle = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("images", file);
+
+    try {
+      await post(`userprofile/images`, formData, customHeaders);
+      onUpdate();
+    } catch (error) {
+      setErrorMessage(error.message);
+      console.log(error.message);
+    }
+  };
+
   const addrParts = userData.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
   const address = addrParts ? addrParts[1].trim() : userData.addr;
   const detailAddress = addrParts ? addrParts[3].trim() : "";
 
   return (
     <div className="user-profile-wrap">
-      <div className="profile-img-wrap underline">
-        <div className="profile-img">
-          <input type="file" id="profile-img-input" />
+      <div className="user-profile-img-wrap underline">
+        <div className="profile-img-wrap">
+          <input
+            type="file"
+            id="profile-img-input"
+            onChange={fileUploadHandle}
+          />
           <label htmlFor="profile-img-input">
-            <ReactSVG
-              src={svgCollection.userImg}
-              className="profile-img-user"
-            />
+            {userData.images[0] ? (
+              <img src={userData.images[0]} className="profile-img" />
+            ) : (
+              <ReactSVG
+                src={svgCollection.userImg}
+                className="profile-img-user"
+              />
+            )}
             <ReactSVG src={svgCollection.photo} className="profile-img-photo" />
           </label>
         </div>
