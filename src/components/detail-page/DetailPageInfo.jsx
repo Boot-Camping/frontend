@@ -12,30 +12,36 @@ const DetailPageInfo = ({ detailInfo }) => {
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
 
-  const toggleSave = async () => {
-    const data = {
-      id: detailInfo.id,
-      name: detailInfo.name,
-      price: detailInfo.price,
-      addr: detailInfo.addr,
-      tel: detailInfo.tel,
-      campImages: Array.isArray(detailInfo.imageUrls)
-        ? detailInfo.imageUrls.join(", ")
-        : detailInfo.imageUrls,
-      categories: detailInfo.categories,
-      viewCount: detailInfo.viewCount,
-      averageGrade: detailInfo.averageGrade,
-    };
+  // 단순 데이터 구분을 위한 변수선언
+  const detailData = {
+    id: detailInfo.id,
+    name: detailInfo.name,
+    price: detailInfo.price,
+    addr: detailInfo.addr,
+    tel: detailInfo.tel,
+    campImages: Array.isArray(detailInfo.imageUrls)
+      ? detailInfo.imageUrls.join(", ")
+      : detailInfo.imageUrls,
+    categories: detailInfo.categories,
+    viewCount: detailInfo.viewCount,
+    averageGrade: detailInfo.averageGrade,
+  };
 
-    console.log("전송하려는 데이터:", JSON.stringify(data, null, 2));
-    console.log("찜하려는 campId:", detailInfo.id);
+  // 찜하기(POST)
+  const toggleSave = async () => {
+    // const wishListData = {
+    //   campId: detailInfo.id,
+    //   userId: userId,
+    // };
+
+    // console.log("전송하려는 데이터:", JSON.stringify(wishListData, null, 2));
 
     try {
       const response = await post(
-        `userprofile/wishlist/add/${detailInfo.id}/${userId}`,
-        data,
+        `userprofile/wishlist/add/${detailInfo.id}`,
+        null,
         {
-          Authorization: `Bearer ${accessToken}`,
+          headers: { Authorization: `Bearer ${accessToken}` },
         }
       );
       setIsSaved(!isSaved);

@@ -23,7 +23,7 @@ const PaidPage = () => {
       };
 
       try {
-        const response = await get(`book/${userId}`, customHeaders);
+        const response = await get(`camps/bookings`, customHeaders);
 
         console.log(response);
         setPaidData(response);
