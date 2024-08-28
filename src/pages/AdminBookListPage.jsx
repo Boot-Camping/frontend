@@ -11,7 +11,7 @@ import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import "../components/admin-book-page/AdminBookListPage.css";
 
 const AdminBookListPage = () => {
-  const { book, error } = useBookList();
+  const { book = [], error } = useBookList(); // book의 초기값을 빈 배열로 설정
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(book);
 
@@ -22,21 +22,25 @@ const AdminBookListPage = () => {
     filteredItems
   );
 
+  if (error) {
+    return <div>오류가 발생했습니다: {error.message}</div>;
+  }
+
   return (
     <div>
-      <AdminMainLink />
       <div className="admin-book-title">예약 조회</div>
+      <AdminMainLink />
       {campingPlaceFiltered.map((book) => (
-        <div key={book.id} className="book-list-ex">
+        <div key={book.bookId} className="book-list-ex">
           <div className="admin-book-list-ex">
-            [{book.campName}] {book.startDate}일 예약 - {book.bookNum}명{" "}
-            {book.bookStatus}
+            [{book.campName}] {new Date(book.startDate).toLocaleDateString()}일
+            예약 - {book.bookNum}명 {book.bookStatus}
           </div>
-          <Link to={`/admin/book-detail/${book.id}`}>
+          <Link to={`/admin/book-detail/${book.bookId}`}>
             <span>
               <ReactSVG
                 className="book-list-chevron"
-                src="../../src/assets/svg/chevron-right.svg"
+                src="/assets/svg/chevron-right.svg" // 경로 수정
                 alt=""
               />
             </span>
