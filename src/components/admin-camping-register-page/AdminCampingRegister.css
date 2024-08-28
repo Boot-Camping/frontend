@@ -17,7 +17,7 @@
 .regi-category {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .camp-name {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   display: flex;
   justify-content: left;
@@ -120,7 +120,7 @@
 }
 
 .camp-number-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   display: flex;
   justify-content: left;
@@ -138,7 +138,7 @@
 }
 
 .camp-price-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   display: flex;
   justify-content: left;
@@ -146,19 +146,19 @@
 }
 
 .camp-standard-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
 
 .camp-max-user-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
 
 .camp-plus-price-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
@@ -200,7 +200,7 @@
 
 .camping-explanaion {
   justify-content: space-between;
-  font-size: 1.5rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
@@ -213,6 +213,7 @@
   border: solid 1px #666666;
   border-radius: 0.5rem;
   font-size: 1.4rem;
+  font-family: "Pretendard";
   justify-content: start;
   align-content: flex-start;
   text-align: start;
@@ -237,7 +238,7 @@
 }
 
 .camp-img-title {
-  font-size: 1.4rem;
+  font-size: var(--sub-heading);
   font-weight: bold;
   margin-top: 3rem;
 }
@@ -355,6 +356,23 @@
   width: 15rem;
   height: 4rem;
   margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.camp-right-container {
+  display: flex;
+  justify-content: right;
+}
+
+.camp-remove-btn {
+  color: white;
+  background-color: var(--red);
+  font-size: var(--content);
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: none;
+  width: 5rem;
+  height: 2.5rem;
   cursor: pointer;
 }
 

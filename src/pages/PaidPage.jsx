@@ -11,7 +11,7 @@ import { get } from "../utils/api";
 import { svgCollection } from "../constants/svgCollection";
 
 const PaidPage = () => {
-  const { accessToken, userId } = getUserIdFromToken();
+  const { accessToken } = getUserIdFromToken();
   const [paidData, setPaidData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [filter, setFilter] = useState("all");
@@ -25,7 +25,6 @@ const PaidPage = () => {
       try {
         const response = await get(`camps/bookings`, customHeaders);
 
-        console.log(response);
         setPaidData(response);
       } catch (error) {
         setErrorMessage(error.message);
@@ -33,7 +32,7 @@ const PaidPage = () => {
     };
 
     getPaidData();
-  }, [accessToken, userId]);
+  }, [accessToken]);
 
   const filterChangeHandle = (status) => {
     setFilter(status);
