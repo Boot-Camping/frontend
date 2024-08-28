@@ -67,6 +67,10 @@ const PaymentPage = ({ campInfo }) => {
   };
 
   const paymentHandle = async () => {
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+    };
+
     const data = {
       totalPrice: totalPrice,
       checkIn: new Date(checkIn).toISOString(),
@@ -77,9 +81,11 @@ const PaymentPage = ({ campInfo }) => {
     console.log("전송하려는 예약정보:", data);
 
     try {
-      const response = await post(`book/${campId}/${userId}`, data, {
-        Authorization: `Bearer ${accessToken}`,
-      });
+      const response = await post(
+        `camps/bookings/${campId}`,
+        data,
+        customHeaders
+      );
       console.log("예약 성공! 😄:", response);
       openSecondModal();
     } catch (error) {

@@ -21,20 +21,36 @@ const ReviewWriter = () => {
   const [reviewImages, setReviewImages] = useState([]);
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  //selectedTag -> label 추출해서 -> 문자열로 변환
+  const reviewTagsString = selectedTags
+    .map((tagId) => reviewTag.find((tag) => tag.id === tagId)?.label)
+    .filter(Boolean) //null 또는 undefined 필터링
+    .join(",");
 
   const reviewSubmit = async () => {
-    const reviewData = {
-      // campName: reviewData.campName,
-      grade: reviewGrade,
-      reviewContent: reviewContent,
-      reviewTags: reviewTags,
-      reviewImages: reviewImages,
-    };
-    console.log("제출하려는 리뷰:", reviewData);
+    const formData = new FormData();
+
+    formData.append("grade", reviewGrade);
+    formData.append("content", reviewContent);
+    formData.append("tags", reviewTagsString);
+    reviewImages.forEach((image, index) => {
+      formData.append(`imageUrls${index}`, image);
+    });
+
     try {
-      const response = await post(`review/${campId}/${userId}`, reviewData, {
-        Authorization: `Bearer ${accessToken}`,
+      const response = await post(`reviews`, formData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
+
+      if (response.status === 200) {
+        console.log("리뷰 제출 성공! 😄");
+      } else {
+        throw new Error(`서버 응답 에러: ${response.status}`);
+      }
     } catch (error) {
       setError("리뷰제출 에러 발생 🥲");
       console.error("리뷰제출 에러 발생 🥲:", error);
@@ -49,8 +65,6 @@ const ReviewWriter = () => {
 
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
-
-  const [selectedTags, setSelectedTags] = useState([]);
 
   const gradeChangeHandle = (rating) => {
     setReviewGrade(rating);

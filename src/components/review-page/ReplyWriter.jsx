@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ReviewPage.css";
 import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
+import { post } from "../../utils/api";
 
 const svg = svgCollection;
 
