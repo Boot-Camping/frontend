@@ -10,7 +10,7 @@ import { get } from "../utils/api";
 import { svgCollection } from "../constants/svgCollection";
 
 const SavePage = () => {
-  const { accessToken, userId } = getUserIdFromToken();
+  const { accessToken } = getUserIdFromToken();
   const [saveData, setSaveData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const { visibleItems, loadMore, hasMoreItems } = useLoadMore(4, saveData);
@@ -21,10 +21,7 @@ const SavePage = () => {
     };
 
     try {
-      const response = await get(
-        `userprofile/wishlist/${userId}`,
-        customHeaders
-      );
+      const response = await get(`userprofile/wishlist`, customHeaders);
       setSaveData(response);
     } catch (error) {
       setErrorMessage(error.message);

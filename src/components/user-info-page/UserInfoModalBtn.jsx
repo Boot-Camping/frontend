@@ -6,8 +6,14 @@ import { ReactSVG } from "react-svg";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 import { put } from "../../utils/api";
 
-const UserInfoModalBtn = ({ setIsOpened, modalType, inputValue, onUpdate }) => {
-  const { accessToken, userId } = getUserIdFromToken();
+const UserInfoModalBtn = ({
+  setIsOpened,
+  modalType,
+  inputValue,
+  onUpdate,
+  addrChangeHandle,
+}) => {
+  const { accessToken } = getUserIdFromToken();
   const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandle = async () => {
@@ -21,7 +27,9 @@ const UserInfoModalBtn = ({ setIsOpened, modalType, inputValue, onUpdate }) => {
     if (modalType === "tel") {
       params.set("tel", inputValue.tel);
     } else if (modalType === "addr") {
-      params.set("tel", inputValue.addr);
+      const fullAddress = await addrChangeHandle();
+      console.log("fullAddress", fullAddress);
+      params.set("addr", fullAddress);
     } else if (modalType === "password") {
       params.oldPassword = inputValue.oldPassword;
       params.newPassword = inputValue.newPassword;
@@ -29,7 +37,7 @@ const UserInfoModalBtn = ({ setIsOpened, modalType, inputValue, onUpdate }) => {
 
     try {
       const response = await put(
-        `userprofile/${userId}`,
+        `userprofile`,
         params.toString(),
         customHeaders
       );

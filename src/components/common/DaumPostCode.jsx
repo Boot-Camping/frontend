@@ -22,11 +22,6 @@ const DaumPostCode = ({
     }
   }, [address, addressRef]);
 
-  const detailAddressChangeHandle = (newDetailAddress) => {
-    setDetailAddress(newDetailAddress);
-    detailAddressRef.current.value = newDetailAddress;
-  };
-
   return (
     <div className="signup-input-wrap postcode-wrap">
       <div className="postcode-btn-wrap">
