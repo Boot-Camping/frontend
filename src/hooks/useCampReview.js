@@ -9,7 +9,7 @@ const useCampReview = (campId) => {
   useEffect(() => {
     const fetchCampReview = async () => {
       try {
-        const response = await get(`review/camp/${campId}`);
+        const response = await get(`reviews/camp/${campId}`);
         setCampReviews(response);
       } catch (error) {
         console.error("캠핑장 리뷰 가져오기 실패:", error);
