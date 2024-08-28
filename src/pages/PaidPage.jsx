@@ -24,8 +24,10 @@ const PaidPage = () => {
 
       try {
         const response = await get(`camps/bookings`, customHeaders);
-
-        setPaidData(response);
+        const sortedData = response.sort(
+          (a, b) => new Date(b.startDate) - new Date(a.startDate)
+        );
+        setPaidData(sortedData);
       } catch (error) {
         setErrorMessage(error.message);
       }
