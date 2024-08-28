@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { ReactSVG } from "react-svg";
+import { svgCollection } from "../../constants/svgCollection";
 
 const UserAccount = ({ setIsOpened, setModalType, userData }) => {
   const pwChangeHandle = () => {
@@ -20,6 +23,13 @@ const UserAccount = ({ setIsOpened, setModalType, userData }) => {
           <div className="profile-change">변경</div>
         </div>
       </div>
+      <Link
+        to={"/user/delete"}
+        className="user-account profile-txt user-account-delete"
+      >
+        <div>회원 탈퇴</div>
+        <ReactSVG src={svgCollection.prev} />
+      </Link>
     </div>
   );
 };

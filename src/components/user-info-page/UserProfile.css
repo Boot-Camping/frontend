@@ -95,3 +95,12 @@
 .profile-address div {
   align-self: start;
 }
+
+/***********************************
+ *	회원탈퇴
+*/
+.user-account-delete > div:last-child {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+}
