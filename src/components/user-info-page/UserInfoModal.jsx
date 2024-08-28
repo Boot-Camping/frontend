@@ -34,10 +34,21 @@ const UserInfoModal = ({
     setInputValue({ ...inputValue, [name]: value });
   };
 
-  const addrSelectHandle = (selectedAddress) => {
-    setInputValue({
-      ...inputValue,
-      addr: selectedAddress,
+  const addrChangeHandle = () => {
+    return new Promise((resolve) => {
+      const formData = new FormData();
+      formData.append("postcode", postcode);
+      formData.append("address", addressRef.current.value);
+      formData.append("detailAddress", detailAddressRef.current.value);
+      console.log(formData.get("detailAddress"));
+
+      const fullAddress = `(${formData.get("postcode")}) ${formData.get(
+        "address"
+      )} ${formData.get("detailAddress")}`;
+      console.log(fullAddress);
+			
+      setInputValue((prev) => ({ ...prev, addr: fullAddress }));
+      resolve(fullAddress);
     });
   };
 
@@ -99,6 +110,18 @@ const UserInfoModal = ({
     }
   };
 
+  // useEffect(() => {
+  //   if (modalType === "addr") {
+  //     addrChangeHandle();
+
+  //     // detailAddressRef 값 확인
+  //     console.log(
+  //       "detailAddressRef.current.value:",
+  //       detailAddressRef.current.value
+  //     );
+  //   }
+  // }, [detailAddressRef]);
+
   return (
     <>
       {isOpened && (
@@ -124,6 +147,7 @@ const UserInfoModal = ({
               setIsOpened={setIsOpened}
               modalType={modalType}
               inputValue={inputValue}
+              addrChangeHandle={addrChangeHandle}
               onUpdate={onUpdate}
             />
 
