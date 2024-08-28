@@ -21,18 +21,24 @@ const ReviewWriter = () => {
   const [reviewImages, setReviewImages] = useState([]);
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  //selectedTag -> label 추출해서 -> 문자열로 변환
+  const reviewTagsString = selectedTags
+    .map((tagId) => reviewTag.find((tag) => tag.id === tagId)?.label)
+    .filter(Boolean) //null 또는 undefined 필터링
+    .join(",");
 
   const reviewSubmit = async () => {
     const reviewData = {
-      // campName: reviewData.campName,
       grade: reviewGrade,
       reviewContent: reviewContent,
-      reviewTags: reviewTags,
-      reviewImages: reviewImages,
+      reviewTag: reviewTagsString,
+      reviewImage: reviewImages.join(","),
     };
     console.log("제출하려는 리뷰:", reviewData);
     try {
-      const response = await post(`review/${campId}/${userId}`, reviewData, {
+      const response = await post(`reviews`, reviewData, {
         Authorization: `Bearer ${accessToken}`,
       });
     } catch (error) {
@@ -49,8 +55,6 @@ const ReviewWriter = () => {
 
   const upperTags = reviewTag.slice(0, 3);
   const lowerTags = reviewTag.slice(3, 6);
-
-  const [selectedTags, setSelectedTags] = useState([]);
 
   const gradeChangeHandle = (rating) => {
     setReviewGrade(rating);

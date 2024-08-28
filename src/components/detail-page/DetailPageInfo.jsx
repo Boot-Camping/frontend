@@ -16,11 +16,15 @@ const DetailPageInfo = ({ detailInfo }) => {
     const data = {
       id: detailInfo.id,
       name: detailInfo.name,
-      addr: detailInfo.addr,
       price: detailInfo.price,
+      addr: detailInfo.addr,
+      tel: detailInfo.tel,
       campImages: Array.isArray(detailInfo.imageUrls)
         ? detailInfo.imageUrls.join(", ")
         : detailInfo.imageUrls,
+      categories: detailInfo.categories,
+      viewCount: detailInfo.viewCount,
+      averageGrade: detailInfo.averageGrade,
     };
 
     console.log("전송하려는 데이터:", JSON.stringify(data, null, 2));
@@ -55,12 +59,12 @@ const DetailPageInfo = ({ detailInfo }) => {
           <div className="rating">
             <div className="stars">
               <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
-              {detailInfo.stars}
+              {detailInfo.averageGrade}
             </div>
 
             <div className="views">
               <ReactSVG src={svg.views} alt="views" className="views-img" />
-              {detailInfo.views}
+              {detailInfo.viewCount}
             </div>
           </div>
 
@@ -106,7 +110,7 @@ const DetailPageInfo = ({ detailInfo }) => {
 
           <div className="detail-item">
             <ReactSVG className="detail-icon" src={svg.phone} alt="phone" />
-            {detailInfo.phone}
+            {detailInfo.tel}
           </div>
 
           <div className="detail-item">
