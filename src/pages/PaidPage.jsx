@@ -16,23 +16,23 @@ const PaidPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    const getPaidData = async () => {
-      const customHeaders = {
-        Authorization: `${accessToken}`,
-      };
-
-      try {
-        const response = await get(`camps/bookings`, customHeaders);
-        const sortedData = response.sort(
-          (a, b) => new Date(b.startDate) - new Date(a.startDate)
-        );
-        setPaidData(sortedData);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
+  const getPaidData = async () => {
+    const customHeaders = {
+      Authorization: `${accessToken}`,
     };
 
+    try {
+      const response = await get(`camps/bookings`, customHeaders);
+      const sortedData = response.sort(
+        (a, b) => new Date(b.startDate) - new Date(a.startDate)
+      );
+      setPaidData(sortedData);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
+  useEffect(() => {
     getPaidData();
   }, [accessToken]);
 
@@ -60,6 +60,8 @@ const PaidPage = () => {
         filter={filter}
         paidData={paidData}
         errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
+        onUpdate={getPaidData}
       />
     </section>
   );
