@@ -13,14 +13,15 @@
 
 .camping-list-wrapper {
   display: grid;
-  grid-template-columns: 18rem 18rem;
-  justify-content: space-around;
-  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .camping-list {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   position: relative;
-  display: block;
+  padding: 1rem;
 }
 
 .camping-img {
@@ -32,8 +33,8 @@
 
 .camping-img-heart {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 1rem;
+  right: 1rem;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -51,37 +52,6 @@
   font-size: var(--sub-heading);
   font-weight: bold;
   margin-bottom: 0.5rem;
-}
-
-.admin-camping-list-wrapper {
-  justify-content: space-around;
-  align-items: center;
-}
-
-.admin-camping-list-title {
-  font-size: var(--heading);
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  margin: 2rem 0 3rem 0;
-}
-
-.admin-camping-name-list {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: solid 0.2rem var(--light-gray);
-}
-
-.admin-camping-date-list {
-  margin-top: 1rem;
-  font-size: var(--content);
-  font-weight: normal;
-  color: var(--light-gray);
 }
 
 .camping-sub-title-wrapper,

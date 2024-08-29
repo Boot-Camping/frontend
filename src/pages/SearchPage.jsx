@@ -12,10 +12,15 @@ const SearchPage = () => {
 
   const searchSubmitHandle = (e) => {
     e.preventDefault();
-    const updatedHistory = [searchText, ...searchHistory];
-    setSearchHistory(updatedHistory);
 
-    localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
+    if (!searchText) return;
+
+    // 중복 방지: 이미 존재하는 검색어는 추가하지 않음
+    if (!searchHistory.includes(searchText)) {
+      const updatedHistory = [searchText, ...searchHistory];
+      setSearchHistory(updatedHistory);
+      localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
+    }
 
     setSearchText("");
     console.log(searchText);
@@ -71,24 +76,25 @@ const SearchPage = () => {
         </button>
       </div>
 
-      <div className="search-block">
-        <div className="search-history">최근 검색 기록</div>
-        <div>
-          {searchHistory.map((item, index) => (
-            <div className="search-history-list-wraper">
-              <div key={index} className="search-history-list">
-                {item}
+      {/* 조건부 렌더링을 사용해 검색 기록이 있을 때만 표시 */}
+      {searchHistory.length > 0 && (
+        <div className="search-block">
+          <div className="search-history">최근 검색 기록</div>
+          <div>
+            {searchHistory.map((item, index) => (
+              <div className="search-history-list-wraper" key={index}>
+                <div className="search-history-list">{item}</div>
+                <button
+                  className="search-history-delete-btn"
+                  onClick={() => historyItemDelete(item)}
+                >
+                  삭제
+                </button>
               </div>
-              <button
-                className="search-history-delete-btn"
-                onClick={() => historyItemDelete(item)}
-              >
-                삭제
-              </button>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
