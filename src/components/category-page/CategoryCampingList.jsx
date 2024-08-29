@@ -4,14 +4,15 @@ import "../category-page/CategoryCampingList.css";
 import { ReactSVG } from "react-svg";
 import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
-// import useFetchCampingList from "../../hooks/useFetchCampingList";
+import useFetchCampingList from "../../hooks/useFetchCampingList";
 import { svgCollection } from "../../constants/svgCollection";
-import campingPlaces from "../../mock/campingPlaces";
 
 const CategoryCampingList = () => {
   const { category } = useParams(); // URL에서 category 값을 가져옴
 
   const categoryTitle = category || "전체";
+
+  const { campingPlaces, error } = useFetchCampingList();
 
   // 카테고리 필터링
   const categoryfilter = campingPlaces.filter(
@@ -19,15 +20,12 @@ const CategoryCampingList = () => {
       categoryTitle === "전체" || place.categories.includes(categoryTitle)
   );
 
-  //백 서버오류로 인한 api 연결 잠시 중단
-  // const { campingPlaces, error } = useFetchCampingList();
-
-  // if (error) return <div>Error: {error}</div>;
-
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(categoryfilter);
 
   const { heartClick, heartClickHandler } = useHeartClick([]);
+
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
