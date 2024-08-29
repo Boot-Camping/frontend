@@ -10,6 +10,11 @@ export const filterType = {
       type: "이용 완료",
       class: "usage-filter",
     },
+    {
+      status: "CANCEL",
+      type: "예약 취소",
+      class: "usage-filter",
+    },
   ],
   cash: [
     {
@@ -21,6 +26,11 @@ export const filterType = {
       status: "PAYMENT",
       type: "사용",
       class: "use-filter",
+    },
+    {
+      status: "REFUND",
+      type: "환불",
+      class: "charge-filter",
     },
   ],
   notice: [

@@ -10,7 +10,8 @@ import { svgCollection } from "../../constants/svgCollection";
 const MyPageUser = () => {
   const { accessToken, userId } = getUserIdFromToken();
   const [errorMessage, setErrorMessage] = useState("");
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userImage, setUserImage] = useState("");
 
   useEffect(() => {
     const getUserData = async () => {
@@ -21,7 +22,8 @@ const MyPageUser = () => {
       try {
         const response = await get(`userprofile/${userId}`, customHeaders);
         if (response.length > 0) {
-          setName(response[0].name);
+          setUserImage(response[0].images[0]);
+          setUserName(response[0].name);
         }
       } catch (error) {
         setErrorMessage(error.message);
@@ -35,9 +37,15 @@ const MyPageUser = () => {
   return (
     <div className="mypage-user-wrap">
       <div className="mypage-user">
-        <ReactSVG src={svgCollection.userImg} className="mypage-user-icon" />
+        {userImage === "" ? (
+          <ReactSVG src={svgCollection.userImg} className="mypage-user-icon" />
+        ) : (
+          <div className="mypage-user-icon">
+            <img src={userImage} />
+          </div>
+        )}
         <div className="mypage-user-info">
-          <div>{name}</div>
+          <div>{userName}</div>
           <Link to="/userinfo" className="user-setting">
             <div>내 정보 관리</div>
             <ReactSVG
