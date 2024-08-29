@@ -18,8 +18,10 @@ const useBookList = () => {
         }
 
         // 토큰을 API 요청에 포함시킴
-        const response = await get("camps/bookings", accessToken);
-        setBook(response.data);
+        const response = await get("camps/bookings", {
+          Authorization: accessToken,
+        });
+        setBook(response);
       } catch (err) {
         setError(err);
         console.error("API 요청 실패:", err);
