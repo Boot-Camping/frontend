@@ -14,7 +14,7 @@ const NoticePage = () => {
   const [noticeData, setNoticeData] = useState([]);
   const [page, setPage] = useState(0);
   const size = 8;
-	const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   // const [filter, setFilter] = useState("all");
 
   // const filterChangeHandle = (status) => {
@@ -41,7 +41,7 @@ const NoticePage = () => {
         );
         setNoticeData(response.content);
         console.log(response.content);
-				setTotalPages(response.totalPages);
+        setTotalPages(response.totalPages);
       } catch (error) {
         console.log(error.message);
       }
@@ -56,7 +56,7 @@ const NoticePage = () => {
         <Link to={"/mypage"}>
           <ReactSVG src={svgCollection.prev} className="notice-move-prev" />
         </Link>
-        <div>공지사항 및 이벤트</div>
+        <div>공지사항</div>
       </div>
 
       {/* <Filter
