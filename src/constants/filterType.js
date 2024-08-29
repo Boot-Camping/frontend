@@ -27,6 +27,11 @@ export const filterType = {
       type: "사용",
       class: "use-filter",
     },
+    {
+      status: "REFUND",
+      type: "환불",
+      class: "charge-filter",
+    },
   ],
   notice: [
     {
