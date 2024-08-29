@@ -7,10 +7,9 @@ import AdminCampAddress from "../components/admin-camping-register-page/AdminCam
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
-import { post } from "../utils/Api";
+import { post } from "../utils/api";
 
 const AdminCampingRegister = () => {
-  const svg = svgCollection;
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [description, setDescription] = useState(""); // 상태 변수 수정
