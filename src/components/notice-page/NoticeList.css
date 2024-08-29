@@ -3,7 +3,7 @@
 }
 
 .notice-list {
-  font-size: var(--content);
+  font-size: var(--sub-heading);
   padding: 2rem 0;
   display: flex;
   justify-content: space-between;
@@ -18,22 +18,13 @@
   justify-content: start;
   align-items: center;
   gap: 1rem;
-}
-
-.notice-status {
-  /* border: 1px solid var(--light-green);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  width: 5rem;
-  text-align: center; */
-  color: var(--light-green);
   font-weight: bold;
 }
 
-/* .notice-event {
-  background: var(--light-green);
-  color: #fff;
-} */
+.notice-status {
+  color: var(--light-green);
+  font-weight: bold;
+}
 
 /*****************************
  * 	제목, 날짜
@@ -42,7 +33,6 @@
   color: var(--light-gray);
   font-size: var(--content);
   margin-top: 1rem;
-  /* margin-left: 7rem; */
 }
 
 .notice-list-img {

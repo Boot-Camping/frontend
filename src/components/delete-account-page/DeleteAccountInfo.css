@@ -4,13 +4,16 @@
 .delete-account-title-wrap li:first-child {
   font-size: var(--heading);
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .delete-account-title-wrap li:last-child {
   font-size: var(--content);
   position: relative;
   padding-left: var(--content);
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 .delete-account-title-wrap li:last-child::before {
@@ -21,12 +24,22 @@
   transform: translateY(-50%);
 }
 
+.delete-account-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.delete-account-move-prev svg {
+  stroke: #000;
+}
+
 /***********************************
  *	복구불가 & 유지 영역
 */
 .delete-info {
   font-size: var(--sub-heading);
-  margin: 3rem 0;
+  margin: 4.5rem 0;
 }
 
 .delete-info-title {
@@ -38,6 +51,6 @@
   background: var(--bg-gray-50);
   padding: 1.5rem 2rem;
   line-height: 1.5;
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-radius: 0.5rem;
 }

@@ -119,3 +119,14 @@
 .usage-list .paid-status {
   color: var(--light-green);
 }
+
+/***********************************
+ *	예약 취소
+*/
+.cancel-list {
+  opacity: 0.4;
+}
+
+.cancel-list .paid-list-btn {
+  display: none;
+}

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./UserInfoModal.css";
 import { ReactSVG } from "react-svg";
-import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
 import DaumPostCode from "../common/DaumPostCode";
 import useAddress from "../../hooks/useAddress";
@@ -10,6 +9,7 @@ import { svgCollection } from "../../constants/svgCollection";
 import { userInfoModal } from "../../constants/userInfo";
 import PortalModal from "../common/PortalModal";
 import { phoneNumber } from "../../utils/phoneNumber";
+import EmptyContent from "../common/EmptyContent";
 
 const UserInfoModal = ({
   isOpened,
@@ -28,6 +28,8 @@ const UserInfoModal = ({
     oldPassword: "",
     newPassword: "",
   });
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const changeHandle = (e) => {
     const { name, value } = e.target;
@@ -46,7 +48,7 @@ const UserInfoModal = ({
         "address"
       )} ${formData.get("detailAddress")}`;
       console.log(fullAddress);
-			
+
       setInputValue((prev) => ({ ...prev, addr: fullAddress }));
       resolve(fullAddress);
     });
@@ -110,18 +112,6 @@ const UserInfoModal = ({
     }
   };
 
-  // useEffect(() => {
-  //   if (modalType === "addr") {
-  //     addrChangeHandle();
-
-  //     // detailAddressRef 값 확인
-  //     console.log(
-  //       "detailAddressRef.current.value:",
-  //       detailAddressRef.current.value
-  //     );
-  //   }
-  // }, [detailAddressRef]);
-
   return (
     <>
       {isOpened && (
@@ -143,12 +133,18 @@ const UserInfoModal = ({
               {renderNewInput()}
             </div>
 
+            {errorMessage && (
+              <EmptyContent errorMessage={errorMessage} error={error} />
+            )}
+
             <UserInfoModalBtn
               setIsOpened={setIsOpened}
               modalType={modalType}
               inputValue={inputValue}
               addrChangeHandle={addrChangeHandle}
               onUpdate={onUpdate}
+              setError={setError}
+              setErrorMessage={setErrorMessage}
             />
 
             <ReactSVG

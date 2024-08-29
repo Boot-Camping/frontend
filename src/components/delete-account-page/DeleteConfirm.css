@@ -45,14 +45,15 @@
 
 #delete-chk + label {
   position: relative;
-  padding-left: var(--heading);
+  padding-left: 2.5rem;
 }
 
 #delete-chk + label::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: var(--sub-heading);
   height: var(--sub-heading);
   border: 1px solid var(--dark-green);

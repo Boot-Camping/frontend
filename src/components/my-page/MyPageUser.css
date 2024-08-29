@@ -32,7 +32,15 @@
 .mypage-user-icon {
   width: 6rem;
   height: 6rem;
-  margin-right: 0.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.mypage-user-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .mypage-user-icon svg {
