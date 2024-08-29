@@ -3,18 +3,18 @@ import axios from "axios";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
+  const isFormData = data instanceof FormData;
+
   const headers = {
-    "Content-Type": "application/json",
     ...customHeaders,
+    ...(isFormData ? {} : { "Content-Type": "application/json" }),
   };
 
   const config = {
     method,
     url: `${API_BASE_URL}/api/${endpoint}`,
     headers,
-    ...(method === "POST" && { data }),
-    ...(method === "PUT" && { data }),
-    ...(method === "DELETE" && { data }),
+    data, // POST, PUT, DELETE 메서드에 대해 데이터를 항상 전송
   };
 
   try {

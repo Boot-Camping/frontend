@@ -12,32 +12,21 @@ const DetailPageInfo = ({ detailInfo }) => {
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
 
+  // 찜하기(POST)
   const toggleSave = async () => {
-    const data = {
-      id: detailInfo.id,
-      name: detailInfo.name,
-      addr: detailInfo.addr,
-      price: detailInfo.price,
-      campImages: Array.isArray(detailInfo.imageUrls)
-        ? detailInfo.imageUrls.join(", ")
-        : detailInfo.imageUrls,
+    const customHeaders = {
+      Authorization: `${accessToken}`,
     };
-
-    console.log("전송하려는 데이터:", JSON.stringify(data, null, 2));
-    console.log("찜하려는 campId:", detailInfo.id);
 
     try {
       const response = await post(
-        `userprofile/wishlist/add/${detailInfo.id}/${userId}`,
-        data,
-        {
-          Authorization: `Bearer ${accessToken}`,
-        }
+        `userprofile/wishlist/add/${detailInfo.id}`,
+        {},
+        customHeaders
       );
+      console.log("찜하기 요청 성공🥳:", response);
       setIsSaved(!isSaved);
-      console.log("찜하기 성공! 😄:", response);
     } catch (error) {
-      setError("찜하기 오류 발생 🥲");
       console.error("찜하기 요청 오류🥲:", error);
       if (error.response) {
         console.error("서버 응답 상태 코드:", error.response.status);
@@ -45,6 +34,7 @@ const DetailPageInfo = ({ detailInfo }) => {
       } else {
         console.error("요청 오류:", error.message);
       }
+      setError("찜하기 오류 발생 🥲");
     }
   };
 
@@ -55,12 +45,12 @@ const DetailPageInfo = ({ detailInfo }) => {
           <div className="rating">
             <div className="stars">
               <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
-              {detailInfo.stars}
+              {detailInfo.averageGrade}
             </div>
 
             <div className="views">
               <ReactSVG src={svg.views} alt="views" className="views-img" />
-              {detailInfo.views}
+              {detailInfo.viewCount}
             </div>
           </div>
 
@@ -106,7 +96,7 @@ const DetailPageInfo = ({ detailInfo }) => {
 
           <div className="detail-item">
             <ReactSVG className="detail-icon" src={svg.phone} alt="phone" />
-            {detailInfo.phone}
+            {detailInfo.tel}
           </div>
 
           <div className="detail-item">

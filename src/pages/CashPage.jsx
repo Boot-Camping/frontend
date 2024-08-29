@@ -12,7 +12,7 @@ import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { get } from "../utils/api";
 
 const CashPage = () => {
-  const { accessToken } = getUserIdFromToken();
+  const { accessToken, userId } = getUserIdFromToken();
   const [cashData, setCashData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,10 @@ const CashPage = () => {
     };
 
     try {
-      const response = await get(`userprofile/cashTransaction`, customHeaders);
+      const response = await get(
+        `userprofile/cashTransaction/${userId}`,
+        customHeaders
+      );
       setCashData(response);
       setLoading(false);
       console.log("response", response);

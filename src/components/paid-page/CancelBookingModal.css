@@ -1,0 +1,25 @@
+.cancel-booking-txt {
+  font-size: var(--heading);
+  margin-bottom: 2rem;
+}
+
+.cancel-booking-btn {
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--light-green);
+  font-size: var(--content);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.cancel-booking-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 3rem;
+  height: 3rem;
+}
+
+.cancel-booking-close svg {
+  stroke: #000;
+}

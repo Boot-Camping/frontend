@@ -27,7 +27,11 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
         sortedData.map((data, index) => (
           <div
             className={`cash-list underline ${
-              data.transactionType === "DEPOSIT" ? "charge-list" : "use-list"
+              data.transactionType === "DEPOSIT"
+                ? "charge-list"
+                : data.transactionType === "PAYMENT"
+                ? "use-list"
+                : "charge-list"
             } `}
             key={`cash-list-${index}`}
           >
@@ -37,7 +41,11 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
                   src={svgCollection.money}
                   className="cash-filter-img"
                 />
-                {data.transactionType === "DEPOSIT" ? "충전" : "사용"}
+                {data.transactionType === "DEPOSIT"
+                  ? "충전"
+                  : data.transactionType === "PAYMENT"
+                  ? "사용"
+                  : "환불"}
               </div>
               <div className="cash-date">
                 {data.transactionDate.replace("T", " ")}
@@ -45,7 +53,11 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
             </div>
             <div className="cash-list-cash">
               <div>
-                {data.transactionType === "DEPOSIT" ? "캐시 충전" : "사용처"}
+                {data.transactionType === "DEPOSIT"
+                  ? "캐시 충전"
+                  : data.transactionType === "PAYMENT"
+                  ? "사용처"
+                  : "예약 취소 환불"}
               </div>
               <div>{data.beforeTransactionCash.toLocaleString()}원</div>
             </div>

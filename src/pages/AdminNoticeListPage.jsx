@@ -12,6 +12,7 @@ import { noticeData } from "../mock/noticeData";
 import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
 import AdminNoticeList from "../components/admin-notice-register/AdminNoticeList";
+import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 
 const AdminNoticeListPage = () => {
   const { visibleItems, loadMore, hasMoreItems } = useLoadMore(6, noticeData);
@@ -28,13 +29,7 @@ const AdminNoticeListPage = () => {
   };
   return (
     <div>
-      <Link to={"/admin"}>
-        <ReactSVG
-          className="admin-home-icon"
-          src="../../src/assets/svg/home.svg"
-          alt=""
-        />
-      </Link>
+      <AdminMainLink />
       <div className="notice-page-title">공지사항</div>
 
       <div className="notice-regi-btn">

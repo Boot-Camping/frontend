@@ -54,7 +54,9 @@ const UserInfoPage = () => {
           <UserProfile
             setIsOpened={setIsOpened}
             setModalType={setModalType}
+						setErrorMessage={setErrorMessage}
             userData={userData}
+            onUpdate={getUserData}
           />
           <UserAccount
             setIsOpened={setIsOpened}

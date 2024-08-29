@@ -1,7 +1,7 @@
 /***********************************
  *	이미지 영역
 */
-.profile-img-wrap {
+.user-profile-img-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,8 @@
   padding: 1rem 0 3rem;
 }
 
-.profile-img {
+.profile-img-wrap {
+  padding: 1rem 0;
   position: relative;
   margin-bottom: 0.5rem;
 }
@@ -21,15 +22,20 @@
 
 #profile-img-input + label {
   display: block;
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   border-radius: 50%;
   overflow: hidden;
 }
 
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .profile-img-user {
-  width: 10rem;
-  height: 10rem;
+  transform: scale(1.2);
 }
 
 .profile-img-user svg {
@@ -88,4 +94,13 @@
 
 .profile-address div {
   align-self: start;
+}
+
+/***********************************
+ *	회원탈퇴
+*/
+.user-account-delete > div:last-child {
+  width: 2rem;
+  height: 2rem;
+  display: block;
 }
