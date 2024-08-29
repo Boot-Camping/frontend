@@ -42,14 +42,28 @@
   margin-right: 1rem;
 }
 
-.tag-label.good.selected {
-  background-color: var(--light-green);
+.tag-label.good {
+  background-color: var(--soft-gray);
+  color: black;
+}
+
+.tag-label.bad {
+  background-color: var(--soft-gray);
+  color: black;
+}
+
+.tag-label.selected {
   color: white;
 }
 
-.tag-label.bad.selected {
+.tag-label.selected[data-tag="KIND"],
+.tag-label.selected[data-tag="GOOD"],
+.tag-label.selected[data-tag="EXCELLENT"] {
+  background-color: var(--light-green);
+}
+
+.tag-label.selected[data-tag="BAD"] {
   background-color: orange;
-  color: white;
 }
 
 /* Review 입력파트 */
