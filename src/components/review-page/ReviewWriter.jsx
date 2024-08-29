@@ -13,7 +13,9 @@ const svg = svgCollection;
 const ReviewWriter = () => {
   const location = useLocation();
   const reviewData = location.state?.reviewData;
-  // console.log("reviewData:", reviewData);
+  const campId = reviewData.campId;
+
+  console.log(reviewData);
 
   const [reviewGrade, setReviewGrade] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
@@ -34,33 +36,53 @@ const ReviewWriter = () => {
   };
 
   const reviewSubmit = async () => {
-    // 태그 배열 생성
-    const tagsArray = reviewTagsString.split(",");
-
-    const formData = new FormData();
-
-    // 각각의 필드를 개별적으로 FormData에 추가
-    formData.append("content", reviewContent);
-    formData.append("grade", reviewGrade);
-    formData.append("tags", tagsArray.join(","));
-
-    // 이미지 파일을 직접 추가하기
-    reviewImages.forEach((image) => {
-      formData.append("imageUrls", image);
-    });
-
     const customHeaders = {
       Authorization: `${accessToken}`,
       "Content-Type": "multipart/form-data",
     };
 
+    const tagsArray = reviewTagsString.split(",");
+
+    // 이미지의 이름 배열 생성
+    const imageUrls = reviewImages.map((image) => image.name);
+
+    // 리뷰 요청 데이터 -> JSON 변환
+    const reviewRequest = JSON.stringify({
+      content: reviewContent,
+      grade: reviewGrade,
+      tags: tagsArray,
+      imageUrls: [],
+    });
+
+    const formData = new FormData();
+    formData.append("reviewRequest", reviewRequest);
+
+    reviewImages.forEach((image) => {
+      formData.append("reviewImages", image);
+    });
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value instanceof File ? value.name : value);
+    }
+
+    const params = {
+      campId: campId,
+      userId: userId,
+    };
+
+    const queryString = new URLSearchParams(params).toString();
+
     // post 요청
     try {
-      const response = await post(`reviews`, formData, customHeaders);
+      const response = await post(
+        `reviews?${queryString}`,
+        formData,
+        customHeaders
+      );
       console.log("리뷰 제출 성공! 😄:", response);
     } catch (error) {
-      setError("리뷰제출 에러 발생 🥲");
-      console.error("리뷰제출 에러 발생 🥲:", error);
+      setError("리뷰 제출 에러 발생 🥲");
+      console.error("리뷰 제출 에러 발생 🥲:", error);
       if (error.response) {
         console.error("서버 응답 상태 코드:", error.response.status);
         console.error("서버 응답 데이터:", error.response.data);

@@ -28,7 +28,11 @@ const ReviewImgUploader = ({ maxImages, setReviewImages }) => {
     <div className="img-selector">
       {selectedImgs.map((image, index) => (
         <div key={index} className="img-preview">
-          <img src={image} className="selected-img" />
+          <img
+            src={image.url}
+            className="selected-img"
+            alt={`Preview ${index}`}
+          />
           <button
             className="remove-img-btn"
             onClick={() => imageRemoveHandle(index)}
