@@ -16,7 +16,7 @@ const SaveModal = ({ isOpened, setIsOpened, selectedData, onUpdate }) => {
       Authorization: `${accessToken}`,
     };
 
-    const wishId = selectedData.wishId[0];
+    const wishId = selectedData.wishId;
     console.log("wishId", wishId);
 
     try {

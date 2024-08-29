@@ -13,44 +13,51 @@ const svg = svgCollection;
 const ReviewWriter = () => {
   const location = useLocation();
   const reviewData = location.state?.reviewData;
-  console.log(reviewData);
+  // console.log("reviewData:", reviewData);
 
   const [reviewGrade, setReviewGrade] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
-  const [reviewTags, setReviewTags] = useState([]);
   const [reviewImages, setReviewImages] = useState([]);
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
   const [selectedTags, setSelectedTags] = useState([]);
 
-  //selectedTag -> label 추출해서 -> 문자열로 변환
+  // selectedTag -> label 추출해서 -> 문자열로 변환
   const reviewTagsString = selectedTags
     .map((tagId) => reviewTag.find((tag) => tag.id === tagId)?.label)
-    .filter(Boolean) //null 또는 undefined 필터링
+    .filter(Boolean) // null 또는 undefined 필터링
     .join(",");
 
+  const gradeChangeHandle = (rating) => {
+    setReviewGrade(rating);
+    console.log("선택된 별점:", rating);
+  };
+
   const reviewSubmit = async () => {
+    // 태그 배열 생성
+    const tagsArray = reviewTagsString.split(",");
+
     const formData = new FormData();
 
-    formData.append("grade", reviewGrade);
+    // 각각의 필드를 개별적으로 FormData에 추가
     formData.append("content", reviewContent);
-    formData.append("tags", reviewTagsString);
-    reviewImages.forEach((image, index) => {
-      formData.append(`imageUrls${index}`, image);
+    formData.append("grade", reviewGrade);
+    formData.append("tags", tagsArray.join(","));
+
+    // 이미지 파일을 직접 추가하기
+    reviewImages.forEach((image) => {
+      formData.append("imageUrls", image);
     });
 
-    try {
-      const response = await post(`reviews`, formData, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+      "Content-Type": "multipart/form-data",
+    };
 
-      if (response.status === 200) {
-        console.log("리뷰 제출 성공! 😄");
-      } else {
-        throw new Error(`서버 응답 에러: ${response.status}`);
-      }
+    // post 요청
+    try {
+      const response = await post(`reviews`, formData, customHeaders);
+      console.log("리뷰 제출 성공! 😄:", response);
     } catch (error) {
       setError("리뷰제출 에러 발생 🥲");
       console.error("리뷰제출 에러 발생 🥲:", error);
@@ -61,14 +68,6 @@ const ReviewWriter = () => {
         console.error("요청 오류:", error.message);
       }
     }
-  };
-
-  const upperTags = reviewTag.slice(0, 3);
-  const lowerTags = reviewTag.slice(3, 6);
-
-  const gradeChangeHandle = (rating) => {
-    setReviewGrade(rating);
-    console.log("선택된 별점:", rating);
   };
 
   const toggleTagHandle = (tag) => {
@@ -96,7 +95,7 @@ const ReviewWriter = () => {
         </div>
 
         <div className="tag-group">
-          {upperTags.map((tag) => (
+          {reviewTag.map((tag) => (
             <div key={tag.id} className="tag-checkbox-wrapper">
               <input
                 type="checkbox"
@@ -107,29 +106,7 @@ const ReviewWriter = () => {
               />
               <label
                 htmlFor={`tag-${tag.id}`}
-                className={`tag-label good ${
-                  selectedTags.includes(tag.id) ? "selected" : ""
-                }`}
-              >
-                {tag.label}
-              </label>
-            </div>
-          ))}
-        </div>
-
-        <div className="tag-group">
-          {lowerTags.map((tag) => (
-            <div key={tag.id} className="tag-checkbox-wrapper">
-              <input
-                type="checkbox"
-                id={`tag-${tag.id}`}
-                className="tag-checkbox"
-                checked={selectedTags.includes(tag.id)}
-                onChange={() => toggleTagHandle(tag)}
-              />
-              <label
-                htmlFor={`tag-${tag.id}`}
-                className={`tag-label bad ${
+                className={`tag-label ${tag.className} ${
                   selectedTags.includes(tag.id) ? "selected" : ""
                 }`}
               >

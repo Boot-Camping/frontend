@@ -12,17 +12,22 @@ const UserInfoModalBtn = ({
   inputValue,
   onUpdate,
   addrChangeHandle,
+  setError,
+  setErrorMessage,
 }) => {
   const { accessToken } = getUserIdFromToken();
-  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandle = async () => {
     const customHeaders = {
       Authorization: `${accessToken}`,
-      "Content-Type": "application/x-www-form-urlencoded",
     };
 
+    if (modalType !== "password") {
+      customHeaders["Content-Type"] = "application/x-www-form-urlencoded";
+    }
+
     const params = new URLSearchParams();
+    let body;
 
     if (modalType === "tel") {
       params.set("tel", inputValue.tel);
@@ -31,23 +36,31 @@ const UserInfoModalBtn = ({
       console.log("fullAddress", fullAddress);
       params.set("addr", fullAddress);
     } else if (modalType === "password") {
-      params.oldPassword = inputValue.oldPassword;
-      params.newPassword = inputValue.newPassword;
+      body = {
+        oldPassword: inputValue.oldPassword,
+        newPassword: inputValue.newPassword,
+      };
     }
+    console.log(body);
 
     try {
+      const endpoint =
+        modalType === "password" ? "userprofile/password" : "userprofile";
       const response = await put(
-        `userprofile`,
-        params.toString(),
+        endpoint,
+        modalType === "password" ? JSON.stringify(body) : params.toString(),
         customHeaders
       );
       console.log("response", response);
       console.log("params", params.toString());
       setIsOpened(false);
       closeModal(setIsOpened)();
+      setError(false);
+      setErrorMessage(null);
       onUpdate();
     } catch (error) {
       setErrorMessage(error.message);
+      setError(true);
     }
   };
 
