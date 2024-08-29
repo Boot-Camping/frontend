@@ -4,23 +4,30 @@ import "../components/category-page/CategoryPage.css";
 import { ReactSVG } from "react-svg";
 import useHeartClick from "../hooks/useHeartClick";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import useFetchCampingList from "../hooks/useFetchCampingList";
+// import useFetchCampingList from "../hooks/useFetchCampingList";
 import { svgCollection } from "../constants/svgCollection";
+import campingPlaces from "../mock/campingPlaces";
 
 const CategoryPage = () => {
   const { category } = useParams(); // URL에서 category 값을 가져옴
 
-  const { campingPlaces, error } = useFetchCampingList();
+  const categoryTitle = category || "전체";
+
+  // 카테고리 필터링
+  const categoryfilter = campingPlaces.filter(
+    (place) =>
+      categoryTitle === "전체" || place.categories.includes(categoryTitle)
+  );
+
+  //백 서버오류로 인한 api 연결 잠시 중단
+  // const { campingPlaces, error } = useFetchCampingList();
+
+  // if (error) return <div>Error: {error}</div>;
 
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlaces);
+    useCampingPlaceFilter(categoryfilter);
 
-  const { heartClick, heartClickHandler, heartIcon } = useHeartClick([]);
-
-  if (error) return <div>Error: {error}</div>;
-
-  // 전달된 category 값을 사용하여 categoryTitle을 설정합니다. 기본값은 "전체"
-  const categoryTitle = category || "전체";
+  const { heartClick, heartClickHandler } = useHeartClick([]);
 
   return (
     <>
