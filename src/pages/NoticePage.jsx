@@ -8,13 +8,13 @@ import { svgCollection } from "../constants/svgCollection";
 import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
 import { get } from "../utils/api";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import Pagination from "../components/common/Pagination";
 
 const NoticePage = () => {
-  const { accessToken } = getUserIdFromToken();
   const [noticeData, setNoticeData] = useState([]);
   const [page, setPage] = useState(0);
   const size = 8;
+	const [totalPages, setTotalPages] = useState(0);
   // const [filter, setFilter] = useState("all");
 
   // const filterChangeHandle = (status) => {
@@ -24,18 +24,24 @@ const NoticePage = () => {
   useEffect(() => {
     const getNoticeData = async () => {
       const customHeaders = {
-        Authorization: accessToken,
-        // "Content-Type": "application/x-www-form-urlencoded",
-        // params: {
-        //   page: page,
-        //   size: size,
-        // },
+        "Content-Type": "application/x-www-form-urlencoded",
       };
 
+      const params = {
+        page: page,
+        size: size,
+      };
+
+      const queryString = new URLSearchParams(params).toString();
+
       try {
-        const response = await get(`admin/notice/all`);
+        const response = await get(
+          `admin/notice/all?${queryString}`,
+          customHeaders
+        );
         setNoticeData(response.content);
         console.log(response.content);
+				setTotalPages(response.totalPages);
       } catch (error) {
         console.log(error.message);
       }
@@ -64,6 +70,8 @@ const NoticePage = () => {
         noticeData={noticeData}
         // filter={filter}
       />
+
+      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </section>
   );
 };
