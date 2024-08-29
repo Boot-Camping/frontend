@@ -1,28 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/notice-page/NoticePage.css";
 import "../components/notice-page/NoticeFilter.css";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import NoticeList from "../components/notice-page/NoticeList";
 import { svgCollection } from "../constants/svgCollection";
-import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
-import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../mock/noticeData";
 import Filter from "../components/common/Filter";
 import { filterType } from "../constants/filterType";
-import { filterData } from "../utils/filterData";
+import { get } from "../utils/api";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
 const NoticePage = () => {
-  const [filter, setFilter] = useState("all");
-  const filteredItems = filterData(noticeData, filter, "noticeStatus");
-  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(
-    3,
-    filteredItems
-  );
+  const { accessToken } = getUserIdFromToken();
+  const [noticeData, setNoticeData] = useState([]);
+  const [page, setPage] = useState(0);
+  const size = 8;
+  // const [filter, setFilter] = useState("all");
 
-  const filterChangeHandle = (status) => {
-    setFilter(status);
-  };
+  // const filterChangeHandle = (status) => {
+  //   setFilter(status);
+  // };
+
+  useEffect(() => {
+    const getNoticeData = async () => {
+      const customHeaders = {
+        Authorization: accessToken,
+        // "Content-Type": "application/x-www-form-urlencoded",
+        // params: {
+        //   page: page,
+        //   size: size,
+        // },
+      };
+
+      try {
+        const response = await get(`admin/notice/all`);
+        setNoticeData(response.content);
+        console.log(response.content);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    getNoticeData();
+  }, [page]);
 
   return (
     <section className="notice-page-wrap">
@@ -33,22 +53,17 @@ const NoticePage = () => {
         <div>공지사항 및 이벤트</div>
       </div>
 
-      <Filter
+      {/* <Filter
         filterChangeHandle={filterChangeHandle}
         filterType={filterType.notice}
         wrapClassName="notice-page-filter"
         allClassName="event-filter"
-      />
+      /> */}
 
       <NoticeList
-        visibleItems={visibleItems}
-        noticeData={filteredItems}
-        filter={filter}
+        noticeData={noticeData}
+        // filter={filter}
       />
-
-      {hasMoreItems && (
-        <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
-      )}
     </section>
   );
 };
