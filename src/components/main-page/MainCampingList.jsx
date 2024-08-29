@@ -8,14 +8,11 @@ import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
 import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
-// import useFetchCampingList from "../../hooks/useFetchCampingList";
+import useFetchCampingList from "../../hooks/useFetchCampingList";
 import { svgCollection } from "../../constants/svgCollection";
-import campingPlaces from "../../mock/campingPlaces";
 
 const MainCampingList = () => {
-  //백 서버오류로 인한 api 연결 잠시 중단
-  //   const { campingPlaces, error } = useFetchCampingList();
-  //   if (error) return <div>Error: {error}</div>;
+  const { campingPlaces, error } = useFetchCampingList();
 
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
@@ -23,6 +20,8 @@ const MainCampingList = () => {
   const { heartClick, heartClickHandler } = useHeartClick([]);
 
   const slidesPerPage = 10;
+
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
