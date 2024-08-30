@@ -10,7 +10,7 @@ export const mypageBtns = [
   },
   {
     key: "mypage-btn-review",
-    link: "/mypage/review",
+    link: "/mypage/myreview",
     src: "pencilSquare",
     txt: "나의 리뷰",
   },
