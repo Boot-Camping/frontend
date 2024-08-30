@@ -1,8 +1,8 @@
 import React from "react";
 import "./DeleteAccountModal.css";
-import { createPortal } from "react-dom";
 import { closeModal } from "../../utils/closeModal";
 import { useNavigate } from "react-router-dom";
+import PortalModal from "../common/PortalModal";
 
 const DeleteAccountModal = ({ error, isOpened, setIsOpened }) => {
   const navigate = useNavigate();
@@ -20,31 +20,25 @@ const DeleteAccountModal = ({ error, isOpened, setIsOpened }) => {
 
     if (!error) {
       navigate("/");
+      window.location.reload();
     }
   };
 
   return (
     <>
       {isOpened && (
-        <>
-          {createPortal(
-            <div className="overlay" onClick={closeModal(setIsOpened)}></div>,
-            document.getElementById("overlay-root")
-          )}
-          {createPortal(
-            <div className="delete-account-modal modal delete-account-error">
-              <div className="delete-account-modal-content">{message()}</div>
-              <button
-                type="button"
-                className="delete-account-modal-btn"
-                onClick={closeHandle}
-              >
-                확인
-              </button>
-            </div>,
-            document.getElementById("modal-root")
-          )}
-        </>
+        <PortalModal setIsOpened={setIsOpened}>
+          <div className="delete-account-modal modal delete-account-error">
+            <div className="delete-account-modal-content">{message()}</div>
+            <button
+              type="button"
+              className="delete-account-modal-btn"
+              onClick={closeHandle}
+            >
+              확인
+            </button>
+          </div>
+        </PortalModal>
       )}
     </>
   );
