@@ -10,7 +10,7 @@ export const validation = ({
   setIsOpened,
 }) => {
   const regex = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-  if (!regex.test(password)) {
+  if (password && !regex.test(password)) {
     setError(true);
     setIsOpened(true);
     if (setErrorType) {
@@ -19,7 +19,7 @@ export const validation = ({
     return false;
   }
 
-  if (password !== passwordChk) {
+  if (password && passwordChk && password !== passwordChk) {
     setError(true);
     setIsOpened(true);
     if (setErrorType) {
@@ -29,7 +29,7 @@ export const validation = ({
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
+  if (email && !emailRegex.test(email)) {
     setError(true);
     setIsOpened(true);
     if (setErrorType) {
@@ -38,7 +38,7 @@ export const validation = ({
     return false;
   }
 
-  if (postcode === "") {
+  if (postcode !== undefined && postcode === "") {
     setError(true);
     setIsOpened(true);
     if (setErrorType) {
@@ -47,7 +47,7 @@ export const validation = ({
     return false;
   }
 
-  if (!checkedTerms.every(Boolean)) {
+  if (checkedTerms && !checkedTerms.every(Boolean)) {
     setError(true);
     setIsOpened(true);
     checkboxRefs.current.forEach((ref, index) => {
