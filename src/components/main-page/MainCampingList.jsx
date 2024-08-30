@@ -6,20 +6,47 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
-import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
 import { svgCollection } from "../../constants/svgCollection";
+import { post } from "../../utils/api";
+import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const MainCampingList = () => {
   const { campingPlaces, error } = useFetchCampingList();
-
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
-
-  const { heartClick, heartClickHandler } = useHeartClick([]);
+  const { accessToken } = getUserIdFromToken();
+  const [isSaved, setIsSaved] = useState([]);
 
   const slidesPerPage = 10;
+
+  useEffect(() => {
+    if (campingPlaces.length > 0) {
+      setIsSaved(Array(campingPlaces.length).fill(false));
+    }
+  }, [campingPlaces]);
+
+  const wishList = async (index, campingPlace) => {
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+    };
+
+    try {
+      const response = await post(
+        `userprofile/wishlist/add/${campingPlace.id}`,
+        {},
+        customHeaders
+      );
+      setIsSaved((prevState) => {
+        const newState = [...prevState];
+        newState[index] = !newState[index];
+        return newState;
+      });
+    } catch (error) {
+      console.error("찜하기 요청 오류🥲:", error);
+    }
+  };
 
   if (error) return <div>Error: {error}</div>;
 
@@ -61,16 +88,15 @@ const MainCampingList = () => {
                         src={campingPlace.imageUrls}
                         alt={campingPlace.name}
                       />
-
                       <ReactSVG
                         className={`camping-img-heart ${
-                          !heartClick[index] && "camping-img-heart-delete"
+                          !isSaved[index] && "camping-img-heart-delete"
                         }`}
                         src={svgCollection.heart}
                         alt=""
                         onClick={(e) => {
                           e.preventDefault();
-                          heartClickHandler(index);
+                          wishList(index, campingPlace);
                         }}
                       />
 
