@@ -9,44 +9,15 @@ import { ReactSVG } from "react-svg";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
 import { svgCollection } from "../../constants/svgCollection";
-import { post } from "../../utils/api";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
+import useWishlist from "../../hooks/useWishlist";
 
 const MainCampingList = () => {
   const { campingPlaces, error } = useFetchCampingList();
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
-  const { accessToken } = getUserIdFromToken();
-  const [isSaved, setIsSaved] = useState([]);
+  const { isSaved, toggleWishlist } = useWishlist(campingPlaces);
 
   const slidesPerPage = 10;
-
-  useEffect(() => {
-    if (campingPlaces.length > 0) {
-      setIsSaved(Array(campingPlaces.length).fill(false));
-    }
-  }, [campingPlaces]);
-
-  const wishList = async (index, campingPlace) => {
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
-
-    try {
-      const response = await post(
-        `userprofile/wishlist/add/${campingPlace.id}`,
-        {},
-        customHeaders
-      );
-      setIsSaved((prevState) => {
-        const newState = [...prevState];
-        newState[index] = !newState[index];
-        return newState;
-      });
-    } catch (error) {
-      console.error("찜하기 요청 오류🥲:", error);
-    }
-  };
 
   if (error) return <div>Error: {error}</div>;
 
@@ -96,7 +67,7 @@ const MainCampingList = () => {
                         alt=""
                         onClick={(e) => {
                           e.preventDefault();
-                          wishList(index, campingPlace);
+                          toggleWishlist(index, campingPlace);
                         }}
                       />
 
