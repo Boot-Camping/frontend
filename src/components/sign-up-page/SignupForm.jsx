@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./SignupForm.css";
 import { signUp, signUpTerms } from "../../constants/signUp";
 import DaumPostCode from "../common/DaumPostCode";
@@ -6,11 +6,12 @@ import SignupTerms from "../../components/sign-up-page/SignupTerms";
 import useAddress from "../../hooks/useAddress";
 import { phoneNumber } from "../../utils/phoneNumber";
 import { validation } from "../../utils/validation";
-import { hashPassword } from "../../utils/hashPassword";
 import { post } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import PasswordInput from "../common/PasswordInput";
+import EmptyContent from "../common/EmptyContent";
 
-const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
+const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
   const { postcode, setPostcode } = useAddress();
   const [checkedTerms, setCheckedTerms] = useState(
     Array(signUpTerms.length).fill(false)
@@ -19,11 +20,11 @@ const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandle = async (event) => {
     event.preventDefault();
 
-    // 입력된 데이터를 formData에 저장
     const formData = {};
     signUp.forEach((signup) => {
       const inputElement = document.querySelector(
@@ -54,29 +55,14 @@ const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
     setError(false);
     setIsOpened(false);
 
-    // formData.password = hashPassword(formData.password);
-    // console.log(hashPassword(formData.password));
     delete formData.passwordChk;
 
     try {
       await post("user/signup", JSON.stringify(formData));
-      console.log("제출 완료", formData);
-
       navigate("/login/account");
     } catch (error) {
-      let status = "알 수 없는 오류";
-      let message = error.message;
-
-      if (error.response) {
-        status = error.response.status;
-        message = error.response.data.message || "오류가 발생했습니다";
-      } else if (error.request) {
-        message = "서버로부터 응답을 받지 못했습니다";
-      }
-
+      setErrorMessage(error.message);
       setError(true);
-      setIsOpened(true);
-      console.log(`상태 코드: ${status}, 에러 메시지: ${message}`);
     }
   };
 
@@ -93,6 +79,10 @@ const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
                 addressRef={addressRef}
                 detailAddressRef={detailAddressRef}
               />
+            ) : signup.label === "비밀번호" ? (
+              <PasswordInput inputClass="signup-input" />
+            ) : signup.label === "비밀번호 확인" ? (
+              <PasswordInput inputClass="signup-input" type="pwChk" />
             ) : (
               <input
                 className="signup-input"
@@ -120,6 +110,10 @@ const SignupForm = ({ setError, setErrorType, setIsOpened }) => {
         />
 
         <button className="signup-btn">가입하기</button>
+
+        {errorMessage && (
+          <EmptyContent errorMessage={errorMessage} error={error} />
+        )}
       </form>
     </>
   );
