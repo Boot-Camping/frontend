@@ -1,0 +1,154 @@
+.search-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid;
+}
+
+.search-area {
+  width: 10rem;
+  height: 3.4rem;
+  background-color: white;
+  border: 1px solid gray;
+  border: none;
+  border-right: 1px solid gray;
+}
+.search-text {
+  width: 100%;
+  height: 3rem;
+  font-size: var(--sub-heading);
+  background-color: white;
+  border: none;
+}
+
+.search-text:focus-visible,
+.search-area:focus-visible {
+  outline: none;
+}
+
+.search-submit-Btn {
+  width: 8rem;
+  height: 3.4rem;
+  background-color: white;
+  border: none;
+}
+
+.search-block {
+  height: 100%;
+  margin-left: 8.1rem;
+  border: 1px solid gray;
+}
+
+.search-history {
+  font-size: var(--sub-heading);
+  color: gray;
+  padding: 1.5rem 1rem;
+}
+
+.search-history-list-wraper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-history-list {
+  font-size: var(--content);
+  margin: 0 1rem;
+}
+
+.search-history-delete-btn {
+  width: 4rem;
+  margin-right: 1rem;
+  background-color: white;
+  border: none;
+}
+
+.search-results {
+  margin-top: var(--heading);
+}
+
+.search-camping-list {
+  position: relative; /* 기준점 */
+  display: block;
+}
+
+.search-camping-img {
+  width: 39.5rem;
+  height: 20.2rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-camping-img-heart {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.search-camping-img-heart svg {
+  stroke: var(--red);
+  fill: var(--red);
+}
+
+.search-camping-img-heart-delete svg {
+  fill: none;
+}
+
+.search-camping-type {
+  font-size: var(--sub-heading);
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.search-camping-sub-title-wrapper,
+.search-camping-addr-wrapper,
+.search-camping-info-icons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.search-camping-name {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+.search-camping-price {
+  font-size: var(--heading);
+}
+
+.search-camping-addr-icon-wrapper,
+.search-camping-info-star-wrapper {
+  display: flex;
+}
+
+.search-camping-addr-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: green;
+}
+
+.search-camping-addr,
+.search-camping-people {
+  font-size: var(--sub-heading);
+  color: gray;
+}
+
+.search-camping-info-star {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: yellow;
+}
+
+.search-camping-info {
+  font-size: var(--sub-content);
+  color: gray;
+}
