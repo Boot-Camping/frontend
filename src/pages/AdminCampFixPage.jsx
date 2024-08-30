@@ -9,14 +9,13 @@ import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { put, deleteRequest, post } from "../utils/api"; // post 추가
+import { put, deleteRequest, post } from "../utils/api";
 
 const AdminCampFixPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
-  const [isOpened, setIsOpened] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -26,6 +25,7 @@ const AdminCampFixPage = () => {
   const [overCharge, setOverCharge] = useState("");
   const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
+  const [updatedImages, setUpdatedImages] = useState([]);
 
   const { campingPlaces } = useFetchCampingList();
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -49,50 +49,22 @@ const AdminCampFixPage = () => {
     }
   }, [currentCampingPlace]);
 
-  const handleUploadSuccess = (result) => {
-    console.log("Upload succeeded:", result);
+  const handleUploadSuccess = (uploadedImages) => {
+    const uploadedImageUrls = uploadedImages.map((file) =>
+      URL.createObjectURL(file)
+    );
+    setUpdatedImages(uploadedImageUrls);
   };
 
   const handleUploadError = (errorMessage) => {
-    console.error("Upload failed:", errorMessage);
+    console.error("Image upload failed:", errorMessage);
   };
 
   const handleCategoriesChange = (newCategories) => {
     setCategory(newCategories);
   };
 
-  const handleUpload = async () => {
-    const formData = new FormData();
-
-    images.forEach((image, index) => {
-      if (image.file) {
-        formData.append(`images[${index}]`, image.file);
-      }
-    });
-
-    try {
-      const response = await post("camps", {
-        body: formData,
-        headers: {
-          Authorization: accessToken,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      handleUploadSuccess(result);
-    } catch (error) {
-      console.error("Upload failed:", error);
-      handleUploadError(error.message);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleUpdate = async () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("tel", tel);
@@ -102,21 +74,21 @@ const AdminCampFixPage = () => {
     formData.append("overCharge", overCharge);
     formData.append("description", description);
 
-    category.forEach((category, index) => {
-      formData.append(`category[${index}]`, category);
+    category.forEach((cat, index) => {
+      formData.append(`category[${index}]`, cat);
     });
 
-    imageUrls.forEach((image, index) => {
-      if (typeof image === "string") {
-        formData.append(`imageUrls[${index}]`, image);
-      } else {
+    (updatedImages.length > 0 ? updatedImages : imageUrls).forEach(
+      (image, index) => {
         formData.append(`imageUrls[${index}]`, image);
       }
-    });
+    );
 
     try {
       await put(`camps/${id}`, formData, {
-        "Content-Type": "multipart/form-data",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       alert("캠핑장 정보가 수정되었습니다.");
       navigate("/admin");
@@ -182,7 +154,7 @@ const AdminCampFixPage = () => {
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
         />
-        <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+        <AdminCampAddress setError={setError} />
 
         <div>
           <div className="camp-info">
@@ -257,7 +229,7 @@ const AdminCampFixPage = () => {
           </div>
         </div>
         <div className="camping-explanaion">캠핑지 소개</div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdate}>
           <textarea
             className="input-camp-exp"
             id="camp-exp"
@@ -269,11 +241,7 @@ const AdminCampFixPage = () => {
             placeholder="캠핑장의 특징을 입력하세요."
           />
           <div className="camp-center-container">
-            <button
-              type="submit"
-              onClick={handleUpload}
-              className="camp-fix-btn"
-            >
+            <button type="submit" className="camp-fix-btn">
               수정
             </button>
           </div>
