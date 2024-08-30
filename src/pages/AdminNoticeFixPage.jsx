@@ -11,13 +11,12 @@ const AdminNoticeFixPage = () => {
   const { id } = useParams();
   const [notice, setNotice] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
+  const [imageUrl, setImageUrl] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [updatedImages, setUpdatedImages] = useState([]);
   const navigate = useNavigate();
 
-  // 공지사항 데이터를 가져오는 함수
   useEffect(() => {
     const getNoticeDetailData = async () => {
       try {
@@ -25,7 +24,7 @@ const AdminNoticeFixPage = () => {
         setNotice(response);
         setTitle(response.title);
         setDescription(response.description);
-        setImageUrls(response.imageUrls || []); // imageUrls가 있으면 설정
+        setImageUrl(response.imageUrl || []);
       } catch (error) {
         setErrorMessage(error.message);
       }
@@ -34,41 +33,46 @@ const AdminNoticeFixPage = () => {
     getNoticeDetailData();
   }, [id]);
 
-  // 제목 변경 핸들러
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
-  // 설명 변경 핸들러
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
 
-  // 이미지 업로드 성공 핸들러
   const handleUploadSuccess = (uploadedImages) => {
-    setUpdatedImages(uploadedImages);
+    // File 객체 대신 URL로 처리되어야 할 경우
+    const uploadedImageUrls = uploadedImages.map((file) =>
+      URL.createObjectURL(file)
+    );
+    setUpdatedImages(uploadedImageUrls);
   };
 
-  // 이미지 업로드 실패 핸들러
   const handleUploadError = (errorMessage) => {
     console.error("Image upload failed:", errorMessage);
   };
 
-  // 수정 버튼 클릭 시 호출되는 함수
   const handleUpdate = async () => {
     const updatedNotice = {
-      title: title,
-      description: description,
-      imageUrls: updatedImages.length > 0 ? updatedImages : imageUrls,
+      title,
+      description,
+      imageUrl: updatedImages.length > 0 ? updatedImages : imageUrl,
     };
+
+    console.log("Updated Notice Data:", updatedNotice);
 
     try {
       await put(`admin/notice/${id}`, updatedNotice);
       alert("공지사항이 성공적으로 수정되었습니다.");
       navigate(`/admin/notice/${id}`);
     } catch (error) {
-      console.error("Update failed:", error.message);
-      alert("공지사항 수정에 실패했습니다.");
+      console.error("Update failed:", error.response || error.message);
+      alert(
+        `공지사항 수정에 실패했습니다. 서버 응답: ${
+          error.response ? error.response.data.message : error.message
+        }`
+      );
     }
   };
 
@@ -98,7 +102,7 @@ const AdminNoticeFixPage = () => {
 
           <div className="camping-notice">내용</div>
           <AdminImgPlus
-            initialImages={imageUrls}
+            initialImages={imageUrl}
             onUploadSuccess={handleUploadSuccess}
             onUploadError={handleUploadError}
           />

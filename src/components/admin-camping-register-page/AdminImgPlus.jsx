@@ -1,5 +1,4 @@
 // import React, { useState, useRef, useEffect } from "react";
-// import { post } from "../../utils/api";
 
 // const AdminImgPlus = ({
 //   initialImages = [],
@@ -10,8 +9,40 @@
 //   const fileInputRef = useRef(null);
 
 //   useEffect(() => {
-//     // Initialize state with initialImages when component mounts
-//     setImages(initialImages);
+//     const initializeImages = async () => {
+//       const imageObjects = await Promise.all(
+//         initialImages.map(async (image) => {
+//           if (typeof image === "string") {
+//             // image가 문자열(URL)인 경우
+//             return {
+//               src: image,
+//               file: null,
+//             };
+//           } else if (image instanceof File) {
+//             // image가 File 객체인 경우
+//             return new Promise((resolve, reject) => {
+//               const reader = new FileReader();
+//               reader.onload = (e) => {
+//                 resolve({
+//                   src: e.target.result,
+//                   file: image,
+//                 });
+//               };
+//               reader.onerror = reject;
+//               reader.readAsDataURL(image);
+//             });
+//           } else {
+//             // 기타 경우
+//             return null;
+//           }
+//         })
+//       );
+
+//       // null이 아닌 유효한 이미지 객체만 필터링
+//       setImages(imageObjects.filter((img) => img !== null));
+//     };
+
+//     initializeImages();
 //   }, [initialImages]);
 
 //   const handleRemoveImage = (index) => {
@@ -33,43 +64,12 @@
 //       .then((results) => {
 //         setImages((prevImages) => [
 //           ...prevImages,
-//           ...results.map((result) => result.src),
+//           ...results.map((result) => ({ src: result.src, file: result.file })),
 //         ]);
 //       })
 //       .catch((error) => {
 //         console.error("Error reading files:", error);
 //       });
-//   };
-
-//   const handleUpload = async () => {
-//     const formData = new FormData();
-
-//     // Append both initial and new images to FormData
-//     images.forEach((image, index) => {
-//       // Ensure we are sending the original file objects, not the URLs
-//       if (image.file) {
-//         formData.append(`images[${index}]`, image.file);
-//       }
-//     });
-
-//     try {
-//       const response = await post("camps", {
-//         body: formData,
-//         headers: {
-//           Authorization: accessToken,
-//         },
-//       });
-
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-
-//       const result = await response.json();
-//       onUploadSuccess(result); // Notify parent component of success
-//     } catch (error) {
-//       console.error("Upload failed:", error);
-//       onUploadError(error.message); // Notify parent component of error
-//     }
 //   };
 
 //   return (
@@ -90,11 +90,11 @@
 //           onChange={handleImageChange}
 //         />
 //         <div className="img-previews">
-//           {images.map((src, index) => (
+//           {images.map((image, index) => (
 //             <div key={index} className="img-preview-container">
 //               <div
 //                 className="img-preview"
-//                 style={{ backgroundImage: `url(${src})` }}
+//                 style={{ backgroundImage: `url(${image.src})` }}
 //               ></div>
 //               <button
 //                 className="img-remove-btn"
@@ -124,36 +124,41 @@ const AdminImgPlus = ({
 
   useEffect(() => {
     const initializeImages = async () => {
-      const imageObjects = await Promise.all(
-        initialImages.map(async (image) => {
-          if (typeof image === "string") {
-            // image가 문자열(URL)인 경우
-            return {
-              src: image,
-              file: null,
-            };
-          } else if (image instanceof File) {
-            // image가 File 객체인 경우
-            return new Promise((resolve, reject) => {
-              const reader = new FileReader();
-              reader.onload = (e) => {
-                resolve({
-                  src: e.target.result,
-                  file: image,
-                });
+      try {
+        const imageObjects = await Promise.all(
+          initialImages.map(async (image) => {
+            if (typeof image === "string") {
+              // image가 문자열(URL)인 경우
+              return {
+                src: image,
+                file: null,
               };
-              reader.onerror = reject;
-              reader.readAsDataURL(image);
-            });
-          } else {
-            // 기타 경우
-            return null;
-          }
-        })
-      );
+            } else if (image instanceof File) {
+              // image가 File 객체인 경우
+              return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  resolve({
+                    src: e.target.result,
+                    file: image,
+                  });
+                };
+                reader.onerror = () => {
+                  reject(new Error("File reading error"));
+                };
+                reader.readAsDataURL(image);
+              });
+            } else {
+              return null;
+            }
+          })
+        );
 
-      // null이 아닌 유효한 이미지 객체만 필터링
-      setImages(imageObjects.filter((img) => img !== null));
+        // Null이 아닌 유효한 이미지 객체만 필터링하여 상태를 업데이트
+        setImages(imageObjects.filter((img) => img !== null));
+      } catch (error) {
+        console.error("Error initializing images:", error);
+      }
     };
 
     initializeImages();
@@ -169,7 +174,7 @@ const AdminImgPlus = ({
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (e) => resolve({ file, src: e.target.result });
-        reader.onerror = reject;
+        reader.onerror = () => reject(new Error("File reading error"));
         reader.readAsDataURL(file);
       });
     });
@@ -180,9 +185,15 @@ const AdminImgPlus = ({
           ...prevImages,
           ...results.map((result) => ({ src: result.src, file: result.file })),
         ]);
+        if (onUploadSuccess) {
+          onUploadSuccess(results.map((result) => result.file));
+        }
       })
       .catch((error) => {
         console.error("Error reading files:", error);
+        if (onUploadError) {
+          onUploadError(error.message);
+        }
       });
   };
 
