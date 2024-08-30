@@ -7,7 +7,6 @@ import useAddress from "../../hooks/useAddress";
 import { phoneNumber } from "../../utils/phoneNumber";
 import { validation } from "../../utils/validation";
 import { post } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
 import PasswordInput from "../common/PasswordInput";
 import EmptyContent from "../common/EmptyContent";
 
@@ -19,7 +18,6 @@ const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
   const checkboxRefs = useRef([]);
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandle = async (event) => {
@@ -59,7 +57,8 @@ const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
 
     try {
       await post("user/signup", JSON.stringify(formData));
-      navigate("/login/account");
+      setError(false);
+      setIsOpened(true);
     } catch (error) {
       setErrorMessage(error.message);
       setError(true);
