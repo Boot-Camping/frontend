@@ -218,7 +218,7 @@ const AdminCampingRegister = () => {
       </div>
 
       <div className="camping-explanaion">캠핑지 소개</div>
-      <form onSubmit={handleSubmit}>
+      <div onSubmit={handleSubmit}>
         <textarea
           className="input-camp-exp"
           id="camp-exp"
@@ -234,7 +234,7 @@ const AdminCampingRegister = () => {
             등록
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
