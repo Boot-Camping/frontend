@@ -25,7 +25,7 @@ const useUpdateMyReview = async (userId, accessToken, reviewId, content) => {
       formData,
       customHeaders
     );
-    console.log("리뷰 업데이트 성공!", response);
+    console.log("리뷰 업데이트 성공!😃", response);
     console.log("전송한 데이터:", {
       reviewRequest: reviewRequest,
     });

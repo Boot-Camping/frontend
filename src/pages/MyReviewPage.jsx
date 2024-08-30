@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { svgCollection } from "../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+
 import useMyReview from "../hooks/useMyReview";
 import useUpdateMyReview from "../hooks/useUpdateMyReview";
+import useDeleteMyReview from "../hooks/useDeleteMyReview";
+
 import ReviewReply from "../components/review-reply-page/ReviewReply";
 import "../components/my-review-page/MyReviewPage.css";
 
@@ -11,8 +14,12 @@ const svg = svgCollection;
 
 const MyReviewPage = () => {
   const { userId, accessToken } = getUserIdFromToken();
-  const { myReviews, loading, error } = useMyReview(userId, accessToken);
+  const { myReviews, loading, error, setMyReviews } = useMyReview(
+    userId,
+    accessToken
+  );
   const updateReview = useUpdateMyReview;
+  const { deleteReview } = useDeleteMyReview();
 
   const [visibleReplies, setVisibleReplies] = useState({});
   const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
@@ -23,14 +30,11 @@ const MyReviewPage = () => {
   };
 
   const clickEditHandle = (reviewId, newContent) => {
-    console.log("수정하려는 리뷰:", reviewId);
-
     setEditMode(reviewId);
     setEditedContent(newContent);
   };
 
   const clickSaveHandle = async (reviewId) => {
-    console.log("저장하려는 리뷰:", reviewId);
     const content = editedContent;
     try {
       await updateReview(userId, accessToken, reviewId, content);
@@ -40,39 +44,39 @@ const MyReviewPage = () => {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+  const clickDeleteHandle = async (reviewId) => {
+    try {
+      await deleteReview(userId, accessToken, reviewId);
+      setMyReviews((prevReviews) =>
+        prevReviews.filter((review) => review.id !== reviewId)
+      );
+    } catch (error) {
+      console.log("리뷰 삭제에 실패했습니다🥲", error);
+    }
+  };
 
   return (
     <div className="review">
-      <div className="review-title">리뷰</div>
+      <div className="review-title">나의 리뷰</div>
       {myReviews.map((myReview, index) => (
         <div key={index} className="review-box">
-          <div className="review-upper-box">
-            <img className="review-img" src={myReview.reviewImage} alt="" />
+          <img className="review-img" src={myReview.reviewImage} alt="" />
 
-            <div className="review-upper-right">
-              <div className="review-upper-writer">
-                <div className="review-date">작성일: {myReview.createdAt}</div>
-              </div>
-            </div>
+          <div className="review-upper">
+            <div className="review-date">작성일: {myReview.createdAt}</div>
+          </div>
 
-            <div className="review-edit-box">
-              {editMode === myReview.id ? (
-                <textarea
-                  value={editedContent}
-                  onChange={(e) => setEditedContent(e.target.value)}
-                  className="review-edit-content"
-                />
-              ) : (
-                <div className="review-content">{myReview.content}</div>
-              )}
-
+          <div className="review-edit-box">
+            {editMode === myReview.id ? (
+              <textarea
+                value={editedContent}
+                onChange={(e) => setEditedContent(e.target.value)}
+                className="review-edit-content"
+              />
+            ) : (
+              <div className="review-content">{myReview.content}</div>
+            )}
+            <div className="review-edit-btns">
               {editMode === myReview.id ? (
                 <>
                   <button
@@ -98,12 +102,16 @@ const MyReviewPage = () => {
                   >
                     수정
                   </button>
-                  <button className="review-delete-btn">삭제</button>
+                  <button
+                    className="review-delete-btn"
+                    onClick={() => clickDeleteHandle(myReview.id)}
+                  >
+                    삭제
+                  </button>
                 </>
               )}
             </div>
           </div>
-
           <div className="review-reply-box">
             <ReactSVG src={svg.letter} className="review-letter-icon" />
             <div

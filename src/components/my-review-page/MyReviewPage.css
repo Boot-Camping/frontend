@@ -1,0 +1,21 @@
+.review-img {
+  width: 100%;
+  height: 20rem;
+  padding-top: 2rem;
+}
+
+.review-date {
+  font-size: var(--sub-content);
+  font-weight: bold;
+  color: var(--light-gray);
+}
+
+.review-edit-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-edit-btns {
+  display: flex;
+  padding-bottom: 1rem;
+}

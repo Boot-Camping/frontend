@@ -67,11 +67,6 @@
   color: var(--light-green);
 }
 
-.review-edit-box {
-  display: flex;
-  padding-top: 3rem;
-}
-
 .review-edit-btn,
 .review-delete-btn {
   display: flex;
