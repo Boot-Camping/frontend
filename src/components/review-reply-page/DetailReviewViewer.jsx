@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import "../components/review-page/ReviewPage.css";
-import ReviewMoreBtn from "../components/review-page/ReviewMoreBtn";
-import ReviewReply from "../components/review-page/ReviewReply";
-import ReplyWriter from "../components/review-page/ReplyWriter";
-import { svgCollection } from "../constants/svgCollection";
+import "./ReviewPage.css";
+import ReviewMoreBtn from "./ReviewMoreBtn";
+import ReviewReply from "./ReviewReply";
+import ReplyWriter from "./ReplyWriter";
+import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
-import useCampReview from "../hooks/useCampReview";
+import useCampReview from "../../hooks/useCampReview";
 
 const svg = svgCollection;
 
-const ReviewPage = ({ campId }) => {
+const ReviewViewer = ({ campId }) => {
   const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
@@ -84,4 +84,4 @@ const ReviewPage = ({ campId }) => {
   );
 };
 
-export default ReviewPage;
+export default ReviewViewer;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import DetailPageInfo from "../components/detail-page/DetailPageInfo";
-import ReviewPage from "./ReviewPage";
+import DetailReviewViewer from "../components/review-reply-page/DetailReviewViewer";
 import BookButton from "../components/detail-page/BookButton";
 import ImageSlider from "../components/detail-page/ImageSlider";
 import KakaoMap from "../components/detail-page/KakaoMap";
@@ -26,7 +26,7 @@ const DetailPage = () => {
       <DetailPageInfo detailInfo={detailInfo} />
       <div className="map-title">근처 편의점 찾기</div>
       <KakaoMap address={detailInfo.addr} />
-      <ReviewPage campId={campId} />
+      <DetailReviewViewer campId={campId} />
       <BookButton to={`/camping/book/${campId}`} />
     </div>
   );
