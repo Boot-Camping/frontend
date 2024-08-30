@@ -5,6 +5,7 @@ import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import useMyReview from "../hooks/useMyReview";
 import useUpdateMyReview from "../hooks/useUpdateMyReview";
 import ReviewReply from "../components/review-reply-page/ReviewReply";
+import "../components/my-review-page/MyReviewPage.css";
 
 const svg = svgCollection;
 
@@ -21,18 +22,18 @@ const MyReviewPage = () => {
     setVisibleReplies((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
-  const clickEditHandle = (reviewId, currentContent) => {
+  const clickEditHandle = (reviewId, newContent) => {
     console.log("수정하려는 리뷰:", reviewId);
+
     setEditMode(reviewId);
-    setEditedContent(currentContent);
+    setEditedContent(newContent);
   };
 
   const clickSaveHandle = async (reviewId) => {
     console.log("저장하려는 리뷰:", reviewId);
+    const content = editedContent;
     try {
-      await updateReview(userId, accessToken, reviewId, {
-        content: editedContent,
-      });
+      await updateReview(userId, accessToken, reviewId, content);
       setEditMode(null);
     } catch (error) {
       console.error("리뷰 수정에 실패했습니다🥲", error);
@@ -52,20 +53,26 @@ const MyReviewPage = () => {
       <div className="review-title">리뷰</div>
       {myReviews.map((myReview, index) => (
         <div key={index} className="review-box">
-          {myReview.reviewImages && myReview.reviewImages.length > 0 && (
-            <div className="review-upper-box">
-              {myReview.reviewImages.map((image, imgIndex) => (
-                <img className="review-img" key={imgIndex} src={image} alt="" />
-              ))}
-            </div>
-          )}
+          <div className="review-upper-box">
+            <img className="review-img" src={myReview.reviewImage} alt="" />
 
-          <div className="review-upper-right">
-            <div className="review-upper-writer">
-              <div className="review-date">작성일: {myReview.createdAt}</div>
+            <div className="review-upper-right">
+              <div className="review-upper-writer">
+                <div className="review-date">작성일: {myReview.createdAt}</div>
+              </div>
             </div>
 
             <div className="review-edit-box">
+              {editMode === myReview.id ? (
+                <textarea
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                  className="review-edit-content"
+                />
+              ) : (
+                <div className="review-content">{myReview.content}</div>
+              )}
+
               {editMode === myReview.id ? (
                 <>
                   <button
@@ -96,16 +103,6 @@ const MyReviewPage = () => {
               )}
             </div>
           </div>
-
-          {editMode === myReview.id ? (
-            <textarea
-              value={editedContent}
-              onChange={(e) => setEditedContent(e.target.value)}
-              className="review-edit-content"
-            />
-          ) : (
-            <div className="review-content">{myReview.content}</div>
-          )}
 
           <div className="review-reply-box">
             <ReactSVG src={svg.letter} className="review-letter-icon" />

@@ -59,10 +59,10 @@ const ReviewViewer = ({ campId }) => {
                   </div>
                 ))}
               </div>
-              <div className="review-edit-box">
+              {/* <div className="review-edit-box">
                 <button className="review-edit-btn">수정</button>
                 <button className="review-delete-btn">삭제</button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="review-content">{review.reviewContent}</div>

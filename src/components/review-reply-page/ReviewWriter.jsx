@@ -61,9 +61,9 @@ const ReviewWriter = () => {
       formData.append("reviewImages", image);
     });
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value instanceof File ? value.name : value);
-    }
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}:`, value instanceof File ? value.name : value);
+    // }
 
     const params = {
       campId: campId,

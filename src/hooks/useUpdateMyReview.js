@@ -1,26 +1,17 @@
 import { put } from "../utils/api";
 
-const useUpdateMyReview = async (
-  userId,
-  accessToken,
-  reviewId,
-  updatedData,
-  reviewImages = []
-) => {
+const useUpdateMyReview = async (userId, accessToken, reviewId, content) => {
   const customHeaders = {
     Authorization: `${accessToken}`,
+    "Content-Type": "multipart/form-data",
   };
 
-  const formData = new FormData();
-  formData.append("reviewId", reviewId);
-
-  // JSON 형태의 리뷰 데이터 추가
-  formData.append("reviewRequest", JSON.stringify(updatedData));
-
-  // 이미지 파일 추가
-  reviewImages.forEach((image) => {
-    formData.append("reviewImages", image);
+  const reviewRequest = JSON.stringify({
+    content: content,
   });
+
+  const formData = new FormData();
+  formData.append("reviewRequest", reviewRequest);
 
   const params = {
     userId: userId,
@@ -34,6 +25,10 @@ const useUpdateMyReview = async (
       formData,
       customHeaders
     );
+    console.log("리뷰 업데이트 성공!", response);
+    console.log("전송한 데이터:", {
+      reviewRequest: reviewRequest,
+    });
     return response;
   } catch (error) {
     console.error("리뷰 업데이트에 실패했습니다🥲", error);
