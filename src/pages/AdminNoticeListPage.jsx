@@ -1,59 +1,24 @@
-import React, { useState, useRef } from "react";
-import "../components/notice-page/NoticePage.css";
-import "../components/notice-page/NoticeFilter.css";
-import { shortDateDot } from "../utils/shortDateDot";
-import { filterData } from "../utils/filterData";
+import React from "react";
 import { Link } from "react-router-dom";
+import { svgCollection } from "../constants/svgCollection";
 import "../components/admin-notice-register/AdminNoticeListPage.css";
-import { ReactSVG } from "react-svg";
-import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
-import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../mock/noticeData";
-import Filter from "../components/common/Filter";
-import { filterType } from "../constants/filterType";
-import AdminNoticeList from "../components/admin-notice-register/AdminNoticeList";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
+import NoticePage from "./NoticePage";
 
 const AdminNoticeListPage = () => {
-  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(6, noticeData);
-  const [filter, setFilter] = useState("all");
-
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const filterChangeHandle = (status) => {
-    setFilter(status);
-  };
-
-  const toggleCategory = (category) => {
-    setSelectedCategory(category);
-  };
   return (
     <div>
       <AdminMainLink />
-      <div className="notice-page-title">공지사항</div>
-
       <div className="notice-regi-btn">
         <Link to={"/admin/notice-regi"}>
           <button className="notice-register-btn">+ 등록</button>
         </Link>
       </div>
-
-      <div className="notice-list-wrap">
-        <Filter
-          filterChangeHandle={filterChangeHandle}
-          filterType={filterType.notice}
-          wrapClassName="notice-page-filter"
-          allClassName="event-filter"
-        />
-
-        <AdminNoticeList
-          visibleItems={visibleItems}
-          noticeData={noticeData}
-          filter={filter}
-        />
-
-        <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
-      </div>
+      <NoticePage
+        linkPrefix="/admin/notice-fix"
+        listSvgSrc={svgCollection.pencilSolid} // NoticeList에서 사용할 SVG
+        pageSvgSrc={svgCollection.prev} // NoticePage에서 사용할 SVG
+      />
     </div>
   );
 };
