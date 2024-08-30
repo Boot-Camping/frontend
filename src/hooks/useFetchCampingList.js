@@ -10,7 +10,7 @@ const useFetchCampingList = () => {
   useEffect(() => {
     const fetchCampingPlaces = async () => {
       const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `${accessToken}`,
       };
       try {
         const response = await get("camps", customHeaders);
