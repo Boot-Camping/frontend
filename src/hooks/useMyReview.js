@@ -13,7 +13,7 @@ const useMyReview = (userId, accessToken) => {
       };
 
       try {
-        const response = await get(`reviews/user/${userId}`, {}, customHeaders);
+        const response = await get(`reviews/user/${userId}`, customHeaders);
         setMyReviews(response);
       } catch (error) {
         console.error("나의 리뷰를 불러오는데 실패했습니다🥲", error);
