@@ -70,7 +70,13 @@ const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
       <form id="signup-form" onSubmit={submitHandle}>
         {signUp.map((signup) => (
           <div className="signup-input-wrap" key={signup.key}>
-            <label className="signup-input-label">{signup.label}</label>
+            <label
+              className={`signup-input-label ${
+                signup.label === "주소" ? "signup-address" : ""
+              }`}
+            >
+              {signup.label}
+            </label>
             {signup.label === "주소" ? (
               <DaumPostCode
                 postcode={postcode}
