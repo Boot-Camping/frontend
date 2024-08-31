@@ -37,7 +37,7 @@ const MyPageUser = () => {
   return (
     <div className="mypage-user-wrap">
       <div className="mypage-user">
-        {userImage === "" ? (
+        {userImage === undefined ? (
           <ReactSVG src={svgCollection.userImg} className="mypage-user-icon" />
         ) : (
           <div className="mypage-user-icon">
@@ -55,7 +55,10 @@ const MyPageUser = () => {
           </Link>
         </div>
       </div>
-      <MyPageLogout />
+      <MyPageLogout
+        errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
+      />
     </div>
   );
 };

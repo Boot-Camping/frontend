@@ -6,6 +6,7 @@
   margin: 3rem 0;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .signup-input-label {
@@ -14,12 +15,20 @@
   margin-bottom: 1rem;
 }
 
+.signup-address {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .signup-input {
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
   padding: 1.5rem 1rem;
   border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .signup-input::placeholder {
@@ -31,6 +40,10 @@
   outline: 2px solid var(--dark-green);
 }
 
+#signup-form .error-message {
+  margin: 2rem 0;
+}
+
 .signup-btn {
   border: none;
   border-radius: 0.5rem;
@@ -40,4 +53,45 @@
   font-weight: var(--bold);
   width: 100%;
   padding: 1rem;
+  cursor: pointer;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  #signup-form {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem 3rem;
+    width: 80%;
+    position: relative;
+  }
+
+  .signup-input-wrap {
+    margin: 0;
+  }
+
+  #signup-form .error-message {
+    margin: 0 auto 3rem;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  #signup-form {
+    flex: 1 1 calc(80% - 3rem);
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    align-items: end;
+    position: relative;
+  }
+
+  .signup-input-wrap {
+    flex: 1 1 calc((100% / 3) - 3rem);
+  }
 }

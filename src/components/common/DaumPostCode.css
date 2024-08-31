@@ -13,4 +13,5 @@
   color: var(--light-green);
   background: transparent;
   padding: 0.5rem 1rem;
+	cursor: pointer;
 }

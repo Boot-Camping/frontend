@@ -6,15 +6,16 @@ import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { filterData } from "../../utils/filterData";
 
-// const NoticeList = ({ visibleItems, noticeData, filter }) => {
-const NoticeList = ({ noticeData }) => {
-  // const filteredData = filterData(noticeData, filter, "noticeStatus");
-
+const NoticeList = ({
+  noticeData,
+  linkPrefix = "/notice",
+  svgSrc = svgCollection.prev,
+}) => {
   return (
     <div className="notice-list-wrap">
       {noticeData.map((data, index) => (
         <Link
-          to={`/notice/${data.id}`}
+          to={`${linkPrefix}/${data.id}`}
           key={`notice-list-${index + 1}`}
           className="notice-list"
         >
@@ -31,7 +32,7 @@ const NoticeList = ({ noticeData }) => {
             </div>
             <div className="notice-date">{shortDateDot(data)}</div>
           </div>
-          <ReactSVG src={svgCollection.prev} className="notice-list-img" />
+          <ReactSVG src={svgSrc} className="notice-list-img" />
         </Link>
       ))}
     </div>
