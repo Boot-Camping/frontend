@@ -78,3 +78,44 @@
 .mypage-setting-icon svg {
   fill: var(--light-gray);
 }
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .mypage-user-wrap {
+    flex-direction: column;
+    align-items: start;
+    width: 35%;
+  }
+
+  .mypage-user-wrap::after {
+    display: none;
+  }
+
+  .mypage-user {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .mypage-user-icon {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .mypage-user-info {
+    margin: 2rem 0;
+    line-height: 2;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+	.mypage-user-wrap {
+    flex-direction: column;
+    align-items: start;
+    width: 15%;
+  }
+}

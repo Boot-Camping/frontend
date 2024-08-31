@@ -21,29 +21,31 @@ const MyPage = () => {
     <section className="mypage-wrap">
       <MyPageUser />
 
-      <div className="mypage-btn-wrap">
-        {mypageBtns.map((mypageBtn) => (
-          <Link
-            to={mypageBtn.link}
-            className={`mypage-btn ${mypageBtn.key}`}
-            key={mypageBtn.key}
-          >
-            <ReactSVG
-              src={svgCollection[mypageBtn.src]}
-              className="mypage-btn-icon"
-            />
-            <div>{mypageBtn.txt}</div>
-          </Link>
-        ))}
-      </div>
-
-      <Link to="/notice" className="mypage-btn-notice">
-        <div className="mypage-notice-text">
-          <div>공지사항 및 이벤트</div>
-          <div>공지사항과 진행중인 이벤트를 확인하세요</div>
+      <div className="mypage-link-wrap">
+        <div className="mypage-btn-wrap">
+          {mypageBtns.map((mypageBtn) => (
+            <Link
+              to={mypageBtn.link}
+              className={`mypage-btn ${mypageBtn.key}`}
+              key={mypageBtn.key}
+            >
+              <ReactSVG
+                src={svgCollection[mypageBtn.src]}
+                className="mypage-btn-icon"
+              />
+              <div>{mypageBtn.txt}</div>
+            </Link>
+          ))}
         </div>
-        <ReactSVG src={svgCollection.prev} className="mypage-notice-icon" />
-      </Link>
+
+        <Link to="/notice" className="mypage-btn-notice">
+          <div className="mypage-notice-text">
+            <div>공지사항 및 이벤트</div>
+            <div>공지사항과 진행중인 이벤트를 확인하세요</div>
+          </div>
+          <ReactSVG src={svgCollection.prev} className="mypage-notice-icon" />
+        </Link>
+      </div>
     </section>
   );
 };
