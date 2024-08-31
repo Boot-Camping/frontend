@@ -1,0 +1,21 @@
+.filter-wrap {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter {
+  font-size: var(--sub-content);
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background: transparent;
+}
+
+.filter-active {
+  background: var(--light-green);
+  color: #fff;
+}

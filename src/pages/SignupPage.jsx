@@ -12,6 +12,7 @@ const SignupPage = () => {
     <section className="signup-section">
       <div className="signup-title">회원가입</div>
       <SignupForm
+        error={error}
         setError={setError}
         setIsOpened={setIsOpened}
         setErrorType={setErrorType}

@@ -14,6 +14,7 @@ const UserInfoModalBtn = ({
   addrChangeHandle,
   setError,
   setErrorMessage,
+  setPostcode,
 }) => {
   const { accessToken } = getUserIdFromToken();
 
@@ -30,37 +31,58 @@ const UserInfoModalBtn = ({
     let body;
 
     if (modalType === "tel") {
+      if (!inputValue.tel) {
+        setError(true);
+        setErrorMessage("Message: 전화번호를 입력해주세요");
+        return;
+      }
       params.set("tel", inputValue.tel);
     } else if (modalType === "addr") {
       const fullAddress = await addrChangeHandle();
-      console.log("fullAddress", fullAddress);
       params.set("addr", fullAddress);
     } else if (modalType === "password") {
-      body = {
-        oldPassword: inputValue.oldPassword,
-        newPassword: inputValue.newPassword,
-      };
+      if (!inputValue.oldPassword) {
+        setError(true);
+        setErrorMessage("Message: 기존 비밀번호를 입력해주세요");
+        return;
+      } else if (!inputValue.newPassword) {
+        setError(true);
+        setErrorMessage("Message: 새 비밀번호를 입력해주세요");
+        return;
+      } else if (!inputValue.newPasswordChk) {
+        setError(true);
+        setErrorMessage("Message: 새 비밀번호를 한번 더 입력해주세요");
+        return;
+      } else if (inputValue.newPassword === inputValue.newPasswordChk) {
+        body = {
+          oldPassword: inputValue.oldPassword,
+          newPassword: inputValue.newPassword,
+        };
+      } else {
+        setError(true);
+        setErrorMessage("Message: 새 비밀번호가 일치하지 않습니다");
+        return;
+      }
     }
-    console.log(body);
 
     try {
       const endpoint =
         modalType === "password" ? "userprofile/password" : "userprofile";
-      const response = await put(
+      await put(
         endpoint,
         modalType === "password" ? JSON.stringify(body) : params.toString(),
         customHeaders
       );
-      console.log("response", response);
-      console.log("params", params.toString());
       setIsOpened(false);
       closeModal(setIsOpened)();
       setError(false);
       setErrorMessage(null);
+      setPostcode("");
       onUpdate();
     } catch (error) {
       setErrorMessage(error.message);
       setError(true);
+      setPostcode("");
     }
   };
 

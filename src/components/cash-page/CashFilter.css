@@ -1,36 +1,6 @@
-.cash-filter {
-  margin: 2rem 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-}
-
-.cash-filter button {
-  font-size: var(--sub-content);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  background: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .cash-filter-img {
   width: var(--sub-heading);
   height: var(--sub-heading);
-}
-
-.cash-all-filter {
-  border: none;
-  background: var(--light-green) !important;
-  color: #fff;
-}
-
-.charge-filter {
-  border: 1px solid var(--light-green);
-  color: var(--light-green);
-  margin: 0 0.5rem;
 }
 
 .use-filter {
@@ -38,6 +8,7 @@
   color: var(--red);
 }
 
-.use-filter .cash-filter-img {
-  color: var(--red);
+.use-filter.filter-active {
+  background: var(--red);
+  color: #fff;
 }

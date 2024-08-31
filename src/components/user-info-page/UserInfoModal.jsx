@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./UserInfoModal.css";
 import { ReactSVG } from "react-svg";
 import { closeModal } from "../../utils/closeModal";
@@ -27,6 +27,7 @@ const UserInfoModal = ({
     addr: "",
     oldPassword: "",
     newPassword: "",
+    newPasswordChk: "",
   });
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,12 +43,20 @@ const UserInfoModal = ({
       formData.append("postcode", postcode);
       formData.append("address", addressRef.current.value);
       formData.append("detailAddress", detailAddressRef.current.value);
-      console.log(formData.get("detailAddress"));
+
+      if (formData.get("postcode") === "") {
+        setError(true);
+        setErrorMessage("Message: 주소를 입력해주세요");
+        return;
+      } else if (formData.get("detailAddress") === "") {
+        setError(true);
+        setErrorMessage("Message: 상세주소를 입력해주세요");
+        return;
+      }
 
       const fullAddress = `(${formData.get("postcode")}) ${formData.get(
         "address"
       )} ${formData.get("detailAddress")}`;
-      console.log(fullAddress);
 
       setInputValue((prev) => ({ ...prev, addr: fullAddress }));
       resolve(fullAddress);
@@ -97,11 +106,13 @@ const UserInfoModal = ({
           <>
             <input
               type="text"
+              name="newPassword"
               placeholder="알파벳 대문자 및 특수문자를 포함한 8자 이상"
+              onChange={changeHandle}
             />
             <input
               type="text"
-              name="newPassword"
+              name="newPasswordChk"
               placeholder="비밀번호 확인"
               onChange={changeHandle}
             />
@@ -115,7 +126,12 @@ const UserInfoModal = ({
   return (
     <>
       {isOpened && (
-        <PortalModal setIsOpened={setIsOpened}>
+        <PortalModal
+          setIsOpened={setIsOpened}
+          setError={setError}
+          setErrorMessage={setErrorMessage}
+					setPostcode={setPostcode}
+        >
           <div
             className={`user-info-modal modal ${
               modalType === "addr" ? `info-modal-addr` : ""
@@ -145,12 +161,18 @@ const UserInfoModal = ({
               onUpdate={onUpdate}
               setError={setError}
               setErrorMessage={setErrorMessage}
+              setPostcode={setPostcode}
             />
 
             <ReactSVG
               src={svgCollection.xMark}
               className="info-modal-close"
-              onClick={closeModal(setIsOpened)}
+              onClick={() => {
+                setError(false);
+                setErrorMessage("");
+                setPostcode("");
+                closeModal(setIsOpened)();
+              }}
             />
           </div>
         </PortalModal>
