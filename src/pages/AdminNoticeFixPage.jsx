@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 import { get, put } from "../utils/api";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import EmptyContent from "../components/common/EmptyContent";
 
 const AdminNoticeFixPage = () => {
   const { id } = useParams();
+  const { accessToken } = getUserIdFromToken();
   const [notice, setNotice] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [imageUrl, setImageUrl] = useState([]);
@@ -59,11 +61,14 @@ const AdminNoticeFixPage = () => {
       description,
       imageUrl: updatedImages.length > 0 ? updatedImages : imageUrl,
     };
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+    };
 
     console.log("Updated Notice Data:", updatedNotice);
 
     try {
-      await put(`admin/notice/${id}`, updatedNotice);
+      await put(`admin/notice/${id}`, updatedNotice, customHeaders);
       alert("공지사항이 성공적으로 수정되었습니다.");
       navigate(`/admin/notice/${id}`);
     } catch (error) {
