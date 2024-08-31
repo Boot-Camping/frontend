@@ -1,0 +1,30 @@
+.admin-camping-list-wrapper {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.admin-camping-list-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 3rem 0;
+}
+
+.admin-camping-name-list {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 0.2rem var(--light-gray);
+}
+
+.admin-camping-date-list {
+  margin-top: 1rem;
+  font-size: var(--content);
+  font-weight: normal;
+  color: var(--light-gray);
+}
