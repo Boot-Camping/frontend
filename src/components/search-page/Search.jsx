@@ -21,6 +21,11 @@ const Search = () => {
   const searchSubmitHandle = async (e) => {
     e.preventDefault();
 
+    if (!searchText.trim()) {
+      setError("검색어를 입력해주세요.");
+      return;
+    }
+
     // 중복 방지: 이미 존재하는 검색어는 추가하지 않음
     if (!searchHistory.includes(searchText)) {
       const updatedHistory = [searchText, ...searchHistory];
@@ -39,8 +44,8 @@ const Search = () => {
 
     try {
       const response = await get(`camps?${queryString}`, customHeaders);
-
       setSearchResults(response.content);
+      setError(null); // 검색 성공 시 오류 메시지 초기화
     } catch (err) {
       setError("데이터를 가져오는데 실패했습니다.");
     }
