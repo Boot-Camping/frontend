@@ -12,16 +12,8 @@ const PostCodeAddress = () => {
     openPostcodePopup,
   } = useDaumPostCode(setPostcode);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // 제출 로직
-    console.log("우편번호:", postcode);
-    console.log("주소:", selectedAddress);
-    console.log("상세 주소:", detailAddress);
-  };
-
   return (
-    <form className="signup-input-wrap postcode-wrap" onSubmit={handleSubmit}>
+    <div className="signup-input-wrap postcode-wrap">
       <div className="postcode-btn-wrap">
         <button
           type="button"
@@ -56,7 +48,7 @@ const PostCodeAddress = () => {
         placeholder="상세 주소"
         onChange={(e) => setDetailAddress(e.target.value)}
       />
-    </form>
+    </div>
   );
 };
 
