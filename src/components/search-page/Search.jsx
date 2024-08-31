@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../search-page/Search.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
-import useSearch from "../../hooks/useSearch";
 import useWishlist from "../../hooks/useWishlist";
+import useSearch from "../../hooks/useSearch";
 
 const Search = () => {
   const {
@@ -12,17 +12,25 @@ const Search = () => {
     searchHistory,
     searchResults,
     error,
+    selectedAddr,
+    setSelectedAddr,
     searchSubmitHandle,
+    historyClickHandle,
     historyItemDelete,
   } = useSearch();
+
   const { isSaved, toggleWishlist } = useWishlist(searchResults);
 
   return (
     <>
       <div className="search-title">검색</div>
       <div className="search">
-        <select className="search-area">
-          <option value="all-area">전체 지역</option>
+        <select
+          className="search-addr"
+          value={selectedAddr}
+          onChange={(e) => setSelectedAddr(e.target.value)}
+        >
+          <option value="all-addr">전체 지역</option>
           <option value="경기">경기</option>
           <option value="인천">인천</option>
           <option value="강원">강원</option>
@@ -32,6 +40,7 @@ const Search = () => {
           <option value="충남">충남</option>
           <option value="대구">대구</option>
           <option value="울산">울산</option>
+          <option value="부산">부산</option>
           <option value="경북">경북</option>
           <option value="경남">경남</option>
           <option value="전북">전북</option>
@@ -58,14 +67,18 @@ const Search = () => {
         </button>
       </div>
 
-      {/* 조건부 렌더링을 사용해 검색 기록이 있을 때만 표시 */}
       {searchHistory.length > 0 && (
         <div className="search-block">
           <div className="search-history">최근 검색 기록</div>
           <div>
             {searchHistory.map((item, index) => (
               <div className="search-history-list-wraper" key={index}>
-                <div className="search-history-list">{item}</div>
+                <div
+                  className="search-history-list"
+                  onClick={() => historyClickHandle(item)}
+                >
+                  {item}
+                </div>
                 <button
                   className="search-history-delete-btn"
                   onClick={() => historyItemDelete(item)}
@@ -78,7 +91,6 @@ const Search = () => {
         </div>
       )}
 
-      {/* 검색 결과 표시 */}
       {error && <div className="error-message">{error}</div>}
       {searchResults.length > 0 && (
         <div className="search-results">
