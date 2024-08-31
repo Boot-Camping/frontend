@@ -7,6 +7,8 @@ const useSearch = () => {
   const [searchHistory, setSearchHistory] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
+  const [selectedAddr, setSelectedAddr] = useState("all-addr");
+
   const { accessToken } = getUserIdFromToken();
 
   useEffect(() => {
@@ -27,6 +29,7 @@ const useSearch = () => {
       setSearchHistory(updatedHistory);
       localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
     }
+
     const customHeaders = {
       Authorization: `${accessToken}`,
     };
@@ -34,6 +37,10 @@ const useSearch = () => {
     const params = {
       name: searchText,
     };
+
+    if (selectedAddr !== "all-addr") {
+      params.addr = selectedAddr;
+    }
 
     const queryString = new URLSearchParams(params).toString();
 
@@ -45,6 +52,10 @@ const useSearch = () => {
       setError("데이터를 가져오는데 실패했습니다.");
     }
     setSearchText("");
+  };
+
+  const historyClickHandle = (item) => {
+    setSearchText(item);
   };
 
   const historyItemDelete = (itemToDelete) => {
@@ -61,7 +72,10 @@ const useSearch = () => {
     searchHistory,
     searchResults,
     error,
+    selectedAddr,
+    setSelectedAddr,
     searchSubmitHandle,
+    historyClickHandle,
     historyItemDelete,
   };
 };
