@@ -11,6 +11,7 @@ const AdminNoticeRegisterPage = () => {
   const { accessToken } = getUserIdFromToken();
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState([]);
+  const [updatedImages, setUpdatedImages] = useState([]);
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ const AdminNoticeRegisterPage = () => {
     try {
       await post(`admin/notice`, updatedNotice, customHeaders);
       alert("공지사항이 성공적으로 등록되었습니다.");
-      navigate(`/admin/notice/${id}`);
+      navigate(`/admin/notice-list`);
     } catch (error) {
       console.error("Update failed:", error.response || error.message);
       alert(
@@ -83,18 +84,17 @@ const AdminNoticeRegisterPage = () => {
         onUploadError={handleUploadError}
       />
 
-      <form>
-        <textarea
-          className="input-notice"
-          id="input-notice"
-          name="input-notice"
-          value={description}
-          onChange={handleDescription}
-          rows="30"
-          cols="50"
-          placeholder="입력하세요."
-        />
-      </form>
+      <textarea
+        className="input-notice"
+        id="input-notice"
+        name="input-notice"
+        value={description}
+        onChange={handleDescription}
+        rows="30"
+        cols="50"
+        placeholder="입력하세요."
+      />
+
       <div className="notice-center-container">
         <button onClick={handleSubmit} className="camp-notice-regi">
           등록
