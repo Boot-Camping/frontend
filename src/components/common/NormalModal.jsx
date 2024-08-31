@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./PaymentPage.css";
+import "../payment-page/PaymentPage.css";
 
-const PaymentModal = ({ isModalOpen, children }) => {
+const NormalModal = ({ isModalOpen, children }) => {
   if (!isModalOpen) return null;
 
   return ReactDOM.createPortal(
@@ -13,4 +13,4 @@ const PaymentModal = ({ isModalOpen, children }) => {
   );
 };
 
-export default PaymentModal;
+export default NormalModal;

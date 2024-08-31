@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import "./ReviewPage.css";
+import "./DetailReviewPage.css";
 
 import ReviewMoreBtn from "./ReviewMoreBtn";
 import ReplyViewer from "./ReplyViewer";
-import ReplyWriter from "./ReplyWriter";
 
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { formatDate } from "../../utils/formatDate";
+import StarGrade from "./starGrade";
 
 import useCampReview from "../../hooks/useCampReview";
 
@@ -45,7 +45,7 @@ const DetailReviewViewer = ({ campId }) => {
   };
 
   return (
-    <div className="review">
+    <div className="detail-review">
       <div className="review-title">리뷰</div>
       {campReviews.slice(0, visibleReviews).map((review, index) => (
         <div key={index} className="review-box">
@@ -65,6 +65,10 @@ const DetailReviewViewer = ({ campId }) => {
                   </div>
                 ))}
               </div>
+
+              <div className="review-grade">
+                캠핑장 평점: <StarGrade grade={review.grade} />
+              </div>
             </div>
           </div>
           <div className="review-content">{review.reviewContent}</div>
@@ -74,11 +78,10 @@ const DetailReviewViewer = ({ campId }) => {
               className="review-reply-count"
               onClick={() => toggleReply(index)}
             >
-              댓글 {review.replyCount}개
+              댓글 {review.reviewCount}개
             </div>
           </div>
           {visibleReplies[index] && <ReplyViewer reviewId={review.id} />}
-          <ReplyWriter reviewId={review.id} />
         </div>
       ))}
       <ReviewMoreBtn onClick={loadMore} isExpanded={isExpanded} />

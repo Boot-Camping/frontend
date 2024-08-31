@@ -1,5 +1,5 @@
 import React from "react";
-import "./ReviewPage.css";
+import "./DetailReviewPage.css";
 
 const ReviewMoreBtn = ({ onClick, isExpanded }) => {
   return (

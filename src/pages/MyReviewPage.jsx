@@ -47,15 +47,15 @@ const MyReviewPage = () => {
       );
       console.log("업데이트된 리뷰:", updatedReview);
 
-      setMyReviews((prevReviews) => {
-        const newReview = prevReviews.map((review) =>
+      setMyReviews((prevReviews) =>
+        prevReviews.map((review) =>
           review.id === reviewId
-            ? { ...review, content: updatedReview.content }
+            ? { ...review, content: editedContent }
             : review
-        );
-        return newReview;
-      });
+        )
+      );
 
+      // 수정 모드 해제
       setEditMode(null);
     } catch (error) {
       console.error("리뷰 수정에 실패했습니다🥲", error);
@@ -64,7 +64,7 @@ const MyReviewPage = () => {
 
   const clickDeleteHandle = async (reviewId) => {
     try {
-      await deleteReview(userId, accessToken, reviewId, content);
+      await deleteReview(userId, accessToken, reviewId);
       setMyReviews((prevReviews) =>
         prevReviews.filter((review) => review.id !== reviewId)
       );
@@ -74,7 +74,7 @@ const MyReviewPage = () => {
   };
 
   return (
-    <div className="review">
+    <div className="my-review">
       <div className="review-title">나의 리뷰</div>
       {myReviews.map((myReview, index) => (
         <div key={index} className="review-box">

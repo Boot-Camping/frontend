@@ -3,7 +3,7 @@ import "../components/payment-page/PaymentPage.css";
 import PaymentInfo from "../components/payment-page/PaymentInfo";
 import PaymentAmount from "../components/payment-page/PaymentAmount";
 import PaymentPolicy from "../components/payment-page/PaymentPolicy";
-import PaymentModal from "../components/payment-page/PaymentModal";
+import NormalModal from "../components/common/NormalModal";
 import PaymentFailAlert from "../components/payment-page/PaymentFailAlert";
 import { Link } from "react-router-dom";
 import { useCampingDays } from "../context/campingDaysContext";
@@ -119,7 +119,7 @@ const PaymentPage = ({ campInfo }) => {
           캠핑장 결제하기
         </button>
 
-        <PaymentModal isModalOpen={isModalOpen} closeModal={closeModal}>
+        <NormalModal isModalOpen={isModalOpen} closeModal={closeModal}>
           <p className="payment-modal-title">결제를 진행하시겠습니까?</p>
           <div className="modal-box">
             <button className="payment-modal-button" onClick={closeModal}>
@@ -129,9 +129,9 @@ const PaymentPage = ({ campInfo }) => {
               결제하기
             </button>
           </div>
-        </PaymentModal>
+        </NormalModal>
 
-        <PaymentModal
+        <NormalModal
           isModalOpen={isSecondModalOpen}
           closeModal={closeSecondModal}
         >
@@ -144,7 +144,7 @@ const PaymentPage = ({ campInfo }) => {
               예약내역 보러가기
             </Link>
           </div>
-        </PaymentModal>
+        </NormalModal>
 
         <PaymentFailAlert message={alertMessage} onClose={closeAlert} />
       </div>

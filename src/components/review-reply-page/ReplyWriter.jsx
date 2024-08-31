@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ReviewPage.css";
+import "./DetailReviewPage.css";
 import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
 
@@ -7,7 +7,7 @@ import replyWriterUtil from "../../utils/replyWriterUtil";
 
 const svg = svgCollection;
 
-const ReplyWriter = ({ reviewId }) => {
+const ReplyWriter = ({ reviewId, onReplySubmit }) => {
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [replyContent, setReplyContent] = useState("");
   const [error, setError] = useState(null);
@@ -26,6 +26,10 @@ const ReplyWriter = ({ reviewId }) => {
       await replyWriterUtil(reviewId, replyContent);
       setReplyContent("");
       setIsInputVisible(false);
+
+      if (onReplySubmit) {
+        onReplySubmit(); // 댓글 작성 후 새로고침 호출
+      }
     } catch (error) {
       setError("댓글 작성에 실패했습니다");
     }
@@ -61,7 +65,7 @@ const ReplyWriter = ({ reviewId }) => {
             </button>
 
             <button
-              className="reply-cancle-btn"
+              className="reply-cancel-btn"
               onClick={() => setIsInputVisible(false)}
             >
               <ReactSVG src={svg.xMark} alt="취소" className="xMark-icon" />
@@ -76,4 +80,3 @@ const ReplyWriter = ({ reviewId }) => {
 };
 
 export default ReplyWriter;
-<div className="reply-writer-title">댓글 작성</div>;

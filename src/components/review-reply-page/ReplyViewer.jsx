@@ -1,10 +1,12 @@
 import React from "react";
-import "./ReviewPage.css";
+import "./DetailReviewPage.css";
 import useReplyViewer from "../../hooks/useReplyViewer";
 import { formatDate } from "../../utils/formatDate";
+import ReplyWriter from "./ReplyWriter";
 
 const ReplyViewer = ({ reviewId }) => {
-  const { replies, loading, error, deleteReply } = useReplyViewer(reviewId);
+  const { replies, loading, error, deleteReply, refreshReplies } =
+    useReplyViewer(reviewId);
 
   if (loading) {
     return <div>Loading replies...</div>;
@@ -47,6 +49,7 @@ const ReplyViewer = ({ reviewId }) => {
           <div className="reply-content">{reply.comment}</div>
         </div>
       ))}
+      <ReplyWriter reviewId={reviewId} onReplySubmit={refreshReplies} />
     </div>
   );
 };

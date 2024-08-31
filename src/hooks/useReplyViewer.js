@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/api";
-import { deleteRequest } from "../utils/api";
+import { get, deleteRequest } from "../utils/api";
 
 const useReplyViewer = (reviewId) => {
   const [replies, setReplies] = useState([]);
@@ -9,24 +8,21 @@ const useReplyViewer = (reviewId) => {
   const [error, setError] = useState(null);
   const { accessToken } = getUserIdFromToken();
 
-  useEffect(() => {
-    const fetchReplies = async () => {
-      const customHeaders = {
-        Authorization: `${accessToken}`,
-      };
-
-      try {
-        console.log("요청하려는 reviewId:", reviewId);
-        const response = await get(
-          `reviews/${reviewId}/replies`,
-          customHeaders
-        );
-        console.log("API 응답:", response);
-        setReplies(response);
-        setLoading(false);
-      } catch (error) {}
+  const fetchReplies = async () => {
+    const customHeaders = {
+      Authorization: `${accessToken}`,
     };
 
+    try {
+      console.log("요청하려는 reviewId:", reviewId);
+      const response = await get(`reviews/${reviewId}/replies`, customHeaders);
+      console.log("API 응답:", response);
+      setReplies(response);
+      setLoading(false);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
     fetchReplies();
   }, [reviewId]);
 
@@ -37,11 +33,11 @@ const useReplyViewer = (reviewId) => {
 
     try {
       await deleteRequest(
-        `review/${reviewId}/replies/${replyId}`,
+        `reviews/${reviewId}/replies/${replyId}`,
         {},
         customHeaders
       );
-      // 삭제된 댓글을 목록에서 제거
+
       setReplies((prevReplies) =>
         prevReplies.filter((reply) => reply.id !== replyId)
       );
@@ -52,7 +48,12 @@ const useReplyViewer = (reviewId) => {
     }
   };
 
-  return { replies, loading, error, deleteReply };
+  const refreshReplies = () => {
+    setLoading(true);
+    fetchReplies();
+  };
+
+  return { replies, loading, error, deleteReply, refreshReplies };
 };
 
 export default useReplyViewer;

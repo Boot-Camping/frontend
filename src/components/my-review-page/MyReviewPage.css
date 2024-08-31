@@ -10,9 +10,9 @@
   font-weight: bold;
 }
 
-.review-img {
+.my-review .review-img {
   width: 100%;
-  height: 20rem;
+  height: 25rem;
   padding-top: 1rem;
 }
 
