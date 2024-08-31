@@ -7,6 +7,7 @@
   color: #fff;
   font-size: var(--content);
   margin-bottom: 1.5rem;
+  cursor: pointer;
 }
 
 .login-kakao {
@@ -27,4 +28,26 @@
   border: 1px solid var(--light-green);
   color: var(--light-green);
   margin-bottom: 3rem;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .login-btns {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .login-btns {
+    width: 40%;
+  }
+  .signup {
+    margin-bottom: 6rem;
+  }
 }
