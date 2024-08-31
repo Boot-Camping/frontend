@@ -7,30 +7,65 @@ import AdminCampAddress from "../components/admin-camping-register-page/AdminCam
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
-import { post } from "../utils/Api";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { post } from "../utils/api";
 
 const AdminCampingRegister = () => {
-  const svg = svgCollection;
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
-  const [description, setDescription] = useState(""); // 상태 변수 수정
+  const [images, setImages] = useState([]);
+  const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [price, setPrice] = useState("");
   const [standardNum, setStandardNum] = useState("");
   const [maxNum, setMaxNum] = useState("");
   const [overCharge, setOverCharge] = useState("");
-  const [imageUrls, setImageUrls] = useState([]); // 이미지 상태 추가
+  const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
   const [addr, setAddr] = useState("");
+  const { accessToken } = getUserIdFromToken();
   const navigate = useNavigate();
 
-  const handleImagesChange = (newImages) => {
-    setImageUrls(newImages);
+  const handleUploadSuccess = (result) => {
+    console.log("Upload succeeded:", result);
+  };
+
+  const handleUploadError = (errorMessage) => {
+    console.error("Upload failed:", errorMessage);
+  };
+
+  const customHeaders = {
+    Authorization: `${accessToken}`,
+    "Content-Type": "multipart/form-data",
   };
 
   const handleCategoriesChange = (newCategories) => {
     setCategory(newCategories);
+  };
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+
+    images.forEach((image, index) => {
+      if (image.file) {
+        formData.append(`images[${index}]`, image.file);
+      }
+    });
+
+    try {
+      const response = await post("camps", formData, customHeaders);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      handleUploadSuccess(result);
+    } catch (error) {
+      console.error("Upload failed:", error);
+      handleUploadError(error.message);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -55,9 +90,7 @@ const AdminCampingRegister = () => {
     });
 
     try {
-      await post("camps", formData, {
-        "Content-Type": "multipart/form-data", // FormData를 사용할 때는 multipart/form-data 헤더를 사용
-      });
+      await post("camps", formData, customHeaders);
       alert("캠핑장 등록이 완료되었습니다.");
       navigate("/admin");
     } catch (error) {
@@ -91,7 +124,10 @@ const AdminCampingRegister = () => {
         />
       </div>
       <div className="camp-img-title">사진</div>
-      <AdminImgPlus onImagesChange={handleImagesChange} />
+      <AdminImgPlus
+        onUploadSuccess={handleUploadSuccess}
+        onUploadError={handleUploadError}
+      />
       <AdminCampAddress
         addr={addr}
         setAddr={setAddr}
@@ -178,7 +214,7 @@ const AdminCampingRegister = () => {
       </div>
 
       <div className="camping-explanaion">캠핑지 소개</div>
-      <form onSubmit={handleSubmit}>
+      <div onSubmit={handleSubmit}>
         <textarea
           className="input-camp-exp"
           id="camp-exp"
@@ -189,12 +225,12 @@ const AdminCampingRegister = () => {
           cols="50"
           placeholder="캠핑장의 특징을 입력하세요."
         />
-        <div className="camp-center-container">
+        <div onClick={handleUpload} className="camp-center-container">
           <button type="submit" className="camp-perpect-regi">
             등록
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

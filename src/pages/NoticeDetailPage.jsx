@@ -9,7 +9,7 @@ import EmptyContent from "../components/common/EmptyContent";
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
-  const [notice, setNotice] = useState("");
+  const [notice, setNotice] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const NoticeDetailPage = () => {
     };
 
     getNoticeDetailData();
-  }, []);
+  }, [id]);
 
   return (
     <div className="notice-detail">
@@ -52,7 +52,18 @@ const NoticeDetailPage = () => {
             </div>
             <div className="notice-detail-desc">{notice.description}</div>
             <div className="notice-detail-img">
-              <img src={notice.imageUrl[0]} />
+              {/* <img src={notice.imageUrl[0]} /> */}
+              {notice.imageUrl && Array.isArray(notice.imageUrl) ? (
+                notice.imageUrl.map((url, index) => (
+                  <img
+                    key={index}
+                    src={url}
+                    alt={`Notice image ${index + 1}`}
+                  />
+                ))
+              ) : (
+                <p>이미지가 없습니다.</p>
+              )}
             </div>
           </>
         ) : (

@@ -9,14 +9,13 @@ import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { put, deleteRequest } from "../utils/Api";
+import { put, deleteRequest, post } from "../utils/api";
 
 const AdminCampFixPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
-  const [isOpened, setIsOpened] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -26,12 +25,12 @@ const AdminCampFixPage = () => {
   const [overCharge, setOverCharge] = useState("");
   const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
+  const [updatedImages, setUpdatedImages] = useState([]);
 
   const { campingPlaces } = useFetchCampingList();
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
 
-  // 현재 id에 맞는 캠핑장 데이터 찾기
   const currentCampingPlace = campingPlaceFiltered.find(
     (place) => place.id === parseInt(id)
   );
@@ -50,17 +49,22 @@ const AdminCampFixPage = () => {
     }
   }, [currentCampingPlace]);
 
-  const handleImagesChange = (newImages) => {
-    setImages(newImages);
+  const handleUploadSuccess = (uploadedImages) => {
+    const uploadedImageUrls = uploadedImages.map((file) =>
+      URL.createObjectURL(file)
+    );
+    setUpdatedImages(uploadedImageUrls);
+  };
+
+  const handleUploadError = (errorMessage) => {
+    console.error("Image upload failed:", errorMessage);
   };
 
   const handleCategoriesChange = (newCategories) => {
     setCategory(newCategories);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleUpdate = async () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("tel", tel);
@@ -70,21 +74,21 @@ const AdminCampFixPage = () => {
     formData.append("overCharge", overCharge);
     formData.append("description", description);
 
-    category.forEach((category, index) => {
-      formData.append(`category[${index}]`, category);
+    category.forEach((cat, index) => {
+      formData.append(`category[${index}]`, cat);
     });
 
-    imageUrls.forEach((image, index) => {
-      if (typeof image === "string") {
-        formData.append(`imageUrls[${index}]`, image);
-      } else {
+    (updatedImages.length > 0 ? updatedImages : imageUrls).forEach(
+      (image, index) => {
         formData.append(`imageUrls[${index}]`, image);
       }
-    });
+    );
 
     try {
       await put(`camps/${id}`, formData, {
-        "Content-Type": "multipart/form-data",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       alert("캠핑장 정보가 수정되었습니다.");
       navigate("/admin");
@@ -95,7 +99,6 @@ const AdminCampFixPage = () => {
 
   const removeHandle = async () => {
     try {
-      // 단순히 리소스의 식별자(id)만 DELETE 요청에 사용합니다.
       await deleteRequest(`camps/${id}`);
       alert("캠핑장 정보가 삭제되었습니다.");
       navigate("/admin");
@@ -148,9 +151,10 @@ const AdminCampFixPage = () => {
         <div className="camp-img-title">사진</div>
         <AdminImgPlus
           initialImages={imageUrls}
-          onImagesChange={handleImagesChange}
+          onUploadSuccess={handleUploadSuccess}
+          onUploadError={handleUploadError}
         />
-        <AdminCampAddress setError={setError} setIsOpened={setIsOpened} />
+        <AdminCampAddress setError={setError} />
 
         <div>
           <div className="camp-info">
@@ -225,7 +229,7 @@ const AdminCampFixPage = () => {
           </div>
         </div>
         <div className="camping-explanaion">캠핑지 소개</div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdate}>
           <textarea
             className="input-camp-exp"
             id="camp-exp"
@@ -236,13 +240,12 @@ const AdminCampFixPage = () => {
             cols="50"
             placeholder="캠핑장의 특징을 입력하세요."
           />
+          <div className="camp-center-container">
+            <button type="submit" className="camp-fix-btn">
+              수정
+            </button>
+          </div>
         </form>
-      </div>
-
-      <div className="camp-center-container">
-        <button type="submit" className="camp-fix-btn">
-          수정
-        </button>
       </div>
     </div>
   );

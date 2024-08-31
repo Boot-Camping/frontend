@@ -4,6 +4,7 @@ import { ReactSVG } from "react-svg";
 import { filterData } from "../utils/filterData";
 import { useLoadMore } from "../hooks/useLoadMore";
 import { noticeData } from "../mock/noticeData";
+import "../components/admin-camping-register-page/AdminCampingList.css";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";

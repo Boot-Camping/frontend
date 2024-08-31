@@ -1,44 +1,75 @@
-// import React, { useState, useEffect, useRef } from "react";
+// import React, { useState, useRef, useEffect } from "react";
 
-// const AdminImgPlus = ({ initialImages = [], onImagesChange }) => {
-//   const [images, setImages] = useState(initialImages);
+// const AdminImgPlus = ({
+//   initialImages = [],
+//   onUploadSuccess,
+//   onUploadError,
+// }) => {
+//   const [images, setImages] = useState([]);
 //   const fileInputRef = useRef(null);
 
-//   // 초기 이미지 설정 및 메모리 정리
 //   useEffect(() => {
-//     // 기존 URL 해제
-//     images.forEach((image) => {
-//       if (image instanceof File) {
-//         URL.revokeObjectURL(image);
-//       }
-//     });
+//     const initializeImages = async () => {
+//       const imageObjects = await Promise.all(
+//         initialImages.map(async (image) => {
+//           if (typeof image === "string") {
+//             // image가 문자열(URL)인 경우
+//             return {
+//               src: image,
+//               file: null,
+//             };
+//           } else if (image instanceof File) {
+//             // image가 File 객체인 경우
+//             return new Promise((resolve, reject) => {
+//               const reader = new FileReader();
+//               reader.onload = (e) => {
+//                 resolve({
+//                   src: e.target.result,
+//                   file: image,
+//                 });
+//               };
+//               reader.onerror = reject;
+//               reader.readAsDataURL(image);
+//             });
+//           } else {
+//             // 기타 경우
+//             return null;
+//           }
+//         })
+//       );
 
-//     // 새 URL 생성
-//     setImages(initialImages);
+//       // null이 아닌 유효한 이미지 객체만 필터링
+//       setImages(imageObjects.filter((img) => img !== null));
+//     };
+
+//     initializeImages();
 //   }, [initialImages]);
 
-//   useEffect(() => {
-//     // 컴포넌트가 언마운트될 때 URL 해제
-//     return () => {
-//       images.forEach((image) => {
-//         if (image instanceof File) {
-//           URL.revokeObjectURL(image);
-//         }
-//       });
-//     };
-//   }, [images]);
-
 //   const handleRemoveImage = (index) => {
-//     const updatedImages = images.filter((_, i) => i !== index);
-//     setImages(updatedImages);
-//     onImagesChange(updatedImages);
+//     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
 //   };
 
 //   const handleImageChange = (event) => {
 //     const files = Array.from(event.target.files);
-//     const updatedImages = [...images, ...files];
-//     setImages(updatedImages);
-//     onImagesChange(updatedImages);
+//     const fileReaders = files.map((file) => {
+//       return new Promise((resolve, reject) => {
+//         const reader = new FileReader();
+//         reader.onload = (e) => resolve({ file, src: e.target.result });
+//         reader.onerror = reject;
+//         reader.readAsDataURL(file);
+//       });
+//     });
+
+//     Promise.all(fileReaders)
+//       .then((results) => {
+//         setImages((prevImages) => [
+//           ...prevImages,
+//           ...results.map((result) => ({ src: result.src, file: result.file })),
+//         ]);
+//       })
+//       .catch((error) => {
+//         console.error("Error reading files:", error);
+//       });
 //   };
 
 //   return (
@@ -54,7 +85,7 @@
 //           ref={fileInputRef}
 //           type="file"
 //           className="camp-img-input-hidden"
-//           accept="image/png, image/jpeg, image/gif"
+//           accept="image/png, image/jpeg, image/jpg"
 //           multiple
 //           onChange={handleImageChange}
 //         />
@@ -63,11 +94,7 @@
 //             <div key={index} className="img-preview-container">
 //               <div
 //                 className="img-preview"
-//                 style={{
-//                   backgroundImage: `url(${
-//                     image instanceof File ? URL.createObjectURL(image) : image
-//                   })`,
-//                 }}
+//                 style={{ backgroundImage: `url(${image.src})` }}
 //               ></div>
 //               <button
 //                 className="img-remove-btn"
@@ -85,45 +112,89 @@
 
 // export default AdminImgPlus;
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-const AdminImgPlus = ({ initialImages = [], onImagesChange }) => {
-  const [images, setImages] = useState(initialImages);
+const AdminImgPlus = ({
+  initialImages = [],
+  onUploadSuccess,
+  onUploadError,
+}) => {
+  const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    // Clean up URLs
-    images.forEach((image) => {
-      if (image instanceof File) {
-        URL.revokeObjectURL(image);
-      }
-    });
+    const initializeImages = async () => {
+      try {
+        const imageObjects = await Promise.all(
+          initialImages.map(async (image) => {
+            if (typeof image === "string") {
+              // image가 문자열(URL)인 경우
+              return {
+                src: image,
+                file: null,
+              };
+            } else if (image instanceof File) {
+              // image가 File 객체인 경우
+              return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  resolve({
+                    src: e.target.result,
+                    file: image,
+                  });
+                };
+                reader.onerror = () => {
+                  reject(new Error("File reading error"));
+                };
+                reader.readAsDataURL(image);
+              });
+            } else {
+              return null;
+            }
+          })
+        );
 
-    setImages(initialImages);
+        // Null이 아닌 유효한 이미지 객체만 필터링하여 상태를 업데이트
+        setImages(imageObjects.filter((img) => img !== null));
+      } catch (error) {
+        console.error("Error initializing images:", error);
+      }
+    };
+
+    initializeImages();
   }, [initialImages]);
 
-  useEffect(() => {
-    // Cleanup on unmount
-    return () => {
-      images.forEach((image) => {
-        if (image instanceof File) {
-          URL.revokeObjectURL(image);
-        }
-      });
-    };
-  }, [images]);
-
   const handleRemoveImage = (index) => {
-    const updatedImages = images.filter((_, i) => i !== index);
-    setImages(updatedImages);
-    onImagesChange(updatedImages);
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
-    const updatedImages = [...images, ...files];
-    setImages(updatedImages);
-    onImagesChange(updatedImages);
+    const fileReaders = files.map((file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve({ file, src: e.target.result });
+        reader.onerror = () => reject(new Error("File reading error"));
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(fileReaders)
+      .then((results) => {
+        setImages((prevImages) => [
+          ...prevImages,
+          ...results.map((result) => ({ src: result.src, file: result.file })),
+        ]);
+        if (onUploadSuccess) {
+          onUploadSuccess(results.map((result) => result.file));
+        }
+      })
+      .catch((error) => {
+        console.error("Error reading files:", error);
+        if (onUploadError) {
+          onUploadError(error.message);
+        }
+      });
   };
 
   return (
@@ -148,11 +219,7 @@ const AdminImgPlus = ({ initialImages = [], onImagesChange }) => {
             <div key={index} className="img-preview-container">
               <div
                 className="img-preview"
-                style={{
-                  backgroundImage: `url(${
-                    image instanceof File ? URL.createObjectURL(image) : image
-                  })`,
-                }}
+                style={{ backgroundImage: `url(${image.src})` }}
               ></div>
               <button
                 className="img-remove-btn"
