@@ -2,19 +2,17 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import "../category-page/CategoryCampingList.css";
 import { ReactSVG } from "react-svg";
-import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
 import { svgCollection } from "../../constants/svgCollection";
+import useWishlist from "../../hooks/useWishlist";
 
 const CategoryCampingList = () => {
-  const { category } = useParams(); // URL에서 category 값을 가져옴
+  const { category } = useParams();
+  const { campingPlaces, error } = useFetchCampingList();
+  const { isSaved, toggleWishlist } = useWishlist(campingPlaces);
 
   const categoryTitle = category || "전체";
-
-  const { campingPlaces, error } = useFetchCampingList();
-
-  // 카테고리 필터링
   const categoryfilter = campingPlaces.filter(
     (place) =>
       categoryTitle === "전체" || place.categories.includes(categoryTitle)
@@ -22,8 +20,6 @@ const CategoryCampingList = () => {
 
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(categoryfilter);
-
-  const { heartClick, heartClickHandler } = useHeartClick([]);
 
   if (error) return <div>Error: {error}</div>;
 
@@ -52,13 +48,13 @@ const CategoryCampingList = () => {
 
           <ReactSVG
             className={`category-camping-img-heart ${
-              !heartClick[index] && "category-camping-img-heart-delete"
+              !isSaved[index] && "category-camping-img-heart-delete"
             }`}
             src={svgCollection.heart}
             alt=""
             onClick={(e) => {
               e.preventDefault();
-              heartClickHandler(index);
+              toggleWishlist(index, campingPlace);
             }}
           />
 

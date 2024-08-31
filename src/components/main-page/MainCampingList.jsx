@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -6,18 +6,16 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
-import useHeartClick from "../../hooks/useHeartClick";
 import useCampingPlaceFilter from "../../hooks/useCampingPlaceFilter";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
 import { svgCollection } from "../../constants/svgCollection";
+import useWishlist from "../../hooks/useWishlist";
 
 const MainCampingList = () => {
   const { campingPlaces, error } = useFetchCampingList();
-
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
-
-  const { heartClick, heartClickHandler } = useHeartClick([]);
+  const { isSaved, toggleWishlist } = useWishlist(campingPlaces);
 
   const slidesPerPage = 10;
 
@@ -61,16 +59,15 @@ const MainCampingList = () => {
                         src={campingPlace.imageUrls}
                         alt={campingPlace.name}
                       />
-
                       <ReactSVG
                         className={`camping-img-heart ${
-                          !heartClick[index] && "camping-img-heart-delete"
+                          !isSaved[index] && "camping-img-heart-delete"
                         }`}
                         src={svgCollection.heart}
                         alt=""
                         onClick={(e) => {
                           e.preventDefault();
-                          heartClickHandler(index);
+                          toggleWishlist(index, campingPlace);
                         }}
                       />
 
