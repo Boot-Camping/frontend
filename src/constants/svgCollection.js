@@ -20,6 +20,7 @@ import calendar from "/src/assets/svg/calendarDays.svg";
 import photo from "/src/assets/svg/photo.svg";
 import home from "/src/assets/svg/home.svg";
 import lock from "/src/assets/svg/lockClosed.svg";
+import eyeSlash from "/src/assets/svg/eyeSlash.svg";
 
 export const svgCollection = {
   stars,
@@ -38,10 +39,11 @@ export const svgCollection = {
   heart,
   prev,
   money,
-	check,
-	setting,
-	calendar,
-	photo,
-	home,
-	lock,
+  check,
+  setting,
+  calendar,
+  photo,
+  home,
+  lock,
+  eyeSlash,
 };

@@ -6,14 +6,12 @@ import DeleteAccountModal from "../components/delete-account-page/DeleteAccountM
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { deleteRequest } from "../utils/api";
 import EmptyContent from "../components/common/EmptyContent";
-import { useNavigate } from "react-router-dom";
 
 const DeleteAccountPage = () => {
   const { accessToken } = getUserIdFromToken();
   const [isOpened, setIsOpened] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
 
   const idRef = useRef(null);
   const passwordRef = useRef(null);
@@ -57,9 +55,6 @@ const DeleteAccountPage = () => {
       setErrorMessage("");
       setIsOpened(true);
       localStorage.removeItem("accessToken");
-
-      navigate("/");
-      window.location.reload();
     } catch (error) {
       setError(true);
       setErrorMessage(error.message);

@@ -17,6 +17,8 @@
   background: var(--bg-gray-50);
   border-radius: 0.5rem;
   font-size: var(--content);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .delete-confirm input:focus-visible {

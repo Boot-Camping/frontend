@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Filter.css";
 
 const Filter = ({
   filterChangeHandle,
@@ -6,19 +7,30 @@ const Filter = ({
   wrapClassName,
   allClassName,
 }) => {
+  const [activeFilter, setActiveFilter] = useState(0);
+
+  const filterClickHandle = (status, index) => {
+    filterChangeHandle(status);
+    setActiveFilter(index);
+  };
+
   return (
-    <div className={wrapClassName}>
+    <div className={`${wrapClassName} filter-wrap`}>
       <button
-        className={allClassName}
-        onClick={() => filterChangeHandle("all")}
+        className={`${allClassName} filter ${
+          activeFilter === 0 ? "filter-active" : ""
+        }`}
+        onClick={() => filterClickHandle("all", 0)}
       >
         전체 보기
       </button>
-      {filterType.map((filtering) => (
+      {filterType.map((filtering, index) => (
         <button
-          className={filtering.class}
+          className={`${filtering.class} filter ${
+            activeFilter === index + 1 ? "filter-active" : ""
+          }`}
           key={filtering.type}
-          onClick={() => filterChangeHandle(filtering.status)}
+          onClick={() => filterClickHandle(filtering.status, index + 1)}
         >
           {filtering.type}
         </button>
