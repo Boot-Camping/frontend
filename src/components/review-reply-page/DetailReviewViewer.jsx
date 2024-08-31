@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import "./ReviewPage.css";
+
 import ReviewMoreBtn from "./ReviewMoreBtn";
-import ReviewReply from "./ReviewReply";
+import ReplyViewer from "./ReplyViewer";
 import ReplyWriter from "./ReplyWriter";
-import { svgCollection } from "../../constants/svgCollection";
+
 import { ReactSVG } from "react-svg";
+import { svgCollection } from "../../constants/svgCollection";
+import { formatDate } from "../../utils/formatDate";
+
 import useCampReview from "../../hooks/useCampReview";
 
 const svg = svgCollection;
 
-const ReviewViewer = ({ campId }) => {
+const DetailReviewViewer = ({ campId }) => {
   const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
@@ -50,7 +54,9 @@ const ReviewViewer = ({ campId }) => {
             <div className="review-upper-right">
               <div className="review-upper-writer">
                 <div className="review-id">{review.loginId}</div>
-                <div className="review-date">작성일: {review.createdAt}</div>
+                <div className="review-date">
+                  작성일: {formatDate(review.createdAt)}
+                </div>
               </div>
               <div className="review-upper-tag">
                 {review.reviewTags.map((tag, tagIndex) => (
@@ -59,10 +65,6 @@ const ReviewViewer = ({ campId }) => {
                   </div>
                 ))}
               </div>
-              {/* <div className="review-edit-box">
-                <button className="review-edit-btn">수정</button>
-                <button className="review-delete-btn">삭제</button>
-              </div> */}
             </div>
           </div>
           <div className="review-content">{review.reviewContent}</div>
@@ -75,8 +77,8 @@ const ReviewViewer = ({ campId }) => {
               댓글 {review.replyCount}개
             </div>
           </div>
-          {visibleReplies[index] && <ReviewReply reviewId={review.id} />}
-          <ReplyWriter />
+          {visibleReplies[index] && <ReplyViewer reviewId={review.id} />}
+          <ReplyWriter reviewId={review.id} />
         </div>
       ))}
       <ReviewMoreBtn onClick={loadMore} isExpanded={isExpanded} />
@@ -84,4 +86,4 @@ const ReviewViewer = ({ campId }) => {
   );
 };
 
-export default ReviewViewer;
+export default DetailReviewViewer;

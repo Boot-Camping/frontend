@@ -1,9 +1,10 @@
 import React from "react";
 import "./ReviewPage.css";
-import useReviewReplies from "../../hooks/useReviewReplies";
+import useReplyViewer from "../../hooks/useReplyViewer";
+import ReplyWriter from "./ReplyWriter";
 
-const ReviewReply = ({ reviewId }) => {
-  const { replies, loading, error } = useReviewReplies(reviewId);
+const ReplyViewer = ({ reviewId }) => {
+  const { replies, loading, error } = useReplyViewer(reviewId);
   console.log("reviewId:", reviewId);
 
   if (loading) {
@@ -25,7 +26,7 @@ const ReviewReply = ({ reviewId }) => {
             </div>
 
             <div className="reply-edit-btns">
-              <button className="reply-edit-btn">수정</button>
+              {/* <button className="reply-edit-btn">수정</button> */}
               <button className="reply-delete-btn">삭제</button>
             </div>
           </div>
@@ -37,4 +38,4 @@ const ReviewReply = ({ reviewId }) => {
   );
 };
 
-export default ReviewReply;
+export default ReplyViewer;

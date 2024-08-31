@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { get } from "../utils/api";
 
-const useReviewReplies = (reviewId) => {
+const useReplyViewer = (reviewId) => {
   const [replies, setReplies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,12 +11,15 @@ const useReviewReplies = (reviewId) => {
   useEffect(() => {
     const fetchReplies = async () => {
       const customHeaders = {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `${accessToken}`,
       };
 
       try {
         console.log("요청하려는 reviewId:", reviewId);
-        const response = await get(`reply/review/${reviewId}`, customHeaders);
+        const response = await get(
+          `reviews/${reviewId}/replies`,
+          customHeaders
+        );
         console.log("API 응답:", response);
         setReplies(response);
         setLoading(false);
@@ -29,4 +32,4 @@ const useReviewReplies = (reviewId) => {
   return { replies, loading, error };
 };
 
-export default useReviewReplies;
+export default useReplyViewer;

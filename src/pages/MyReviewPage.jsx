@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { svgCollection } from "../constants/svgCollection";
+
 import { ReactSVG } from "react-svg";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { svgCollection } from "../constants/svgCollection";
 
 import useMyReview from "../hooks/useMyReview";
-import useUpdateMyReview from "../hooks/useUpdateMyReview";
-import useDeleteMyReview from "../hooks/useDeleteMyReview";
+import updateMyReview from "../utils/updateMyReview";
+import deleteMyReview from "../utils/deleteMyReview";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { formatDate } from "../utils/formatDate";
 
-import ReviewReply from "../components/review-reply-page/ReviewReply";
+import ReviewReply from "../components/review-reply-page/ReplyViewer";
 import "../components/my-review-page/MyReviewPage.css";
 
 const svg = svgCollection;
@@ -18,8 +20,8 @@ const MyReviewPage = () => {
     userId,
     accessToken
   );
-  const updateReview = useUpdateMyReview;
-  const { deleteReview } = useDeleteMyReview();
+  const updateReview = updateMyReview;
+  const { deleteReview } = deleteMyReview();
 
   const [visibleReplies, setVisibleReplies] = useState({});
   const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
@@ -37,7 +39,23 @@ const MyReviewPage = () => {
   const clickSaveHandle = async (reviewId) => {
     const content = editedContent;
     try {
-      await updateReview(userId, accessToken, reviewId, content);
+      const updatedReview = await updateReview(
+        userId,
+        accessToken,
+        reviewId,
+        content
+      );
+      console.log("업데이트된 리뷰:", updatedReview);
+
+      setMyReviews((prevReviews) => {
+        const newReview = prevReviews.map((review) =>
+          review.id === reviewId
+            ? { ...review, content: updatedReview.content }
+            : review
+        );
+        return newReview;
+      });
+
       setEditMode(null);
     } catch (error) {
       console.error("리뷰 수정에 실패했습니다🥲", error);
@@ -46,7 +64,7 @@ const MyReviewPage = () => {
 
   const clickDeleteHandle = async (reviewId) => {
     try {
-      await deleteReview(userId, accessToken, reviewId);
+      await deleteReview(userId, accessToken, reviewId, content);
       setMyReviews((prevReviews) =>
         prevReviews.filter((review) => review.id !== reviewId)
       );
@@ -60,11 +78,13 @@ const MyReviewPage = () => {
       <div className="review-title">나의 리뷰</div>
       {myReviews.map((myReview, index) => (
         <div key={index} className="review-box">
-          <img className="review-img" src={myReview.reviewImage} alt="" />
-
-          <div className="review-upper">
-            <div className="review-date">작성일: {myReview.createdAt}</div>
+          <div className="upper-box">
+            <div className="my-review-camp-name">{myReview.campName}</div>
+            <div className="review-date">
+              작성일: {formatDate(myReview.createdAt)}
+            </div>
           </div>
+          <img className="review-img" src={myReview.reviewImage} alt="" />
 
           <div className="review-edit-box">
             {editMode === myReview.id ? (

@@ -1,6 +1,6 @@
-import { put } from "../utils/api";
+import { put } from "./api";
 
-const useUpdateMyReview = async (userId, accessToken, reviewId, content) => {
+const updateMyReview = async (userId, accessToken, reviewId, content) => {
   const customHeaders = {
     Authorization: `${accessToken}`,
     "Content-Type": "multipart/form-data",
@@ -36,4 +36,4 @@ const useUpdateMyReview = async (userId, accessToken, reviewId, content) => {
   }
 };
 
-export default useUpdateMyReview;
+export default updateMyReview;

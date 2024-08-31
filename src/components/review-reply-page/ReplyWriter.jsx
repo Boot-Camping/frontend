@@ -2,15 +2,33 @@ import React, { useState } from "react";
 import "./ReviewPage.css";
 import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
-import { post } from "../../utils/api";
+
+import replyWriterUtil from "../../utils/replyWriterUtil";
 
 const svg = svgCollection;
 
-const ReplyWriter = () => {
+const ReplyWriter = ({ reviewId }) => {
   const [isInputVisible, setIsInputVisible] = useState(false);
+  const [replyContent, setReplyContent] = useState("");
+  const [error, setError] = useState(null);
 
   const toggleInputVisible = () => {
     setIsInputVisible(!isInputVisible);
+  };
+
+  const submitReplyHandle = async () => {
+    if (!replyContent.trim()) {
+      setError("댓글 내용을 입력해 주세요.");
+      return;
+    }
+
+    try {
+      await replyWriterUtil(reviewId, replyContent);
+      setReplyContent("");
+      setIsInputVisible(false);
+    } catch (error) {
+      setError("댓글 작성에 실패했습니다");
+    }
   };
 
   return (
@@ -26,9 +44,14 @@ const ReplyWriter = () => {
 
       {isInputVisible && (
         <div className="reply-input-box">
-          <input type="text" className="reply-input-form" />
+          <input
+            type="text"
+            className="reply-input-form"
+            value={replyContent}
+            onChange={(e) => setReplyContent(e.target.value)}
+          />
           <div className="reply-writer-btns">
-            <button className="reply-complete-btn">
+            <button className="reply-complete-btn" onClick={submitReplyHandle}>
               <ReactSVG
                 src={svg.pencilSquare}
                 alt="작성완료"
@@ -37,11 +60,15 @@ const ReplyWriter = () => {
               작성완료
             </button>
 
-            <button className="reply-cancle-btn">
+            <button
+              className="reply-cancle-btn"
+              onClick={() => setIsInputVisible(false)}
+            >
               <ReactSVG src={svg.xMark} alt="취소" className="xMark-icon" />
               작성취소
             </button>
           </div>
+          {error && <div className="error-message">{error}</div>}
         </div>
       )}
     </div>

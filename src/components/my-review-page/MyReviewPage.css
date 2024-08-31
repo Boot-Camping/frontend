@@ -1,7 +1,19 @@
+.upper-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+
+.my-review-camp-name {
+  font-size: var(--content);
+  font-weight: bold;
+}
+
 .review-img {
   width: 100%;
   height: 20rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .review-date {

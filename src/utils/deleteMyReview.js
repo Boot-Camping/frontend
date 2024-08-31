@@ -1,6 +1,6 @@
-import { deleteRequest } from "../utils/api";
+import { deleteRequest } from "./api";
 
-const useDeleteMyReview = () => {
+const deleteMyReview = () => {
   const deleteReview = async (userId, accessToken, reviewId) => {
     const customHeaders = {
       Authorization: `${accessToken}`,
@@ -30,4 +30,4 @@ const useDeleteMyReview = () => {
   return { deleteReview };
 };
 
-export default useDeleteMyReview;
+export default deleteMyReview;
