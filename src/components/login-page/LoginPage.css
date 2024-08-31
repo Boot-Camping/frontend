@@ -27,3 +27,27 @@
 .login-img img {
   width: 100%;
 }
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .login-title-wrap {
+    text-align: center;
+  }
+  .login-btns-wrap {
+    margin-top: 5rem;
+  }
+  .login-img {
+    width: 30%;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .login-img {
+    width: 15%;
+  }
+}

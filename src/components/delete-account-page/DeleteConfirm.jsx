@@ -2,6 +2,7 @@ import React from "react";
 import "./DeleteConfirm.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
+import PasswordInput from "../common/PasswordInput";
 
 const DeleteConfirm = ({ idRef, passwordRef, checkboxRef }) => {
   return (
@@ -19,13 +20,7 @@ const DeleteConfirm = ({ idRef, passwordRef, checkboxRef }) => {
 
       <div className="delete-confirm">
         <label>비밀번호 입력</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="현재 비밀번호를 입력해주세요"
-          required
-          ref={passwordRef}
-        />
+				<PasswordInput passwordRef={passwordRef} />
       </div>
 
       <div className="delete-confirm-chk">

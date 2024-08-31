@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Grid } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/grid";
 import "swiper/css/pagination";
 import "../main-page/MainReview.css";
 import { get } from "../../utils/api";
@@ -33,17 +32,11 @@ const MainReview = () => {
     <>
       <div className="main-review-title">실시간 리뷰</div>
       <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination, Grid]}
+        modules={[Pagination]}
         className="main-review-slider"
-        slidesPerView={1}
-        grid={{
-          rows: 3,
-          fill: "row",
-        }}
-        spaceBetween={20}
+        slidesPerView={3}
+        direction="vertical"
+        spaceBetween={10}
       >
         {reviews.map((review, index) => (
           <SwiperSlide key={index} className="main-review-wrapper">

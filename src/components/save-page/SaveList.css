@@ -4,6 +4,10 @@
 }
 
 .save-list {
+  position: relative;
+}
+
+.save-list > a {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -61,8 +65,12 @@
 }
 
 .save-heart-img {
-  width: var(--heading);
-  height: var(--heading);
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .save-heart-img svg {

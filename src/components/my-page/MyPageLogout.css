@@ -4,6 +4,7 @@
   background: transparent;
   color: var(--light-green);
   font-family: "Pretendard-regular";
+	cursor: pointer;
 }
 
 /***********************************
@@ -35,4 +36,13 @@
 .logout-confirm-btn {
   background: var(--light-green);
   color: #fff;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .logout-btn {
+    padding: 0;
+  }
 }
