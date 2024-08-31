@@ -12,7 +12,9 @@ export const validation = ({
   const regex = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
   if (password && !regex.test(password)) {
     setError(true);
-    setIsOpened(true);
+    if (setIsOpened) {
+      setIsOpened(true);
+    }
     if (setErrorType) {
       setErrorType("pw");
     }
@@ -21,7 +23,9 @@ export const validation = ({
 
   if (password && passwordChk && password !== passwordChk) {
     setError(true);
-    setIsOpened(true);
+    if (setIsOpened) {
+      setIsOpened(true);
+    }
     if (setErrorType) {
       setErrorType("pwChk");
     }
@@ -31,7 +35,9 @@ export const validation = ({
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (email && !emailRegex.test(email)) {
     setError(true);
-    setIsOpened(true);
+    if (setIsOpened) {
+      setIsOpened(true);
+    }
     if (setErrorType) {
       setErrorType("email");
     }
@@ -40,7 +46,9 @@ export const validation = ({
 
   if (postcode !== undefined && postcode === "") {
     setError(true);
-    setIsOpened(true);
+    if (setIsOpened) {
+      setIsOpened(true);
+    }
     if (setErrorType) {
       setErrorType("post");
     }
@@ -49,7 +57,9 @@ export const validation = ({
 
   if (checkedTerms && !checkedTerms.every(Boolean)) {
     setError(true);
-    setIsOpened(true);
+    if (setIsOpened) {
+      setIsOpened(true);
+    }
     checkboxRefs.current.forEach((ref, index) => {
       if (ref && !checkedTerms[index]) {
         ref.focus();
