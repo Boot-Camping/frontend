@@ -1,67 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { get } from "../../utils/api";
 import "../search-page/Search.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
-import useHeartClick from "../../hooks/useHeartClick";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
+import useSearch from "../../hooks/useSearch";
+import useWishlist from "../../hooks/useWishlist";
 
 const Search = () => {
-  const [searchText, setSearchText] = useState("");
-  const [searchHistory, setSearchHistory] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
-  const [error, setError] = useState(null); // 오류 상태 추가
-  const { accessToken } = getUserIdFromToken();
-
-  useEffect(() => {
-    const history = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    setSearchHistory(history);
-  }, []);
-
-  const searchSubmitHandle = async (e) => {
-    e.preventDefault();
-
-    if (!searchText.trim()) {
-      setError("검색어를 입력해주세요.");
-      return;
-    }
-
-    // 중복 방지: 이미 존재하는 검색어는 추가하지 않음
-    if (!searchHistory.includes(searchText)) {
-      const updatedHistory = [searchText, ...searchHistory];
-      setSearchHistory(updatedHistory);
-      localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
-    }
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
-
-    const params = {
-      name: searchText,
-    };
-
-    const queryString = new URLSearchParams(params).toString();
-
-    try {
-      const response = await get(`camps?${queryString}`, customHeaders);
-      setSearchResults(response.content);
-      setError(null); // 검색 성공 시 오류 메시지 초기화
-    } catch (err) {
-      setError("데이터를 가져오는데 실패했습니다.");
-    }
-    setSearchText("");
-  };
-
-  // 검색 기록 항목 삭제
-  const historyItemDelete = (itemToDelete) => {
-    const updatedHistory = searchHistory.filter(
-      (item) => item !== itemToDelete
-    );
-    setSearchHistory(updatedHistory);
-    localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
-  };
-
-  const { heartClick, heartClickHandler } = useHeartClick([]);
+  const {
+    searchText,
+    setSearchText,
+    searchHistory,
+    searchResults,
+    error,
+    searchSubmitHandle,
+    historyItemDelete,
+  } = useSearch();
+  const { isSaved, toggleWishlist } = useWishlist(searchResults);
 
   return (
     <>
@@ -138,13 +92,13 @@ const Search = () => {
 
               <ReactSVG
                 className={`search-camping-img-heart ${
-                  !heartClick[index] && "search-camping-img-heart-delete"
+                  !isSaved[index] && "search-camping-img-heart-delete"
                 }`}
                 src={svgCollection.heart}
                 alt=""
                 onClick={(e) => {
                   e.preventDefault();
-                  heartClickHandler(index);
+                  toggleWishlist(index, campingPlace);
                 }}
               />
 
