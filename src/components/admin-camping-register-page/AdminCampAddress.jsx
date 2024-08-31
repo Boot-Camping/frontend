@@ -5,7 +5,7 @@ import PostCodeAddress from "./PostCodeAddress";
 const SIGN_UP = [{ key: "1", label: "주소", type: "text", placeholder: "" }];
 
 const AdminCampAddress = ({ addr, setAddr, setError, setIsOpened }) => {
-  const { postcode, addr: addressFromHook } = useAddress();
+  const { postcode = "", addr: addressFromHook = "" } = useAddress(); // 빈 문자열로 초기화
 
   const submitHandle = (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ const AdminCampAddress = ({ addr, setAddr, setError, setIsOpened }) => {
 
     setError(false);
     setIsOpened(false);
-    setAddr(`${postcode} ${addressFromHook}`); // 주소 설정
+    setAddr(`${postcode} ${addressFromHook}`); // 주소 설정, 항상 유효한 값으로 설정
   };
 
   return (
