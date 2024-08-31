@@ -7,17 +7,10 @@ import AdminCampAddress from "../components/admin-camping-register-page/AdminCam
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { post } from "../utils/api";
 
 const AdminCampingRegister = () => {
-  const handleUploadSuccess = (result) => {
-    console.log("Upload succeeded:", result);
-  };
-
-  const handleUploadError = (errorMessage) => {
-    console.error("Upload failed:", errorMessage);
-  };
-
   const [error, setError] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [images, setImages] = useState([]);
@@ -31,10 +24,20 @@ const AdminCampingRegister = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
   const [addr, setAddr] = useState("");
+  const { accessToken } = getUserIdFromToken();
   const navigate = useNavigate();
 
-  const handleImagesChange = (newImages) => {
-    setImageUrls(newImages);
+  const handleUploadSuccess = (result) => {
+    console.log("Upload succeeded:", result);
+  };
+
+  const handleUploadError = (errorMessage) => {
+    console.error("Upload failed:", errorMessage);
+  };
+
+  const customHeaders = {
+    Authorization: `${accessToken}`,
+    "Content-Type": "multipart/form-data",
   };
 
   const handleCategoriesChange = (newCategories) => {
@@ -51,12 +54,7 @@ const AdminCampingRegister = () => {
     });
 
     try {
-      const response = await post("camps", {
-        body: formData,
-        headers: {
-          Authorization: accessToken,
-        },
-      });
+      const response = await post("camps", formData, customHeaders);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -92,9 +90,7 @@ const AdminCampingRegister = () => {
     });
 
     try {
-      await post("camps", formData, {
-        "Content-Type": "multipart/form-data",
-      });
+      await post("camps", formData, customHeaders);
       alert("캠핑장 등록이 완료되었습니다.");
       navigate("/admin");
     } catch (error) {
