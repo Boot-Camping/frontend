@@ -8,6 +8,8 @@ import UserInfoModal from "../components/user-info-page/UserInfoModal";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { get } from "../utils/api";
 import { svgCollection } from "../constants/svgCollection";
+import UserImage from "../components/user-info-page/UserImage";
+import EmptyContent from "../components/common/EmptyContent";
 
 const UserInfoPage = () => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -41,35 +43,44 @@ const UserInfoPage = () => {
 
   return (
     <section className="user-info-wrap">
-      <div className="user-info-title">
-        <Link to={"/mypage"}>
-          <ReactSVG src={svgCollection.prev} className="user-info-prev" />
-        </Link>
-        <div>내 정보 관리</div>
+      <div className="user-info-aside">
+        <div className="user-info-title">
+          <Link to={"/mypage"}>
+            <ReactSVG src={svgCollection.prev} className="user-info-prev" />
+          </Link>
+          <div>내 정보 관리</div>
+        </div>
+        {userData && (
+          <UserImage
+            userData={userData}
+            setErrorMessage={setErrorMessage}
+            onUpdate={getUserData}
+          />
+        )}
       </div>
       {loading ? (
         <div>로딩중</div>
       ) : userData ? (
         <>
-          <UserProfile
-            setIsOpened={setIsOpened}
-            setModalType={setModalType}
-						setErrorMessage={setErrorMessage}
-            userData={userData}
-            onUpdate={getUserData}
-          />
-          <UserAccount
-            setIsOpened={setIsOpened}
-            setModalType={setModalType}
-            userData={userData}
-          />
-          <Link to={"/cash"} className="user-cash-wrap">
-            <div>캐시</div>
-            <div>
-              <div>{userData.balance.toLocaleString()}원</div>
-              <ReactSVG src={svgCollection.prev} className="user-arrow-img" />
-            </div>
-          </Link>
+          <div className="user-info-content">
+            <UserProfile
+              setIsOpened={setIsOpened}
+              setModalType={setModalType}
+              userData={userData}
+            />
+            <UserAccount
+              setIsOpened={setIsOpened}
+              setModalType={setModalType}
+              userData={userData}
+            />
+            <Link to={"/cash"} className="user-cash-wrap">
+              <div>캐시</div>
+              <div>
+                <div>{userData.balance.toLocaleString()}원</div>
+                <ReactSVG src={svgCollection.prev} className="user-arrow-img" />
+              </div>
+            </Link>
+          </div>
 
           <UserInfoModal
             isOpened={isOpened}
@@ -82,7 +93,7 @@ const UserInfoPage = () => {
           />
         </>
       ) : (
-        <div>사용자 정보를 찾을 수 없습니다</div>
+        <EmptyContent errorMessage={errorMessage} error={error} />
       )}
     </section>
   );

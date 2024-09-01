@@ -16,7 +16,10 @@ const UserAccount = ({ setIsOpened, setModalType, userData }) => {
         <div>아이디</div>
         <div>{userData.loginId}</div>
       </div>
-      <div className="user-account profile-txt" onClick={pwChangeHandle}>
+      <div
+        className="user-account profile-txt profile-change-btn"
+        onClick={pwChangeHandle}
+      >
         <div>비밀번호</div>
         <div>
           <div>*******</div>
