@@ -41,9 +41,6 @@ const NoticeDetailPage = () => {
                 <div>목록</div>
               </div>
               <div className="notice-detail-info">
-                {/* <div className="notice-detail-status">
-                  {notice.noticeStatus}
-                </div> */}
                 <div className="notice-detail-title">{notice.title}</div>
               </div>
               <div className="notice-detail-date underline">
@@ -52,7 +49,6 @@ const NoticeDetailPage = () => {
             </div>
             <div className="notice-detail-desc">{notice.description}</div>
             <div className="notice-detail-img">
-              {/* <img src={notice.imageUrl[0]} /> */}
               {notice.imageUrl && Array.isArray(notice.imageUrl) ? (
                 notice.imageUrl.map((url, index) => (
                   <img

@@ -71,9 +71,65 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .save-heart-img svg {
   stroke: var(--red);
   fill: var(--red);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .save-list-wrap {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin: 6rem 0;
+  }
+
+  .save-list {
+    width: calc(50% - 2rem);
+  }
+
+  .save-list > a {
+    margin: 0;
+    align-items: start;
+  }
+
+  .save-heart-img {
+    top: auto;
+    bottom: 0;
+    transform: translateY(0);
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .save-list {
+    width: calc(25% - 4rem);
+  }
+
+  .save-list > a {
+    flex-direction: column;
+  }
+
+  .save-img {
+    width: 100%;
+  }
+
+  .save-txt-wrap {
+    width: 100%;
+  }
+
+  .save-heart-img {
+    top: 70%;
+    transform: translateY(0);
+  }
 }

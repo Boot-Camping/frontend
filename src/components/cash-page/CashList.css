@@ -7,7 +7,7 @@
 }
 
 .cash-list.underline::after {
-	bottom: 100%;
+  bottom: 100%;
 }
 
 /***********************************
@@ -53,7 +53,7 @@
 */
 .cash-list-total-cash {
   color: var(--light-gray);
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /***********************************
@@ -78,4 +78,32 @@
 
 .use-list .cash-list-cash {
   color: var(--red);
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .cash-list-wrap {
+    flex: 1;
+    margin-left: 25%;
+    width: 75%;
+  }
+
+  .cash-list-wrap::before {
+    display: none;
+  }
+
+  .cash-list {
+    border-bottom: 0.5rem solid var(--bg-gray);
+    padding: 3rem 4rem;
+  }
+
+  .cash-list:first-of-type {
+    padding-top: 0;
+  }
+
+  .cash-list.underline::after {
+    display: none;
+  }
 }

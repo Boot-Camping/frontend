@@ -2,7 +2,7 @@
  *	타이틀 영역
 */
 .user-info-wrap {
-  margin: 1rem 0;
+  margin: 3rem 0;
 }
 
 .user-info-title {
@@ -44,4 +44,31 @@
 .user-arrow-img {
   width: var(--heading);
   height: var(--heading);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .user-info-wrap {
+    margin: 6rem 0;
+  }
+  .user-cash-wrap {
+    padding: 2.5rem 0;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .user-info-wrap {
+    display: flex;
+    justify-content: center;
+		gap: 13rem;
+  }
+
+  .user-info-content {
+    width: 50%;
+  }
 }
