@@ -2,15 +2,14 @@ import React, { useState } from "react";
 
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
+import "../components/my-review-page/MyReviewPage.css";
 
 import useMyReview from "../hooks/useMyReview";
 import updateMyReview from "../utils/updateMyReview";
 import deleteMyReview from "../utils/deleteMyReview";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { formatDate } from "../utils/formatDate";
-
-import ReviewReply from "../components/detail-review/ReplyViewer";
-import "../components/my-review-page/MyReviewPage.css";
+import ReplyViewer from "../components/detail-review/ReplyViewer";
 
 const svg = svgCollection;
 
@@ -84,65 +83,62 @@ const MyReviewPage = () => {
               작성일: {formatDate(myReview.createdAt)}
             </div>
           </div>
-          <img className="review-img" src={myReview.reviewImage} alt="" />
-
-          <div className="review-edit-box">
-            {editMode === myReview.id ? (
-              <textarea
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-                className="review-edit-content"
-              />
-            ) : (
-              <div className="review-content">{myReview.content}</div>
-            )}
-            <div className="review-edit-btns">
+          <div className="middle-box">
+            <img className="review-img" src={myReview.reviewImage} alt="" />
+            <div className="review-edit-box">
               {editMode === myReview.id ? (
-                <>
-                  <button
-                    className="review-save-btn"
-                    onClick={() => clickSaveHandle(myReview.id)}
-                  >
-                    저장
-                  </button>
-                  <button
-                    className="review-cancel-btn"
-                    onClick={() => setEditMode(null)}
-                  >
-                    취소
-                  </button>
-                </>
+                <textarea
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                  className="review-edit-content"
+                />
               ) : (
-                <>
-                  <button
-                    className="review-edit-btn"
-                    onClick={() =>
-                      clickEditHandle(myReview.id, myReview.content)
-                    }
-                  >
-                    수정
-                  </button>
-                  <button
-                    className="review-delete-btn"
-                    onClick={() => clickDeleteHandle(myReview.id)}
-                  >
-                    삭제
-                  </button>
-                </>
+                <div className="review-content">{myReview.content}</div>
               )}
             </div>
           </div>
-          <div className="review-reply-box">
-            <ReactSVG src={svg.letter} className="review-letter-icon" />
-            <div
-              className="review-reply-count"
-              onClick={() => toggleReply(index)}
-            >
-              댓글 {myReview.replyCount}개
-            </div>
+          <div className="review-edit-btns">
+            {editMode === myReview.id ? (
+              <>
+                <button
+                  className="review-save-btn"
+                  onClick={() => clickSaveHandle(myReview.id)}
+                >
+                  저장
+                </button>
+                <button
+                  className="review-cancel-btn"
+                  onClick={() => setEditMode(null)}
+                >
+                  취소
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="review-edit-btn"
+                  onClick={() => clickEditHandle(myReview.id, myReview.content)}
+                >
+                  수정
+                </button>
+                <button
+                  className="review-delete-btn"
+                  onClick={() => clickDeleteHandle(myReview.id)}
+                >
+                  삭제
+                </button>
+              </>
+            )}
           </div>
 
-          {visibleReplies[index] && <ReviewReply reviewId={myReview.id} />}
+          {/* <div className="review-reply-box">
+            <ReactSVG src={svg.letter} className="review-letter-icon" />
+            <div className="reply-btn" onClick={() => toggleReply(index)}>
+              댓글읽기
+            </div>
+            {visibleReplies[index] && <ReplyViewer reviewId={myReview.id} />}
+          </div> */}
+          <ReplyViewer reviewId={myReview.id} />
         </div>
       ))}
     </div>

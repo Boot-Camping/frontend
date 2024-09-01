@@ -45,7 +45,6 @@ const ReplyViewer = ({ reviewId }) => {
               </button>
             </div>
           </div>
-
           <div className="reply-content">{reply.comment}</div>
         </div>
       ))}
