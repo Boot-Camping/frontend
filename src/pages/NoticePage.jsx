@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../components/notice-page/NoticePage.css";
 import "../components/notice-page/NoticeFilter.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import NoticeList from "../components/notice-page/NoticeList";
 import { svgCollection } from "../constants/svgCollection";
@@ -14,11 +14,21 @@ const NoticePage = ({
   pageSvgSrc = svgCollection.prev,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [noticeData, setNoticeData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [page, setPage] = useState(0);
   const size = 8;
   const [totalPages, setTotalPages] = useState(0);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const pageFromQuery = parseInt(params.get("page"), 10);
+
+    if (!isNaN(pageFromQuery)) {
+      setPage(pageFromQuery);
+    }
+  }, [location.search]);
 
   useEffect(() => {
     const getNoticeData = async () => {
@@ -48,6 +58,11 @@ const NoticePage = ({
     getNoticeData();
   }, [page]);
 
+  const pageChangeHandle = (newPage) => {
+    setPage(newPage);
+    navigate(`${linkPrefix}?page=${newPage}`);
+  };
+
   return (
     <section className="notice-page-wrap">
       <div className="notice-title-wrap">
@@ -67,7 +82,11 @@ const NoticePage = ({
           svgSrc={listSvgSrc}
         />
 
-        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+        <Pagination
+          page={page}
+          setPage={pageChangeHandle}
+          totalPages={totalPages}
+        />
       </div>
     </section>
   );
