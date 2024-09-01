@@ -1,0 +1,11 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--yellow);
+  stroke: none;
+}

@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-import { filterData } from "../utils/filterData";
-import { useLoadMore } from "../hooks/useLoadMore";
-import { noticeData } from "../mock/noticeData";
 import "../components/admin-camping-register-page/AdminCampingList.css";
+import "../components/main-page/MainCampingList.css";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
-import SaveMoreBtn from "../components/save-page/SaveMoreBtn";
 
 const AdminCampingListPage = () => {
   const { campingPlaces, error } = useFetchCampingList();
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
-
-  const [filter, setFilter] = useState("all");
-  const filteredItems = filterData(noticeData, filter, "noticeStatus");
-  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(
-    3,
-    filteredItems
-  );
 
   if (error) {
     return <div>캠핑장 정보 가져오기 실패: {error.message}</div>;
@@ -51,9 +41,6 @@ const AdminCampingListPage = () => {
           </div>
         ))}
       </div>
-      {hasMoreItems && (
-        <SaveMoreBtn onClick={loadMore} hasMoreItems={hasMoreItems} />
-      )}
     </div>
   );
 };

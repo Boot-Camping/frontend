@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
 import { reviewTag } from "../../constants/reviewTag";
@@ -8,6 +9,8 @@ import { useLocation } from "react-router-dom";
 import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
+import NormalModal from "../common/NormalModal";
+
 const svg = svgCollection;
 
 const ReviewWriter = () => {
@@ -15,14 +18,15 @@ const ReviewWriter = () => {
   const reviewData = location.state?.reviewData;
   const campId = reviewData.campId;
 
-  console.log(reviewData);
-
   const [reviewGrade, setReviewGrade] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
   const [reviewImages, setReviewImages] = useState([]);
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
   const [selectedTags, setSelectedTags] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   // selectedTag -> label 추출해서 -> 문자열로 변환
   const reviewTagsString = selectedTags
@@ -32,7 +36,6 @@ const ReviewWriter = () => {
 
   const gradeChangeHandle = (rating) => {
     setReviewGrade(rating);
-    console.log("선택된 별점:", rating);
   };
 
   const reviewSubmit = async () => {
@@ -60,10 +63,6 @@ const ReviewWriter = () => {
     reviewImages.forEach((image) => {
       formData.append("reviewImages", image);
     });
-
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value instanceof File ? value.name : value);
-    }
 
     const params = {
       campId: campId,
@@ -98,6 +97,14 @@ const ReviewWriter = () => {
     } else {
       setSelectedTags([...selectedTags, tag.id]);
     }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -152,9 +159,27 @@ const ReviewWriter = () => {
         <ReviewImgUploader maxImages={5} setReviewImages={setReviewImages} />
       </div>
 
-      <button className="review-regi-btn" onClick={reviewSubmit}>
+      <button
+        className="review-regi-btn"
+        onClick={() => {
+          reviewSubmit();
+          openModal();
+        }}
+      >
         리뷰 등록
       </button>
+
+      <NormalModal isModalOpen={isModalOpen} closeModal={closeModal}>
+        <p className="payment-modal-title">리뷰가 작성되었습니다!</p>
+        <div className="modal-box">
+          <Link to="/" className="payment-modal-button">
+            홈으로 이동
+          </Link>
+          <Link to="/mypage/myreview" className="payment-modal-button">
+            나의 리뷰 보러가기
+          </Link>
+        </div>
+      </NormalModal>
     </div>
   );
 };

@@ -44,7 +44,6 @@ const AdminNoticeFixPage = () => {
   };
 
   const handleUploadSuccess = (uploadedImages) => {
-    // File 객체 대신 URL로 처리되어야 할 경우
     const uploadedImageUrls = uploadedImages.map((file) =>
       URL.createObjectURL(file)
     );
@@ -56,21 +55,25 @@ const AdminNoticeFixPage = () => {
   };
 
   const handleUpdate = async () => {
-    const updatedNotice = {
-      title,
-      description,
-      imageUrl: updatedImages.length > 0 ? updatedImages : imageUrl,
-    };
+    const formData = new FormData();
+    formData.append("title", String(title));
+    formData.append("description", String(description));
+
+    (updatedImages.length > 0 ? updatedImages : imageUrl).forEach(
+      (image, index) => {
+        formData.append(`imageUrl[${index}]`, image);
+      }
+    );
+
     const customHeaders = {
       Authorization: `${accessToken}`,
+      "Content-Type": "multipart/form-data",
     };
 
-    console.log("Updated Notice Data:", updatedNotice);
-
     try {
-      await put(`admin/notice/${id}`, updatedNotice, customHeaders);
+      await put(`admin/notice/${id}`, formData, customHeaders);
       alert("공지사항이 성공적으로 수정되었습니다.");
-      navigate(`/admin/notice/${id}`);
+      navigate(`/admin/notice-list`);
     } catch (error) {
       console.error("Update failed:", error.response || error.message);
       alert(

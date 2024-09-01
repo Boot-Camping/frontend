@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
+import "../components/main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
@@ -62,24 +63,25 @@ const AdminCampingRegister = () => {
 
       const result = await response.json();
       handleUploadSuccess(result);
+
+      // After successful upload, call handleSubmit
+      handleSubmit();
     } catch (error) {
       console.error("Upload failed:", error);
       handleUploadError(error.message);
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async () => {
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("tel", tel);
-    formData.append("price", price);
-    formData.append("standardNum", standardNum);
-    formData.append("maxNum", maxNum);
-    formData.append("overCharge", overCharge);
-    formData.append("description", description);
-    formData.append("addr", addr);
+    formData.append("name", String(name));
+    formData.append("tel", String(tel));
+    formData.append("price", Number(price));
+    formData.append("standardNum", Number(standardNum));
+    formData.append("maxNum", Number(maxNum));
+    formData.append("overCharge", Number(overCharge));
+    formData.append("description", String(description));
+    formData.append("addr", String(addr));
 
     category.forEach((category, index) => {
       formData.append(`category[${index}]`, category);
@@ -127,6 +129,7 @@ const AdminCampingRegister = () => {
       <AdminImgPlus
         onUploadSuccess={handleUploadSuccess}
         onUploadError={handleUploadError}
+        onImageChange={setImages} // Ensure images are updated on image change
       />
       <AdminCampAddress
         addr={addr}
@@ -214,7 +217,12 @@ const AdminCampingRegister = () => {
       </div>
 
       <div className="camping-explanaion">캠핑지 소개</div>
-      <div onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleUpload();
+        }}
+      >
         <textarea
           className="input-camp-exp"
           id="camp-exp"
@@ -225,12 +233,12 @@ const AdminCampingRegister = () => {
           cols="50"
           placeholder="캠핑장의 특징을 입력하세요."
         />
-        <div onClick={handleUpload} className="camp-center-container">
+        <div className="camp-center-container">
           <button type="submit" className="camp-perpect-regi">
             등록
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

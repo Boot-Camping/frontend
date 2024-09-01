@@ -38,7 +38,7 @@ const useMyReview = (userId, accessToken) => {
     fetchMyReviews();
   }, [userId, accessToken]);
 
-  return { myReviews, loading, error };
+  return { myReviews, loading, error, setMyReviews };
 };
 
 export default useMyReview;
