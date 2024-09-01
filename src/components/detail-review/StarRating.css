@@ -1,0 +1,18 @@
+/* StarRating.jsx */
+.star-rating {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.star-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: none;
+  stroke: #999;
+}
+
+.star-icon.filled {
+  fill: #ffd700;
+  stroke: #ffd700;
+}

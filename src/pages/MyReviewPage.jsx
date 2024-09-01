@@ -9,7 +9,7 @@ import deleteMyReview from "../utils/deleteMyReview";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { formatDate } from "../utils/formatDate";
 
-import ReviewReply from "../components/review-reply-page/ReplyViewer";
+import ReviewReply from "../components/detail-review/ReplyViewer";
 import "../components/my-review-page/MyReviewPage.css";
 
 const svg = svgCollection;

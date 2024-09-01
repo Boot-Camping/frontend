@@ -28,8 +28,8 @@ const ReplyViewer = ({ reviewId }) => {
 
   return (
     <div>
-      {replies.map((reply) => (
-        <div key={reply.replyId} className="reply-box">
+      {replies.map((reply, index) => (
+        <div key={reply.replyId || index} className="reply-box">
           <div className="reply-upper-box">
             <div className="reply-writer-box">
               <div className="reply-id">{reply.userLoginId}</div>

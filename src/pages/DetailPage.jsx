@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import DetailPageInfo from "../components/detail-page/DetailPageInfo";
-import DetailReviewViewer from "../components/review-reply-page/DetailReviewViewer";
+import DetailReviewViewer from "../components/detail-review/DetailReviewViewer";
 import BookButton from "../components/detail-page/BookButton";
 import ImageSlider from "../components/detail-page/ImageSlider";
 import KakaoMap from "../components/detail-page/KakaoMap";

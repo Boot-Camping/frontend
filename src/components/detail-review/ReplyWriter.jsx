@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./DetailReviewPage.css";
 import { svgCollection } from "../../constants/svgCollection";
 import { ReactSVG } from "react-svg";
-
 import replyWriterUtil from "../../utils/replyWriterUtil";
 
 const svg = svgCollection;
