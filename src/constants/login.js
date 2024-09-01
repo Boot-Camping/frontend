@@ -11,13 +11,13 @@ export const loginTitles = [
  */
 export const loginTypes = [
   {
-    key: "login-kakao",
-    text: "카카오톡 로그인",
+    key: "login-google",
+    text: "Google 로그인",
     link: "/",
   },
   {
-    key: "login-google",
-    text: "Google 로그인",
+    key: "login-kakao",
+    text: "카카오톡 로그인",
     link: "/",
   },
   {

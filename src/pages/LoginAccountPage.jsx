@@ -39,33 +39,35 @@ const LoginAccountPage = () => {
         <div>아이디로 로그인 하기</div>
       </div>
 
-      <form id="login-account-form" onSubmit={submitHandle}>
-        <div className="login-input-wrap">
-          <label htmlFor="login-id">아이디</label>
-          <input
-            type="text"
-            id="login-id"
-            className="login-input"
-            name="loginId"
-            placeholder="아이디를 입력해주세요"
-            required
-          />
-        </div>
-        <div className="login-input-wrap">
-          <label>비밀번호</label>
-          <PasswordInput inputClass="login-input" />
-        </div>
+      <div className="login-account-form-wrap">
+        <form id="login-account-form" onSubmit={submitHandle}>
+          <div className="login-input-wrap">
+            <label htmlFor="login-id">아이디</label>
+            <input
+              type="text"
+              id="login-id"
+              className="login-input"
+              name="loginId"
+              placeholder="아이디를 입력해주세요"
+              required
+            />
+          </div>
+          <div className="login-input-wrap">
+            <label>비밀번호</label>
+            <PasswordInput inputClass="login-input" />
+          </div>
 
-        {errorMessage && (
-          <EmptyContent errorMessage={errorMessage} error={error} />
-        )}
+          {errorMessage && (
+            <EmptyContent errorMessage={errorMessage} error={error} />
+          )}
 
-        <button className="login-submit-btn">로그인</button>
-      </form>
+          <button className="login-submit-btn">로그인</button>
+        </form>
 
-      <Link to={"/login"}>
-        <button className="move-howtologin">다른 방법으로 로그인</button>
-      </Link>
+        <Link to={"/login"}>
+          <button className="move-howtologin">다른 방법으로 로그인</button>
+        </Link>
+      </div>
     </section>
   );
 };

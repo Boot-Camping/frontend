@@ -17,11 +17,13 @@ const LoginPage = () => {
             </li>
           ))}
         </ul>
-        <div className="login-img">
-          <img src="../src/assets/image/camping.png" />
-        </div>
+        <div className="login-btns-wrap">
+          <div className="login-img">
+            <img src="../src/assets/image/camping.png" />
+          </div>
 
-        <LoginButtons />
+          <LoginButtons />
+        </div>
       </>
     </section>
   );

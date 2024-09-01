@@ -179,7 +179,7 @@ a:visited {
  */
 main {
   width: 92%;
-  margin: 0 4%;
+  margin: 0 auto;
   margin-top: 1rem;
   min-height: 70rem;
 }
@@ -233,8 +233,7 @@ main {
  */
 @media screen and (min-width: 800px) {
   main {
-    width: 84%;
-    margin: 0 8%;
+    width: 80%;
   }
 
   .modal {
@@ -247,8 +246,7 @@ main {
  */
 @media screen and (min-width: 1024px) {
   main {
-    width: 76%;
-    margin: 0 13%;
+    width: 70%;
     min-height: 65rem;
   }
 
