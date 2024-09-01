@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 import "../components/main-page/MainCampingList.css";
@@ -25,8 +25,13 @@ const AdminCampingRegister = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
   const [addr, setAddr] = useState("");
-  const { accessToken } = getUserIdFromToken();
+  const [accessToken, setAccessToken] = useState(null); // State to hold the accessToken
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const { accessToken } = getUserIdFromToken();
+    setAccessToken(accessToken);
+  }, []);
 
   const handleUploadSuccess = (result) => {
     console.log("Upload succeeded:", result);
@@ -46,6 +51,11 @@ const AdminCampingRegister = () => {
   };
 
   const handleUpload = async () => {
+    if (!accessToken) {
+      console.error("AccessToken is not available");
+      return;
+    }
+
     const formData = new FormData();
 
     images.forEach((image, index) => {
@@ -127,9 +137,10 @@ const AdminCampingRegister = () => {
       </div>
       <div className="camp-img-title">사진</div>
       <AdminImgPlus
+        images={images}
+        setImages={setImages}
         onUploadSuccess={handleUploadSuccess}
         onUploadError={handleUploadError}
-        onImageChange={setImages} // Ensure images are updated on image change
       />
       <AdminCampAddress
         addr={addr}

@@ -80,6 +80,8 @@ const AdminNoticeRegisterPage = () => {
 
       <div className="camping-notice">내용</div>
       <AdminImgPlus
+        images={imageUrl}
+        setImages={setImageUrl}
         onUploadSuccess={handleUploadSuccess}
         onUploadError={handleUploadError}
       />
