@@ -24,6 +24,7 @@ const NoticePage = ({
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const pageFromQuery = parseInt(params.get("page"), 10);
+    console.log(location);
 
     if (!isNaN(pageFromQuery)) {
       setPage(pageFromQuery);
@@ -58,9 +59,21 @@ const NoticePage = ({
     getNoticeData();
   }, [page]);
 
+  const movePrevHandle = () => {
+    if (linkPrefix === "/notice") {
+      navigate("/mypage");
+    } else if (location.pathname === "/admin/notice-list") {
+      navigate("/admin");
+    }
+  };
+
   const pageChangeHandle = (newPage) => {
     setPage(newPage);
-    navigate(`${linkPrefix}?page=${newPage}`);
+    if (linkPrefix === "/notice") {
+      navigate(`${linkPrefix}?page=${newPage}`);
+    } else if (location.pathname === "/admin/notice-list") {
+      navigate(`/admin/notice-list?page=${newPage}`);
+    }
   };
 
   return (
@@ -69,7 +82,7 @@ const NoticePage = ({
         <ReactSVG
           src={pageSvgSrc}
           className="notice-move-prev"
-          onClick={() => navigate(-1)}
+          onClick={movePrevHandle}
         />
         <div>공지사항</div>
       </div>
