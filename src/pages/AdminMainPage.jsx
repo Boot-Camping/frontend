@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../components/admin-main-page/AdminMainPage.css";
 
 const AdminMainPage = () => {
   const [focusedButton, setFocusedButton] = useState("site");
+  const navigate = useNavigate();
 
   const handleFocus = (button) => {
     setFocusedButton(button);
@@ -17,12 +18,18 @@ const AdminMainPage = () => {
     <div>
       <div className="capming-title">캠핑지</div>
       <div className="top-btn">
-        <Link to={"/admin/camping"}>
-          <button className="camping-register-btn">+ 등록</button>
-        </Link>
-        <Link to={"/admin/camping-list"}>
-          <button className="camping-correct-btn">수정</button>
-        </Link>
+        <button
+          className="camping-register-btn"
+          onClick={() => navigate("/admin/camping")}
+        >
+          + 등록
+        </button>
+        <button
+          className="camping-correct-btn"
+          onClick={() => navigate("/admin/camping-list")}
+        >
+          수정
+        </button>
       </div>
       <div className="statics-title">통계</div>
       <div className="statics-category">
@@ -62,18 +69,27 @@ const AdminMainPage = () => {
       )}
       <div className="noti-title">공지사항</div>
       <div className="top-btn">
-        <Link to={"/admin/notice-regi"}>
-          <button className="noti-register-btn">+ 등록</button>
-        </Link>
-        <Link to={"/admin/notice-list"}>
-          <button className="noti-correct-btn">수정</button>
-        </Link>
+        <button
+          className="noti-register-btn"
+          onClick={() => navigate("/admin/notice-regi")}
+        >
+          + 등록
+        </button>
+        <button
+          className="noti-correct-btn"
+          onClick={() => navigate("/admin/notice-list")}
+        >
+          수정
+        </button>
       </div>
       <div className="reserve-title">예약</div>
       <div className="top-btn">
-        <Link to={"/admin/book-list"}>
-          <button className="reserve-see-btn">조회</button>
-        </Link>
+        <button
+          className="reserve-see-btn"
+          onClick={() => navigate("/admin/book-list")}
+        >
+          조회
+        </button>
       </div>
     </div>
   );

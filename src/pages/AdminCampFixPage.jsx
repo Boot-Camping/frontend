@@ -9,12 +9,12 @@ import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
-import { put, deleteRequest, post } from "../utils/api";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { put, deleteRequest } from "../utils/api";
 
 const AdminCampFixPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [images, setImages] = useState([]);
   const [error, setError] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
@@ -26,6 +26,8 @@ const AdminCampFixPage = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
   const [updatedImages, setUpdatedImages] = useState([]);
+  const [addr, setAddr] = useState("");
+  const { accessToken } = getUserIdFromToken();
 
   const { campingPlaces } = useFetchCampingList();
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
@@ -37,15 +39,16 @@ const AdminCampFixPage = () => {
 
   useEffect(() => {
     if (currentCampingPlace) {
-      setDescription(currentCampingPlace.description);
-      setName(currentCampingPlace.name);
-      setTel(currentCampingPlace.tel);
-      setPrice(currentCampingPlace.price);
-      setStandardNum(currentCampingPlace.standardNum);
-      setMaxNum(currentCampingPlace.maxNum);
-      setOverCharge(currentCampingPlace.overCharge);
+      setDescription(currentCampingPlace.description || "");
+      setName(currentCampingPlace.name || "");
+      setTel(currentCampingPlace.tel || "");
+      setPrice(currentCampingPlace.price || "");
+      setStandardNum(currentCampingPlace.standardNum || "");
+      setMaxNum(currentCampingPlace.maxNum || "");
+      setOverCharge(currentCampingPlace.overCharge || "");
       setImageUrls(currentCampingPlace.imageUrls || []);
       setCategory(currentCampingPlace.category || []);
+      setAddr(currentCampingPlace.addr || "");
     }
   }, [currentCampingPlace]);
 
@@ -64,15 +67,27 @@ const AdminCampFixPage = () => {
     setCategory(newCategories);
   };
 
-  const handleUpdate = async () => {
+  const customHeaders = {
+    Authorization: `${accessToken}`,
+    "Content-Type": "multipart/form-data",
+  };
+
+  const handleUpdate = async (event) => {
+    event.preventDefault(); // 폼 제출 시 페이지가 리로드되는 것을 방지
+    if (!id) {
+      alert("캠핑장 ID가 누락되었습니다.");
+      return;
+    }
+
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("tel", tel);
-    formData.append("price", price);
-    formData.append("standardNum", standardNum);
-    formData.append("maxNum", maxNum);
-    formData.append("overCharge", overCharge);
-    formData.append("description", description);
+    formData.append("name", String(name));
+    formData.append("tel", String(tel));
+    formData.append("price", Number(price));
+    formData.append("standardNum", Number(standardNum));
+    formData.append("maxNum", Number(maxNum));
+    formData.append("overCharge", Number(overCharge));
+    formData.append("description", String(description));
+    formData.append("addr", String(addr));
 
     category.forEach((cat, index) => {
       formData.append(`category[${index}]`, cat);
@@ -84,12 +99,15 @@ const AdminCampFixPage = () => {
       }
     );
 
+    // 요청을 보낼 때 요청 데이터와 URL이 올바른지 로그 확인
+    console.log(
+      "Sending PUT request with data:",
+      Object.fromEntries(formData.entries())
+    );
+
     try {
-      await put(`camps/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await put(`camps/${id}`, formData, customHeaders);
+
       alert("캠핑장 정보가 수정되었습니다.");
       navigate("/admin");
     } catch (error) {
@@ -154,7 +172,7 @@ const AdminCampFixPage = () => {
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
         />
-        <AdminCampAddress setError={setError} />
+        <AdminCampAddress addr={addr} setAddr={setAddr} setError={setError} />
 
         <div>
           <div className="camp-info">
