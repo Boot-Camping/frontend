@@ -8,7 +8,6 @@ import letter from "../assets/svg/letter.svg";
 import xMark from "../assets/svg/xMark.svg";
 import pencilSquare from "../assets/svg/pencilSquare.svg";
 import pencilSolid from "../assets/svg/pencilSolid.svg";
-import starEmpty from "../assets/svg/starEmpty.svg";
 import userImg from "../assets/svg/userImg.svg";
 import search from "../assets/svg/search.svg";
 import heart from "../assets/svg/heart.svg";
@@ -33,7 +32,6 @@ export const svgCollection = {
   xMark,
   pencilSquare,
   pencilSolid,
-  starEmpty,
   userImg,
   search,
   heart,

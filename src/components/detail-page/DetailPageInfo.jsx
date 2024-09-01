@@ -45,7 +45,7 @@ const DetailPageInfo = ({ detailInfo }) => {
           <div className="rating">
             <div className="stars">
               <ReactSVG src={svg.stars} alt="stars" className="stars-img" />
-              {detailInfo.averageGrade}
+              {detailInfo.averageGrade?.toFixed(1)}
             </div>
 
             <div className="views">

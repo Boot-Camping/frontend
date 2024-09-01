@@ -1,17 +1,27 @@
 import React, { useState } from "react";
-import { svgCollection } from "../constants/svgCollection";
+
 import { ReactSVG } from "react-svg";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { svgCollection } from "../constants/svgCollection";
+
 import useMyReview from "../hooks/useMyReview";
-import useUpdateMyReview from "../hooks/useUpdateMyReview";
-import ReviewReply from "../components/review-reply-page/ReviewReply";
+import updateMyReview from "../utils/updateMyReview";
+import deleteMyReview from "../utils/deleteMyReview";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+import { formatDate } from "../utils/formatDate";
+
+import ReviewReply from "../components/review-reply-page/ReplyViewer";
+import "../components/my-review-page/MyReviewPage.css";
 
 const svg = svgCollection;
 
 const MyReviewPage = () => {
   const { userId, accessToken } = getUserIdFromToken();
-  const { myReviews, loading, error } = useMyReview(userId, accessToken);
-  const updateReview = useUpdateMyReview;
+  const { myReviews, loading, error, setMyReviews } = useMyReview(
+    userId,
+    accessToken
+  );
+  const updateReview = updateMyReview;
+  const { deleteReview } = deleteMyReview();
 
   const [visibleReplies, setVisibleReplies] = useState({});
   const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
@@ -21,51 +31,72 @@ const MyReviewPage = () => {
     setVisibleReplies((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
-  const clickEditHandle = (reviewId, currentContent) => {
-    console.log("수정하려는 리뷰:", reviewId);
+  const clickEditHandle = (reviewId, newContent) => {
     setEditMode(reviewId);
-    setEditedContent(currentContent);
+    setEditedContent(newContent);
   };
 
   const clickSaveHandle = async (reviewId) => {
-    console.log("저장하려는 리뷰:", reviewId);
+    const content = editedContent;
     try {
-      await updateReview(userId, accessToken, reviewId, {
-        content: editedContent,
-      });
+      const updatedReview = await updateReview(
+        userId,
+        accessToken,
+        reviewId,
+        content
+      );
+      console.log("업데이트된 리뷰:", updatedReview);
+
+      setMyReviews((prevReviews) =>
+        prevReviews.map((review) =>
+          review.id === reviewId
+            ? { ...review, content: editedContent }
+            : review
+        )
+      );
+
+      // 수정 모드 해제
       setEditMode(null);
     } catch (error) {
       console.error("리뷰 수정에 실패했습니다🥲", error);
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+  const clickDeleteHandle = async (reviewId) => {
+    try {
+      await deleteReview(userId, accessToken, reviewId);
+      setMyReviews((prevReviews) =>
+        prevReviews.filter((review) => review.id !== reviewId)
+      );
+    } catch (error) {
+      console.log("리뷰 삭제에 실패했습니다🥲", error);
+    }
+  };
 
   return (
-    <div className="review">
-      <div className="review-title">리뷰</div>
+    <div className="my-review">
+      <div className="review-title">나의 리뷰</div>
       {myReviews.map((myReview, index) => (
         <div key={index} className="review-box">
-          {myReview.reviewImages && myReview.reviewImages.length > 0 && (
-            <div className="review-upper-box">
-              {myReview.reviewImages.map((image, imgIndex) => (
-                <img className="review-img" key={imgIndex} src={image} alt="" />
-              ))}
+          <div className="upper-box">
+            <div className="my-review-camp-name">{myReview.campName}</div>
+            <div className="review-date">
+              작성일: {formatDate(myReview.createdAt)}
             </div>
-          )}
+          </div>
+          <img className="review-img" src={myReview.reviewImage} alt="" />
 
-          <div className="review-upper-right">
-            <div className="review-upper-writer">
-              <div className="review-date">작성일: {myReview.createdAt}</div>
-            </div>
-
-            <div className="review-edit-box">
+          <div className="review-edit-box">
+            {editMode === myReview.id ? (
+              <textarea
+                value={editedContent}
+                onChange={(e) => setEditedContent(e.target.value)}
+                className="review-edit-content"
+              />
+            ) : (
+              <div className="review-content">{myReview.content}</div>
+            )}
+            <div className="review-edit-btns">
               {editMode === myReview.id ? (
                 <>
                   <button
@@ -91,22 +122,16 @@ const MyReviewPage = () => {
                   >
                     수정
                   </button>
-                  <button className="review-delete-btn">삭제</button>
+                  <button
+                    className="review-delete-btn"
+                    onClick={() => clickDeleteHandle(myReview.id)}
+                  >
+                    삭제
+                  </button>
                 </>
               )}
             </div>
           </div>
-
-          {editMode === myReview.id ? (
-            <textarea
-              value={editedContent}
-              onChange={(e) => setEditedContent(e.target.value)}
-              className="review-edit-content"
-            />
-          ) : (
-            <div className="review-content">{myReview.content}</div>
-          )}
-
           <div className="review-reply-box">
             <ReactSVG src={svg.letter} className="review-letter-icon" />
             <div

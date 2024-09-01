@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import "./ReviewPage.css";
+import "./DetailReviewPage.css";
+
 import ReviewMoreBtn from "./ReviewMoreBtn";
-import ReviewReply from "./ReviewReply";
-import ReplyWriter from "./ReplyWriter";
-import { svgCollection } from "../../constants/svgCollection";
+import ReplyViewer from "./ReplyViewer";
+
 import { ReactSVG } from "react-svg";
+import { svgCollection } from "../../constants/svgCollection";
+import { formatDate } from "../../utils/formatDate";
+import StarGrade from "./starGrade";
+
 import useCampReview from "../../hooks/useCampReview";
 
 const svg = svgCollection;
 
-const ReviewViewer = ({ campId }) => {
+const DetailReviewViewer = ({ campId }) => {
   const [visibleReviews, setvisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
@@ -41,7 +45,7 @@ const ReviewViewer = ({ campId }) => {
   };
 
   return (
-    <div className="review">
+    <div className="detail-review">
       <div className="review-title">리뷰</div>
       {campReviews.slice(0, visibleReviews).map((review, index) => (
         <div key={index} className="review-box">
@@ -50,7 +54,9 @@ const ReviewViewer = ({ campId }) => {
             <div className="review-upper-right">
               <div className="review-upper-writer">
                 <div className="review-id">{review.loginId}</div>
-                <div className="review-date">작성일: {review.createdAt}</div>
+                <div className="review-date">
+                  작성일: {formatDate(review.createdAt)}
+                </div>
               </div>
               <div className="review-upper-tag">
                 {review.reviewTags.map((tag, tagIndex) => (
@@ -59,9 +65,9 @@ const ReviewViewer = ({ campId }) => {
                   </div>
                 ))}
               </div>
-              <div className="review-edit-box">
-                <button className="review-edit-btn">수정</button>
-                <button className="review-delete-btn">삭제</button>
+
+              <div className="review-grade">
+                캠핑장 평점: <StarGrade grade={review.grade} />
               </div>
             </div>
           </div>
@@ -72,11 +78,10 @@ const ReviewViewer = ({ campId }) => {
               className="review-reply-count"
               onClick={() => toggleReply(index)}
             >
-              댓글 {review.replyCount}개
+              댓글 {review.reviewCount}개
             </div>
           </div>
-          {visibleReplies[index] && <ReviewReply reviewId={review.id} />}
-          <ReplyWriter />
+          {visibleReplies[index] && <ReplyViewer reviewId={review.id} />}
         </div>
       ))}
       <ReviewMoreBtn onClick={loadMore} isExpanded={isExpanded} />
@@ -84,4 +89,4 @@ const ReviewViewer = ({ campId }) => {
   );
 };
 
-export default ReviewViewer;
+export default DetailReviewViewer;

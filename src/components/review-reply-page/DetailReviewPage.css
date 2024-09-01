@@ -1,4 +1,4 @@
-/* ReviewPage.jsx */
+/* ReplyViewer.jsx */
 .review {
   padding-top: 2rem;
 }
@@ -18,9 +18,9 @@
   justify-content: space-between;
 }
 
-.review-img {
-  width: 20rem;
-  height: 12rem;
+.detail-review .review-img {
+  width: 25rem;
+  height: 15rem;
   border-radius: 0.5rem;
 }
 
@@ -65,11 +65,6 @@
   width: 1.5rem;
   padding-right: 0.2rem;
   color: var(--light-green);
-}
-
-.review-edit-box {
-  display: flex;
-  padding-top: 3rem;
 }
 
 .review-edit-btn,
@@ -118,7 +113,7 @@
   margin: 1rem 0;
 }
 
-/* ReviewReply.jsx */
+/* ReplyWriter.jsx */
 .reply-box {
   background-color: var(--bg-gray);
   border-radius: 0.3rem;
@@ -213,7 +208,7 @@
   padding-bottom: 2rem;
 }
 
-.reply-cancle-btn,
+.reply-cancel-btn,
 .reply-complete-btn {
   display: flex;
   font-size: var(--sub-content);
@@ -243,4 +238,11 @@
 
 .xMark-icon {
   width: 1.5rem;
+}
+
+/* StarGrade.jsx */
+.review-grade {
+  font-size: var(--sub-content);
+  font-weight: bold;
+  padding-top: 2rem;
 }
