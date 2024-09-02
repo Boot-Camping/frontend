@@ -10,12 +10,14 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
 
   const config = {
     method,
-    url: `${API_BASE_URL}/${endpoint}`,
+    url: `${API_BASE_URL}/api/${endpoint}`,
     headers,
     ...(method === "POST" && { data }),
     ...(method === "PUT" && { data }),
     ...(method === "DELETE" && { data }),
   };
+
+	console.log("API Request URL:", config.url);
 
   try {
     const response = await axios(config);
