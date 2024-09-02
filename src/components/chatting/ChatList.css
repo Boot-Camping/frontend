@@ -1,0 +1,21 @@
+.chat-list-wrap {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 9rem;
+  width: 35rem;
+  height: 50rem;
+  background: #fff;
+  border-radius: 2rem;
+  padding: 3rem;
+  box-sizing: border-box;
+  box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
+}
+
+.chat-close-btn {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+	cursor: pointer;
+}
