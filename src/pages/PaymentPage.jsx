@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/payment-page/PaymentPage.css";
 import PaymentInfo from "../components/payment-page/PaymentInfo";
 import PaymentAmount from "../components/payment-page/PaymentAmount";
@@ -7,7 +7,7 @@ import NormalModal from "../components/common/NormalModal";
 import PaymentFailAlert from "../components/payment-page/PaymentFailAlert";
 import { Link } from "react-router-dom";
 import { useCampingDays } from "../context/campingDaysContext";
-import { post } from "../utils/api";
+import { post, get } from "../utils/api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
 const PaymentPage = ({ campInfo }) => {
@@ -21,7 +21,14 @@ const PaymentPage = ({ campInfo }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalBookNum, setTotalBookNum] = useState(0);
   const [alertMessage, setAlertMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
+  const [userData, setUserData] = useState({
+    name: "",
+    tel: "",
+    email: "",
+  });
   const { userId, accessToken } = getUserIdFromToken();
 
   if (!campInfo) {
@@ -98,11 +105,51 @@ const PaymentPage = ({ campInfo }) => {
     }
   };
 
+  const getUserData = async () => {
+    setLoading(true);
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+    };
+    try {
+      const response = await get(`userprofile/${userId}`, customHeaders);
+      console.log("API 응답:", response.data);
+      console.log(`Requesting URL: userprofile/${userId}`);
+      console.log("Custom Headers:", customHeaders);
+
+      if (response && response.data && response.data.length > 0) {
+        const userData = response.data[0];
+        console.log("User Data:", userData);
+        setUserData({
+          name: userData.name || "",
+          tel: userData.tel || "",
+          email: userData.email || "",
+        });
+      } else {
+        setErrorMessage("유저 정보를 불러오지 못했습니다.");
+      }
+    } catch (error) {
+      console.error("유저 정보 가져오기 실패 🥲", error);
+      setErrorMessage("유저 정보를 가져오는 중 오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // useEffect에서 getUserData 호출
+  useEffect(() => {
+    getUserData();
+  }, [accessToken, userId]);
+
   return (
     <>
       <div className="payment-page underline">
         <h2 className="payment-title">캠핑장 결제하기</h2>
-        <PaymentInfo submitRequestHandle={submitRequestHandle} />
+        <div className="payment-request">요청사항</div>
+        <PaymentInfo
+          submitRequestHandle={submitRequestHandle}
+          userData={userData}
+        />
+
         <PaymentAmount
           campInfo={campInfo}
           checkIn={checkIn}

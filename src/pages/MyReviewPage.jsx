@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 import "../components/my-review-page/MyReviewPage.css";
 
@@ -84,7 +83,11 @@ const MyReviewPage = () => {
             </div>
           </div>
           <div className="middle-box">
-            <img className="review-img" src={myReview.reviewImage} alt="" />
+            {myReview.reviewImage && myReview.reviewImage.length > 0 ? (
+              <img className="review-img" src={myReview.reviewImage} alt="" />
+            ) : (
+              <div className="no-review-img">리뷰 사진이 없습니다</div>
+            )}
             <div className="review-edit-box">
               {editMode === myReview.id ? (
                 <textarea
