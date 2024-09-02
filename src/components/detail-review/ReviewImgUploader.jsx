@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ReviewWriter.css";
+import "./ReviewImgUploader.css";
 
 const ReviewImgUploader = ({ maxImages, setReviewImages }) => {
   const [selectedImgs, setSelectedImgs] = useState([]);
