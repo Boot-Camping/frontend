@@ -39,3 +39,16 @@
   width: 2.5rem;
   height: 2.5rem;
 }
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .notice-list-wrap {
+    margin: 0;
+  }
+
+  .notice-list {
+    padding: 0 0 4rem;
+  }
+}

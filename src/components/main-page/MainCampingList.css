@@ -21,7 +21,7 @@
   justify-content: space-between;
   flex-direction: column;
   position: relative;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .camping-img {

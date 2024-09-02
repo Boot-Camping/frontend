@@ -41,19 +41,21 @@ const PaidPage = () => {
 
   return (
     <section className="paid-wrap">
-      <div className="paid-title-wrap">
-        <Link to={"/mypage"}>
-          <ReactSVG src={svgCollection.prev} className="paid-move-prev" />
-        </Link>
-        <div>결제 내역</div>
-      </div>
+      <div className="paid-aside">
+        <div className="paid-title-wrap">
+          <Link to={"/mypage"}>
+            <ReactSVG src={svgCollection.prev} className="paid-move-prev" />
+          </Link>
+          <div>결제 내역</div>
+        </div>
 
-      <Filter
-        filterChangeHandle={filterChangeHandle}
-        filterType={filterType.paid}
-        wrapClassName="paid-filter"
-        allClassName="usage-filter"
-      />
+        <Filter
+          filterChangeHandle={filterChangeHandle}
+          filterType={filterType.paid}
+          wrapClassName="paid-filter"
+          allClassName="usage-filter"
+        />
+      </div>
 
       <PaidList
         filter={filter}

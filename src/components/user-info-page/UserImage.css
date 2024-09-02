@@ -1,0 +1,80 @@
+/***********************************
+ *	이미지 영역
+*/
+.user-profile-img-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  padding: 1rem 0 3rem;
+}
+
+.profile-img-wrap {
+  padding: 1rem 0;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+#profile-img-input {
+  display: none;
+}
+
+#profile-img-input + label {
+  display: block;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  overflow: hidden;
+	cursor: pointer;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-img-user {
+  transform: scale(1.2);
+}
+
+.profile-img-user svg {
+  fill: var(--bg-gray);
+}
+
+.profile-img-photo {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+}
+
+.profile-img-photo svg {
+  fill: var(--light-green);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .user-profile-img-wrap {
+    font-size: var(--heading);
+		margin-top: 3rem;
+  }
+
+  .user-profile-img-wrap.underline::after {
+    display: none;
+  }
+
+  #profile-img-input + label {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .profile-img-photo {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}

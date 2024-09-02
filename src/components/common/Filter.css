@@ -13,9 +13,27 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
   background: transparent;
+  cursor: pointer;
 }
 
 .filter-active {
   background: var(--light-green);
   color: #fff;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .filter-wrap {
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+  }
+
+  .filter {
+    width: 100%;
+  }
 }

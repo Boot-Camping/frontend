@@ -10,8 +10,19 @@
   width: 100%;
   padding: 1rem;
   margin: 2rem 0 4rem;
+	cursor: pointer;
 }
 
 .delete-account-wrap .error-message {
 	margin-top: 2rem;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .delete-account-wrap {
+    max-width: 600px;
+    margin: 6rem auto;
+  }
 }

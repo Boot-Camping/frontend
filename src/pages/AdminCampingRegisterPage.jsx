@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
+import "../components/main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
@@ -21,37 +22,56 @@ const AdminCampingRegister = () => {
   const [standardNum, setStandardNum] = useState("");
   const [maxNum, setMaxNum] = useState("");
   const [overCharge, setOverCharge] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
   const [addr, setAddr] = useState("");
-  const { accessToken } = getUserIdFromToken();
+  const [accessToken, setAccessToken] = useState(null);
   const navigate = useNavigate();
 
-  const handleUploadSuccess = (result) => {
-    console.log("Upload succeeded:", result);
-  };
+  useEffect(() => {
+    const { accessToken } = getUserIdFromToken();
+    setAccessToken(accessToken);
+  }, []);
 
   const handleUploadError = (errorMessage) => {
     console.error("Upload failed:", errorMessage);
-  };
-
-  const customHeaders = {
-    Authorization: `${accessToken}`,
-    "Content-Type": "multipart/form-data",
   };
 
   const handleCategoriesChange = (newCategories) => {
     setCategory(newCategories);
   };
 
-  const handleUpload = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!accessToken) {
+      console.error("AccessToken is not available");
+      return;
+    }
+
     const formData = new FormData();
+    formData.append("name", String(name));
+    formData.append("tel", String(tel));
+    formData.append("price", Number(price));
+    formData.append("standardNum", Number(standardNum));
+    formData.append("maxNum", Number(maxNum));
+    formData.append("overCharge", Number(overCharge));
+    formData.append("description", String(description));
+    formData.append("addr", String(addr));
+
+    category.forEach((category, index) => {
+      formData.append(`category[${index}]`, category);
+    });
 
     images.forEach((image, index) => {
       if (image.file) {
         formData.append(`images[${index}]`, image.file);
       }
     });
+
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+      "Content-Type": "multipart/form-data",
+    };
 
     try {
       const response = await post("camps", formData, customHeaders);
@@ -61,40 +81,13 @@ const AdminCampingRegister = () => {
       }
 
       const result = await response.json();
-      handleUploadSuccess(result);
-    } catch (error) {
-      console.error("Upload failed:", error);
-      handleUploadError(error.message);
-    }
-  };
+      console.log("Upload succeeded:", result);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("tel", tel);
-    formData.append("price", price);
-    formData.append("standardNum", standardNum);
-    formData.append("maxNum", maxNum);
-    formData.append("overCharge", overCharge);
-    formData.append("description", description);
-    formData.append("addr", addr);
-
-    category.forEach((category, index) => {
-      formData.append(`category[${index}]`, category);
-    });
-
-    imageUrls.forEach((image, index) => {
-      formData.append(`imageUrls[${index}]`, image);
-    });
-
-    try {
-      await post("camps", formData, customHeaders);
       alert("캠핑장 등록이 완료되었습니다.");
       navigate("/admin");
     } catch (error) {
-      alert(`등록 실패: ${error.message}`);
+      console.error("Upload failed:", error);
+      handleUploadError(error.message);
     }
   };
 
@@ -124,10 +117,7 @@ const AdminCampingRegister = () => {
         />
       </div>
       <div className="camp-img-title">사진</div>
-      <AdminImgPlus
-        onUploadSuccess={handleUploadSuccess}
-        onUploadError={handleUploadError}
-      />
+      <AdminImgPlus images={images} setImages={setImages} />
       <AdminCampAddress
         addr={addr}
         setAddr={setAddr}
@@ -214,7 +204,7 @@ const AdminCampingRegister = () => {
       </div>
 
       <div className="camping-explanaion">캠핑지 소개</div>
-      <div onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <textarea
           className="input-camp-exp"
           id="camp-exp"
@@ -225,12 +215,12 @@ const AdminCampingRegister = () => {
           cols="50"
           placeholder="캠핑장의 특징을 입력하세요."
         />
-        <div onClick={handleUpload} className="camp-center-container">
+        <div className="camp-center-container">
           <button type="submit" className="camp-perpect-regi">
             등록
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

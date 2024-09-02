@@ -5,7 +5,7 @@
 // const SIGN_UP = [{ key: "1", label: "주소", type: "text", placeholder: "" }];
 
 // const AdminCampAddress = ({ addr, setAddr, setError, setIsOpened }) => {
-//   const { postcode, addr: addressFromHook } = useAddress();
+//   const { postcode = "", addr: addressFromHook = "" } = useAddress(); // 빈 문자열로 초기화
 
 //   const submitHandle = (event) => {
 //     event.preventDefault();
@@ -18,8 +18,7 @@
 
 //     setError(false);
 //     setIsOpened(false);
-//     setAddr(`${postcode} ${addressFromHook}`);
-//     console.log("제출 완료");
+//     setAddr(`${postcode} ${addressFromHook}`); // 주소 설정, 항상 유효한 값으로 설정
 //   };
 
 //   return (
@@ -45,19 +44,28 @@
 
 // export default AdminCampAddress;
 
-import React from "react";
+import React, { useEffect } from "react";
 import useAddress from "../../hooks/useAddress";
 import PostCodeAddress from "./PostCodeAddress";
 
 const SIGN_UP = [{ key: "1", label: "주소", type: "text", placeholder: "" }];
 
 const AdminCampAddress = ({ addr, setAddr, setError, setIsOpened }) => {
-  const { postcode, addr: addressFromHook } = useAddress();
+  const {
+    postcode = "",
+    addr: addressFromHook = "",
+    detailAddress = "",
+  } = useAddress(); // detailAddress 추가
+
+  // addr이 변경될 때마다 업데이트
+  useEffect(() => {
+    setAddr(`${postcode} ${addressFromHook} ${detailAddress}`.trim());
+  }, [postcode, addressFromHook, detailAddress, setAddr]);
 
   const submitHandle = (event) => {
     event.preventDefault();
 
-    if (postcode === "" || addressFromHook === "") {
+    if (postcode === "" || addressFromHook === "" || detailAddress === "") {
       setError(true);
       setIsOpened(true);
       return;
@@ -65,7 +73,7 @@ const AdminCampAddress = ({ addr, setAddr, setError, setIsOpened }) => {
 
     setError(false);
     setIsOpened(false);
-    setAddr(`${postcode} ${addressFromHook}`); // 주소 설정
+    setAddr(`${postcode} ${addressFromHook} ${detailAddress}`.trim()); // 최종 addr 설정
   };
 
   return (
