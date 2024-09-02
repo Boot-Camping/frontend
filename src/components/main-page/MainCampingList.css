@@ -87,3 +87,60 @@
   font-size: 1rem;
   color: gray;
 }
+
+@media screen and (min-width: 800px) {
+  .camping-title-wrapper {
+    margin-top: 0.5rem;
+  }
+  .camping-title {
+    font-size: 2.5rem;
+  }
+
+  .select-box {
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+
+  .camping-list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 25rem;
+    padding: 1rem;
+  }
+
+  .camping-img {
+    width: 24rem;
+    height: 22rem;
+  }
+
+  .camping-img-heart {
+    position: absolute;
+    top: 1.5rem;
+    right: 2.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .camping-name {
+    font-size: var(--heading);
+  }
+
+  .camping-type {
+    font-size: var(--sub-heading);
+  }
+
+  .camping-price {
+    font-size: var(--sub-heading);
+  }
+
+  .camping-info-star {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .camping-info {
+    font-size: 1.5rem;
+  }
+}
