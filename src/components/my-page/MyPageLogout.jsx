@@ -15,14 +15,23 @@ const MyPageLogout = () => {
     setIsOpened(true);
   };
 
-  const logoutHandle = (event) => {
-    event.preventDefault();
+  const logoutHandle = async () => {
+    const customHeaders = {
+      Authorization: accessToken,
+    };
 
-    setIsOpened(false);
+    try {
+      await post("user/logout", {}, customHeaders);
+      setIsOpened(false);
 
-    localStorage.removeItem("accessToken");
-    navigate("/");
-    window.location.reload();
+      localStorage.removeItem("accessToken");
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      setErrorMessage(error.message);
+      setError(true);
+      console.log(error);
+    }
   };
 
   return (
