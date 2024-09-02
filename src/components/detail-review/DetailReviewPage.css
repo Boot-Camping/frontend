@@ -276,7 +276,7 @@
 }
 
 /* imageModal */
-.modal {
+.detail-review .modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -291,7 +291,7 @@
   border: none;
 }
 
-.overlay {
+.detail-review .overlay {
   position: fixed;
   top: 0;
   left: 0;

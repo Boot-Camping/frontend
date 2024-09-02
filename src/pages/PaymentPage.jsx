@@ -96,12 +96,11 @@ const PaymentPage = ({ campInfo }) => {
       console.log("예약 성공! 😄:", response);
       openSecondModal();
     } catch (error) {
-      console.error("예약실패 🥲");
-      const errorMessage =
-        error.response?.data?.message ||
-        error.message ||
-        "결제 중 문제가 발생했습니다.";
-      setAlertMessage(errorMessage);
+      console.error("예약실패 🥲", error);
+
+      if (error.response?.status === 406) {
+        alert("해당 날짜는 이미 예약이 되었습니다. 다른 날짜를 선택해 주세요!");
+      }
     }
   };
 
