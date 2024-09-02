@@ -8,7 +8,7 @@ import ReviewImageSlider from "./ReviewImageSlider";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { formatDate } from "../../utils/formatDate";
-import StarGrade from "./starGrade";
+import StarGrade from "./StarGrade";
 import useCampReview from "../../hooks/useCampReview";
 import Modal from "react-modal";
 
