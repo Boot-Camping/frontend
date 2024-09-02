@@ -3,12 +3,12 @@
 // import useAddress from "../../hooks/useAddress";
 
 // const PostCodeAddress = () => {
-//   const { postcode, setPostcode, address, setAddress } = useAddress();
+//   const { postcode = "", setPostcode, address = "", setAddress } = useAddress(); // 빈 문자열로 초기화
 //   const {
-//     address: selectedAddress,
-//     detailAddress,
+//     address: selectedAddress = "", // 빈 문자열로 초기화
+//     detailAddress = "", // 빈 문자열로 초기화
 //     setDetailAddress,
-//     extraAddress,
+//     extraAddress = "", // 빈 문자열로 초기화
 //     openPostcodePopup,
 //   } = useDaumPostCode(setPostcode);
 
@@ -68,6 +68,11 @@ const PostCodeAddress = () => {
     openPostcodePopup,
   } = useDaumPostCode(setPostcode);
 
+  // 선택된 주소와 상세주소가 변경될 때 addr도 업데이트
+  const handleDetailAddressChange = (e) => {
+    setDetailAddress(e.target.value);
+  };
+
   return (
     <div className="signup-input-wrap postcode-wrap">
       <div className="postcode-btn-wrap">
@@ -102,7 +107,7 @@ const PostCodeAddress = () => {
         className="signup-input"
         value={detailAddress}
         placeholder="상세 주소"
-        onChange={(e) => setDetailAddress(e.target.value)}
+        onChange={handleDetailAddressChange} // 상세주소 변경 핸들러 연결
       />
     </div>
   );
