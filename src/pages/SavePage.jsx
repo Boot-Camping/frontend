@@ -13,7 +13,7 @@ const SavePage = () => {
   const { accessToken } = getUserIdFromToken();
   const [saveData, setSaveData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(4, saveData);
+  const { visibleItems, loadMore, hasMoreItems } = useLoadMore(10, saveData);
 
   const getSaveData = async () => {
     const customHeaders = {

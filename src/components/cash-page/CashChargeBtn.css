@@ -12,6 +12,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  cursor: pointer;
 }
 
 .cash-charge-img {
@@ -21,4 +22,17 @@
 
 .footer-cash-page {
   padding-bottom: 6rem;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .cash-charge-btn {
+    bottom: auto;
+		top: 40%;
+    left: 15%;
+    width: 10%;
+    border-radius: 0.5rem;
+  }
 }

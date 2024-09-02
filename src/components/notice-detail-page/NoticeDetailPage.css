@@ -4,6 +4,11 @@
   gap: 1rem;
   font-size: var(--heading);
   font-weight: bold;
+  cursor: pointer;
+}
+
+.notice-detail {
+  margin: 3rem auto 6rem;
 }
 
 .notice-detail-info {
@@ -35,4 +40,18 @@
 }
 .notice-detail-img img {
   width: 100%;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .notice-detail {
+    width: 50%;
+    margin: 3rem auto 8rem;
+  }
+
+  .notice-detail-date.underline::after {
+    width: 100vw;
+  }
 }

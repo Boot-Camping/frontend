@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
+
 import { reviewTag } from "../../constants/reviewTag";
 import ReviewImgUploader from "./ReviewImgUploader";
 import StarRating from "./StarRating";
-import { useLocation } from "react-router-dom";
+import NormalModal from "../common/NormalModal";
+
 import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-
-import NormalModal from "../common/NormalModal";
 
 const svg = svgCollection;
 

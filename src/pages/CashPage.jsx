@@ -51,30 +51,30 @@ const CashPage = () => {
 
   return (
     <section className="cash-page-wrap">
-      <div className="cash-title-wrap">
-        <Link to={"/mypage"}>
-          <ReactSVG src={svgCollection.prev} className="cash-move-prev" />
-        </Link>
-        <div>캐시 충전/사용 내역</div>
+      <div className="cash-aside">
+        <div className="cash-title-wrap">
+          <Link to={"/mypage"}>
+            <ReactSVG src={svgCollection.prev} className="cash-move-prev" />
+          </Link>
+          <div>캐시 충전/사용 내역</div>
+        </div>
+        <Filter
+          filterChangeHandle={filterChangeHandle}
+          filterType={filterType.cash}
+          wrapClassName="cash-filter"
+          allClassName="cash-all-filter"
+        />
       </div>
 
       {loading ? (
         <div>로딩중</div>
       ) : cashData ? (
-        <>
-          <Filter
-            filterChangeHandle={filterChangeHandle}
-            filterType={filterType.cash}
-            wrapClassName="cash-filter"
-            allClassName="cash-all-filter"
-          />
-          <CashList
-            filter={filter}
-            onTotalCashUpdate={totalCashUpdateHandle}
-            cashData={cashData}
-            errorMessage={errorMessage}
-          />
-        </>
+        <CashList
+          filter={filter}
+          onTotalCashUpdate={totalCashUpdateHandle}
+          cashData={cashData}
+          errorMessage={errorMessage}
+        />
       ) : (
         <div>사용자 정보를 찾을 수 없습니다</div>
       )}

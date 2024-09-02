@@ -51,7 +51,7 @@ const DateRangePicker = () => {
   }, [numberOfNights, range, setCampingDays, setCheckIn, setCheckOut]);
 
   return (
-    <div className="calendar-wrap">
+    <div className="calendar-wrap underline">
       <div ref={refOne}>
         {open && (
           <DateRange

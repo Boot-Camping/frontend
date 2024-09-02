@@ -25,7 +25,12 @@ const LoginAccountPage = () => {
 
       localStorage.setItem("accessToken", accessToken);
 
-      navigate("/");
+      if (data.loginId === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+
       window.location.reload();
     } catch (error) {
       setErrorMessage(error.message);

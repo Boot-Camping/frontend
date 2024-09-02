@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 import "../components/main-page/MainCampingList.css";
@@ -22,57 +22,32 @@ const AdminCampingRegister = () => {
   const [standardNum, setStandardNum] = useState("");
   const [maxNum, setMaxNum] = useState("");
   const [overCharge, setOverCharge] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
   const [category, setCategory] = useState([]);
   const [addr, setAddr] = useState("");
-  const { accessToken } = getUserIdFromToken();
+  const [accessToken, setAccessToken] = useState(null);
   const navigate = useNavigate();
 
-  const handleUploadSuccess = (result) => {
-    console.log("Upload succeeded:", result);
-  };
+  useEffect(() => {
+    const { accessToken } = getUserIdFromToken();
+    setAccessToken(accessToken);
+  }, []);
 
   const handleUploadError = (errorMessage) => {
     console.error("Upload failed:", errorMessage);
-  };
-
-  const customHeaders = {
-    Authorization: `${accessToken}`,
-    "Content-Type": "multipart/form-data",
   };
 
   const handleCategoriesChange = (newCategories) => {
     setCategory(newCategories);
   };
 
-  const handleUpload = async () => {
-    const formData = new FormData();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    images.forEach((image, index) => {
-      if (image.file) {
-        formData.append(`images[${index}]`, image.file);
-      }
-    });
-
-    try {
-      const response = await post("camps", formData, customHeaders);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      handleUploadSuccess(result);
-
-      // After successful upload, call handleSubmit
-      handleSubmit();
-    } catch (error) {
-      console.error("Upload failed:", error);
-      handleUploadError(error.message);
+    if (!accessToken) {
+      console.error("AccessToken is not available");
+      return;
     }
-  };
 
-  const handleSubmit = async () => {
     const formData = new FormData();
     formData.append("name", String(name));
     formData.append("tel", String(tel));
@@ -87,16 +62,32 @@ const AdminCampingRegister = () => {
       formData.append(`category[${index}]`, category);
     });
 
-    imageUrls.forEach((image, index) => {
-      formData.append(`imageUrls[${index}]`, image);
+    images.forEach((image, index) => {
+      if (image.file) {
+        formData.append(`images[${index}]`, image.file);
+      }
     });
 
+    const customHeaders = {
+      Authorization: `${accessToken}`,
+      "Content-Type": "multipart/form-data",
+    };
+
     try {
-      await post("camps", formData, customHeaders);
+      const response = await post("camps", formData, customHeaders);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Upload succeeded:", result);
+
       alert("캠핑장 등록이 완료되었습니다.");
       navigate("/admin");
     } catch (error) {
-      alert(`등록 실패: ${error.message}`);
+      console.error("Upload failed:", error);
+      handleUploadError(error.message);
     }
   };
 
@@ -126,11 +117,7 @@ const AdminCampingRegister = () => {
         />
       </div>
       <div className="camp-img-title">사진</div>
-      <AdminImgPlus
-        onUploadSuccess={handleUploadSuccess}
-        onUploadError={handleUploadError}
-        onImageChange={setImages} // Ensure images are updated on image change
-      />
+      <AdminImgPlus images={images} setImages={setImages} />
       <AdminCampAddress
         addr={addr}
         setAddr={setAddr}
@@ -217,12 +204,7 @@ const AdminCampingRegister = () => {
       </div>
 
       <div className="camping-explanaion">캠핑지 소개</div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleUpload();
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <textarea
           className="input-camp-exp"
           id="camp-exp"

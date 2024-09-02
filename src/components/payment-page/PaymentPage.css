@@ -6,8 +6,13 @@
 .payment-title {
   margin-top: 1rem;
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   font-size: var(--heading);
+}
+
+.payment-request {
+  font-size: var(--sub-heading);
+  padding-bottom: 1rem;
 }
 
 .payment-button {
@@ -50,7 +55,7 @@
 }
 
 .payment-amount-title {
-  font-size: var(--heading);
+  font-size: var(--sub-heading);
   font-weight: bold;
   padding-bottom: 1rem;
 }
@@ -92,7 +97,7 @@
 
 .checkIn-checkOut-box {
   padding-top: 0.2rem;
-  font-size: var(--sub-content);
+  font-size: var(--sub-heading);
   color: var(--dark-gray);
 }
 

@@ -91,6 +91,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
 }
 
 .paid-list-request div:first-child {
@@ -129,4 +130,22 @@
 
 .cancel-list .paid-list-btn {
   display: none;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .paid-list-wrap {
+    flex: 1;
+    margin-left: 20%;
+    width: 80%;
+    background: var(--bg-gray-50);
+    padding: 2rem 6rem;
+    border-radius: 1rem;
+  }
+
+  .paid-list-wrap::before {
+    display: none;
+  }
 }

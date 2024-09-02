@@ -15,3 +15,19 @@
 .paid-move-prev svg {
   stroke: #000;
 }
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .paid-wrap {
+    display: flex;
+    margin-bottom: 10rem;
+  }
+
+  .paid-aside {
+    position: fixed;
+    top: 8rem;
+    width: 10%;
+  }
+}

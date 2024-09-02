@@ -2,6 +2,7 @@ import React from "react";
 import "../components/login-page/LoginPage.css";
 import { loginTitles } from "../constants/login";
 import LoginButtons from "../components/login-page/LoginButtons";
+import logoImg from "../assets/image/camping.png";
 
 const LoginPage = () => {
   return (
@@ -19,7 +20,7 @@ const LoginPage = () => {
         </ul>
         <div className="login-btns-wrap">
           <div className="login-img">
-            <img src="../src/assets/image/camping.png" />
+            <img src={logoImg} alt="camping" />
           </div>
 
           <LoginButtons />

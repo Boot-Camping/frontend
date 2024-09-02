@@ -54,3 +54,12 @@
   margin-top: 2rem;
   border-radius: 0.5rem;
 }
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .delete-account-title-wrap {
+		margin-bottom: 3rem;
+  }
+}
