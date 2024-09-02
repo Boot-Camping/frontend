@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
   const headers = {
     "Content-Type": "application/json",
@@ -8,7 +10,7 @@ const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
 
   const config = {
     method,
-    url: `/api/${endpoint}`,
+    url: `${API_BASE_URL}/api/${endpoint}`,
     headers,
     ...(method === "POST" && { data }),
     ...(method === "PUT" && { data }),
