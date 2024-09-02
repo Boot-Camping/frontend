@@ -5,8 +5,8 @@ import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
 
 import { reviewTag } from "../../constants/reviewTag";
-import ReviewImgUploader from "./ReviewImgUploader";
-import StarRating from "./StarRating";
+import ReviewImgUploader from "../detail-review/ReviewImgUploader";
+import StarRating from "../detail-review/StarRating";
 import NormalModal from "../common/NormalModal";
 
 import { post } from "../../utils/api";
