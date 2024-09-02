@@ -1,5 +1,5 @@
-.review-box {
-  border-bottom: 0.1rem solid var(--light-gray);
+.my-review .review-box {
+  border-bottom: 0.1rem solid var(--soft-gray);
 }
 
 .upper-box {
@@ -39,4 +39,25 @@
 .review-edit-btns {
   display: flex;
   padding: 1rem 0;
+}
+
+@media screen and (mid-width: 1024px) {
+  .my-review .review-img {
+    width: 20rem;
+    height: 15rem;
+    border-radius: 1rem;
+  }
+  .my-review .no-review-img {
+    width: 20rem;
+    height: 15rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+  }
 }

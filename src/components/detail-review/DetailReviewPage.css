@@ -21,6 +21,11 @@
 }
 
 /* DetailReviewViwer.jsx */
+
+.detail-review .review-box {
+  border-bottom: 0.1rem solid var(--soft-gray);
+}
+
 .review {
   padding-top: 2rem;
 }
@@ -146,7 +151,6 @@
   background-color: var(--bg-gray);
   border-radius: 0.3rem;
   padding-bottom: 1rem;
-  margin-bottom: 2rem;
 }
 
 /* ReplyViewer.jsx */
@@ -187,11 +191,6 @@
   height: 2rem;
 }
 
-.reply-edit-btn {
-  color: var(--dark-gray);
-  border: 0.1rem solid var(--dark-gray);
-}
-
 .reply-delete-btn {
   color: var(--red);
   border: 0.1rem solid var(--red);
@@ -227,7 +226,7 @@
   border: #999999 0.1rem solid;
   border-radius: 0.3rem;
   height: 4rem;
-  width: 100%;
+  width: 99%;
   margin-bottom: 1rem;
 }
 
@@ -277,7 +276,7 @@
 }
 
 /* imageModal */
-.modal {
+.detail-review .modal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -292,7 +291,7 @@
   border: none;
 }
 
-.overlay {
+.detail-review .overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -307,4 +306,25 @@
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .review-slider-img {
+    width: 20rem;
+    height: 15rem;
+    border-radius: 1rem;
+  }
+  .no-review-img {
+    width: 20rem;
+    height: 15rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ddd;
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+  }
 }

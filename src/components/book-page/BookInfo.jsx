@@ -4,7 +4,7 @@ import "./BookPage.css";
 const BookInfo = ({ campInfo }) => {
   return (
     <div>
-      <div className="book-info">
+      <div className="book-info underline">
         <div className="book-contents">
           <div className="camping-name">캠핑장 정보</div>
           <div className="camping-num">
