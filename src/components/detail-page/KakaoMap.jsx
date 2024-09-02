@@ -71,7 +71,19 @@ const KakaoMap = ({ address }) => {
               });
 
               const infowindow = new window.kakao.maps.InfoWindow({
-                content: '<div className="current-window">현재 위치</div>',
+                content: `
+                <div style="
+                  display: inline-block;
+                  padding: 2px 5px;
+                  font-size: 14px;
+                  color: #000;
+                  background-color: #fff;
+                  border: 1px solid #ccc;
+                  border-radius: 3px;
+                  white-space: nowrap;">
+                  현재 위치
+                </div>
+              `,
               });
               infowindow.open(map, currentMarker);
 

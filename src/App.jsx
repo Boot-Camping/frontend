@@ -28,7 +28,7 @@ import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
-import ReviewWriter from "./components/review-reply-page/ReviewWriter";
+import ReviewWriter from "./components/detail-review/ReviewWriter";
 import MyReviewPage from "./pages/MyReviewPage";
 import { saveData } from "./mock/saveData";
 import { CampingDaysProvider } from "./context/campingDaysContext";

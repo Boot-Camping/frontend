@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { svgCollection } from "../../constants/svgCollection";
-import "./ReviewWriter.css";
+import "./StarRating.css";
 
 const svg = svgCollection;
 

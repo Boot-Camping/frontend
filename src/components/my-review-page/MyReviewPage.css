@@ -1,8 +1,17 @@
+.review-box {
+  border-bottom: 0.1rem solid var(--light-gray);
+}
+
 .upper-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding: 2rem 0 1rem 0;
+}
+
+.middle-box {
+  display: flex;
+  justify-content: space-between;
 }
 
 .my-review-camp-name {
@@ -11,9 +20,9 @@
 }
 
 .my-review .review-img {
-  width: 100%;
-  height: 25rem;
-  padding-top: 1rem;
+  width: 12rem;
+  height: 10rem;
+  border-radius: 0.5rem;
 }
 
 .review-date {
@@ -29,5 +38,5 @@
 
 .review-edit-btns {
   display: flex;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
 }
