@@ -19,7 +19,7 @@ const LoginPage = () => {
         </ul>
         <div className="login-btns-wrap">
           <div className="login-img">
-            <img src="../src/assets/image/camping.png" />
+            <img src="/src/assets/image/camping.png" />
           </div>
 
           <LoginButtons />
