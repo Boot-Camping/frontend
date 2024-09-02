@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_PROXY;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const apiRequest = async (method, endpoint, data = {}, customHeaders = {}) => {
   const headers = {
