@@ -4,15 +4,28 @@ import ChatList from "./ChatList";
 
 const Chatting = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [animating, setAnimating] = useState(false);
 
   const toggleChat = () => {
-    setIsChatOpen((prev) => !prev);
+    if (isChatOpen) {
+      setAnimating(true);
+      setTimeout(() => {
+        setIsChatOpen(false);
+        setAnimating(false);
+      }, 500);
+    } else {
+      setIsChatOpen(true);
+    }
   };
 
   return (
     <>
       <ChatIcon toggleChat={toggleChat} />
-      <ChatList isOpen={isChatOpen} onClose={toggleChat} />
+      <ChatList
+        isOpen={isChatOpen}
+        animating={animating}
+        onClose={toggleChat}
+      />
     </>
   );
 };
