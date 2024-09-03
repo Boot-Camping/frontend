@@ -9,10 +9,10 @@
   font-size: var(--content);
   padding: 1rem;
   border-radius: 0.3rem;
-  border: 0.1rem solid black;
+  border: 0.1rem solid var(--soft-gray);
   width: 38rem;
   text-align: center;
-  color: var(--light-green);
+  color: var(--dark-gray);
   font-weight: bold;
 }
 
@@ -22,11 +22,29 @@
 
 .nights-days-info {
   font-size: var(--sub-heading);
-  padding-top: 1rem;
+  padding-top: 3rem;
 }
 
 .nights-days-highlight-text {
   font-weight: bold;
-  font-size: var(--heading);
+  font-size: var(--sub-heading);
   color: var(--light-green);
+}
+
+.calendar-wrap .rdrMonth {
+  width: 35rem;
+}
+
+/* 테블릿용 CSS */
+@media screen and (min-width: 1024px) {
+  .calendar-wrap .rdrMonth {
+    width: 55rem;
+  }
+}
+
+/* PC용 CSS */
+@media screen and (min-width: 1680px) {
+  .calendar-wrap .rdrMonth {
+    width: 70rem;
+  }
 }

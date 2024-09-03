@@ -8,7 +8,6 @@ import updateMyReview from "../utils/updateMyReview";
 import deleteMyReview from "../utils/deleteMyReview";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { formatDate } from "../utils/formatDate";
-import ReplyViewer from "../components/detail-review/ReplyViewer";
 import StarGrade from "../components/detail-review/StarGrade";
 
 const svg = svgCollection;
@@ -101,16 +100,16 @@ const MyReviewPage = () => {
             <div className="my-review-right-box">
               {myReview.reviewImages && myReview.reviewImages.length > 0 ? (
                 <img
-                  className="review-img"
+                  className="my-review-img"
                   src={myReview.reviewImages}
                   alt=""
                 />
               ) : (
-                <div className="no-review-img">리뷰 사진이 없습니다</div>
+                <div className="my-no-review-img">리뷰 사진이 없습니다</div>
               )}
               <div className="review-upper-tag">
                 {myReview.reviewTags.map((tag, tagIndex) => (
-                  <div key={tagIndex} className="review-tag">
+                  <div key={tagIndex} className="my-review-tag">
                     {tag}
                   </div>
                 ))}
