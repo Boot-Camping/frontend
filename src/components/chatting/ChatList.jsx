@@ -8,11 +8,9 @@ import { get } from "../../utils/api";
 import EmptyContent from "../common/EmptyContent";
 import { relativeDate } from "../../utils/relativeDate";
 
-const ChatList = () => {
+const ChatList = ({ isOpen, setJoin, joinHandle, error, setError, errorMessage, setErrorMessage }) => {
   const { accessToken } = getUserIdFromToken();
   const [chatListData, setChatListData] = useState([]);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
 
   const getChatListData = async () => {
     const customHeaders = {
@@ -27,31 +25,40 @@ const ChatList = () => {
       setChatListData(sortedData);
     } catch (error) {
       setError(true);
-      setErrorMessage(error.message);
+      setErrorMessage(errorMessage);
     }
   };
 
   useEffect(() => {
-    getChatListData();
-  }, []);
+    if (isOpen) {
+      getChatListData();
+    }
+  }, [isOpen, accessToken]);
 
   return (
-    <div
-      className={`chat-list-wrap`}
-    >
+    <div className={`chat-list-wrap`}>
       <div className="chat-list-title">채팅목록</div>
 
-      <ChatInfo />
+      <ChatInfo setJoin={setJoin} joinHandle={joinHandle} />
 
       {errorMessage && (
         <EmptyContent errorMessage={errorMessage} error={error} />
       )}
 
       {chatListData.map((data, index) => (
-        <div className="chat-list" key={`chat-list${index + 1}`}>
+        <div
+          className="chat-list"
+          key={`chat-list${index + 1}`}
+          onClick={() => joinHandle(data.id)}
+        >
           <div className="chat-user-wrap">
             <ReactSVG src={svgCollection.userImg} className="chat-user-img" />
-            <div>{data.joinedBy === "admin" ? "부트캠핑" : data.joinedBy}</div>
+            <div className="chat-name">
+              <div>{data.name}</div>
+              <div>
+                {data.joinedBy === "admin" ? "부트캠핑" : data.joinedBy}
+              </div>
+            </div>
           </div>
           <div className="chat-date">{relativeDate(data.createdAt)}</div>
         </div>
