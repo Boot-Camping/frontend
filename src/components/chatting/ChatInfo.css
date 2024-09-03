@@ -1,0 +1,47 @@
+.chat-info-wrap {
+  width: 100%;
+  line-height: 1.5;
+  margin: 3rem 0;
+  background: var(--bg-gray-50);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.chat-info {
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.chat-admin-icon {
+  width: 5rem;
+  height: 5rem;
+}
+
+.chat-admin-icon img {
+  width: 100%;
+}
+
+.chat-info li:first-child {
+  font-weight: bold;
+}
+
+.chat-join-btn {
+  border: none;
+  background: var(--light-green);
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.chat-join-icon {
+  width: 2rem;
+  height: 2rem;
+}

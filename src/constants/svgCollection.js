@@ -21,6 +21,7 @@ import home from "/src/assets/svg/home.svg";
 import lock from "/src/assets/svg/lockClosed.svg";
 import eyeSlash from "/src/assets/svg/eyeSlash.svg";
 import chat from "/src/assets/svg/chat.svg";
+import send from "/src/assets/svg/send.svg";
 
 export const svgCollection = {
   stars,
@@ -46,4 +47,5 @@ export const svgCollection = {
   lock,
   eyeSlash,
   chat,
+  send,
 };
