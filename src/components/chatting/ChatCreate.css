@@ -1,0 +1,42 @@
+.chat-create-btn {
+  border: none;
+  background: var(--light-green);
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.chat-create-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.chat-name-modal {
+  font-size: var(--heading);
+}
+
+.chat-create-name {
+  border: 1px solid var(--light-gray);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 3rem 0;
+  font-size: var(--sub-heading);
+  width: 90%;
+}
+
+.chat-create-name:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--light-green);
+}
+
+.chat-name-modal .chat-create-btn {
+  width: auto;
+  padding: 0.5rem 1rem;
+  margin-top: 0;
+}
