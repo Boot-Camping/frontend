@@ -26,22 +26,3 @@
 .chat-info li:first-child {
   font-weight: bold;
 }
-
-.chat-join-btn {
-  border: none;
-  background: var(--light-green);
-  border-radius: 0.5rem;
-  width: 100%;
-  padding: 1rem 2rem;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 3rem;
-}
-
-.chat-join-icon {
-  width: 2rem;
-  height: 2rem;
-}
