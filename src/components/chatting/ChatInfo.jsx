@@ -1,9 +1,9 @@
 import React from "react";
 import "./ChatInfo.css";
 import logoImg from "../../assets/image/camping.png";
-import ChatJoinBtn from "./ChatJoinBtn";
+import ChatCreate from "./ChatCreate";
 
-const ChatInfo = () => {
+const ChatInfo = ({ setJoin, joinHandle }) => {
   return (
     <div className="chat-info-wrap">
       <div className="chat-info">
@@ -17,7 +17,7 @@ const ChatInfo = () => {
           <li>궁금하신 점이 있으시면 문의해 주세요</li>
         </ul>
       </div>
-      <ChatJoinBtn />
+      <ChatCreate setJoin={setJoin} joinHandle={joinHandle} />
     </div>
   );
 };
