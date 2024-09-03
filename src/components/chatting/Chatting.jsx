@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ChatIcon from "./ChatIcon";
-import ChatList from "./ChatList";
+import ChatModal from "./ChatModal";
 
 const Chatting = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -21,7 +21,7 @@ const Chatting = () => {
   return (
     <>
       <ChatIcon toggleChat={toggleChat} />
-      <ChatList
+      <ChatModal
         isOpen={isChatOpen}
         animating={animating}
         onClose={toggleChat}
