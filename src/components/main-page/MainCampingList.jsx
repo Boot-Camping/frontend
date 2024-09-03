@@ -28,7 +28,7 @@ const MainCampingList = () => {
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
-          className="select-box"
+          className="main-select-box"
         >
           <option value="updatedAt">최근 등록 순</option>
           <option value="reservedDateCount">예약 많은 순</option>
@@ -81,26 +81,27 @@ const MainCampingList = () => {
                           {campingPlace.price}원
                         </div>
                       </div>
-                    </Link>
-                    <div className="camping-info-icons-wrapper">
-                      <div className="camping-info-star-wrapper">
-                        <ReactSVG
-                          className="camping-info-star"
-                          src={svgCollection.stars}
-                          alt=""
-                        />
-                        <div className="camping-info">
-                          {campingPlace.averageGrade}
-                        </div>
-                        <div className="camping-info">
-                          ・리뷰({campingPlace.reviewCount})
-                        </div>
-                      </div>
 
-                      <div className="camping-info">
-                        예약자 수({campingPlace.reservedDateCount})
+                      <div className="camping-info-icons-wrapper">
+                        <div className="camping-info-star-wrapper">
+                          <ReactSVG
+                            className="camping-info-star"
+                            src={svgCollection.stars}
+                            alt=""
+                          />
+                          <div className="camping-info">
+                            {campingPlace.averageGrade}
+                          </div>
+                          <div className="camping-info">
+                            ・리뷰({campingPlace.reviewCount})
+                          </div>
+                        </div>
+
+                        <div className="camping-info">
+                          예약자 수({campingPlace.reservedDateCount})
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
             </div>

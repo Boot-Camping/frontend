@@ -13,6 +13,7 @@
 
 .camping-list-wrapper {
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -96,16 +97,13 @@
     font-size: 2.5rem;
   }
 
-  .select-box {
+  .main-select-box {
     width: 12rem;
     height: 3rem;
     font-size: 1.5rem;
   }
 
   .camping-list {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
     width: 25rem;
     padding: 1rem;
   }
