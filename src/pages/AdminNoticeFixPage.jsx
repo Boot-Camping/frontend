@@ -7,6 +7,7 @@ import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import EmptyContent from "../components/common/EmptyContent";
+import "../components/notice-page/NoticePage.css";
 
 const AdminNoticeFixPage = () => {
   const { id } = useParams();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
+import "../components/notice-page/NoticePage.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
 import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
