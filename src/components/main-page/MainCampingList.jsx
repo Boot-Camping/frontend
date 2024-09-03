@@ -22,7 +22,7 @@ const MainCampingList = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <>
+    <div className="main-camping-list underline">
       <div className="camping-title-wrapper">
         <div className="camping-title">캠핑장 리스트</div>
         <select
@@ -108,7 +108,7 @@ const MainCampingList = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

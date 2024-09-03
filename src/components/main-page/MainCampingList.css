@@ -1,3 +1,8 @@
+.main-camping-list {
+  padding-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
 .camping-title-wrapper {
   display: flex;
   justify-content: space-between;
@@ -79,7 +84,7 @@
 }
 
 .camping-info-star {
-  color: yellow;
+  color: green;
   width: 1rem;
   height: 1rem;
 }
@@ -141,4 +146,19 @@
   .camping-info {
     font-size: 1.5rem;
   }
+}
+
+@media screen and (min-width: 1024px) {
+  .camping-list-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* .camping-img {
+    width: 30%;
+    height: 22rem;
+  } */
+  /* 
+  main-page {
+    display: flex;
+  }. */
 }
