@@ -30,6 +30,7 @@ const CategoryCampingList = () => {
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
+          className="category-select-box"
         >
           <option value="updatedAt">최근 등록 순</option>
           <option value="reservedDateCount">예약 많은 순</option>

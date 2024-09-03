@@ -11,6 +11,11 @@
   margin-bottom: 1rem;
 }
 
+.category-select-box {
+  width: 11rem;
+  height: 2rem;
+}
+
 .category-camping-list {
   position: relative; /* 기준점 */
   display: block;
@@ -90,4 +95,69 @@
 .category-camping-info {
   font-size: var(--sub-content);
   color: gray;
+}
+
+@media screen and (min-width: 800px) {
+  .category-title-wrapper {
+    margin-top: 0.5rem;
+    margin: 2rem 0;
+  }
+  .category-title {
+    font-size: 2.5rem;
+  }
+
+  .category-select-box {
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+
+  .category-camping-list {
+    width: 50rem;
+    margin-left: 7.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-camping-img {
+    width: 50rem;
+    height: 25rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-camping-img-heart {
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .category-camping-info-star {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .category-camping-info {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .category-select-box {
+    width: 11rem;
+    height: 2rem;
+  }
+
+  .category-camping-list {
+    width: 39.5rem;
+  }
+
+  .category-camping-img {
+    width: 39.5rem;
+    height: 20.2rem;
+  }
+
+  .category-camping-img-heart {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
 }
