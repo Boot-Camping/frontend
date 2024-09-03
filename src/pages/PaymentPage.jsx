@@ -10,6 +10,8 @@ import { useCampingDays } from "../context/campingDaysContext";
 import { post, get } from "../utils/api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
+import EmptyContent from "../components/common/EmptyContent";
+
 const PaymentPage = ({ campInfo }) => {
   const campId = campInfo.id;
 
@@ -23,6 +25,8 @@ const PaymentPage = ({ campInfo }) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState(false);
 
   const [userData, setUserData] = useState({
     name: "",
@@ -96,11 +100,8 @@ const PaymentPage = ({ campInfo }) => {
       console.log("예약 성공! 😄:", response);
       openSecondModal();
     } catch (error) {
-      console.error("예약실패 🥲", error);
-
-      if (error.response?.status === 406) {
-        alert("해당 날짜는 이미 예약이 되었습니다. 다른 날짜를 선택해 주세요!");
-      }
+      setErrorMessage(error.message);
+      setError(true);
     }
   };
 
@@ -127,7 +128,6 @@ const PaymentPage = ({ campInfo }) => {
         setErrorMessage("유저 정보를 불러오지 못했습니다.");
       }
     } catch (error) {
-      console.error("유저 정보 가져오기 실패 🥲", error);
       setErrorMessage("유저 정보를 가져오는 중 오류가 발생했습니다.");
     } finally {
       setLoading(false);
@@ -175,6 +175,9 @@ const PaymentPage = ({ campInfo }) => {
               결제하기
             </button>
           </div>
+
+          {/* 백엔드에서 내려주는 에러메시지 띄우기 */}
+          {error && <EmptyContent errorMessage={errorMessage} error={error} />}
         </NormalModal>
 
         <NormalModal
