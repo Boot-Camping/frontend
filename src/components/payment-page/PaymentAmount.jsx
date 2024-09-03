@@ -93,14 +93,11 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
         </div>
 
         <div className="checkIn-checkOut-box">
-          <div className="checkin-box">
-            <div className="checkin-title">체크인 </div>
-            <div className="checkin-date">{formattedCheckIn}</div>
-          </div>
+          <div className="checkIn-checkOut-title">체크인-체크아웃 </div>
 
-          <div className="checkout-box">
-            <div className="checkout-title">체크아웃 </div>
-            <div className="checkout-date">{formattedCheckOut}</div>
+          <div className="checkIn-checkOut-date">
+            <div className="checkin-date">{formattedCheckIn}</div>
+            <div className="checkout-date">~ {formattedCheckOut}</div>
           </div>
         </div>
 

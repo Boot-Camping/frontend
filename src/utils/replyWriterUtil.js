@@ -21,7 +21,7 @@ const replyWriterUtil = async (reviewId, replyContent) => {
       customHeaders
     );
     console.log("댓글 작성 성공:", response);
-    return response;
+    return response.data;
   } catch (error) {
     console.error("댓글 작성 실패:", error);
     throw error;

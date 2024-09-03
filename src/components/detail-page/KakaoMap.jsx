@@ -178,6 +178,7 @@ const KakaoMap = ({ address }) => {
   return (
     <>
       <div id="map" className="map-api"></div>
+      <div className="map-divider underline"></div>
     </>
   );
 };

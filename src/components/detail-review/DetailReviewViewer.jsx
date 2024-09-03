@@ -65,22 +65,27 @@ const DetailReviewViewer = ({ campId }) => {
       {campReviews.slice(0, visibleReviews).map((review, index) => (
         <div key={index} className="review-box">
           <div className="review-upper-box">
-            <div className="image-slider">
-              {review.reviewImages && review.reviewImages.length > 0 ? (
-                <ReviewImageSlider
-                  reviewImages={review.reviewImages}
-                  onImageClick={openModal}
-                />
-              ) : (
-                <div className="no-review-img">리뷰 사진이 없습니다</div>
-              )}
-            </div>
-            <div className="review-upper-right">
+            <div className="review-upper-left">
               <div className="review-upper-writer">
-                <div className="review-id">{review.loginId}</div>
                 <div className="review-date">
-                  작성일: {formatDate(review.createdAt)}
+                  {formatDate(review.createdAt)}
                 </div>
+                <div className="review-id">{review.loginId}</div>
+              </div>
+
+              <div className="review-content">{review.reviewContent}</div>
+            </div>
+
+            <div className="review-upper-right">
+              <div className="image-slider">
+                {review.reviewImages && review.reviewImages.length > 0 ? (
+                  <ReviewImageSlider
+                    reviewImages={review.reviewImages}
+                    onImageClick={openModal}
+                  />
+                ) : (
+                  <div className="no-review-img">리뷰 사진이 없습니다</div>
+                )}
               </div>
               <div className="review-upper-tag">
                 {review.reviewTags.map((tag, tagIndex) => (
@@ -89,13 +94,12 @@ const DetailReviewViewer = ({ campId }) => {
                   </div>
                 ))}
               </div>
-
               <div className="review-grade">
-                캠핑장 평점: <StarGrade grade={review.grade} />
+                <StarGrade grade={review.grade} />
               </div>
             </div>
           </div>
-          <div className="review-content">{review.reviewContent}</div>
+
           <div className="review-reply-box">
             <ReactSVG src={svg.letter} className="review-letter-icon" />
             <div

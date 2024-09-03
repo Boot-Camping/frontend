@@ -7,8 +7,9 @@
 .footer-section,
 .policies {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding-bottom: 1rem;
+  gap: 10rem;
 }
 
 .policy {
