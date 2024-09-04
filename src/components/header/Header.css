@@ -6,7 +6,7 @@
   background-color: white;
   top: 0;
   box-sizing: border-box;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
 }
 

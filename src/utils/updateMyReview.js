@@ -1,6 +1,12 @@
 import { put } from "./api";
 
-const updateMyReview = async (userId, accessToken, reviewId, content) => {
+const updateMyReview = async (
+  userId,
+  accessToken,
+  reviewId,
+  content,
+  imageUrls
+) => {
   const customHeaders = {
     Authorization: `${accessToken}`,
     "Content-Type": "multipart/form-data",
@@ -8,6 +14,7 @@ const updateMyReview = async (userId, accessToken, reviewId, content) => {
 
   const reviewRequest = JSON.stringify({
     content: content,
+    imageUrls: imageUrls,
   });
 
   const formData = new FormData();

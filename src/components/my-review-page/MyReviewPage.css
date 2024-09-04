@@ -85,7 +85,8 @@
 
 .my-review-edit-btn,
 .my-review-save-btn,
-.my-review-cancel-btn {
+.my-review-cancel-btn,
+.my-review-delete-btn {
   font-size: var(--sub-content);
   background-color: white;
   border-radius: 0.3rem;
