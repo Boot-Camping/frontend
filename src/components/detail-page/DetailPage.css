@@ -85,9 +85,9 @@
 }
 
 .price {
-  font-size: 18px;
+  font-size: var(--sub-heading);
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
 .tags {

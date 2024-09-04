@@ -46,14 +46,14 @@ const DateRangePicker = () => {
         />
       </div>
 
-      <input
+      {/* <input
         value={`${format(range[0].startDate, "yyyy/MM/dd")} 부터 ${format(
           range[0].endDate,
           "yyyy/MM/dd"
         )}까지`}
         readOnly
         className="inputbox"
-      />
+      /> */}
 
       <div className="nights-days-info">
         선택하신 캠핑일정은{""}

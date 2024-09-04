@@ -48,7 +48,7 @@ const MyReviewPage = () => {
       setMyReviews((prevReviews) =>
         prevReviews.map((review) =>
           review.id === reviewId
-            ? { ...review, content: editedContent }
+            ? { ...review, reviewContent: content }
             : review
         )
       );
@@ -84,8 +84,9 @@ const MyReviewPage = () => {
               </div>
               <div className="review-edit-box">
                 {editMode === myReview.id ? (
-                  <textarea
+                  <input
                     value={editedContent}
+                    type="text"
                     onChange={(e) => setEditedContent(e.target.value)}
                     className="review-edit-content"
                   />
@@ -125,13 +126,13 @@ const MyReviewPage = () => {
               {editMode === myReview.id ? (
                 <>
                   <button
-                    className="review-save-btn"
+                    className="my-review-save-btn"
                     onClick={() => clickSaveHandle(myReview.id)}
                   >
                     저장
                   </button>
                   <button
-                    className="review-cancel-btn"
+                    className="my-review-cancel-btn"
                     onClick={() => setEditMode(null)}
                   >
                     취소
@@ -140,32 +141,17 @@ const MyReviewPage = () => {
               ) : (
                 <>
                   <button
-                    className="review-edit-btn"
+                    className="my-review-edit-btn"
                     onClick={() =>
                       clickEditHandle(myReview.id, myReview.reviewContent)
                     }
                   >
                     수정
                   </button>
-                  <button
-                    className="review-delete-btn"
-                    onClick={() => clickDeleteHandle(myReview.id)}
-                  >
-                    삭제
-                  </button>
                 </>
               )}
             </div>
           </div>
-
-          {/* <div className="review-reply-box">
-            <ReactSVG src={svg.letter} className="review-letter-icon" />
-            <div className="reply-btn" onClick={() => toggleReply(index)}>
-              댓글읽기
-            </div>
-            {visibleReplies[index] && <ReplyViewer reviewId={myReview.id} />}
-          </div> */}
-          {/* <ReplyViewer reviewId={myReview.id} /> */}
         </div>
       ))}
     </div>

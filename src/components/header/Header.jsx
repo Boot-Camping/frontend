@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
 import logo from "/src/assets/image/camping.png";
+import logo1 from "/src/assets/image/logo1.png";
+import logo2 from "/src/assets/image/logo2.png";
+import logo3 from "/src/assets/image/logo3.png";
 import userImg from "/src/assets/svg/userImg.svg";
 import searchImg from "/src/assets/svg/search.svg";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
@@ -15,7 +18,9 @@ const Header = () => {
   return (
     <div className="header">
       <Link to={"/"}>
-        <img className="logo" src={logo} alt="Logo" />
+        {/* <img className="logo1" src={logo1} alt="Logo" /> */}
+        {/* <img className="logo2" src={logo2} alt="Logo" /> */}
+        <img className="logo3" src={logo3} alt="Logo" />
       </Link>
 
       <div className="icons">

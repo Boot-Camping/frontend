@@ -20,6 +20,15 @@
   justify-content: center;
 }
 
+.review-edit-content {
+  border: #999999 0.1rem solid;
+  border-radius: 0.3rem;
+  height: 4rem;
+  width: 20rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
 .my-review-content {
   font-size: var(--content);
   padding: 1rem 0;
@@ -74,9 +83,18 @@
   flex-direction: column;
 }
 
-.my-review-edit-btns {
-  display: flex;
-  padding: 1rem 0;
+.my-review-edit-btn,
+.my-review-save-btn,
+.my-review-cancel-btn {
+  font-size: var(--sub-content);
+  background-color: white;
+  border-radius: 0.3rem;
+  padding: 0 0.5rem;
+  align-items: center;
+  margin-right: 0.5rem;
+  height: 2rem;
+  color: var(--dark-gray);
+  border: 0.1rem solid var(--light-gray);
 }
 
 /* 테블릿용 CSS */
@@ -84,6 +102,15 @@
   .my-review {
     width: 80%;
     margin: auto;
+  }
+
+  .review-edit-content {
+    border: #999999 0.1rem solid;
+    border-radius: 0.3rem;
+    height: 4rem;
+    width: 50rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 
   .my-review-img {
@@ -118,6 +145,15 @@
     padding: 1rem 0;
     padding-right: 3rem;
     line-height: 3rem;
+  }
+
+  .review-edit-content {
+    border: #999999 0.1rem solid;
+    border-radius: 0.3rem;
+    height: 4rem;
+    width: 50rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 
   .my-review-img {
