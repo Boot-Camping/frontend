@@ -4,11 +4,11 @@ const AdminCategoryBtn = ({ onCategoryChange }) => {
   // 콜백을 prop으로 받음
   const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const toggleCategory = (category) => {
+  const toggleCategory = (categories) => {
     setSelectedCategories((prev) => {
-      const newCategories = prev.includes(category)
-        ? prev.filter((item) => item !== category)
-        : [...prev, category];
+      const newCategories = prev.includes(categories)
+        ? prev.filter((item) => item !== categories)
+        : [...prev, categories];
 
       onCategoryChange(newCategories); // 카테고리가 변경될 때마다 콜백 호출
       return newCategories;
