@@ -4,7 +4,7 @@ import "../components/admin-camping-register-page/AdminCampingRegister.css";
 import "../components/notice-page/NoticePage.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
-import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+import DaumPostCode from "../components/common/DaumPostCode";
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
@@ -24,8 +24,8 @@ const AdminCampFixPage = () => {
   const [standardNum, setStandardNum] = useState("");
   const [maxNum, setMaxNum] = useState("");
   const [overCharge, setOverCharge] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [categories, setCategory] = useState([]);
   const [updatedImages, setUpdatedImages] = useState([]);
   const [addr, setAddr] = useState("");
   const { accessToken } = getUserIdFromToken();
@@ -47,17 +47,17 @@ const AdminCampFixPage = () => {
       setStandardNum(currentCampingPlace.standardNum || "");
       setMaxNum(currentCampingPlace.maxNum || "");
       setOverCharge(currentCampingPlace.overCharge || "");
-      setImageUrls(currentCampingPlace.imageUrls || []);
+      setImageFiles(currentCampingPlace.imageFiles || []);
       setCategory(currentCampingPlace.category || []);
       setAddr(currentCampingPlace.addr || "");
     }
   }, [currentCampingPlace]);
 
   const handleUploadSuccess = (uploadedImages) => {
-    const uploadedImageUrls = uploadedImages.map((file) =>
+    const uploadedImageFiles = uploadedImages.map((file) =>
       URL.createObjectURL(file)
     );
-    setUpdatedImages(uploadedImageUrls);
+    setUpdatedImages(uploadedImageFiles);
   };
 
   const handleUploadError = (errorMessage) => {
@@ -88,15 +88,20 @@ const AdminCampFixPage = () => {
     formData.append("maxNum", Number(maxNum));
     formData.append("overCharge", Number(overCharge));
     formData.append("description", String(description));
-    formData.append("addr", String(addr));
+    formData.append(
+      "addr",
+      String(
+        `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`
+      )
+    );
 
-    category.forEach((cat, index) => {
-      formData.append(`category[${index}]`, cat);
+    categories.forEach((cat, index) => {
+      formData.append(`categories[${index}]`, cat);
     });
 
-    (updatedImages.length > 0 ? updatedImages : imageUrls).forEach(
+    (updatedImages.length > 0 ? updatedImages : imageFiles).forEach(
       (image, index) => {
-        formData.append(`imageUrls[${index}]`, image);
+        formData.append(`imageFiles[${index}]`, image);
       }
     );
 
@@ -107,7 +112,7 @@ const AdminCampFixPage = () => {
     );
 
     try {
-      await put(`camps/${id}`, formData, customHeaders);
+      await put(`camps`, formData, customHeaders);
 
       alert("캠핑장 정보가 수정되었습니다.");
       navigate("/admin");
@@ -169,12 +174,16 @@ const AdminCampFixPage = () => {
         </div>
         <div className="camp-img-title">사진</div>
         <AdminImgPlus
-          initialImages={imageUrls}
+          initialImages={imageFiles}
           onUploadSuccess={handleUploadSuccess}
           onUploadError={handleUploadError}
         />
-        <AdminCampAddress addr={addr} setAddr={setAddr} setError={setError} />
-
+        <DaumPostCode
+          postcode={postcode}
+          setPostcode={setPostcode}
+          addressRef={addressRef}
+          detailAddressRef={detailAddressRef}
+        />
         <div>
           <div className="camp-info">
             <div className="camp-number-title">전화번호</div>
