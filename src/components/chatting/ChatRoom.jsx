@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ChatRoom.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
@@ -15,9 +15,18 @@ const ChatRoom = ({
   setErrorMessage,
 }) => {
   const { accessToken, userId } = getUserIdFromToken();
+  const socket = useRef(null);
+  const [chatStart, setChatStart] = useState(false);
+	const [message, setMessage] = useState("");
+	const [messages, setMessages] = useState([]);
 
   const outHandle = () => {
     setJoin(false);
+    setError(false);
+    setErrorMessage("");
+    if (socket.current) {
+      socket.current.close();
+    }
   };
 
   const chatJoinHandle = async () => {
@@ -38,16 +47,71 @@ const ChatRoom = ({
     }
   };
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     chatJoinHandle();
+
+    socket.current = new WebSocket(
+      `ws://${API_BASE_URL}/chat?userId=${userId}`
+    );
+
+    socket.current.onopen = () => {
+      console.log("웹소켓 연결 성공");
+      setChatStart(true);
+    };
+
+    socket.current.onmessage = (event) => {
+      const messageData = JSON.parse(event.data);
+      setMessages((prevMessages) => [...prevMessages, messageData]);
+      console.log("받은 메시지: ", messageData);
+    };
+
+    socket.current.onerror = (error) => {
+      console.error("웹소켓 오류: ", error);
+      setError(true);
+      setErrorMessage("Message: 웹소켓 연결 오류");
+    };
+
+    return () => {
+      if (socket.current) {
+        socket.current.close();
+        console.log("웹소켓 연결 종료");
+      }
+    };
   }, [currentId]);
+
+	const sendMessageHandle = () => {
+		if(message.trim()) {
+			const messageData = {userId, text: message};
+			socket.current.send(JSON.stringify(messageData));
+			setMessage("");
+		}
+	}
 
   return (
     <div className="chat-room-wrap">
-      <ReactSVG src={svgCollection.prev} className="chat-room-prev" onClick={outHandle} />
+      <ReactSVG
+        src={svgCollection.prev}
+        className="chat-room-prev"
+        onClick={outHandle}
+      />
 
-      {errorMessage && (
-        <EmptyContent errorMessage={errorMessage}  />
+      {errorMessage && <EmptyContent errorMessage={errorMessage} />}
+
+			{/* <button onClick={chatJoinHandle}>채팅참여</button> */}
+
+      {chatStart && (
+        <div className="chat-room-open">
+          <div className="chat-message-wrap">
+						{messages.map((msg, index) => (
+							<div key={`message${index + 1}`}>{msg.text}</div>
+						))}
+					</div>
+					<input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="메시지를 입력하세요" />
+					<button onClick={sendMessageHandle}>전송</button>
+          <button onClick={outHandle}>채팅 종료</button>
+        </div>
       )}
     </div>
   );
