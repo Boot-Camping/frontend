@@ -11,10 +11,8 @@ const ChatInfo = ({ setJoin, joinHandle, getChatListData }) => {
           <img src={logoImg} />
         </div>
         <ul>
-          <li>
-            안녕하세요! <span>부트캠핑</span>입니다
-          </li>
-          <li>궁금하신 점이 있으시면 문의해 주세요</li>
+          <li>캠퍼들끼리 자유롭게 정보와 팁을 나누는 공간입니다</li>
+          <li>캠핑의 즐거움을 함께 나누세요!</li>
         </ul>
       </div>
       <ChatCreate

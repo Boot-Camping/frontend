@@ -58,7 +58,7 @@ const ChatCreate = ({ setJoin, joinHandle, getChatListData }) => {
   return (
     <>
       <button className="chat-create-btn" onClick={createChatBtnHandle}>
-        문의하기
+        채팅방 만들기
         <ReactSVG src={svgCollection.send} className="chat-create-icon" />
       </button>
 
