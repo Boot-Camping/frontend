@@ -171,3 +171,27 @@
     height: 3rem;
   }
 }
+
+@media screen and (min-width: 1680px) {
+  .camping-list-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .camping-list {
+    width: 25rem;
+    padding: 1rem;
+  }
+
+  .camping-img {
+    width: 27rem;
+    height: 24rem;
+  }
+
+  .camping-img-heart {
+    position: absolute;
+    top: 1.5rem;
+    right: 0;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
