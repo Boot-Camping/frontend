@@ -8,7 +8,15 @@ import { get } from "../../utils/api";
 import EmptyContent from "../common/EmptyContent";
 import { relativeDate } from "../../utils/relativeDate";
 
-const ChatList = ({ isOpen, setJoin, joinHandle, error, setError, errorMessage, setErrorMessage }) => {
+const ChatList = ({
+  isOpen,
+  setJoin,
+  joinHandle,
+  error,
+  setError,
+  errorMessage,
+  setErrorMessage,
+}) => {
   const { accessToken } = getUserIdFromToken();
   const [chatListData, setChatListData] = useState([]);
 
@@ -36,33 +44,45 @@ const ChatList = ({ isOpen, setJoin, joinHandle, error, setError, errorMessage, 
   }, [isOpen, accessToken]);
 
   return (
-    <div className={`chat-list-wrap`}>
+    <div className="chat-list-wrap">
       <div className="chat-list-title">채팅목록</div>
 
-      <ChatInfo setJoin={setJoin} joinHandle={joinHandle} />
+      <ChatInfo
+        setJoin={setJoin}
+        joinHandle={joinHandle}
+        getChatListData={getChatListData}
+      />
 
-      {errorMessage && (
-        <EmptyContent errorMessage={errorMessage} error={error} />
-      )}
-
-      {chatListData.map((data, index) => (
-        <div
-          className="chat-list"
-          key={`chat-list${index + 1}`}
-          onClick={() => joinHandle(data.id)}
-        >
-          <div className="chat-user-wrap">
-            <ReactSVG src={svgCollection.userImg} className="chat-user-img" />
-            <div className="chat-name">
-              <div>{data.name}</div>
-              <div>
-                {data.joinedBy === "admin" ? "부트캠핑" : data.joinedBy}
+      <div className="chat-lists">
+        {chatListData.length > 0
+          ? chatListData.map((data, index) => (
+              <div
+                className="chat-list"
+                key={`chat-list${index + 1}`}
+                onClick={() => joinHandle(data.id)}
+              >
+                <div className="chat-user-wrap">
+                  <ReactSVG
+                    src={svgCollection.userImg}
+                    className="chat-user-img"
+                  />
+                  <div className="chat-name">
+                    <div>채팅방 이름 : {data.name}</div>
+										<div>개설자 : {data.createdBy}</div>
+                    <div>
+                      {/* {data.joinedBy === "admin" ? "부트캠핑" : data.joinedBy} */}
+											참여자 : {data.joinedBy}
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="chat-date">{relativeDate(data.createdAt)}</div> */}
+                <div className="chat-date">{data.createdAt}</div>
               </div>
-            </div>
-          </div>
-          <div className="chat-date">{relativeDate(data.createdAt)}</div>
-        </div>
-      ))}
+            ))
+          : errorMessage && (
+              <EmptyContent errorMessage={errorMessage} error={error} />
+            )}
+      </div>
     </div>
   );
 };

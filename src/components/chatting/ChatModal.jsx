@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ChatModal.css";
 import { createPortal } from "react-dom";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import ChatList from "./ChatList";
 import ChatRoom from "./ChatRoom";
+import { useLocation } from "react-router-dom";
 
 const ChatModal = ({ isOpen, animating, onClose }) => {
   const [join, setJoin] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+  const location = useLocation();
 
   const joinHandle = (id) => {
     setCurrentId(id);
     setJoin(true);
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      onClose;
+    }
+  }, [onClose, location.pathname, isOpen]);
 
   return (
     <>
