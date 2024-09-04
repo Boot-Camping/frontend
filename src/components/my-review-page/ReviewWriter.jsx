@@ -143,7 +143,7 @@ const ReviewWriter = () => {
                   selectedTags.includes(tag.id) ? "selected" : ""
                 }`}
               >
-                {tag.label}
+                {tag.value}
               </label>
             </div>
           ))}

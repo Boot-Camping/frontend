@@ -85,31 +85,31 @@ const MyReviewPage = () => {
       </div>
 
       {myReviews.map((myReview, index) => (
-        <Link to={`/camping/detail/${myReview.campId}`} key={index}>
-          <div key={index} className="review-box">
-            <div className="my-review-upper">
-              <div className="my-review-left-box">
-                <div className="my-review-camp-name">{myReview.campName}</div>
-                <div className="my-review-date">
-                  {formatDate(myReview.createdAt)}
-                </div>
-                <div className="review-edit-box">
-                  {editMode === myReview.id ? (
-                    <input
-                      value={editedContent}
-                      type="text"
-                      onChange={(e) => setEditedContent(e.target.value)}
-                      className="review-edit-content"
-                    />
-                  ) : (
-                    <div className="my-review-content">
-                      {myReview.reviewContent}
-                    </div>
-                  )}
-                </div>
+        <div key={index} className="review-box">
+          <div className="my-review-upper">
+            <div className="my-review-left-box">
+              <div className="my-review-camp-name">{myReview.campName}</div>
+              <div className="my-review-date">
+                {formatDate(myReview.createdAt)}
               </div>
+              <div className="review-edit-box">
+                {editMode === myReview.id ? (
+                  <input
+                    value={editedContent}
+                    type="text"
+                    onChange={(e) => setEditedContent(e.target.value)}
+                    className="review-edit-content"
+                  />
+                ) : (
+                  <div className="my-review-content">
+                    {myReview.reviewContent}
+                  </div>
+                )}
+              </div>
+            </div>
 
-              <div className="my-review-right-box">
+            <div className="my-review-right-box">
+              <Link to={`/camping/detail/${myReview.campId}`} key={index}>
                 {myReview.reviewImages && myReview.reviewImages.length > 0 ? (
                   <img
                     className="my-review-img"
@@ -119,58 +119,58 @@ const MyReviewPage = () => {
                 ) : (
                   <div className="my-no-review-img">리뷰 사진이 없습니다</div>
                 )}
-                <div className="review-upper-tag">
+                <div className="my-review-tag-wrapper">
                   {myReview.reviewTags.map((tag, tagIndex) => (
                     <div key={tagIndex} className="my-review-tag">
                       {tag}
                     </div>
                   ))}
                 </div>
-                <div className="review-grade">
-                  <StarGrade grade={myReview.grade} />
-                </div>
-              </div>
-            </div>
-
-            <div className="my-review-lower">
-              <div className="my-review-edit-btns">
-                {editMode === myReview.id ? (
-                  <>
-                    <button
-                      className="my-review-save-btn"
-                      onClick={() => clickSaveHandle(myReview.id)}
-                    >
-                      저장
-                    </button>
-                    <button
-                      className="my-review-cancel-btn"
-                      onClick={() => setEditMode(null)}
-                    >
-                      취소
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="my-review-edit-btn"
-                      onClick={() =>
-                        clickEditHandle(myReview.id, myReview.reviewContent)
-                      }
-                    >
-                      수정
-                    </button>
-                    <button
-                      className="my-review-delete-btn"
-                      onClick={() => clickDeleteHandle(myReview.id)}
-                    >
-                      삭제
-                    </button>
-                  </>
-                )}
+              </Link>
+              <div className="review-grade">
+                <StarGrade grade={myReview.grade} />
               </div>
             </div>
           </div>
-        </Link>
+
+          <div className="my-review-lower">
+            <div className="my-review-edit-btns">
+              {editMode === myReview.id ? (
+                <>
+                  <button
+                    className="my-review-save-btn"
+                    onClick={() => clickSaveHandle(myReview.id)}
+                  >
+                    저장
+                  </button>
+                  <button
+                    className="my-review-cancel-btn"
+                    onClick={() => setEditMode(null)}
+                  >
+                    취소
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="my-review-edit-btn"
+                    onClick={() =>
+                      clickEditHandle(myReview.id, myReview.reviewContent)
+                    }
+                  >
+                    수정
+                  </button>
+                  <button
+                    className="my-review-delete-btn"
+                    onClick={() => clickDeleteHandle(myReview.id)}
+                  >
+                    삭제
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );
