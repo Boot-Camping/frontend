@@ -1,14 +1,15 @@
-.catgory-img {
-  width: 4.5rem;
-  height: 4.5rem;
-  border-radius: 1rem;
-}
-
 .catgory {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-bottom: 3rem;
   margin-bottom: 2rem;
+}
+
+.catgory-img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1rem;
 }
 
 .catgory-title {
@@ -16,4 +17,16 @@
   justify-content: center;
   align-items: center;
   font-size: var(--sub-heading);
+}
+
+@media screen and (min-width: 800px) {
+  .catgory-img {
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 1rem;
+  }
+
+  .catgory-title {
+    font-size: var(--heading);
+  }
 }

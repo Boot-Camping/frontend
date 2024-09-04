@@ -26,7 +26,7 @@
   height: 9rem;
   border-radius: 50%;
   overflow: hidden;
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .profile-img {
@@ -61,7 +61,7 @@
 @media screen and (min-width: 1024px) {
   .user-profile-img-wrap {
     font-size: var(--heading);
-		margin-top: 3rem;
+    margin-top: 3rem;
   }
 
   .user-profile-img-wrap.underline::after {

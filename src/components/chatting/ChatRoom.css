@@ -1,0 +1,10 @@
+.chat-room-prev {
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: scaleX(-1);
+	cursor: pointer;
+}
+
+.chat-room-prev svg {
+  stroke: #000;
+}

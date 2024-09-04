@@ -22,12 +22,13 @@ const MainCampingList = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <>
+    <div className="main-camping-list underline">
       <div className="camping-title-wrapper">
         <div className="camping-title">캠핑장 리스트</div>
         <select
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
+          className="main-select-box"
         >
           <option value="updatedAt">최근 등록 순</option>
           <option value="reservedDateCount">예약 많은 순</option>
@@ -56,8 +57,10 @@ const MainCampingList = () => {
                     <Link to={`/camping/detail/${campingPlace.id}`}>
                       <img
                         className="camping-img"
-                        src={campingPlace.imageUrls}
-                        alt={campingPlace.name}
+                        src={
+                          campingPlace.imageUrls[0] || "default-image-url.jpg"
+                        }
+                        alt=""
                       />
                       <ReactSVG
                         className={`camping-img-heart ${
@@ -74,39 +77,40 @@ const MainCampingList = () => {
                       <div className="camping-name">{campingPlace.name}</div>
                       <div className="camping-sub-title-wrapper">
                         <div className="camping-type">
-                          {campingPlace.categories.join(". ")}
+                          {campingPlace.categories.join(", ")}
                         </div>
                         <div className="camping-price">
                           {campingPlace.price}원
                         </div>
                       </div>
-                    </Link>
-                    <div className="camping-info-icons-wrapper">
-                      <div className="camping-info-star-wrapper">
-                        <ReactSVG
-                          className="camping-info-star"
-                          src={svgCollection.stars}
-                          alt=""
-                        />
-                        <div className="camping-info">
-                          {campingPlace.averageGrade}
-                        </div>
-                        <div className="camping-info">
-                          ・리뷰({campingPlace.reviewCount})
-                        </div>
-                      </div>
 
-                      <div className="camping-info">
-                        예약자 수({campingPlace.reservedDateCount})
+                      <div className="camping-info-icons-wrapper">
+                        <div className="camping-info-star-wrapper">
+                          <ReactSVG
+                            className="camping-info-star"
+                            src={svgCollection.stars}
+                            alt=""
+                          />
+                          <div className="camping-info">
+                            {campingPlace.averageGrade}
+                          </div>
+                          <div className="camping-info">
+                            ・리뷰({campingPlace.reviewCount})
+                          </div>
+                        </div>
+
+                        <div className="camping-info">
+                          예약자 수({campingPlace.reservedDateCount})
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 
