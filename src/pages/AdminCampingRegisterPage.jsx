@@ -14,12 +14,10 @@ import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { post } from "../utils/api";
 
 const AdminCampingRegister = () => {
-  const [error, setError] = useState(false);
-  const [isOpened, setIsOpened] = useState(false);
   const { postcode, setPostcode } = useAddress();
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
-  const [imageUrls, setImageUrls] = useState([]);
+  const [imageFiles, setImageUrls] = useState([]);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -68,19 +66,18 @@ const AdminCampingRegister = () => {
       )
     );
 
-    categories.forEach((categories, index) => {
-      formData.append(`categories[${index}]`, categories);
+    categories.forEach((category, index) => {
+      formData.append(`categories[${index}]`, category);
     });
 
-    imageUrls.forEach((image, index) => {
+    imageFiles.forEach((image, index) => {
       if (image.file) {
-        formData.append(`imageUrls[${index}]`, image.file);
+        formData.append("imageFiles", image.file);
       }
     });
 
     const customHeaders = {
       Authorization: `${accessToken}`,
-      "Content-Type": "multipart/form-data",
     };
 
     try {
@@ -127,7 +124,7 @@ const AdminCampingRegister = () => {
         />
       </div>
       <div className="camp-img-title">사진</div>
-      <AdminImgPlus images={imageUrls} setImages={setImageUrls} />
+      <AdminImgPlus imageFiles={imageFiles} setImages={setImageUrls} />
 
       <DaumPostCode
         postcode={postcode}
