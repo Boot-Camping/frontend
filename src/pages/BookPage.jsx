@@ -30,7 +30,7 @@ const BookPage = () => {
         <div className="book-page-title">캠핑장 예약하기</div>
         <BookInfo campInfo={campInfo} />
         <div className="book-date">
-          <div className="book-date-title">캠핑기간 선택하기</div>
+          <div className="book-date-title">캠핑일정 선택하기</div>
           <DateRangePicker />
         </div>
 

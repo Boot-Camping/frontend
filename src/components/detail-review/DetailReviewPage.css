@@ -52,14 +52,20 @@
   align-items: center;
 }
 
-.no-review-img {
+.detail-review-img {
+  width: 12rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+}
+
+.detail-no-review-img {
   width: 12rem;
   height: 10rem;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid #ddd; */
+  border: 0.1rem solid var(--soft-gray);
   color: #999;
   font-size: 1rem;
   text-align: center;

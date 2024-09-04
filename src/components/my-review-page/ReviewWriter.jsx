@@ -73,9 +73,6 @@ const ReviewWriter = () => {
 
     const queryString = new URLSearchParams(params).toString();
 
-    console.log("제출하려는 reviewRequest:", reviewRequest);
-    console.log("제출하려는 formData:", formData);
-
     // post 요청
     try {
       const response = await post(
@@ -146,7 +143,7 @@ const ReviewWriter = () => {
                   selectedTags.includes(tag.id) ? "selected" : ""
                 }`}
               >
-                {tag.label}
+                {tag.value}
               </label>
             </div>
           ))}
