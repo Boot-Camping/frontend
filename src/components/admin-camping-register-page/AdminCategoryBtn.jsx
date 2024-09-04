@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AdminCampingRegister.css";
 
 const AdminCategoryBtn = ({ onCategoryChange }) => {
   // 콜백을 prop으로 받음
@@ -20,11 +21,11 @@ const AdminCategoryBtn = ({ onCategoryChange }) => {
       <div className="regi-category">
         <button
           className={`regi-category-san ${
-            selectedCategories.includes("산") ? "selected" : ""
+            selectedCategories.includes("숲속") ? "selected" : ""
           }`}
-          onClick={() => toggleCategory("산")}
+          onClick={() => toggleCategory("숲속")}
         >
-          산
+          숲속
         </button>
         <button
           className={`regi-category-sea ${
@@ -52,11 +53,11 @@ const AdminCategoryBtn = ({ onCategoryChange }) => {
         </button>
         <button
           className={`regi-category-NoKids ${
-            selectedCategories.includes("노키즈") ? "selected" : ""
+            selectedCategories.includes("키즈") ? "selected" : ""
           }`}
-          onClick={() => toggleCategory("노키즈")}
+          onClick={() => toggleCategory("키즈")}
         >
-          노키즈
+          키즈
         </button>
       </div>
       <div className="hashTag">#중복 선택 가능</div>
