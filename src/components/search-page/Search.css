@@ -145,7 +145,7 @@
 .search-camping-info-star {
   width: 1.2rem;
   height: 1.2rem;
-  color: yellow;
+  color: green;
 }
 
 .search-camping-info {
@@ -226,5 +226,27 @@
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+  .search-camping-list-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .search-camping-list {
+    width: 33rem;
+    padding: 0.5rem;
+  }
+
+  .search-camping-img {
+    width: 33rem;
+    height: 21rem;
+  }
+
+  .search-camping-img-heart {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
   }
 }
