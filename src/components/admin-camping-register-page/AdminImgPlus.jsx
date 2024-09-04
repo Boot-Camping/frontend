@@ -58,21 +58,33 @@ const AdminImgPlus = ({
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
+
+    console.log("Selected files:", files); // 선택된 파일 목록 확인
+
     const fileReaders = files.map((file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = (e) => resolve({ file, src: e.target.result });
-        reader.onerror = () => reject(new Error("File reading error"));
+        reader.onload = (e) => {
+          console.log("File read successfully:", e.target.result); // 파일 읽기 성공 시 출력
+          resolve({ file, src: e.target.result });
+        };
+        reader.onerror = (error) => {
+          console.error("File reading error:", error);
+          reject(new Error("File reading error"));
+        };
         reader.readAsDataURL(file);
       });
     });
 
     Promise.all(fileReaders)
       .then((results) => {
+        console.log("Results:", results); // 파일이 제대로 읽혀졌는지 확인
+
         setImages((prevImages) => [
           ...prevImages,
           ...results.map((result) => ({ src: result.src, file: result.file })),
         ]);
+
         if (onUploadSuccess) {
           onUploadSuccess(results.map((result) => result.file));
         }
