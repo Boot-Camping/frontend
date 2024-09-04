@@ -114,7 +114,7 @@
 
   .category-camping-list {
     width: 50rem;
-    margin-left: 7.5rem;
+    padding: 0 5.5rem;
     margin-bottom: 1rem;
   }
 
@@ -125,7 +125,7 @@
   }
 
   .category-camping-img-heart {
-    right: 1rem;
+    right: 6rem;
     width: 3rem;
     height: 3rem;
   }
@@ -146,12 +146,23 @@
     height: 2rem;
   }
 
+  .category-camping-list-wrapper {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .category-camping-list {
-    width: 39.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    width: 30rem;
+    padding: 0.5rem;
   }
 
   .category-camping-img {
-    width: 39.5rem;
+    width: 30rem;
     height: 20.2rem;
   }
 
