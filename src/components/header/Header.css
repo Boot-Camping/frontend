@@ -4,13 +4,36 @@
   align-items: center;
   padding: 1.5rem;
   background-color: white;
-  border-bottom: 0.1rem solid var(--soft-gray);
+  top: 0;
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+	z-index: 1;
+	border-bottom: 1px solid var(--bg-gray);
 }
 
 .logo {
   display: flex;
   width: 4rem;
   height: 4rem;
+}
+
+.logo1 {
+  display: flex;
+  width: 12rem;
+  height: 5rem;
+}
+
+.logo2 {
+  display: flex;
+  width: 7rem;
+  height: 6rem;
+}
+
+.logo3 {
+  display: flex;
+  width: 15rem;
+  height: 4.5rem;
 }
 
 .icons {

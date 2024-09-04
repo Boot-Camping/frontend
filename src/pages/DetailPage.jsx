@@ -21,7 +21,7 @@ const DetailPage = () => {
   }
 
   return (
-    <div>
+    <div className="detailPage">
       <ImageSlider detailImages={detailInfo.imageUrls} />
       <DetailPageInfo detailInfo={detailInfo} />
       <div className="map-title">근처 편의점 찾기</div>

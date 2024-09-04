@@ -56,7 +56,7 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
                 {data.transactionType === "DEPOSIT"
                   ? "캐시 충전"
                   : data.transactionType === "PAYMENT"
-                  ? "사용처"
+                  ? data.campName
                   : "예약 취소 환불"}
               </div>
               <div>{data.beforeTransactionCash.toLocaleString()}원</div>

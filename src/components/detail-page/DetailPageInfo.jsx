@@ -101,8 +101,8 @@ const DetailPageInfo = ({ detailInfo }) => {
 
           <div className="detail-item num">
             <ReactSVG className="detail-icon" src={svg.group} alt="group" />
-            기준 수용인원: {detailInfo.standardNum}명 <br />
-            최대 수용인원: {detailInfo.maxNum}명
+            기준 수용인원: {detailInfo.standardNum}명/ 최대 수용인원:{" "}
+            {detailInfo.maxNum}명
           </div>
 
           <div className="detail-item">

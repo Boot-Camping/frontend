@@ -1,0 +1,47 @@
+
+
+.chat-list-title {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+.chat-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--bg-gray);
+}
+
+.chat-user-wrap {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chat-user-img {
+  width: 5rem;
+  height: 5rem;
+  color: var(--bg-gray);
+}
+
+.chat-date {
+  color: var(--dark-gray);
+  font-size: var(--sub-content);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .chat-list-wrap {
+    right: 1.5rem;
+    bottom: 10rem;
+    width: 35rem;
+    height: 50rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
+  }
+}
