@@ -5,8 +5,8 @@ import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
 
 import { reviewTag } from "../../constants/reviewTag";
-import ReviewImgUploader from "./ReviewImgUploader";
-import StarRating from "./StarRating";
+import ReviewImgUploader from "../detail-review/ReviewImgUploader";
+import StarRating from "../detail-review/StarRating";
 import NormalModal from "../common/NormalModal";
 
 import { post } from "../../utils/api";
@@ -25,6 +25,7 @@ const ReviewWriter = () => {
   const [error, setError] = useState(null);
   const { userId, accessToken } = getUserIdFromToken();
   const [selectedTags, setSelectedTags] = useState([]);
+  const [myReviews, setMyReviews] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
@@ -72,6 +73,9 @@ const ReviewWriter = () => {
 
     const queryString = new URLSearchParams(params).toString();
 
+    console.log("제출하려는 reviewRequest:", reviewRequest);
+    console.log("제출하려는 formData:", formData);
+
     // post 요청
     try {
       const response = await post(
@@ -79,7 +83,9 @@ const ReviewWriter = () => {
         formData,
         customHeaders
       );
-      console.log("리뷰 제출 성공! 😄:", response);
+      const newReview = response.data;
+      setMyReviews((prevReviews) => [...prevReviews, newReview]);
+      console.log("리뷰 제출 성공! 😄:", response.data);
     } catch (error) {
       setError("리뷰 제출 에러 발생 🥲");
       console.error("리뷰 제출 에러 발생 🥲:", error);

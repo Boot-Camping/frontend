@@ -28,11 +28,12 @@ import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import SearchPage from "./pages/SearchPage";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
-import ReviewWriter from "./components/detail-review/ReviewWriter";
+import ReviewWriter from "./components/my-review-page/ReviewWriter";
 import MyReviewPage from "./pages/MyReviewPage";
 import { saveData } from "./mock/saveData";
 import { CampingDaysProvider } from "./context/campingDaysContext";
 import { AuthProvider } from "./context/authContext";
+import Chatting from "./components/chatting/Chatting";
 // import ReviewPage from "./pages/ReviewViewer";
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
             </Routes>
           </main>
         </CampingDaysProvider>
+        <Chatting />
         <Footer />
       </BrowserRouter>
     </AuthProvider>

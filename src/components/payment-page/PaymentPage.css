@@ -39,6 +39,7 @@
 .request-form {
   width: 100%;
   height: 8rem;
+  border: 0.1rem solid var(--soft-gray);
 }
 
 .input-request {
@@ -52,12 +53,13 @@
 /* PaymentAmount.jsx */
 .payment {
   padding: 2rem 0;
+  border-bottom: 0.1rem solid var(--soft-gray);
 }
 
 .payment-amount-title {
-  font-size: var(--sub-heading);
+  font-size: var(--heading);
   font-weight: bold;
-  padding-bottom: 1rem;
+  padding: 2rem 0;
 }
 
 .oneday-price,
@@ -74,12 +76,20 @@
   align-items: center;
 }
 
+.oneday-price,
+.standard-num,
+.extra-num,
+.over-charge,
+.total-num {
+  border-bottom: 0.1rem solid var(--bg-gray);
+}
+
 .camping-days {
   padding-top: 2rem;
 }
 
 .total-amount div {
-  padding-top: 2rem;
+  padding-top: 4rem;
   font-weight: bold;
   font-size: var(--sub-heading);
   color: var(--dark-green);
@@ -97,12 +107,14 @@
 
 .checkIn-checkOut-box {
   padding-top: 0.2rem;
-  font-size: var(--sub-heading);
+  font-size: var(--sub-content);
   color: var(--dark-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.checkin-box,
-.checkout-box {
+.checkIn-checkOut-date {
   display: flex;
   justify-content: space-between;
 }
@@ -210,6 +222,7 @@
 .modal-box {
   display: flex;
   justify-content: center;
+  padding-bottom: 1rem;
 }
 
 /* PaymentFailAlert.jsx */
@@ -238,4 +251,20 @@
   color: #d8000c;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media screen and (min-width: 1680px) {
+  .oneday-price,
+  .standard-num,
+  .camping-days,
+  .extra-num,
+  .over-charge,
+  .total-num,
+  .total-amount {
+    display: flex;
+    padding: 1rem 0;
+    justify-content: space-between;
+    font-size: var(--sub-heading);
+    align-items: center;
+  }
 }
