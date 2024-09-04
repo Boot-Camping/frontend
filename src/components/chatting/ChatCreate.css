@@ -32,7 +32,7 @@
 
 .chat-create-name:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 1px var(--light-green);
+  box-shadow: 0 0 0 1px var(--dark-green);
 }
 
 .chat-name-modal .chat-create-btn {

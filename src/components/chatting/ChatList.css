@@ -28,7 +28,7 @@
 }
 
 .chat-date {
-  color: var(--light-gray);
+  color: var(--dark-gray);
   font-size: var(--sub-content);
 }
 
