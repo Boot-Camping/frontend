@@ -62,21 +62,29 @@ const ChatList = ({
                 onClick={() => joinHandle(data.id)}
               >
                 <div className="chat-user-wrap">
-                  <ReactSVG
-                    src={svgCollection.userImg}
-                    className="chat-user-img"
-                  />
-                  <div className="chat-name">
-                    <div>채팅방 이름 : {data.name}</div>
-										<div>개설자 : {data.createdBy}</div>
-                    <div>
-                      {/* {data.joinedBy === "admin" ? "부트캠핑" : data.joinedBy} */}
-											참여자 : {data.joinedBy}
+                  {data.joinedBy ? (
+                    <ReactSVG
+                      src={svgCollection.users}
+                      className="chat-user-img chat-users-img"
+                    />
+                  ) : (
+                    <ReactSVG
+                      src={svgCollection.userImg}
+                      className="chat-user-img"
+                    />
+                  )}
+                  <div className="chat-name-wrap">
+                    <div>{data.name}</div>
+                    <div className="chat-date">
+                      {relativeDate(data.createdAt)}
                     </div>
                   </div>
                 </div>
-                {/* <div className="chat-date">{relativeDate(data.createdAt)}</div> */}
-                <div className="chat-date">{data.createdAt}</div>
+
+                <div className="chat-by">
+                  <div>{data.createdBy}</div>
+                  <div>{data.joinedBy}</div>
+                </div>
               </div>
             ))
           : errorMessage && (
