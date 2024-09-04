@@ -17,8 +17,8 @@ const ChatRoom = ({
   const { accessToken, userId } = getUserIdFromToken();
   const socket = useRef(null);
   const [chatStart, setChatStart] = useState(false);
-	const [message, setMessage] = useState("");
-	const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const outHandle = () => {
     setJoin(false);
@@ -47,13 +47,13 @@ const ChatRoom = ({
     }
   };
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const WEBSOCKET_URL = import.meta.env.VITE_WEBSOCKET_URL;
 
   useEffect(() => {
     chatJoinHandle();
 
     socket.current = new WebSocket(
-      `ws://${API_BASE_URL}/chat?userId=${userId}`
+      `${WEBSOCKET_URL}/chat?userId=${userId}&chatId=${currentId}`
     );
 
     socket.current.onopen = () => {
@@ -81,13 +81,17 @@ const ChatRoom = ({
     };
   }, [currentId]);
 
-	const sendMessageHandle = () => {
-		if(message.trim()) {
-			const messageData = {userId, text: message};
-			socket.current.send(JSON.stringify(messageData));
-			setMessage("");
-		}
-	}
+  const sendMessageHandle = () => {
+    if (message.trim()) {
+      const payload = JSON.stringify({
+        chatRoomId: currentId,
+        content: message,
+      });
+
+      socket.current.send(payload);
+      setMessage("");
+    }
+  };
 
   return (
     <div className="chat-room-wrap">
@@ -97,19 +101,22 @@ const ChatRoom = ({
         onClick={outHandle}
       />
 
-      {errorMessage && <EmptyContent errorMessage={errorMessage} />}
-
-			{/* <button onClick={chatJoinHandle}>채팅참여</button> */}
+      {errorMessage && <EmptyContent errorMessage={errorMessage} error={error} />}
 
       {chatStart && (
         <div className="chat-room-open">
           <div className="chat-message-wrap">
-						{messages.map((msg, index) => (
-							<div key={`message${index + 1}`}>{msg.text}</div>
-						))}
-					</div>
-					<input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="메시지를 입력하세요" />
-					<button onClick={sendMessageHandle}>전송</button>
+            {messages.map((msg, index) => (
+              <div key={`message${index + 1}`}>{msg.content}</div>
+            ))}
+          </div>
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="메시지를 입력하세요"
+          />
+          <button onClick={sendMessageHandle}>전송</button>
           <button onClick={outHandle}>채팅 종료</button>
         </div>
       )}
