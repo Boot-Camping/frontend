@@ -17,27 +17,9 @@ const DateRangePicker = () => {
     },
   ]);
 
-  const [open, setOpen] = useState(false);
   const refOne = useRef(null);
 
   const { setCampingDays, setCheckIn, setCheckOut } = useCampingDays();
-
-  useEffect(() => {
-    document.addEventListener("keydown", hideOnEscape, true);
-    document.addEventListener("click", hideOnClickOutside, true);
-  }, []);
-
-  const hideOnEscape = (e) => {
-    if (e.key === "Escape") {
-      setOpen(false);
-    }
-  };
-
-  const hideOnClickOutside = (e) => {
-    if (refOne.current && !refOne.current.contains(e.target)) {
-      setOpen(false);
-    }
-  };
 
   // startDate와 endDate 차이 일수 계산
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
@@ -53,28 +35,25 @@ const DateRangePicker = () => {
   return (
     <div className="calendar-wrap underline">
       <div ref={refOne}>
-        {open && (
-          <DateRange
-            onChange={(item) => setRange([item.selection])}
-            editableDateInputs={true}
-            moveRangeOnFirstSelection={false}
-            ranges={range}
-            months={1}
-            direction="horizontal"
-            className="calendar-element"
-          />
-        )}
+        <DateRange
+          onChange={(item) => setRange([item.selection])}
+          editableDateInputs={true}
+          moveRangeOnFirstSelection={false}
+          ranges={range}
+          months={1}
+          direction="horizontal"
+          className="calendar-element"
+        />
       </div>
 
-      <input
+      {/* <input
         value={`${format(range[0].startDate, "yyyy/MM/dd")} 부터 ${format(
           range[0].endDate,
           "yyyy/MM/dd"
         )}까지`}
         readOnly
         className="inputbox"
-        onClick={() => setOpen((open) => !open)}
-      />
+      /> */}
 
       <div className="nights-days-info">
         선택하신 캠핑일정은{""}

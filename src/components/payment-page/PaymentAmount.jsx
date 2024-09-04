@@ -49,7 +49,7 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
 
   return (
     <div>
-      <div className="payment underline">
+      <div className="payment">
         <h3 className="payment-amount-title">결제금액</h3>
 
         <div className="oneday-price">

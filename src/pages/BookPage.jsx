@@ -26,7 +26,7 @@ const BookPage = () => {
 
   return (
     <>
-      <div className="book-page underline">
+      <div className="book-page">
         <div className="book-page-title">캠핑장 예약하기</div>
         <BookInfo campInfo={campInfo} />
         <div className="book-date">
