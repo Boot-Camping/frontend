@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../main-page/MainReview.css";
 import { get } from "../../utils/api";
+import { relativeDate } from "../../utils/relativeDate";
 
 const MainReview = () => {
   const [reviews, setReviews] = useState([]);
@@ -53,7 +54,9 @@ const MainReview = () => {
             </div>
             <div className="main-review-info-wrapper">
               <div className="main-review-content">{review.content}</div>
-              <div className="main-review-createdAt">{review.createdAt}</div>
+              <div className="main-review-createdAt">
+                {relativeDate(review.createdAt)}
+              </div>
               <div className="main-review-campName">{review.campName}</div>
             </div>
           </SwiperSlide>
