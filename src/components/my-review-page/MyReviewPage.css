@@ -1,3 +1,21 @@
+.my-review-title-wrap {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.my-review-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.my-review-move-prev svg {
+  stroke: #000;
+}
+
 .my-review .review-box {
   border-bottom: 0.1rem solid var(--soft-gray);
 }
@@ -18,6 +36,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.my-review-img {
+  width: 12rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+}
+
+.my-no-review-img {
+  width: 12rem;
+  height: 10rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid var(--soft-gray);
+  color: #999;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+.my-review-tag-wrapper {
+  display: flex;
+}
+
+.my-review-tag {
+  color: var(--light-green);
+  font-size: var(--sub-content);
+  font-weight: bold;
+  border: 0.1rem solid var(--light-green);
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  margin: 1rem 0.5rem 0 0;
 }
 
 .review-edit-content {
@@ -42,36 +94,6 @@
   padding-bottom: 1rem;
 }
 
-.my-review-img {
-  width: 12rem;
-  height: 10rem;
-  border-radius: 0.5rem;
-}
-
-.my-no-review-img {
-  width: 12rem;
-  height: 10rem;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0.1rem solid var(--soft-gray);
-  color: #999;
-  font-size: 1rem;
-  text-align: center;
-  border-radius: 1rem;
-}
-
-.my-review-tag {
-  color: var(--light-green);
-  font-size: var(--sub-content);
-  font-weight: bold;
-  border: 0.1rem solid var(--light-green);
-  border-radius: 0.3rem;
-  padding: 0.2rem 0.5rem;
-  margin-top: 1rem;
-}
-
 .my-review-date {
   font-size: var(--sub-content);
   font-weight: bold;
@@ -85,7 +107,8 @@
 
 .my-review-edit-btn,
 .my-review-save-btn,
-.my-review-cancel-btn {
+.my-review-cancel-btn,
+.my-review-delete-btn {
   font-size: var(--sub-content);
   background-color: white;
   border-radius: 0.3rem;
