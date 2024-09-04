@@ -28,7 +28,7 @@ const CategoryCampingList = () => {
 
   if (error) return <div>Error: {error}</div>;
   return (
-    <>
+    <div className="category-wrapper underline">
       <div className="category-title-wrapper">
         <div className="category-title">{categoryTitle}</div>
         <select
@@ -111,7 +111,7 @@ const CategoryCampingList = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
