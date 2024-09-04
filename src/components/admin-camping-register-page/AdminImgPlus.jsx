@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 
 const AdminImgPlus = ({
   initialImages = [],
-  images,
+  imageFiles,
   setImages,
   onUploadSuccess,
   onUploadError,
@@ -103,7 +103,7 @@ const AdminImgPlus = ({
           onChange={handleImageChange}
         />
         <div className="img-previews">
-          {images.map((image, index) => (
+          {imageFiles.map((image, index) => (
             <div key={index} className="img-preview-container">
               <div
                 className="img-preview"
