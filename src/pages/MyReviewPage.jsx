@@ -9,6 +9,7 @@ import deleteMyReview from "../utils/deleteMyReview";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { formatDate } from "../utils/formatDate";
 import ReplyViewer from "../components/detail-review/ReplyViewer";
+import StarGrade from "../components/detail-review/StarGrade";
 
 const svg = svgCollection;
 
@@ -76,62 +77,86 @@ const MyReviewPage = () => {
       <div className="review-title">나의 리뷰</div>
       {myReviews.map((myReview, index) => (
         <div key={index} className="review-box">
-          <div className="upper-box">
-            <div className="my-review-camp-name">{myReview.campName}</div>
-            <div className="review-date">
-              작성일: {formatDate(myReview.createdAt)}
+          <div className="my-review-upper">
+            <div className="my-review-left-box">
+              <div className="my-review-camp-name">{myReview.campName}</div>
+              <div className="my-review-date">
+                {formatDate(myReview.createdAt)}
+              </div>
+              <div className="review-edit-box">
+                {editMode === myReview.id ? (
+                  <textarea
+                    value={editedContent}
+                    onChange={(e) => setEditedContent(e.target.value)}
+                    className="review-edit-content"
+                  />
+                ) : (
+                  <div className="my-review-content">
+                    {myReview.reviewContent}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="middle-box">
-            {myReview.reviewImage && myReview.reviewImage.length > 0 ? (
-              <img className="review-img" src={myReview.reviewImage} alt="" />
-            ) : (
-              <div className="no-review-img">리뷰 사진이 없습니다</div>
-            )}
-            <div className="review-edit-box">
-              {editMode === myReview.id ? (
-                <textarea
-                  value={editedContent}
-                  onChange={(e) => setEditedContent(e.target.value)}
-                  className="review-edit-content"
+
+            <div className="my-review-right-box">
+              {myReview.reviewImages && myReview.reviewImages.length > 0 ? (
+                <img
+                  className="review-img"
+                  src={myReview.reviewImages}
+                  alt=""
                 />
               ) : (
-                <div className="review-content">{myReview.content}</div>
+                <div className="no-review-img">리뷰 사진이 없습니다</div>
               )}
+              <div className="review-upper-tag">
+                {myReview.reviewTags.map((tag, tagIndex) => (
+                  <div key={tagIndex} className="review-tag">
+                    {tag}
+                  </div>
+                ))}
+              </div>
+              <div className="review-grade">
+                <StarGrade grade={myReview.grade} />
+              </div>
             </div>
           </div>
-          <div className="review-edit-btns">
-            {editMode === myReview.id ? (
-              <>
-                <button
-                  className="review-save-btn"
-                  onClick={() => clickSaveHandle(myReview.id)}
-                >
-                  저장
-                </button>
-                <button
-                  className="review-cancel-btn"
-                  onClick={() => setEditMode(null)}
-                >
-                  취소
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  className="review-edit-btn"
-                  onClick={() => clickEditHandle(myReview.id, myReview.content)}
-                >
-                  수정
-                </button>
-                <button
-                  className="review-delete-btn"
-                  onClick={() => clickDeleteHandle(myReview.id)}
-                >
-                  삭제
-                </button>
-              </>
-            )}
+
+          <div className="my-review-lower">
+            <div className="my-review-edit-btns">
+              {editMode === myReview.id ? (
+                <>
+                  <button
+                    className="review-save-btn"
+                    onClick={() => clickSaveHandle(myReview.id)}
+                  >
+                    저장
+                  </button>
+                  <button
+                    className="review-cancel-btn"
+                    onClick={() => setEditMode(null)}
+                  >
+                    취소
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="review-edit-btn"
+                    onClick={() =>
+                      clickEditHandle(myReview.id, myReview.reviewContent)
+                    }
+                  >
+                    수정
+                  </button>
+                  <button
+                    className="review-delete-btn"
+                    onClick={() => clickDeleteHandle(myReview.id)}
+                  >
+                    삭제
+                  </button>
+                </>
+              )}
+            </div>
           </div>
 
           {/* <div className="review-reply-box">
@@ -141,7 +166,7 @@ const MyReviewPage = () => {
             </div>
             {visibleReplies[index] && <ReplyViewer reviewId={myReview.id} />}
           </div> */}
-          <ReplyViewer reviewId={myReview.id} />
+          {/* <ReplyViewer reviewId={myReview.id} /> */}
         </div>
       ))}
     </div>

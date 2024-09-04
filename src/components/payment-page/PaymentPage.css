@@ -39,6 +39,7 @@
 .request-form {
   width: 100%;
   height: 8rem;
+  border: 0.1rem solid var(--soft-gray);
 }
 
 .input-request {
@@ -97,12 +98,14 @@
 
 .checkIn-checkOut-box {
   padding-top: 0.2rem;
-  font-size: var(--sub-heading);
+  font-size: var(--sub-content);
   color: var(--dark-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.checkin-box,
-.checkout-box {
+.checkIn-checkOut-date {
   display: flex;
   justify-content: space-between;
 }
@@ -210,6 +213,7 @@
 .modal-box {
   display: flex;
   justify-content: center;
+  padding-bottom: 1rem;
 }
 
 /* PaymentFailAlert.jsx */

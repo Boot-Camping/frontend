@@ -2,21 +2,34 @@
   border-bottom: 0.1rem solid var(--soft-gray);
 }
 
-.upper-box {
+.my-review-upper {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 2rem 0 1rem 0;
 }
 
-.middle-box {
-  display: flex;
+.my-review-left-box {
+  align-items: center;
   justify-content: space-between;
+  padding: 2rem 1rem 1rem 0;
+}
+
+.my-review-right-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-review-content {
+  font-size: var(--content);
+  padding: 1rem 0;
+  padding-right: 3rem;
 }
 
 .my-review-camp-name {
   font-size: var(--content);
   font-weight: bold;
+  padding-bottom: 1rem;
 }
 
 .my-review .review-img {
@@ -25,7 +38,7 @@
   border-radius: 0.5rem;
 }
 
-.review-date {
+.my-review-date {
   font-size: var(--sub-content);
   font-weight: bold;
   color: var(--light-gray);
@@ -36,7 +49,7 @@
   flex-direction: column;
 }
 
-.review-edit-btns {
+.my-review-edit-btns {
   display: flex;
   padding: 1rem 0;
 }
@@ -54,7 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     color: #999;
     font-size: 1rem;
     text-align: center;
