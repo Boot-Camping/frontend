@@ -57,8 +57,10 @@ const MainCampingList = () => {
                     <Link to={`/camping/detail/${campingPlace.id}`}>
                       <img
                         className="camping-img"
-                        src={campingPlace.imageUrls}
-                        alt={campingPlace.name}
+                        src={
+                          campingPlace.imageUrls[0] || "default-image-url.jpg"
+                        }
+                        alt=""
                       />
                       <ReactSVG
                         className={`camping-img-heart ${
@@ -75,7 +77,7 @@ const MainCampingList = () => {
                       <div className="camping-name">{campingPlace.name}</div>
                       <div className="camping-sub-title-wrapper">
                         <div className="camping-type">
-                          {campingPlace.categories.join(". ")}
+                          {campingPlace.categories.join(", ")}
                         </div>
                         <div className="camping-price">
                           {campingPlace.price}원
