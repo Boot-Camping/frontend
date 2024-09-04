@@ -27,3 +27,12 @@
   opacity: 1;
   border-radius: 1rem;
 }
+
+@media screen and (min-width: 800px) {
+  .slider-title {
+    font-size: 2.5rem;
+  }
+  .slider-main {
+    height: 30rem;
+  }
+}

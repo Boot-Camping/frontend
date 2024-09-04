@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MainCategory = () => {
   return (
     <>
-      <ul className="catgory">
+      <ul className="catgory underline">
         <li>
           <Link to="/categorypage/전체">
             <img

@@ -9,8 +9,10 @@ const MainPage = () => {
     <>
       <MainSlider />
       <MainCategory />
-      <MainReview />
-      <MainCampingList />
+      <div className="main-page">
+        <MainReview />
+        <MainCampingList />
+      </div>
     </>
   );
 };
