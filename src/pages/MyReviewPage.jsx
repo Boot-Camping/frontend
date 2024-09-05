@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 
@@ -13,11 +13,9 @@ import { formatDate } from "../utils/formatDate";
 import StarGrade from "../components/detail-review/StarGrade";
 import { reviewTag } from "../constants/reviewTag";
 
-const svg = svgCollection;
-
 const MyReviewPage = () => {
   const { userId, accessToken } = getUserIdFromToken();
-  const { myReviews, loading, error, setMyReviews } = useMyReview(
+  const { myReviews, setMyReviews, fetchMyReviews } = useMyReview(
     userId,
     accessToken
   );
@@ -29,6 +27,18 @@ const MyReviewPage = () => {
   const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
   const [editedContent, setEditedContent] = useState(""); // 수정된 내용 저장
 
+  const refreshReviews = async () => {
+    try {
+      await fetchMyReviews();
+    } catch (error) {
+      console.error("리뷰 갱신 실패:", error);
+    }
+  };
+
+  useEffect(() => {
+    refreshReviews();
+  }, [userId, accessToken]);
+
   const clickEditHandle = (reviewId, currentContent) => {
     setEditMode(reviewId);
     setEditedContent(currentContent);
@@ -36,7 +46,6 @@ const MyReviewPage = () => {
 
   const clickSaveHandle = async (reviewId) => {
     const content = editedContent;
-
     const imageUrls =
       myReviews.find((review) => review.id === reviewId)?.reviewImages || [];
 
@@ -127,7 +136,7 @@ const MyReviewPage = () => {
                     </div>
                   ))}
                 </div>
-                <div className="review-grade">
+                <div className="my-review-grade">
                   <StarGrade grade={myReview.grade} />
                 </div>
               </div>

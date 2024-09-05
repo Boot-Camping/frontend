@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
@@ -16,6 +16,7 @@ const svg = svgCollection;
 
 const ReviewWriter = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const reviewData = location.state?.reviewData;
   const campId = reviewData.campId;
 
@@ -79,18 +80,13 @@ const ReviewWriter = () => {
         formData,
         customHeaders
       );
-      const newReview = response.data;
-      setMyReviews((prevReviews) => [...prevReviews, newReview]);
+      setMyReviews((prevReviews) => [...prevReviews, response.data]);
       console.log("리뷰 제출 성공! 😄:", response.data);
+
+      setIsModalOpen(true);
     } catch (error) {
       setError("리뷰 제출 에러 발생 🥲");
       console.error("리뷰 제출 에러 발생 🥲:", error);
-      if (error.response) {
-        console.error("서버 응답 상태 코드:", error.response.status);
-        console.error("서버 응답 데이터:", error.response.data);
-      } else {
-        console.error("요청 오류:", error.message);
-      }
     }
   };
 
@@ -108,6 +104,7 @@ const ReviewWriter = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    navigate("/mypage/myreview");
   };
 
   return (
@@ -158,8 +155,8 @@ const ReviewWriter = () => {
       />
 
       <div className="img-input-box">
-        <div className="img-input-title">이미지를 등록해주세요.</div>
-        <ReviewImgUploader maxImages={5} setReviewImages={setReviewImages} />
+        <div className="img-input-title">이미지를 등록해주세요 (최대 4장)</div>
+        <ReviewImgUploader maxImages={4} setReviewImages={setReviewImages} />
       </div>
 
       <button

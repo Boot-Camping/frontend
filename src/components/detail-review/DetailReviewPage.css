@@ -67,8 +67,8 @@
 .detail-no-review-img {
   grid-column: span 2;
   text-align: center;
-  width: 10rem;
-  height: 7rem;
+  width: 20.5rem;
+  height: 14.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -336,8 +336,8 @@
     border-radius: 1rem;
   }
   .detail-no-review-img {
-    width: 20rem;
-    height: 15rem;
+    width: 30.5rem;
+    height: 22.5rem;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -359,9 +359,15 @@
 
 /* PC용 CSS */
 @media screen and (min-width: 1680px) {
+  .detail-review-img {
+    width: 20rem;
+    height: 15rem;
+    border-radius: 1rem;
+  }
+
   .detail-no-review-img {
-    width: 30rem;
-    height: 20rem;
+    width: 40.5rem;
+    height: 30.5rem;
     background-color: white;
     display: flex;
     justify-content: center;
