@@ -4,11 +4,10 @@ import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import PortalModal from "../common/PortalModal";
 import { closeModal } from "../../utils/closeModal";
 import EmptyContent from "../common/EmptyContent";
 
-const ChatCreate = ({ setJoin, joinHandle }) => {
+const ChatCreate = ({ setJoin, joinHandle, getChatListData }) => {
   const { accessToken, userId } = getUserIdFromToken();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -27,13 +26,15 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
   const resetHandle = () => {
     closeModal(setIsOpened)();
     setInputName("");
+		setError(false);
+		setErrorMessage("");
   };
 
   const createChatRoomHandle = async () => {
     if (inputName === "") {
       setError(true);
       setErrorMessage("Message: 필수 입력사항입니다");
-			return;
+      return;
     }
 
     const customHeaders = {
@@ -45,6 +46,7 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
     try {
       await post(`chatRooms/${userId}?${queryString}`, {}, customHeaders);
       // joinHandle();
+      getChatListData();
       closeModal(setIsOpened)();
       setInputName("");
     } catch (error) {
@@ -57,12 +59,12 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
   return (
     <>
       <button className="chat-create-btn" onClick={createChatBtnHandle}>
-        문의하기
+        채팅방 만들기
         <ReactSVG src={svgCollection.send} className="chat-create-icon" />
       </button>
 
       {isOpened && (
-        <PortalModal setIsOpened={setIsOpened}>
+        <>
           <div className="overlay" onClick={resetHandle}></div>
           <div className="chat-name-modal modal">
             <label>채팅방 이름을 입력해주세요</label>
@@ -81,7 +83,7 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
               완료
             </button>
           </div>
-        </PortalModal>
+        </>
       )}
     </>
   );

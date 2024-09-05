@@ -3,15 +3,13 @@
   right: -100%;
   bottom: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 7rem);
   background: #fff;
   padding: 3rem;
   box-sizing: border-box;
   font-size: var(--sub-heading);
   transition: right 0.5s ease;
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 1;
+  overflow: hidden;
 }
 
 .chat-modal.chat-open {
@@ -38,7 +36,7 @@
   .chat-modal {
     bottom: 10rem;
     width: 40rem;
-    height: 55rem;
+    height: 65rem;
     border-radius: 2rem;
     box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
     z-index: auto;

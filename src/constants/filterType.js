@@ -28,19 +28,9 @@ export const filterType = {
       class: "use-filter",
     },
     {
-      status: "REFUND",
+      status: "REWARD",
       type: "환불",
       class: "charge-filter",
-    },
-  ],
-  notice: [
-    {
-      type: "공지사항",
-      class: "notice-filter",
-    },
-    {
-      type: "이벤트",
-      class: "event-filter",
     },
   ],
 };

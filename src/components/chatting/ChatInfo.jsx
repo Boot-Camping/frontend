@@ -1,9 +1,9 @@
 import React from "react";
 import "./ChatInfo.css";
-import logoImg from "../../assets/image/camping.png";
+import logoImg from "../../assets/image/logo0.png";
 import ChatCreate from "./ChatCreate";
 
-const ChatInfo = ({ setJoin, joinHandle }) => {
+const ChatInfo = ({ setJoin, joinHandle, getChatListData }) => {
   return (
     <div className="chat-info-wrap">
       <div className="chat-info">
@@ -11,13 +11,15 @@ const ChatInfo = ({ setJoin, joinHandle }) => {
           <img src={logoImg} />
         </div>
         <ul>
-          <li>
-            안녕하세요! <span>부트캠핑</span>입니다
-          </li>
-          <li>궁금하신 점이 있으시면 문의해 주세요</li>
+          <li>캠퍼들끼리 자유롭게 정보와 팁을 나누는 공간입니다</li>
+          <li>캠핑의 즐거움을 함께 나누세요!</li>
         </ul>
       </div>
-      <ChatCreate setJoin={setJoin} joinHandle={joinHandle} />
+      <ChatCreate
+        setJoin={setJoin}
+        joinHandle={joinHandle}
+        getChatListData={getChatListData}
+      />
     </div>
   );
 };

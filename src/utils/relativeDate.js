@@ -29,9 +29,9 @@ export const relativeDate = (dateString) => {
       return `${diffHours}시간 전`;
     }
   } else if (diffDays < 7) {
-    return `${diffDays}일 전`;
+    return `${diffDays + 1}일 전`;
   } else {
-    const month = inputDate.getMonth();
+    const month = inputDate.getMonth() + 1;
     const day = inputDate.getDate();
     return `${month}월 ${day}일`;
   }

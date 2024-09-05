@@ -35,6 +35,12 @@
   width: 35rem;
 }
 
+.rdrInRange,
+.rdrStartEdge,
+.rdrEndEdge {
+  color: var(--light-green) !important;
+}
+
 /* 테블릿용 CSS */
 @media screen and (min-width: 1024px) {
   .calendar-wrap .rdrMonth {
