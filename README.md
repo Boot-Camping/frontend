@@ -49,11 +49,8 @@
 
 - **메인 페이지**
   - 전체 캠핑지 조회
-    ![전체 캠핑지 조회](./src/assets/readMe/mainPage-1.png)
   - 카테고리별 캠핑지 조회
-    ![카테고리별 캠핑지 조회](./src/assets/readMe/categoryPage.png)
   - 캠핑지 검색 및 최근 검색기록 조회
-    ![캠핑지 검색](./src/assets/readMe/searchPage.png)
   - 캠핑지 '찜하기'
   - 유저 리뷰 조회
 
