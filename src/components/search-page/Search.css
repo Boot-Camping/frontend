@@ -230,7 +230,7 @@
 }
 
 @media screen and (min-width: 1680px) {
-  .search-camping-list-wrapper {
+  .search-results {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -248,5 +248,28 @@
     position: absolute;
     top: 1rem;
     right: 1.2rem;
+  }
+
+  .search-addr {
+    width: 14rem;
+    font-size: var(--sub-heading);
+    height: auto;
+    padding: 1rem 0;
+  }
+  .search-text {
+    font-size: 2rem;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .search-text::placeholder {
+    font-size: 2rem;
+    vertical-align: middle;
+  }
+
+  .search-submit-Btn {
+    width: 8rem;
+    height: auto;
+    padding: 1rem 0;
   }
 }
