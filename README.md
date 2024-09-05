@@ -1,5 +1,3 @@
-![boot-camping 로고](./images/boot-camping-logo.png)
-
 ## 🙌 안녕하세요, boot-camping 프론트엔드 팀 입니다!
 
 ## 🗓️ 프로젝트 기간: 2024년 8월 12일 ~ 9월 6일
@@ -16,6 +14,7 @@
 2. boot-camping은 주소 검색 API 및 카카오 지도 API를 활용하였으며, 찜하기, 리뷰작성 및 채팅기능 등 다양한 시도를 한 프로젝트 입니다.
 
 ## 🏁 boot-camping 로고
+<img src="https://github.com/user-attachments/assets/7a51e066-f302-42b7-b8e3-e52ea500c893" alt="searchPage1" width= "300" height="75">
 
 ## 🏠 배포주소 및 Github 주소
 
@@ -29,8 +28,7 @@
 - Development: React, JavaScript
 - Communication: Notion, Discord
 
-## 🧑‍💻 팀소개
-
+## 🧑‍💻 팀원소개 및 담당업무
 ### 이연주(CTO)
 
 - **회원기능**
@@ -48,12 +46,13 @@
   <img src="https://github.com/user-attachments/assets/77434b76-36d1-468d-b0cd-5fe2c802673e" alt="searchPage1" width="150">
   <img src="https://github.com/user-attachments/assets/537fec7b-14e2-4df6-8c2b-09f5e2c13c77" alt="searchPage2" width="150">
   <img src="https://github.com/user-attachments/assets/a55abc1f-413c-4118-b300-5dc95b423291" alt="searchPage" width="150">
-   <img src="https://github.com/user-attachments/assets/e2151e0c-c276-4bfe-92c1-215211c451f6" alt="searchPage" width="150">
-   </div>
-    <div style="display: flex;">
-    <img src="https://github.com/user-attachments/assets/72180924-a007-4c67-ab70-e6033ef83080" alt="searchPage" width="150">
-    <img src="https://github.com/user-attachments/assets/db29a4ce-4ad2-4d34-8cc0-ec33dc2258eb" alt="searchPage" width="150">
-    <img src="https://github.com/user-attachments/assets/316bc3ef-cc90-4925-bd2c-0773439d77ef" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/e2151e0c-c276-4bfe-92c1-215211c451f6" alt="searchPage" width="150">
+</div>
+
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/72180924-a007-4c67-ab70-e6033ef83080" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/db29a4ce-4ad2-4d34-8cc0-ec33dc2258eb" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/316bc3ef-cc90-4925-bd2c-0773439d77ef" alt="searchPage" width="150">
 </div>
 
 ### 이성민
@@ -81,6 +80,11 @@
   - 전체 회원 조회
   - 전체 리뷰 조회
   - 리뷰 삭제
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/3fec7698-aecf-4bc4-9d29-1a303e407c73" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/2e9b1f9f-ff09-4a64-9bc6-d8abd1eb1b24" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/ccbad79a-0bab-4d0a-82af-01d92357cbda" alt="searchPage" width="150">
+</div>
 
 ### 이세원
 
