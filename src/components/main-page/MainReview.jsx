@@ -39,8 +39,8 @@ const MainReview = () => {
         direction="vertical"
         spaceBetween={10}
         scrollbar={{
-          hide: false, // 스크롤바를 항상 보이게 설정
-          draggable: true, // 스크롤바를 드래그할 수 있게 설정
+          hide: false,
+          draggable: true,
         }}
       >
         {reviews.map((review, index) => (
