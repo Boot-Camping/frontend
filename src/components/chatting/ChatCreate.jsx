@@ -4,7 +4,6 @@ import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import PortalModal from "../common/PortalModal";
 import { closeModal } from "../../utils/closeModal";
 import EmptyContent from "../common/EmptyContent";
 
@@ -27,6 +26,8 @@ const ChatCreate = ({ setJoin, joinHandle, getChatListData }) => {
   const resetHandle = () => {
     closeModal(setIsOpened)();
     setInputName("");
+		setError(false);
+		setErrorMessage("");
   };
 
   const createChatRoomHandle = async () => {
@@ -63,7 +64,7 @@ const ChatCreate = ({ setJoin, joinHandle, getChatListData }) => {
       </button>
 
       {isOpened && (
-        <PortalModal setIsOpened={setIsOpened}>
+        <>
           <div className="overlay" onClick={resetHandle}></div>
           <div className="chat-name-modal modal">
             <label>채팅방 이름을 입력해주세요</label>
@@ -82,7 +83,7 @@ const ChatCreate = ({ setJoin, joinHandle, getChatListData }) => {
               완료
             </button>
           </div>
-        </PortalModal>
+        </>
       )}
     </>
   );
