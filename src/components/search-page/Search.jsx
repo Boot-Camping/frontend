@@ -4,6 +4,7 @@ import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import useWishlist from "../../hooks/useWishlist";
 import useSearch from "../../hooks/useSearch";
+import { Link } from "react-router-dom";
 
 const Search = () => {
   const {
@@ -89,64 +90,68 @@ const Search = () => {
         <div className="search-results">
           {searchResults.map((campingPlace, index) => (
             <div key={campingPlace.id} className="search-camping-list">
-              <img
-                className="search-camping-img"
-                src={campingPlace.imageUrls[0] || "default-image-url.jpg"}
-                alt=""
-              />
+              <Link to={`/camping/detail/${campingPlace.id}`}>
+                <img
+                  className="search-camping-img"
+                  src={campingPlace.imageUrls[0] || "default-image-url.jpg"}
+                  alt=""
+                />
 
-              <ReactSVG
-                className={`search-camping-img-heart ${
-                  !isSaved[index] && "search-camping-img-heart-delete"
-                }`}
-                src={svgCollection.heart}
-                alt=""
-                onClick={(e) => {
-                  e.preventDefault();
-                  toggleWishlist(index, campingPlace);
-                }}
-              />
+                <ReactSVG
+                  className={`search-camping-img-heart ${
+                    !isSaved[index] && "search-camping-img-heart-delete"
+                  }`}
+                  src={svgCollection.heart}
+                  alt=""
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleWishlist(index, campingPlace);
+                  }}
+                />
 
-              <div className="search-camping-type">
-                {campingPlace.categories.join(", ")}
-              </div>
-              <div className="search-camping-sub-title-wrapper">
-                <div className="search-camping-name">{campingPlace.name}</div>
-                <div className="search-camping-price">
-                  {campingPlace.price.toLocaleString()}원
+                <div className="search-camping-type">
+                  {campingPlace.categories.join(", ")}
                 </div>
-              </div>
-              <div className="search-camping-addr-wrapper">
-                <div className="search-camping-addr-icon-wrapper">
-                  <ReactSVG
-                    className="search-camping-addr-icon"
-                    src={svgCollection.location}
-                    alt="위치"
-                  />
-                  <div className="search-camping-addr">{campingPlace.addr}</div>
-                </div>
-                <div className="search-camping-people">
-                  기준인원/{campingPlace.standardNum}
-                </div>
-              </div>
-              <div className="search-camping-info-icons-wrapper">
-                <div className="search-camping-info-star-wrapper">
-                  <ReactSVG
-                    className="search-camping-info-star"
-                    src={svgCollection.stars}
-                    alt=""
-                  />
-                  <div className="search-camping-info">
-                    {campingPlace.averageGrade}
-                  </div>
-                  <div className="search-camping-info">
-                    ・리뷰({campingPlace.reviewCount})
+                <div className="search-camping-sub-title-wrapper">
+                  <div className="search-camping-name">{campingPlace.name}</div>
+                  <div className="search-camping-price">
+                    {campingPlace.price.toLocaleString()}원
                   </div>
                 </div>
-                <div className="search-camping-info">
-                  예약({campingPlace.reservedDateCount})
+                <div className="search-camping-addr-wrapper">
+                  <div className="search-camping-addr-icon-wrapper">
+                    <ReactSVG
+                      className="search-camping-addr-icon"
+                      src={svgCollection.location}
+                      alt="위치"
+                    />
+                    <div className="search-camping-addr">
+                      {campingPlace.addr}
+                    </div>
+                  </div>
+                  <div className="search-camping-people">
+                    기준인원/{campingPlace.standardNum}
+                  </div>
                 </div>
-              </div>
+                <div className="search-camping-info-icons-wrapper">
+                  <div className="search-camping-info-star-wrapper">
+                    <ReactSVG
+                      className="search-camping-info-star"
+                      src={svgCollection.stars}
+                      alt=""
+                    />
+                    <div className="search-camping-info">
+                      {campingPlace.averageGrade}
+                    </div>
+                    <div className="search-camping-info">
+                      ・리뷰({campingPlace.reviewCount})
+                    </div>
+                  </div>
+                  <div className="search-camping-info">
+                    예약({campingPlace.reservedDateCount})
+                  </div>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
