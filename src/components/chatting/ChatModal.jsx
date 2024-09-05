@@ -10,12 +10,18 @@ import { useLocation } from "react-router-dom";
 const ChatModal = ({ isOpen, animating, onClose }) => {
   const [join, setJoin] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [chatName, setChatName] = useState("");
+	const [createdBy, setCreatedBy] = useState("");
+	const [joinedBy, setJoinedBy] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const location = useLocation();
 
-  const joinHandle = (id) => {
+  const joinHandle = (id, name, createdBy, joinedBy) => {
     setCurrentId(id);
+    setChatName(name);
+		setCreatedBy(createdBy);
+		setJoinedBy(joinedBy);
     setJoin(true);
   };
 
@@ -52,6 +58,9 @@ const ChatModal = ({ isOpen, animating, onClose }) => {
             <ChatRoom
               setJoin={setJoin}
               currentId={currentId}
+              chatName={chatName}
+							createdBy={createdBy}
+							joinedBy={joinedBy}
               error={error}
               setError={setError}
               errorMessage={errorMessage}

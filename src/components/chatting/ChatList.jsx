@@ -59,20 +59,21 @@ const ChatList = ({
               <div
                 className="chat-list"
                 key={`chat-list${index + 1}`}
-                onClick={() => joinHandle(data.id)}
+                onClick={() =>
+                  joinHandle(data.id, data.name, data.createdBy, data.joinedBy)
+                }
               >
                 <div className="chat-user-wrap">
-                  {data.joinedBy ? (
-                    <ReactSVG
-                      src={svgCollection.users}
-                      className="chat-user-img chat-users-img"
-                    />
-                  ) : (
-                    <ReactSVG
-                      src={svgCollection.userImg}
-                      className="chat-user-img"
-                    />
-                  )}
+                  <ReactSVG
+                    src={
+                      data.joinedBy
+                        ? svgCollection.users
+                        : svgCollection.userImg
+                    }
+                    className={`chat-user-img ${
+                      data.joinedBy ? "chat-users-img" : ""
+                    }`}
+                  />
                   <div className="chat-name-wrap">
                     <div>{data.name}</div>
                     <div className="chat-date">
