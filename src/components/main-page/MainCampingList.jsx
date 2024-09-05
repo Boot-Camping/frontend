@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/grid";
 import "swiper/css/pagination";
 import "../main-page/MainCampingList.css";
 import { ReactSVG } from "react-svg";
@@ -12,14 +11,22 @@ import { svgCollection } from "../../constants/svgCollection";
 import useWishlist from "../../hooks/useWishlist";
 
 const MainCampingList = () => {
-  const { campingPlaces, error } = useFetchCampingList();
+  const [pageNumber, setPageNumber] = useState(0);
+  const pageSize = 12;
+  const { campingPlaces, error, totalPages } = useFetchCampingList(
+    pageNumber,
+    pageSize
+  );
   const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
     useCampingPlaceFilter(campingPlaces);
   const { isSaved, toggleWishlist } = useWishlist(campingPlaces);
 
-  const slidesPerPage = 10;
-
   if (error) return <div>Error: {error}</div>;
+
+  const handleSlideChange = (swiper) => {
+    const newPageNumber = swiper.activeIndex;
+    setPageNumber(newPageNumber);
+  };
 
   return (
     <div className="main-camping-list underline">
@@ -39,19 +46,14 @@ const MainCampingList = () => {
 
       <Swiper
         spaceBetween={30}
-        slidesPerView={1}
         pagination={{ clickable: true }}
+        onSlideChange={handleSlideChange}
       >
-        {Array.from({
-          length: Math.ceil(campingPlaceFiltered.length / slidesPerPage),
-        }).map((_, pageIndex) => (
+        {Array.from({ length: totalPages }).map((_, pageIndex) => (
           <SwiperSlide key={pageIndex}>
             <div className="camping-list-wrapper">
               {campingPlaceFiltered
-                .slice(
-                  pageIndex * slidesPerPage,
-                  (pageIndex + 1) * slidesPerPage
-                )
+                .slice(0, pageSize)
                 .map((campingPlace, index) => (
                   <div key={campingPlace.id} className="camping-list">
                     <Link to={`/camping/detail/${campingPlace.id}`}>

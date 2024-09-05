@@ -23,36 +23,29 @@ const Search = () => {
 
   return (
     <>
-      <div className="search-title">검색</div>
+      <div className="search-title">캠핑장 검색</div>
       <div className="search">
         <select
           className="search-addr"
           value={selectedAddr}
           onChange={(e) => setSelectedAddr(e.target.value)}
         >
-          <option value="all-addr">전체 지역</option>
+          <option value="all-addr">지역 선택</option>
+          <option value="서울">서울</option>
           <option value="경기">경기</option>
           <option value="인천">인천</option>
           <option value="강원">강원</option>
-          <option value="대전">대전</option>
-          <option value="세종">세종</option>
-          <option value="충북">충북</option>
-          <option value="충남">충남</option>
-          <option value="대구">대구</option>
-          <option value="울산">울산</option>
-          <option value="부산">부산</option>
-          <option value="경북">경북</option>
-          <option value="경남">경남</option>
-          <option value="전북">전북</option>
-          <option value="전남">전남</option>
-          <option value="제주">제주</option>
+          <option value="경상도">경상도</option>
+          <option value="충청도">충청도</option>
+          <option value="전라도">전라도</option>
+          <option value="제주도">제주도</option>
         </select>
 
         <input
           className="search-text"
           type="text"
           id="search"
-          placeholder="캠핑장 검색"
+          placeholder="...검색어 또는 지역 선택 후 검색해주세요"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
@@ -120,7 +113,7 @@ const Search = () => {
               <div className="search-camping-sub-title-wrapper">
                 <div className="search-camping-name">{campingPlace.name}</div>
                 <div className="search-camping-price">
-                  {campingPlace.price}원
+                  {campingPlace.price.toLocaleString()}원
                 </div>
               </div>
               <div className="search-camping-addr-wrapper">

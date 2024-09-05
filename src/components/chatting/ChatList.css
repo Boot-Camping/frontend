@@ -1,5 +1,3 @@
-
-
 .chat-list-title {
   font-size: var(--heading);
   font-weight: bold;
@@ -28,7 +26,41 @@
   color: var(--bg-gray);
 }
 
+.chat-users-img {
+	background: var(--bg-gray);
+	border-radius: 50%;
+	overflow: hidden;
+	color: #fff;
+	padding: 0.5rem;
+	box-sizing: border-box;
+}
+
+
+.chat-name-wrap {
+	line-height: 1.3;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
 .chat-date {
-  color: var(--dark-gray);
+  color: var(--light-gray);
   font-size: var(--sub-content);
+	font-weight: normal;
+}
+
+.chat-by {
+	line-height: 1.3;
+	text-align: right;
+	padding: 0 2rem;
+	border-left: 1px solid var(--bg-gray)
+}
+
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+
 }

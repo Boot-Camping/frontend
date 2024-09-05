@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import "../components/admin-camping-register-page/AdminCampingList.css";
 import "../components/main-page/MainCampingList.css";
+import "../components/admin-notice-register/AdminNoticeListPage.css";
 import useFetchCampingList from "../hooks/useFetchCampingList";
 import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";

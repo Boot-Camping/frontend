@@ -19,12 +19,12 @@ const useSearch = () => {
   const searchSubmitHandle = async (e) => {
     e.preventDefault();
 
-    if (!searchText.trim()) {
-      setError("검색어를 입력해주세요.");
+    if (!searchText.trim() && selectedAddr === "all-addr") {
+      setError("검색어 또는 지역을 선택해주세요.");
       return;
     }
 
-    if (!searchHistory.includes(searchText)) {
+    if (searchText.trim() && !searchHistory.includes(searchText)) {
       const updatedHistory = [searchText, ...searchHistory];
       setSearchHistory(updatedHistory);
       localStorage.setItem("searchHistory", JSON.stringify(updatedHistory));
@@ -34,9 +34,11 @@ const useSearch = () => {
       Authorization: `${accessToken}`,
     };
 
-    const params = {
-      name: searchText,
-    };
+    const params = {};
+
+    if (searchText.trim()) {
+      params.name = searchText;
+    }
 
     if (selectedAddr !== "all-addr") {
       params.addr = selectedAddr;
@@ -51,7 +53,8 @@ const useSearch = () => {
     } catch (err) {
       setError("데이터를 가져오는데 실패했습니다.");
     }
-    setSearchText("");
+
+    setSearchText(""); // 검색어 필드를 초기화합니다.
   };
 
   const historyClickHandle = (item) => {

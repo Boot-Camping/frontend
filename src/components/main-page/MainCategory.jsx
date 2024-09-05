@@ -57,14 +57,14 @@ const MainCategory = () => {
           <div className="catgory-title">반려견</div>
         </li>
         <li>
-          <Link to="/categorypage/노키즈">
+          <Link to="/categorypage/키즈">
             <img
               className="catgory-img"
               src="https://campingagains3.s3.ap-northeast-2.amazonaws.com/thumbnail__e908f60264.png"
               alt=""
             />
           </Link>
-          <div className="catgory-title">노키즈</div>
+          <div className="catgory-title">키즈</div>
         </li>
       </ul>
     </>
