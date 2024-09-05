@@ -72,7 +72,7 @@ const AdminCampingRegister = () => {
 
     imageFiles.forEach((image, index) => {
       if (image.file) {
-        formData.append("imageFiles", image.file);
+        formData.append(`imageFiles`, image.file);
       }
     });
 
