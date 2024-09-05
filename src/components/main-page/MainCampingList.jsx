@@ -23,13 +23,13 @@ const MainCampingList = () => {
 
   if (error) return <div>Error: {error}</div>;
 
-  const handleSlideChange = (swiper) => {
+  const slideChangeHandle = (swiper) => {
     const newPageNumber = swiper.activeIndex;
     setPageNumber(newPageNumber);
   };
 
   return (
-    <div className="main-camping-list ">
+    <div className="main-camping-list">
       <div className="camping-title-wrapper">
         <div className="camping-title">캠핑장 리스트</div>
         <select
@@ -47,7 +47,7 @@ const MainCampingList = () => {
       <Swiper
         spaceBetween={30}
         pagination={{ clickable: true }}
-        onSlideChange={handleSlideChange}
+        onSlideChange={slideChangeHandle}
       >
         {Array.from({ length: totalPages }).map((_, pageIndex) => (
           <SwiperSlide key={pageIndex}>
@@ -82,7 +82,7 @@ const MainCampingList = () => {
                           {campingPlace.categories.join(", ")}
                         </div>
                         <div className="camping-price">
-                          {campingPlace.price}원
+                          {campingPlace.price.toLocaleString()}원
                         </div>
                       </div>
 

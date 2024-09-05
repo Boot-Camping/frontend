@@ -7,7 +7,7 @@ import "../main-page/MainSlider.css";
 import useFetchCampingList from "../../hooks/useFetchCampingList";
 
 const MainSlider = () => {
-  const { campingPlaces } = useFetchCampingList();
+  const { campingPlaces } = useFetchCampingList(0, 5);
 
   return (
     <div>
@@ -19,15 +19,19 @@ const MainSlider = () => {
         modules={[Pagination]}
         className="slider-main"
       >
-        {campingPlaces.map((campingPlace, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={campingPlace.imageUrls[0]}
-              className="slider-img"
-              alt=""
-            />
-          </SwiperSlide>
-        ))}
+        {campingPlaces.length > 0 ? (
+          campingPlaces.map((campingPlace, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={campingPlace.imageUrls[0]}
+                className="slider-img"
+                alt=""
+              />
+            </SwiperSlide>
+          ))
+        ) : (
+          <div className="no-data-message">등록된 캠핑장소가 없습니다.</div>
+        )}
       </Swiper>
     </div>
   );
