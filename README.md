@@ -44,7 +44,7 @@
   - 전체 & 상세 공지사항 조회
   - 캠핑지 예약조회 및 예약취소
 - **채팅기능**
-      <div style="display: flex;">
+<div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/77434b76-36d1-468d-b0cd-5fe2c802673e" alt="searchPage1" width="150">
   <img src="https://github.com/user-attachments/assets/537fec7b-14e2-4df6-8c2b-09f5e2c13c77" alt="searchPage2" width="150">
   <img src="https://github.com/user-attachments/assets/a55abc1f-413c-4118-b300-5dc95b423291" alt="searchPage" width="150">
@@ -64,7 +64,7 @@
   - 캠핑지 검색 및 최근 검색기록 조회
   - 캠핑지 '찜하기'
   - 유저 리뷰 조회
-        <div style="display: flex;">
+<div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/42174b77-3e22-4773-86b4-e70c6c8573f9" alt="searchPage1" width="150">
   <img src="https://github.com/user-attachments/assets/781c0801-fb98-478e-8781-feb68f6b1964" alt="searchPage2" width="150">
   <img src="https://github.com/user-attachments/assets/13352796-664e-460a-a706-649f019e96fa" alt="searchPage" width="150">
@@ -92,3 +92,10 @@
 - **캠핑지 결제 페이지**
 - **마이리뷰 페이지**
   - 유저 리뷰 조회/ 작성/ 수정/ 삭제
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/7f6f6cba-c8a7-4242-bd36-f1397d38b1d8" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/da973cfe-4f29-4866-ae0f-6a83482a5252" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/af39fbe4-9ff2-4d7a-bb59-5ecfb92be70d" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/eb7621e6-3695-47e2-b255-2ad79682834f" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/f793b962-1a20-448d-bb97-d6b0ca142ad8" alt="searchPage" width="150">
+</div>
