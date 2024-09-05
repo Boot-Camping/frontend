@@ -15,7 +15,7 @@ const useFetchCampingList = (pageNumber, pageSize) => {
       };
       try {
         const response = await get(
-          `camps?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+          `camps?page=${pageNumber}&size=${pageSize}`,
           customHeaders
         );
 
