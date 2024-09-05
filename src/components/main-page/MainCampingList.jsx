@@ -29,7 +29,7 @@ const MainCampingList = () => {
   };
 
   return (
-    <div className="main-camping-list underline">
+    <div className="main-camping-list ">
       <div className="camping-title-wrapper">
         <div className="camping-title">캠핑장 리스트</div>
         <select

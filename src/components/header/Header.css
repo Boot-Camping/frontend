@@ -26,6 +26,7 @@
   font-size: var(--content);
   font-weight: bold;
   color: var(--dark-green);
+  padding-left: 1rem;
 }
 
 .icons {
