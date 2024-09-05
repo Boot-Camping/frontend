@@ -48,7 +48,6 @@ const ReviewWriter = () => {
 
     const tagsArray = reviewTagsString.split(",");
 
-    // 이미지의 이름 배열 생성
     const imageUrls = reviewImages.map((image) => image.name);
 
     // 리뷰 요청 데이터 -> JSON 변환

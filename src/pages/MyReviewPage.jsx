@@ -11,6 +11,7 @@ import deleteMyReview from "../utils/deleteMyReview";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { formatDate } from "../utils/formatDate";
 import StarGrade from "../components/detail-review/StarGrade";
+import { reviewTag } from "../constants/reviewTag";
 
 const svg = svgCollection;
 
@@ -108,8 +109,8 @@ const MyReviewPage = () => {
               </div>
             </div>
 
-            <div className="my-review-right-box">
-              <Link to={`/camping/detail/${myReview.campId}`} key={index}>
+            <Link to={`/camping/detail/${myReview.campId}`} key={index}>
+              <div className="my-review-right-box">
                 {myReview.reviewImages && myReview.reviewImages.length > 0 ? (
                   <img
                     className="my-review-img"
@@ -122,15 +123,15 @@ const MyReviewPage = () => {
                 <div className="my-review-tag-wrapper">
                   {myReview.reviewTags.map((tag, tagIndex) => (
                     <div key={tagIndex} className="my-review-tag">
-                      {tag}
+                      {reviewTag.find((t) => t.label === tag)?.value || tag}
                     </div>
                   ))}
                 </div>
-              </Link>
-              <div className="review-grade">
-                <StarGrade grade={myReview.grade} />
+                <div className="review-grade">
+                  <StarGrade grade={myReview.grade} />
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="my-review-lower">
