@@ -14,6 +14,7 @@
 2. boot-camping은 주소 검색 API 및 카카오 지도 API를 활용하였으며, 찜하기, 리뷰작성 및 채팅기능 등 다양한 시도를 한 프로젝트 입니다.
 
 ## 🏁 boot-camping 로고
+<img src="https://github.com/user-attachments/assets/7a51e066-f302-42b7-b8e3-e52ea500c893" alt="searchPage1" width= "300" height="75">
 
 ## 🏠 배포주소 및 Github 주소
 
@@ -27,8 +28,7 @@
 - Development: React, JavaScript
 - Communication: Notion, Discord
 
-## 🧑‍💻 팀소개
-
+## 🧑‍💻 팀원소개 및 담당업무
 ### 이연주(CTO)
 
 - **회원기능**
@@ -42,6 +42,18 @@
   - 전체 & 상세 공지사항 조회
   - 캠핑지 예약조회 및 예약취소
 - **채팅기능**
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/77434b76-36d1-468d-b0cd-5fe2c802673e" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/537fec7b-14e2-4df6-8c2b-09f5e2c13c77" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/a55abc1f-413c-4118-b300-5dc95b423291" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/e2151e0c-c276-4bfe-92c1-215211c451f6" alt="searchPage" width="150">
+</div>
+
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/72180924-a007-4c67-ab70-e6033ef83080" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/db29a4ce-4ad2-4d34-8cc0-ec33dc2258eb" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/316bc3ef-cc90-4925-bd2c-0773439d77ef" alt="searchPage" width="150">
+</div>
 
 ### 이성민
 
@@ -51,6 +63,12 @@
   - 캠핑지 검색 및 최근 검색기록 조회
   - 캠핑지 '찜하기'
   - 유저 리뷰 조회
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/42174b77-3e22-4773-86b4-e70c6c8573f9" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/781c0801-fb98-478e-8781-feb68f6b1964" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/13352796-664e-460a-a706-649f019e96fa" alt="searchPage" width="150">
+   <img src="https://github.com/user-attachments/assets/d19813fd-ac71-487d-8e59-6b66143243a7" alt="searchPage" width="150">
+</div>
 
 ### 이현빈
 
@@ -62,6 +80,11 @@
   - 전체 회원 조회
   - 전체 리뷰 조회
   - 리뷰 삭제
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/3fec7698-aecf-4bc4-9d29-1a303e407c73" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/2e9b1f9f-ff09-4a64-9bc6-d8abd1eb1b24" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/ccbad79a-0bab-4d0a-82af-01d92357cbda" alt="searchPage" width="150">
+</div>
 
 ### 이세원
 
@@ -73,3 +96,10 @@
 - **캠핑지 결제 페이지**
 - **마이리뷰 페이지**
   - 유저 리뷰 조회/ 작성/ 수정/ 삭제
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/7f6f6cba-c8a7-4242-bd36-f1397d38b1d8" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/da973cfe-4f29-4866-ae0f-6a83482a5252" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/af39fbe4-9ff2-4d7a-bb59-5ecfb92be70d" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/eb7621e6-3695-47e2-b255-2ad79682834f" alt="searchPage" width="150">
+  <img src="https://github.com/user-attachments/assets/f793b962-1a20-448d-bb97-d6b0ca142ad8" alt="searchPage" width="150">
+</div>
