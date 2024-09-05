@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { get } from "../utils/api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
-const useFetchCampingList = () => {
+const useFetchCampingList = (pageNumber, pageSize) => {
   const [campingPlaces, setCampingPlaces] = useState([]);
   const [error, setError] = useState(null);
+  const [totalPages, setTotalPages] = useState(0);
   const { accessToken } = getUserIdFromToken();
 
   useEffect(() => {
@@ -13,21 +14,26 @@ const useFetchCampingList = () => {
         Authorization: `${accessToken}`,
       };
       try {
-        const response = await get("camps", customHeaders);
+        const response = await get(
+          `camps?page=${pageNumber}&size=${pageSize}`,
+          customHeaders
+        );
 
         const sortedCampingPlaces = response.content.sort(
           (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
         );
 
         setCampingPlaces(sortedCampingPlaces);
+        setTotalPages(response.totalPages); // 전체 페이지 수 설정
       } catch (error) {
         setError(error.message);
       }
     };
 
     fetchCampingPlaces();
-  }, [accessToken]);
+  }, [accessToken, pageNumber, pageSize]);
 
-  return { campingPlaces, error };
+  return { campingPlaces, error, totalPages };
 };
+
 export default useFetchCampingList;

@@ -153,12 +153,45 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* .camping-img {
-    width: 30%;
-    height: 22rem;
-  } */
-  /* 
-  main-page {
-    display: flex;
-  }. */
+  .camping-list {
+    width: 20rem;
+    padding: 1rem;
+  }
+
+  .camping-img {
+    width: 20rem;
+    height: 18rem;
+  }
+
+  .camping-img-heart {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+  .camping-list-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .camping-list {
+    width: 25rem;
+    padding: 1rem;
+  }
+
+  .camping-img {
+    width: 27rem;
+    height: 24rem;
+  }
+
+  .camping-img-heart {
+    position: absolute;
+    top: 1.5rem;
+    right: 0;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 }

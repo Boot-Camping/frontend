@@ -112,23 +112,22 @@ const PaymentPage = ({ campInfo }) => {
     };
     try {
       const response = await get(`userprofile/${userId}`, customHeaders);
-      console.log("API 응답:", response.data);
-      console.log(`Requesting URL: userprofile/${userId}`);
-      console.log("Custom Headers:", customHeaders);
 
-      if (response && response.data && response.data.length > 0) {
-        const userData = response.data[0];
-        console.log("User Data:", userData);
-        setUserData({
-          name: userData.name || "",
-          tel: userData.tel || "",
-          email: userData.email || "",
-        });
-      } else {
-        setErrorMessage("유저 정보를 불러오지 못했습니다.");
-      }
+      // 필요한 데이터가 response에 있을 경우 처리
+      const userData = response[0]; // 필요한 데이터가 response에 직접 있다고 가정
+      console.log("User Data:", userData);
+
+      setUserData({
+        name: userData.name || "",
+        tel: userData.tel || "",
+        email: userData.email || "",
+      });
     } catch (error) {
       setErrorMessage("유저 정보를 가져오는 중 오류가 발생했습니다.");
+      console.error(
+        "유저 정보를 가져오는 중 오류:",
+        error.response || error.message
+      );
     } finally {
       setLoading(false);
     }
@@ -141,9 +140,8 @@ const PaymentPage = ({ campInfo }) => {
 
   return (
     <>
-      <div className="payment-page underline">
+      <div className="payment-page">
         <h2 className="payment-title">캠핑장 결제하기</h2>
-        <div className="payment-request">요청사항</div>
         <PaymentInfo
           submitRequestHandle={submitRequestHandle}
           userData={userData}
