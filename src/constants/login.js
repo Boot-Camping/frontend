@@ -10,21 +10,21 @@ export const loginTitles = [
  * 	로그인방법 상수데이터
  */
 export const loginTypes = [
-  {
-    key: "login-google",
-    text: "Google 로그인",
-    link: "/",
-  },
-  {
-    key: "login-kakao",
-    text: "카카오톡 로그인",
-    link: "/",
-  },
-  {
-    key: "login-naver",
-    text: "네이버 로그인",
-    link: "/",
-  },
+  // {
+  //   key: "login-google",
+  //   text: "Google 로그인",
+  //   link: "/",
+  // },
+  // {
+  //   key: "login-kakao",
+  //   text: "카카오톡 로그인",
+  //   link: "/",
+  // },
+  // {
+  //   key: "login-naver",
+  //   text: "네이버 로그인",
+  //   link: "/",
+  // },
   {
     key: "login-account",
     text: "아이디로 로그인",

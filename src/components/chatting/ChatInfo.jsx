@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChatInfo.css";
-import logoImg from "../../assets/image/camping.png";
+import logoImg from "../../assets/image/logo0.png";
 import ChatCreate from "./ChatCreate";
 
 const ChatInfo = ({ setJoin, joinHandle, getChatListData }) => {

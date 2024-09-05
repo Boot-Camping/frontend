@@ -2,7 +2,7 @@ import React from "react";
 import "../components/login-page/LoginPage.css";
 import { loginTitles } from "../constants/login";
 import LoginButtons from "../components/login-page/LoginButtons";
-import logoImg from "../assets/image/camping.png";
+import logoImg from "../assets/image/logo0.png";
 
 const LoginPage = () => {
   return (

@@ -45,13 +45,15 @@ const ChatList = ({
 
   return (
     <div className="chat-list-wrap">
-      <div className="chat-list-title">채팅목록</div>
+      <div className="chat-list-title-wrap">
+        <div className="chat-list-title">채팅목록</div>
 
-      <ChatInfo
-        setJoin={setJoin}
-        joinHandle={joinHandle}
-        getChatListData={getChatListData}
-      />
+        <ChatInfo
+          setJoin={setJoin}
+          joinHandle={joinHandle}
+          getChatListData={getChatListData}
+        />
+      </div>
 
       <div className="chat-lists">
         {chatListData.length > 0
