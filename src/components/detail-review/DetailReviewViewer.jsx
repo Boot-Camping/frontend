@@ -3,14 +3,13 @@ import "./DetailReviewPage.css";
 
 import ReviewMoreBtn from "./ReviewMoreBtn";
 import ReplyViewer from "./ReplyViewer";
-import ReviewImageSlider from "./ReviewImageSlider";
-
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { formatDate } from "../../utils/formatDate";
 import StarGrade from "./StarGrade";
 import useCampReview from "../../hooks/useCampReview";
 import Modal from "react-modal";
+import { reviewTag } from "../../constants/reviewTag";
 
 const svg = svgCollection;
 
@@ -77,13 +76,19 @@ const DetailReviewViewer = ({ campId }) => {
             </div>
 
             <div className="review-upper-right">
-              <div className="image-slider">
+              <div className="image-grid">
                 {review.reviewImages && review.reviewImages.length > 0 ? (
-                  <img
-                    className="detail-review-img"
-                    src={review.reviewImages[0]}
-                    onClick={() => openModal(review.reviewImages[0])}
-                  />
+                  review.reviewImages
+                    .slice(0, 4)
+                    .map((image, imageIndex) => (
+                      <img
+                        key={imageIndex}
+                        className="detail-review-img"
+                        src={image}
+                        onClick={() => openModal(image)}
+                        alt={`리뷰 이미지 ${imageIndex + 1}`}
+                      />
+                    ))
                 ) : (
                   <div className="detail-no-review-img">
                     리뷰 사진이 없습니다
@@ -93,7 +98,7 @@ const DetailReviewViewer = ({ campId }) => {
               <div className="review-upper-tag">
                 {review.reviewTags.map((tag, tagIndex) => (
                   <div key={tagIndex} className="review-tag">
-                    {tag}
+                    {reviewTag.find((t) => t.label === tag)?.value || tag}
                   </div>
                 ))}
               </div>
