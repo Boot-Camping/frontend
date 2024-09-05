@@ -26,28 +26,29 @@
 }
 
 /* PaymentInfo.jsx */
-.payment-info-detail {
-  padding-bottom: 1rem;
+.payment-info-wrapper {
+  border-bottom: 0.1rem solid var(--soft-gray);
+  padding-bottom: 2rem;
 }
 
-.payment-info-title {
-  padding-bottom: 1rem;
-  font-size: var(--sub-heading);
-  font-weight: bold;
+.booker-info {
+  font-size: var(--content);
+  line-height: 3rem;
+  color: var(--dark-gray);
+  padding-left: 1rem;
+  padding-bottom: 2rem;
 }
 
 .request-form {
-  width: 100%;
+  width: 90%;
   height: 8rem;
   border: 0.1rem solid var(--soft-gray);
+  border-radius: 0.5rem;
+  font-size: var(--sub-heading);
 }
 
-.input-request {
-  border: none;
-  background: var(--bg-gray-50);
-  font-size: var(--content);
-  padding: 1rem 12rem;
-  border-radius: 0.5rem;
+.request-form ::placeholder {
+  text-align: center;
 }
 
 /* PaymentAmount.jsx */
@@ -70,7 +71,7 @@
 .total-num,
 .total-amount {
   display: flex;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
   justify-content: space-between;
   font-size: var(--sub-heading);
   align-items: center;

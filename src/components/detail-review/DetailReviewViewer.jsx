@@ -79,12 +79,15 @@ const DetailReviewViewer = ({ campId }) => {
             <div className="review-upper-right">
               <div className="image-slider">
                 {review.reviewImages && review.reviewImages.length > 0 ? (
-                  <ReviewImageSlider
-                    reviewImages={review.reviewImages}
-                    onImageClick={openModal}
+                  <img
+                    className="detail-review-img"
+                    src={review.reviewImages[0]}
+                    onClick={() => openModal(review.reviewImages[0])}
                   />
                 ) : (
-                  <div className="no-review-img">리뷰 사진이 없습니다</div>
+                  <div className="detail-no-review-img">
+                    리뷰 사진이 없습니다
+                  </div>
                 )}
               </div>
               <div className="review-upper-tag">

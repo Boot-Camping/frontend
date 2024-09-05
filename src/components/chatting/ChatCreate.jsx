@@ -6,6 +6,7 @@ import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 import PortalModal from "../common/PortalModal";
 import { closeModal } from "../../utils/closeModal";
+import EmptyContent from "../common/EmptyContent";
 
 const ChatCreate = ({ setJoin, joinHandle }) => {
   const { accessToken, userId } = getUserIdFromToken();
@@ -29,6 +30,12 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
   };
 
   const createChatRoomHandle = async () => {
+    if (inputName === "") {
+      setError(true);
+      setErrorMessage("Message: 필수 입력사항입니다");
+			return;
+    }
+
     const customHeaders = {
       Authorization: accessToken,
     };
@@ -38,6 +45,8 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
     try {
       await post(`chatRooms/${userId}?${queryString}`, {}, customHeaders);
       // joinHandle();
+      closeModal(setIsOpened)();
+      setInputName("");
     } catch (error) {
       setError(true);
       setErrorMessage(error.message);
@@ -63,6 +72,11 @@ const ChatCreate = ({ setJoin, joinHandle }) => {
               value={inputName}
               onChange={nameChangeHandle}
             />
+
+            {errorMessage && (
+              <EmptyContent errorMessage={errorMessage} error={error} />
+            )}
+
             <button className="chat-create-btn" onClick={createChatRoomHandle}>
               완료
             </button>

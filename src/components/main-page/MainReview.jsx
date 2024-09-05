@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../main-page/MainReview.css";
@@ -29,17 +29,21 @@ const MainReview = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <>
-      <div className="main-review-title">실시간 리뷰</div>
+    <div className="main-review underline">
+      <div className="main-review-title ">실시간 리뷰</div>
       <Swiper
-        modules={[Pagination]}
+        modules={[Scrollbar]}
         className="main-review-slider"
         slidesPerView={3}
         direction="vertical"
         spaceBetween={10}
+        scrollbar={{
+          hide: false, // 스크롤바를 항상 보이게 설정
+          draggable: true, // 스크롤바를 드래그할 수 있게 설정
+        }}
       >
         {reviews.map((review, index) => (
-          <SwiperSlide key={index} className="main-review-wrapper">
+          <SwiperSlide key={index} className="main-review-wrapper ">
             <div className="main-review-img-wrapper">
               <img
                 className="main-review-reviewImage"
@@ -55,7 +59,7 @@ const MainReview = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

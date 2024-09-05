@@ -17,8 +17,8 @@
 
 .book-date-title {
   font-weight: bold;
-  font-size: var(--sub-heading);
-  padding: 1rem 0;
+  font-size: var(--heading);
+  padding: 2rem 0;
   margin: 1rem 0;
 }
 
@@ -42,15 +42,17 @@
   border-bottom: 0.1rem solid var(--soft-gray);
 }
 
-.camping-name {
-  font-size: var(--sub-heading);
+.book-info-title {
+  font-size: var(--content);
   font-weight: bold;
   padding-bottom: 0.5rem;
 }
 
 .camping-num {
   font-size: var(--content);
-  line-height: 1.5;
+  line-height: 3rem;
+  padding-left: 1rem;
+  color: var(--dark-gray);
 }
 
 .book-img {

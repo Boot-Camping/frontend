@@ -9,8 +9,6 @@ import useFetchCampingList from "../../hooks/useFetchCampingList";
 const MainSlider = () => {
   const { campingPlaces } = useFetchCampingList();
 
-  const newCampingPlace = campingPlaces.length > 0 ? campingPlaces[0] : null;
-
   return (
     <div>
       <div className="slider-title">새로 등록된 캠핑장소</div>
@@ -21,15 +19,15 @@ const MainSlider = () => {
         modules={[Pagination]}
         className="slider-main"
       >
-        {newCampingPlace && (
-          <SwiperSlide>
+        {campingPlaces.map((campingPlace, index) => (
+          <SwiperSlide key={index}>
             <img
+              src={campingPlace.imageUrls[0]}
               className="slider-img"
-              src={newCampingPlace.imageUrls}
               alt=""
             />
           </SwiperSlide>
-        )}
+        ))}
       </Swiper>
     </div>
   );
