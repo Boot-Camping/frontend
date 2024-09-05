@@ -1,5 +1,3 @@
-![boot-camping 로고](./images/boot-camping-logo.png)
-
 ## 🙌 안녕하세요, boot-camping 프론트엔드 팀 입니다!
 
 ## 🗓️ 프로젝트 기간: 2024년 8월 12일 ~ 9월 6일
