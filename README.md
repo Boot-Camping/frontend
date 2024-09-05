@@ -49,7 +49,7 @@
 
 - **메인 페이지**
   - 전체 캠핑지 조회
-    ![전체 캠핑지 조회](./src/assets/readMe/mainPage-1.png)
+    <img src="./mainPage-1" width="300">
   - 카테고리별 캠핑지 조회
     ![카테고리별 캠핑지 조회](./src/assets/readMe/categoryPage.png)
   - 캠핑지 검색 및 최근 검색기록 조회
