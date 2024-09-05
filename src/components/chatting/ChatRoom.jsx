@@ -9,6 +9,9 @@ import EmptyContent from "../common/EmptyContent";
 const ChatRoom = ({
   setJoin,
   currentId,
+  chatName,
+  createdBy,
+  joinedBy,
   error,
   setError,
   errorMessage,
@@ -93,31 +96,92 @@ const ChatRoom = ({
     }
   };
 
+  const formatIme = (sentAt) => {
+    const date = new Date(
+      sentAt[0],
+      sentAt[1] - 1,
+      sentAt[2],
+      sentAt[3],
+      sentAt[4]
+    );
+    return `${date.getHours()}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+  };
+
+  const groupMessagesByDate = () => {
+    const groupedMessages = {};
+    messages.forEach((msg) => {
+      const dateKey = `${msg.sentAt[0]}-${msg.sentAt[1]}-${msg.sentAt[2]}`;
+      if (!groupedMessages[dateKey]) {
+        groupedMessages[dateKey] = [];
+      }
+      groupedMessages[dateKey].push(msg);
+    });
+    return groupedMessages;
+  };
+
+  const groupedMessages = groupMessagesByDate();
+
   return (
     <div className="chat-room-wrap">
-      <ReactSVG
-        src={svgCollection.prev}
-        className="chat-room-prev"
-        onClick={outHandle}
-      />
-
-      {errorMessage && <EmptyContent errorMessage={errorMessage} error={error} />}
+      <div className="chat-room-title">
+        <ReactSVG
+          src={svgCollection.prev}
+          className="chat-room-prev"
+          onClick={outHandle}
+        />
+        <div>{chatName}</div>
+        {errorMessage && (
+          <EmptyContent errorMessage={errorMessage} error={error} />
+        )}
+      </div>
 
       {chatStart && (
         <div className="chat-room-open">
-          <div className="chat-message-wrap">
-            {messages.map((msg, index) => (
-              <div key={`message${index + 1}`}>{msg.content}</div>
-            ))}
+          {Object.keys(groupedMessages).map((dateKey) => (
+            <div className="chat-message-wrap" key={dateKey}>
+              <div className="chat-message-date">
+                {dateKey
+                  .replace(/-(\d{1,2})$/, "월 $1일")
+                  .replace(/-(?=\d)/g, "년 ")}
+              </div>
+              <div className="chat-messages">
+                {groupedMessages[dateKey].map((msg, index) => (
+                  <div
+                    key={`message${index + 1}`}
+                    className={`chat-message ${
+                      msg.senderLoginId === createdBy
+                        ? ""
+                        : "chat-message-right"
+                    }`}
+                  >
+                    <div className="chat-message-content">{msg.content}</div>
+                    <div className="chat-message-time">
+                      {formatIme(msg.sentAt)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div className="chat-input-wrap">
+            <input
+              type="text"
+              className="chat-input"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="메시지를 입력하세요"
+            />
+            <button className="chat-send-btn" onClick={sendMessageHandle}>
+              전송
+            </button>
+            <button className="chat-finish-btn" onClick={outHandle}>
+              채팅 종료
+            </button>
           </div>
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="메시지를 입력하세요"
-          />
-          <button onClick={sendMessageHandle}>전송</button>
-          <button onClick={outHandle}>채팅 종료</button>
         </div>
       )}
     </div>
