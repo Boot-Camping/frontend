@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
+import "../admin-camping-register-page/AdminCampingRegister.css";
 
 const AdminMainLink = () => {
   return (

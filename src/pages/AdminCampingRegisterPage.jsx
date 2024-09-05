@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/admin-camping-register-page/AdminCampingRegister.css";
 import "../components/main-page/MainCampingList.css";
+import "../components/notice-page/NoticePage.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
-import AdminCampAddress from "../components/admin-camping-register-page/AdminCampAddress";
+import useAddress from "../hooks/useAddress";
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
+import DaumPostCode from "../components/common/DaumPostCode";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { post } from "../utils/api";
 
 const AdminCampingRegister = () => {
-  const [error, setError] = useState(false);
-  const [isOpened, setIsOpened] = useState(false);
-  const [images, setImages] = useState([]);
+  const { postcode, setPostcode } = useAddress();
+  const addressRef = useRef(null);
+  const detailAddressRef = useRef(null);
+  const [imageFiles, setImageUrls] = useState([]);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
@@ -22,7 +25,7 @@ const AdminCampingRegister = () => {
   const [standardNum, setStandardNum] = useState("");
   const [maxNum, setMaxNum] = useState("");
   const [overCharge, setOverCharge] = useState("");
-  const [category, setCategory] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [addr, setAddr] = useState("");
   const [accessToken, setAccessToken] = useState(null);
   const navigate = useNavigate();
@@ -37,7 +40,7 @@ const AdminCampingRegister = () => {
   };
 
   const handleCategoriesChange = (newCategories) => {
-    setCategory(newCategories);
+    setCategories(newCategories);
   };
 
   const handleSubmit = async (e) => {
@@ -56,21 +59,25 @@ const AdminCampingRegister = () => {
     formData.append("maxNum", Number(maxNum));
     formData.append("overCharge", Number(overCharge));
     formData.append("description", String(description));
-    formData.append("addr", String(addr));
+    formData.append(
+      "addr",
+      String(
+        `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`
+      )
+    );
 
-    category.forEach((category, index) => {
-      formData.append(`category[${index}]`, category);
+    categories.forEach((category, index) => {
+      formData.append(`categories[${index}]`, category);
     });
 
-    images.forEach((image, index) => {
+    imageFiles.forEach((image, index) => {
       if (image.file) {
-        formData.append(`images[${index}]`, image.file);
+        formData.append(`imageFiles`, image.file);
       }
     });
 
     const customHeaders = {
       Authorization: `${accessToken}`,
-      "Content-Type": "multipart/form-data",
     };
 
     try {
@@ -117,12 +124,13 @@ const AdminCampingRegister = () => {
         />
       </div>
       <div className="camp-img-title">사진</div>
-      <AdminImgPlus images={images} setImages={setImages} />
-      <AdminCampAddress
-        addr={addr}
-        setAddr={setAddr}
-        setError={setError}
-        setIsOpened={setIsOpened}
+      <AdminImgPlus imageFiles={imageFiles} setImages={setImageUrls} />
+
+      <DaumPostCode
+        postcode={postcode}
+        setPostcode={setPostcode}
+        addressRef={addressRef}
+        detailAddressRef={detailAddressRef}
       />
 
       <div>
