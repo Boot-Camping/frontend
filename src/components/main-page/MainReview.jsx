@@ -46,11 +46,17 @@ const MainReview = () => {
         {reviews.map((review, index) => (
           <SwiperSlide key={index} className="main-review-wrapper ">
             <div className="main-review-img-wrapper">
-              <img
-                className="main-review-reviewImage"
-                src={review.reviewImage}
-                alt=""
-              />
+              {review.reviewImage && review.reviewImage.length > 0 ? (
+                <img
+                  className="main-review-reviewImage"
+                  src={review.reviewImage}
+                  alt=""
+                />
+              ) : (
+                <div className="main-review-no-reviewImage">
+                  리뷰 사진이 없습니다
+                </div>
+              )}
             </div>
             <div className="main-review-info-wrapper">
               <div className="main-review-content">{review.content}</div>
