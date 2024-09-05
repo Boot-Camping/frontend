@@ -36,6 +36,10 @@
   box-shadow: 0 0 0 1px var(--dark-green);
 }
 
+.chat-name-modal .error-message {
+	margin-bottom: 2rem;
+}
+
 .chat-name-modal .chat-create-btn {
   width: auto;
   padding: 0.5rem 1rem;
