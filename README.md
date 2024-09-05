@@ -1,16 +1,80 @@
-**프로젝트 제목**
-Boot Camping
+![boot-camping 로고](./images/boot-camping-logo.png)
 
-**프로젝트 소개(목적+개발기간): 5~10줄**
+## 🙌 안녕하세요, boot-camping 프론트엔드 팀 입니다!
 
-**프로젝트 로고(보류)**
+## 🗓️ 프로젝트 기간: 2024년 8월 12일 ~ 9월 6일
 
-**배포주소**
+## ❓ boot-camping이 뭔가요??
 
-**기술스택: **
-Environment: VS Code
-Config: npm
-Development: React, JavaScript
-Communication: Notion, Discord
+- boot-camping은 국내 지역별 캠핑지를 쉽고 편리하게 검색하고 예약할 수 있는 플랫폼입니다. 사용자는 다양한 캠핑지를 손쉽게 탐색하고, 원하는 날짜에 맞춰 예약 및 결제를 진행할 수 있습니다.
+- boot-camping의 주요 기능으로는 지역별 캠핑지 검색 및 상세 정보 제공/ 캠핑장 근처 편의점 조회/ 간단한 캐시 충전 및 결제 시스템을 포함하고 있습니다.
+- boot-camping을 통해 캠핑 애호가들은 더욱 편리하게 캠핑 계획을 세우고, 새로운 장소를 발견할 수 있습니다.
 
-**팀소개(개별작성): 이름(역할분담+UI캡쳐+주요기능), 깃허브 주소**
+## 🙋‍♀️ 좀 더 구체적으로 가르쳐주세요!
+
+1. boot-camping은 모바일 퍼스트 프로젝트로써, PC 및 모바일 브라우저에서도 UI를 구현하고 있습니다.
+2. boot-camping은 주소 검색 API 및 카카오 지도 API를 활용하였으며, 찜하기, 리뷰작성 및 채팅기능 등 다양한 시도를 한 프로젝트 입니다.
+
+## 🏁 boot-camping 로고
+
+## 🏠 배포주소 및 Github 주소
+
+- **배포 주소**: https://boot-camping.netlify.app
+- **Github**: https://github.com/Boot-Camping/frontend
+
+## 🛠️ 기술스택
+
+- Environment: VS Code
+- Config: npm
+- Development: React, JavaScript
+- Communication: Notion, Discord
+
+## 🧑‍💻 팀소개
+
+### 이연주(CTO)
+
+- **회원기능**
+  - 회원가입
+  - 로그인/ 로그아웃/ 회원탈퇴
+  - 캐시 충전 및 사용내역 조회
+- **마이페이지**
+  - 유저정보 조회/ 수정
+  - 예약 내역 조회
+  - 찜목록 조회 및 삭제
+  - 전체 & 상세 공지사항 조회
+  - 캠핑지 예약조회 및 예약취소
+- **채팅기능**
+
+### 이성민
+
+- **메인 페이지**
+  - 전체 캠핑지 조회
+    ![전체 캠핑지 조회](./src/assets/readMe/mainPage-1.png)
+  - 카테고리별 캠핑지 조회
+    ![카테고리별 캠핑지 조회](./src/assets/readMe/categoryPage.png)
+  - 캠핑지 검색 및 최근 검색기록 조회
+    ![캠핑지 검색](./src/assets/readMe/searchPage.png)
+  - 캠핑지 '찜하기'
+  - 유저 리뷰 조회
+
+### 이현빈
+
+- **관리자페이지**
+  - 캠핑지 등록/ 수정/ 삭제
+  - 공지사항 등록/ 수정/ 삭제
+  - 전체 & 상세 공지사항 조회
+  - 사이트 통계
+  - 전체 회원 조회
+  - 전체 리뷰 조회
+  - 리뷰 삭제
+
+### 이세원
+
+- **캠핑지 상세 페이지**
+  - 캠핑지 상세정보 조회
+  - 근처 편의점 조회 지도
+  - 캠핑지별 리뷰 조회 및 댓글 작성
+- **캠핑지 예약 페이지**
+- **캠핑지 결제 페이지**
+- **마이리뷰 페이지**
+  - 유저 리뷰 조회/ 작성/ 수정/ 삭제
