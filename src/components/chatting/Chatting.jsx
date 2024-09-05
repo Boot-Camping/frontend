@@ -24,6 +24,7 @@ const Chatting = () => {
       }
     } else {
       navigate("/login");
+			setIsChatOpen(false);
     }
   };
 
