@@ -30,3 +30,12 @@
     font-size: var(--heading);
   }
 }
+
+@media screen and (min-width: 1680px) {
+  .catgory li {
+    display: flex;
+  }
+  .catgory-title {
+    margin-left: 2rem;
+  }
+}
