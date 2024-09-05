@@ -24,7 +24,7 @@ const useFetchCampingList = (pageNumber, pageSize) => {
         );
 
         setCampingPlaces(sortedCampingPlaces);
-        setTotalPages(response.totalPages); // 전체 페이지 수 설정
+        setTotalPages(response.totalPages);
       } catch (error) {
         setError(error.message);
       }
