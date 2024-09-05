@@ -53,6 +53,12 @@
   - 캠핑지 검색 및 최근 검색기록 조회
   - 캠핑지 '찜하기'
   - 유저 리뷰 조회
+        <div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/42174b77-3e22-4773-86b4-e70c6c8573f9" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/781c0801-fb98-478e-8781-feb68f6b1964" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/13352796-664e-460a-a706-649f019e96fa" alt="searchPage" width="150">
+   <img src="https://github.com/user-attachments/assets/d19813fd-ac71-487d-8e59-6b66143243a7" alt="searchPage" width="150">
+</div>
 
 ### 이현빈
 
