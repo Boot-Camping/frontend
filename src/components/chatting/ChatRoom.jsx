@@ -56,7 +56,7 @@ const ChatRoom = ({
     chatJoinHandle();
 
     socket.current = new WebSocket(
-      `${WEBSOCKET_URL}/chat?userId=${userId}&chatId=${currentId}`
+      `ws://43.203.54.145:8080/chat?userId=${userId}&chatId=${currentId}`
     );
 
     socket.current.onopen = () => {
