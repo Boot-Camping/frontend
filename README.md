@@ -44,6 +44,17 @@
   - 전체 & 상세 공지사항 조회
   - 캠핑지 예약조회 및 예약취소
 - **채팅기능**
+      <div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/77434b76-36d1-468d-b0cd-5fe2c802673e" alt="searchPage1" width="150">
+  <img src="https://github.com/user-attachments/assets/537fec7b-14e2-4df6-8c2b-09f5e2c13c77" alt="searchPage2" width="150">
+  <img src="https://github.com/user-attachments/assets/a55abc1f-413c-4118-b300-5dc95b423291" alt="searchPage" width="150">
+   <img src="https://github.com/user-attachments/assets/e2151e0c-c276-4bfe-92c1-215211c451f6" alt="searchPage" width="150">
+   </div>
+    <div style="display: flex;">
+    <img src="https://github.com/user-attachments/assets/72180924-a007-4c67-ab70-e6033ef83080" alt="searchPage" width="150">
+    <img src="https://github.com/user-attachments/assets/db29a4ce-4ad2-4d34-8cc0-ec33dc2258eb" alt="searchPage" width="150">
+    <img src="https://github.com/user-attachments/assets/316bc3ef-cc90-4925-bd2c-0773439d77ef" alt="searchPage" width="150">
+</div>
 
 ### 이성민
 
