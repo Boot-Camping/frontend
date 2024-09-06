@@ -1,7 +1,10 @@
 .main-review {
-  width: 90%;
   padding-bottom: 3rem;
   margin-bottom: 2rem;
+  user-select: none;
+  cursor: grab;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .main-review-title {

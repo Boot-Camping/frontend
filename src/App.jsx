@@ -29,11 +29,9 @@ import SearchPage from "./pages/SearchPage";
 import DeleteAccountPage from "./pages/DeleteAccountPage";
 import ReviewWriter from "./components/my-review-page/ReviewWriter";
 import MyReviewPage from "./pages/MyReviewPage";
-import { saveData } from "./mock/saveData";
 import { CampingDaysProvider } from "./context/campingDaysContext";
 import { AuthProvider } from "./context/authContext";
 import Chatting from "./components/chatting/Chatting";
-// import ReviewPage from "./pages/ReviewViewer";
 
 function App() {
   return (
@@ -72,7 +70,7 @@ function App() {
               />
               <Route
                 path="/admin/camping-list"
-                element={<AdminCampingListPage campingPlaces={saveData} />}
+                element={<AdminCampingListPage />}
               />
               <Route
                 path="/admin/camp-fix/:id"
