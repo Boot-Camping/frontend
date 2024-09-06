@@ -3,7 +3,7 @@ import "../components/my-page/MyPage.css";
 import { useNavigate } from "react-router-dom";
 import MyPageUser from "../components/my-page/MyPageUser";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import MyPageLinkBtn from "../components/my-page/MypageLinkBtn";
+import MyPageLink from "../components/my-page/MyPageLink";
 
 const MyPage = () => {
   const { accessToken } = getUserIdFromToken();
@@ -18,7 +18,7 @@ const MyPage = () => {
   return (
     <section className="mypage-wrap">
       <MyPageUser />
-      <MyPageLinkBtn />
+      <MyPageLink />
     </section>
   );
 };
