@@ -28,6 +28,8 @@
 - Config: npm
 - Development: React, JavaScript, Axios
 - Communication: Notion, Discord, Swagger
+- ![image](https://github.com/user-attachments/assets/76d445b9-8aad-4c03-8635-aaaaf49bbf7e)
+
 
 ## 🧑‍💻 팀원소개 및 담당기능
 ### 이연주(CTO)
