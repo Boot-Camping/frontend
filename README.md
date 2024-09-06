@@ -19,8 +19,7 @@
 ## 🏁 boot-camping 로고
 <img src="https://github.com/user-attachments/assets/7a51e066-f302-42b7-b8e3-e52ea500c893" alt="searchPage1" width= "300" height="75">
 
-## 🏠 배포주소 및 Github 주소
-
+## 🏠 배포주소
 - **배포 주소**: https://boot-camping.netlify.app
 
 ## 🛠️ 기술스택
@@ -28,31 +27,32 @@
 - Environment: VS Code
 - Config: npm
 - Development: React, JavaScript, Axios
-- Communication: Notion, Discord
+- Communication: Notion, Discord, Swagger
 
 ## 🧑‍💻 팀원소개 및 담당기능
 ### 이연주(CTO)
 - **회원기능**
   - 회원가입
-  - 회원정보 수정
   - 주소 검색
   - 로그인/ 로그아웃/ 회원탈퇴
-  - 캐시 충전 및 사용내역 조회
 - **마이페이지**
   - 유저정보 조회/ 수정
-  - 예약 내역 조회
   - 찜목록 조회 및 삭제
   - 전체 & 상세 공지사항 조회
-  - 캠핑지 예약조회 및 예약취소
+  - 캠핑지 예약 조회 및 취소
+  - 캐시 충전 및 사용내역 조회
 - **채팅기능**
+
 <div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/77434b76-36d1-468d-b0cd-5fe2c802673e" alt="myPage" width="150">
   <img src="https://github.com/user-attachments/assets/537fec7b-14e2-4df6-8c2b-09f5e2c13c77" alt="userInfo" width="150">
   <img src="https://github.com/user-attachments/assets/a55abc1f-413c-4118-b300-5dc95b423291" alt="paidList" width="150">
-  <img src="https://github.com/user-attachments/assets/e2151e0c-c276-4bfe-92c1-215211c451f6" alt="saveList" width="150">
+  <img src="https://github.com/user-attachments/assets/0672c58d-540b-442c-b31e-fbfa66354349" alt="signupPage" width="150">
+  <img src="https://github.com/user-attachments/assets/21f0548f-95af-479d-94cb-e340cf644540" alt="loginPage" width="150">
 </div>
 
 <div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/e2151e0c-c276-4bfe-92c1-215211c451f6" alt="saveList" width="150">
   <img src="https://github.com/user-attachments/assets/72180924-a007-4c67-ab70-e6033ef83080" alt="cashPage" width="150">
   <img src="https://github.com/user-attachments/assets/db29a4ce-4ad2-4d34-8cc0-ec33dc2258eb" alt="noticeList" width="150">
   <img src="https://github.com/user-attachments/assets/316bc3ef-cc90-4925-bd2c-0773439d77ef" alt="chatPage" width="150">
@@ -64,11 +64,12 @@
   - 전체 캠핑지 조회
   - 실시간 리뷰 조회
   - 캠핑지 정렬필터
-  - 캠핑지 검색 및 최근 검색기록 조회
   - 캠핑지 '찜하기'
-  - 유저 리뷰 조회
 - **카테고리 페이지**
   - 카테고리별 캠핑지 조회
+- **캠핑지 검색 페이지**
+  - 캠핑지 전체 검색 및 지역 선택 검색
+  - 최근 검색기록 조회
 <div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/42174b77-3e22-4773-86b4-e70c6c8573f9" alt="mainPage-1" width="150">
   <img src="https://github.com/user-attachments/assets/781c0801-fb98-478e-8781-feb68f6b1964" alt="mainPage-2" width="150">
@@ -90,6 +91,11 @@
   <img src="https://github.com/user-attachments/assets/3fec7698-aecf-4bc4-9d29-1a303e407c73" alt="adminPage" width="150">
   <img src="https://github.com/user-attachments/assets/2e9b1f9f-ff09-4a64-9bc6-d8abd1eb1b24" alt="campRegister" width="150">
   <img src="https://github.com/user-attachments/assets/ccbad79a-0bab-4d0a-82af-01d92357cbda" alt="adminNotice" width="150">
+  <img src="https://github.com/user-attachments/assets/bbd532f7-19d3-4e66-b383-952dc814e84b" alt="campList" width="150">
+</div>
+<div style="display: flex;">
+  <img src="https://github.com/user-attachments/assets/b7c6c172-d6b3-4462-87a3-468d0f3f7e03" alt="adminNoticeEdit" width="150">
+  <img src="https://github.com/user-attachments/assets/a3794b1b-87e9-4444-adcb-ebd3eff79905" alt="campingEdit" width="150">
 </div>
 
 
@@ -103,7 +109,8 @@
   - 캠핑일정 선택 달력
 - **캠핑지 결제 페이지**
   - 예약인원 입력 및 결제금 연산
-- **마이리뷰 페이지**
+- **나의 리뷰 페이지**
+  - 리뷰 작성 및 이미지 삽입
   - 나의 리뷰 조회/ 수정/ 삭제
 - **헤더 & 푸터**
 <div style="display: flex;">
