@@ -29,8 +29,7 @@
  */
 @media screen and (min-width: 1024px) {
   .cash-charge-btn {
-    bottom: auto;
-		top: 40%;
+    bottom: 10rem;
     left: 15%;
     width: 10%;
     border-radius: 0.5rem;
