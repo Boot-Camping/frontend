@@ -66,10 +66,7 @@ const AdminNoticeFixPage = () => {
       description: description,
     };
 
-    formData.append(
-      "request",
-      new Blob([JSON.stringify(request)], { type: "application/json" })
-    );
+    formData.append("request", JSON.stringify(request));
 
     images.forEach((image) => {
       if (image.file) {
