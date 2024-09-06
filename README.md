@@ -35,6 +35,8 @@
 ### 이연주(CTO)
 - **회원기능**
   - 회원가입
+  - 회원정보 수정
+  - 주소 검색
   - 로그인/ 로그아웃/ 회원탈퇴
   - 캐시 충전 및 사용내역 조회
 - **마이페이지**
@@ -61,10 +63,13 @@
 ### 이성민
 - **메인 페이지**
   - 전체 캠핑지 조회
-  - 카테고리별 캠핑지 조회
+  - 실시간 리뷰 조회
+  - 캠핑지 정렬필터
   - 캠핑지 검색 및 최근 검색기록 조회
   - 캠핑지 '찜하기'
   - 유저 리뷰 조회
+- **카테고리 페이지**
+  - 카테고리별 캠핑지 조회
 <div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/42174b77-3e22-4773-86b4-e70c6c8573f9" alt="mainPage-1" width="150">
   <img src="https://github.com/user-attachments/assets/781c0801-fb98-478e-8781-feb68f6b1964" alt="mainPage-2" width="150">
@@ -92,12 +97,15 @@
 ### 이세원
 - **캠핑지 상세 페이지**
   - 캠핑지 상세정보 조회
-  - 근처 편의점 조회 지도
+  - 캠핑지 '찜하기'
+  - 캠핑장 근처 편의점 탐색 지도
   - 캠핑지별 리뷰 조회 및 댓글 작성
 - **캠핑지 예약 페이지**
+  - 캠핑일정 선택 달력
 - **캠핑지 결제 페이지**
+  - 예약인원 입력 및 결제금 연산
 - **마이리뷰 페이지**
-  - 유저 리뷰 조회/ 작성/ 수정/ 삭제
+  - 나의 리뷰 조회/ 수정/ 삭제
 <div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/7f6f6cba-c8a7-4242-bd36-f1397d38b1d8" alt="detailPage-1" width="150">
   <img src="https://github.com/user-attachments/assets/da973cfe-4f29-4866-ae0f-6a83482a5252" alt="detailPage-2" width="150">
