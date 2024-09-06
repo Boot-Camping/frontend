@@ -137,10 +137,6 @@ const ChatRoom = ({
           />
           <div>{chatName}</div>
         </div>
-
-        {errorMessage && (
-          <EmptyContent errorMessage={errorMessage} error={error} />
-        )}
       </div>
 
       {chatStart && (

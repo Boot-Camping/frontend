@@ -19,18 +19,11 @@ const LoginAccountPage = () => {
 
     try {
       const response = await post("user/login", jsonData);
-
       const accessToken =
         response.headers["authorization"] || response.headers["Authorization"];
 
       localStorage.setItem("accessToken", accessToken);
-
-      if (data.loginId === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
-
+      navigate(data.loginId === "admin" ? "/admin" : "/");
       window.location.reload();
     } catch (error) {
       setErrorMessage(error.message);

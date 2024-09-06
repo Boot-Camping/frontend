@@ -31,7 +31,6 @@ const CashPage = () => {
       );
       setCashData(response);
       setLoading(false);
-      console.log("response", response);
     } catch (error) {
       setErrorMessage(error.message);
     }
