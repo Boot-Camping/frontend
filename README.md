@@ -106,6 +106,7 @@
   - 예약인원 입력 및 결제금 연산
 - **마이리뷰 페이지**
   - 나의 리뷰 조회/ 수정/ 삭제
+- **헤더 & 푸터**
 <div style="display: flex;">
   <img src="https://github.com/user-attachments/assets/7f6f6cba-c8a7-4242-bd36-f1397d38b1d8" alt="detailPage-1" width="150">
   <img src="https://github.com/user-attachments/assets/da973cfe-4f29-4866-ae0f-6a83482a5252" alt="detailPage-2" width="150">
