@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 import "../main-page/MainReview.css";
 import { get } from "../../utils/api";
 import { relativeDate } from "../../utils/relativeDate";
