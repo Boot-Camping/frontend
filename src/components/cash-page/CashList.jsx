@@ -31,6 +31,8 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
                 ? "charge-list"
                 : data.transactionType === "PAYMENT"
                 ? "use-list"
+                : data.transactionType === "REWARD"
+                ? "charge-list"
                 : "charge-list"
             } `}
             key={`cash-list-${index}`}
@@ -45,6 +47,8 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
                   ? "충전"
                   : data.transactionType === "PAYMENT"
                   ? "사용"
+                  : data.transactionType === "REWARD"
+                  ? "적립"
                   : "환불"}
               </div>
               <div className="cash-date">
@@ -57,6 +61,8 @@ const CashList = ({ filter, onTotalCashUpdate, cashData, errorMessage }) => {
                   ? "캐시 충전"
                   : data.transactionType === "PAYMENT"
                   ? data.campName
+                  : data.transactionType === "REWARD"
+                  ? "리뷰 포인트 적립"
                   : "예약 취소 환불"}
               </div>
               <div>{data.beforeTransactionCash.toLocaleString()}원</div>

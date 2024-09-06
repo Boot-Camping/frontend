@@ -28,8 +28,13 @@ export const filterType = {
       class: "use-filter",
     },
     {
-      status: "REWARD",
+      status: "REFUND",
       type: "환불",
+      class: "charge-filter",
+    },
+    {
+      status: "REWARD",
+      type: "적립",
       class: "charge-filter",
     },
   ],
