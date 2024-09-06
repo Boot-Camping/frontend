@@ -1,5 +1,5 @@
 import React from "react";
-import "./MyPageLinkBtn.css";
+import "./MyPageLink.css";
 import MyPageBtn from "./MyPageBtn";
 import { mypageBtns } from "../../constants/mypage";
 import NoticeLink from "./NoticeLink";
