@@ -22,7 +22,6 @@
 ## 🏠 배포주소 및 Github 주소
 
 - **배포 주소**: https://boot-camping.netlify.app
-- **Github**: https://github.com/Boot-Camping/frontend
 
 ## 🛠️ 기술스택
 
