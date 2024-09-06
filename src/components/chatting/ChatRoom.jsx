@@ -84,7 +84,9 @@ const ChatRoom = ({
     };
   }, [currentId]);
 
-  const sendMessageHandle = () => {
+  const sendMessageHandle = (event) => {
+    event.preventDefault();
+
     if (message.trim()) {
       const payload = JSON.stringify({
         chatRoomId: currentId,
@@ -126,16 +128,15 @@ const ChatRoom = ({
 
   return (
     <div className="chat-room-wrap">
-      <div className="chat-room-title">
-        <ReactSVG
-          src={svgCollection.prev}
-          className="chat-room-prev"
-          onClick={outHandle}
-        />
-        <div>{chatName}</div>
-        {errorMessage && (
-          <EmptyContent errorMessage={errorMessage} error={error} />
-        )}
+      <div className="chat-room-title-wrap">
+        <div className="chat-room-title">
+          <ReactSVG
+            src={svgCollection.prev}
+            className="chat-room-prev"
+            onClick={outHandle}
+          />
+          <div>{chatName}</div>
+        </div>
       </div>
 
       {chatStart && (
@@ -157,6 +158,9 @@ const ChatRoom = ({
                         : "chat-message-right"
                     }`}
                   >
+                    <div className="chat-message-writer">
+                      {msg.senderLoginId === createdBy ? createdBy : joinedBy}
+                    </div>
                     <div className="chat-message-content">{msg.content}</div>
                     <div className="chat-message-time">
                       {formatIme(msg.sentAt)}
@@ -167,17 +171,17 @@ const ChatRoom = ({
             </div>
           ))}
 
-          <div className="chat-input-wrap">
-            <input
-              type="text"
-              className="chat-input"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="메시지를 입력하세요"
-            />
-            <button className="chat-send-btn" onClick={sendMessageHandle}>
-              전송
-            </button>
+          <div className="chat-send-wrap">
+            <form className="chat-input-wrap" onSubmit={sendMessageHandle}>
+              <input
+                type="text"
+                className="chat-input"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="메시지를 입력하세요"
+              />
+              <button className="chat-send-btn">전송</button>
+            </form>
             <button className="chat-finish-btn" onClick={outHandle}>
               채팅 종료
             </button>

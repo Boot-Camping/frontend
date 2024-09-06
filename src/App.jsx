@@ -45,7 +45,7 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route
-                path="/categorypage/:category"
+                path="/categorypage/:categories"
                 element={<CategoryPage />}
               />
               <Route path="/login" element={<LoginPage />} />

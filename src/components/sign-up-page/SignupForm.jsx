@@ -32,7 +32,7 @@ const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
         formData[signup.key] = inputElement.value;
       }
     });
-    formData.addr = `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`; // 주소는 별도로 처리
+    formData.addr = `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`;
 
     if (
       !validation({

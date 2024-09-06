@@ -53,6 +53,9 @@ const UserInfoPage = () => {
         {userData && (
           <UserImage
             userData={userData}
+            error={error}
+            setError={setError}
+						errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             onUpdate={getUserData}
           />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./UserInfoModalBtn.css";
 import { closeModal } from "../../utils/closeModal";
 import { userInfoModal } from "../../constants/userInfo";
@@ -18,7 +18,48 @@ const UserInfoModalBtn = ({
 }) => {
   const { accessToken } = getUserIdFromToken();
 
+  const validateInput = () => {
+    if (modalType === "tel" && !inputValue.tel) {
+      return "전화번호를 입력해주세요";
+    }
+    if (modalType === "password") {
+      if (!inputValue.oldPassword) return "기존 비밀번호를 입력해주세요";
+      if (!inputValue.newPassword) return "새 비밀번호를 입력해주세요";
+      if (!inputValue.newPasswordChk)
+        return "새 비밀번호를 한번 더 입력해주세요";
+      if (inputValue.newPassword !== inputValue.newPasswordChk)
+        return "새 비밀번호가 일치하지 않습니다";
+    }
+    return null;
+  };
+
+  const getBodyOrParams = async () => {
+    const params = new URLSearchParams();
+    let body;
+
+    if (modalType === "tel") {
+      params.set("tel", inputValue.tel);
+    } else if (modalType === "addr") {
+      const fullAddress = await addrChangeHandle();
+      params.set("addr", fullAddress);
+    } else if (modalType === "password") {
+      body = {
+        oldPassword: inputValue.oldPassword,
+        newPassword: inputValue.newPassword,
+      };
+    }
+
+    return { params, body };
+  };
+
   const submitHandle = async () => {
+    const message = validateInput();
+    if (message) {
+      setError(true);
+      setErrorMessage(`Message: ${message}`);
+      return;
+    }
+
     const customHeaders = {
       Authorization: `${accessToken}`,
     };
@@ -27,45 +68,8 @@ const UserInfoModalBtn = ({
       customHeaders["Content-Type"] = "application/x-www-form-urlencoded";
     }
 
-    const params = new URLSearchParams();
-    let body;
-
-    if (modalType === "tel") {
-      if (!inputValue.tel) {
-        setError(true);
-        setErrorMessage("Message: 전화번호를 입력해주세요");
-        return;
-      }
-      params.set("tel", inputValue.tel);
-    } else if (modalType === "addr") {
-      const fullAddress = await addrChangeHandle();
-      params.set("addr", fullAddress);
-    } else if (modalType === "password") {
-      if (!inputValue.oldPassword) {
-        setError(true);
-        setErrorMessage("Message: 기존 비밀번호를 입력해주세요");
-        return;
-      } else if (!inputValue.newPassword) {
-        setError(true);
-        setErrorMessage("Message: 새 비밀번호를 입력해주세요");
-        return;
-      } else if (!inputValue.newPasswordChk) {
-        setError(true);
-        setErrorMessage("Message: 새 비밀번호를 한번 더 입력해주세요");
-        return;
-      } else if (inputValue.newPassword === inputValue.newPasswordChk) {
-        body = {
-          oldPassword: inputValue.oldPassword,
-          newPassword: inputValue.newPassword,
-        };
-      } else {
-        setError(true);
-        setErrorMessage("Message: 새 비밀번호가 일치하지 않습니다");
-        return;
-      }
-    }
-
     try {
+      const { params, body } = await getBodyOrParams();
       const endpoint =
         modalType === "password" ? "userprofile/password" : "userprofile";
       await put(

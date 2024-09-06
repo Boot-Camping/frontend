@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
+import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import ReadMore from "./ReadMore";
+
 import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
@@ -14,29 +15,28 @@ const DetailPageInfo = ({ detailInfo }) => {
 
   // 찜하기(POST)
   const toggleSave = async () => {
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
-
     try {
       const response = await post(
         `userprofile/wishlist/add/${detailInfo.id}`,
         {},
-        customHeaders
+        {
+          Authorization: `${accessToken}`,
+        }
       );
-      console.log("찜하기 요청 성공🥳:", response);
       setIsSaved(!isSaved);
     } catch (error) {
       console.error("찜하기 요청 오류🥲:", error);
-      if (error.response) {
-        console.error("서버 응답 상태 코드:", error.response.status);
-        console.error("서버 응답 데이터:", error.response.data);
-      } else {
-        console.error("요청 오류:", error.message);
-      }
       setError("찜하기 오류 발생 🥲");
     }
   };
+
+  // 리팩토링용 함수
+  const renderDetailItem = (icon, content) => (
+    <div className="detail-item">
+      <ReactSVG className="detail-icon" src={icon} alt={content} />
+      {content}
+    </div>
+  );
 
   return (
     <div>
@@ -54,7 +54,6 @@ const DetailPageInfo = ({ detailInfo }) => {
             </div>
           </div>
 
-          {/* 찜하기 버튼 */}
           <button className="save" onClick={toggleSave}>
             <ReactSVG
               src={svg.heart}
@@ -85,34 +84,16 @@ const DetailPageInfo = ({ detailInfo }) => {
         </div>
         <div className="detail-info">
           <div className="detail-title">기본정보</div>
-          <div className="detail-item">
-            <ReactSVG
-              className="detail-icon"
-              src={svg.location}
-              alt="location"
-            />
-            {detailInfo.addr}
-          </div>
-
-          <div className="detail-item">
-            <ReactSVG className="detail-icon" src={svg.phone} alt="phone" />
-            {detailInfo.tel}
-          </div>
-
-          <div className="detail-item num">
-            <ReactSVG className="detail-icon" src={svg.group} alt="group" />
-            기준 수용인원: {detailInfo.standardNum}명/ 최대 수용인원:{" "}
-            {detailInfo.maxNum}명
-          </div>
-
-          <div className="detail-item">
-            <ReactSVG
-              className="detail-icon"
-              src={svg.calculator}
-              alt="calculator"
-            />
-            인당 추가요금 {detailInfo.overCharge?.toLocaleString()}원
-          </div>
+          {renderDetailItem(svg.location, detailInfo.addr)}
+          {renderDetailItem(svg.phone, detailInfo.tel)}
+          {renderDetailItem(
+            svg.group,
+            `기준 수용인원: ${detailInfo.standardNum}명/ 최대 수용인원: ${detailInfo.maxNum}명`
+          )}
+          {renderDetailItem(
+            svg.calculator,
+            `인당 추가요금 ${detailInfo.overCharge?.toLocaleString()}원`
+          )}
         </div>
         <ReadMore text={detailInfo.description} maxLength={80} />
       </div>

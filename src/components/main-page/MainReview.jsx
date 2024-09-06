@@ -39,18 +39,24 @@ const MainReview = () => {
         direction="vertical"
         spaceBetween={10}
         scrollbar={{
-          hide: false, // 스크롤바를 항상 보이게 설정
-          draggable: true, // 스크롤바를 드래그할 수 있게 설정
+          hide: false,
+          draggable: true,
         }}
       >
         {reviews.map((review, index) => (
           <SwiperSlide key={index} className="main-review-wrapper ">
             <div className="main-review-img-wrapper">
-              <img
-                className="main-review-reviewImage"
-                src={review.reviewImage}
-                alt=""
-              />
+              {review.reviewImage && review.reviewImage.length > 0 ? (
+                <img
+                  className="main-review-reviewImage"
+                  src={review.reviewImage}
+                  alt=""
+                />
+              ) : (
+                <div className="main-review-no-reviewImage">
+                  리뷰 사진이 없습니다
+                </div>
+              )}
             </div>
             <div className="main-review-info-wrapper">
               <div className="main-review-content">{review.content}</div>

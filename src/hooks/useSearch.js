@@ -54,7 +54,7 @@ const useSearch = () => {
       setError("데이터를 가져오는데 실패했습니다.");
     }
 
-    setSearchText(""); // 검색어 필드를 초기화합니다.
+    setSearchText("");
   };
 
   const historyClickHandle = (item) => {

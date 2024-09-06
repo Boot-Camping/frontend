@@ -36,17 +36,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-right: 1rem;
 }
 
 .my-review-img {
   width: 12rem;
-  height: 10rem;
+  height: 8rem;
   border-radius: 0.5rem;
 }
 
 .my-no-review-img {
   width: 12rem;
-  height: 10rem;
+  height: 8rem;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -69,7 +70,12 @@
   border: 0.1rem solid var(--light-green);
   border-radius: 0.3rem;
   padding: 0.2rem 0.5rem;
-  margin: 1rem 0.5rem 0 0;
+  margin: 1rem 0.2rem;
+}
+
+.my-review-grade {
+  font-size: var(--sub-content);
+  font-weight: bold;
 }
 
 .review-edit-content {

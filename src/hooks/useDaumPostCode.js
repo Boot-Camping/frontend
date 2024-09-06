@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useDaumPostCode = (setPostcode) => {
   const [address, setAddress] = useState("");
@@ -54,9 +54,6 @@ const useDaumPostCode = (setPostcode) => {
             setExtraAddress("");
           }
 
-          console.log("우편번호:", data.zonecode);
-          console.log("주소:", addr);
-
           setPostcode(data.zonecode);
           setAddress(addr);
 
@@ -71,8 +68,6 @@ const useDaumPostCode = (setPostcode) => {
         popupKey: "popup1",
         popupTitle: "우편번호 찾기",
       });
-    } else {
-      console.error("아직 스크립트가 로드되지 않음");
     }
   };
 

@@ -12,28 +12,21 @@
   border-bottom: 1px solid var(--bg-gray);
 }
 
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
-  display: flex;
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 3rem;
 }
 
-.logo1 {
-  display: flex;
-  width: 12rem;
-  height: 5rem;
-}
-
-.logo2 {
-  display: flex;
-  width: 7rem;
-  height: 6rem;
-}
-
-.logo3 {
-  display: flex;
-  width: 15rem;
-  height: 4.5rem;
+.logo-title {
+  font-size: var(--content);
+  font-weight: bold;
+  color: var(--dark-green);
+  padding-left: 1rem;
 }
 
 .icons {
@@ -46,12 +39,17 @@
   padding-left: 1rem;
 }
 
-/* PC CSS */
+/* 테블릿 CSS */
 @media screen and (min-width: 1024px) {
   .logo {
-    display: flex;
-    width: 5rem;
-    height: 5rem;
+    width: 7rem;
+    height: 4rem;
+  }
+
+  .logo-title {
+    font-size: var(--sub-heading);
+    font-weight: bold;
+    color: var(--dark-green);
   }
 
   .header-icon {
