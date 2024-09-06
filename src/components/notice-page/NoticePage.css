@@ -34,3 +34,12 @@
     width: 50%;
   }
 }
+
+.admin-notice-img {
+  margin-top: 1rem;
+  width: 12rem;
+  height: 10rem;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+}

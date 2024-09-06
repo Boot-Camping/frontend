@@ -78,6 +78,7 @@ const AdminCampingRegister = () => {
 
     const customHeaders = {
       Authorization: `${accessToken}`,
+      "Content-Type": "multipart/form-data",
     };
 
     try {
