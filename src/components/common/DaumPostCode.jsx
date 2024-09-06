@@ -44,7 +44,7 @@ const DaumPostCode = ({
       <input
         className="signup-input"
         type="text"
-        value={address}
+        defaultValue={addressRef.current?.value}
         placeholder="주소"
         readOnly
         ref={addressRef}
@@ -54,7 +54,7 @@ const DaumPostCode = ({
         id="detail-address"
         className="signup-input"
         type="text"
-        value={detailAddress}
+        defaultValue={detailAddressRef.current?.value}
         placeholder="상세주소"
         onChange={(e) => setDetailAddress(e.target.value)}
         required

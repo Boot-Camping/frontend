@@ -8,14 +8,12 @@ import DaumPostCode from "../components/common/DaumPostCode";
 import AdminCategoryBtn from "../components/admin-camping-register-page/AdminCategoryBtn";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
-import useFetchCampingList from "../hooks/useFetchCampingList";
-import useCampingPlaceFilter from "../hooks/useCampingPlaceFilter";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { put, deleteRequest } from "../utils/api";
+import { get, put, deleteRequest } from "../utils/api";
 
 const AdminCampFixPage = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams(); // URL 파라미터에서 ID 가져오기
   const [error, setError] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
@@ -28,40 +26,58 @@ const AdminCampFixPage = () => {
   const [categories, setCategory] = useState([]);
   const [updatedImages, setUpdatedImages] = useState([]);
   const [addr, setAddr] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const addressRef = React.useRef();
+  const detailAddressRef = React.useRef();
   const { accessToken } = getUserIdFromToken();
 
-  const { campingPlaces } = useFetchCampingList();
-  const { selectedFilter, setSelectedFilter, campingPlaceFiltered } =
-    useCampingPlaceFilter(campingPlaces);
-
-  const currentCampingPlace = campingPlaceFiltered.find(
-    (place) => place.id === parseInt(id)
-  );
-
   useEffect(() => {
-    if (currentCampingPlace) {
-      setDescription(currentCampingPlace.description || "");
-      setName(currentCampingPlace.name || "");
-      setTel(currentCampingPlace.tel || "");
-      setPrice(currentCampingPlace.price || "");
-      setStandardNum(currentCampingPlace.standardNum || "");
-      setMaxNum(currentCampingPlace.maxNum || "");
-      setOverCharge(currentCampingPlace.overCharge || "");
-      setImageFiles(currentCampingPlace.imageFiles || []);
-      setCategory(currentCampingPlace.category || []);
-      setAddr(currentCampingPlace.addr || "");
-    }
-  }, [currentCampingPlace]);
+    const fetchCampingPlace = async () => {
+      try {
+        const data = await get(`camps/${id}`, customHeaders);
 
-  const handleUploadSuccess = (uploadedImages) => {
-    const uploadedImageFiles = uploadedImages.map((file) =>
-      URL.createObjectURL(file)
-    );
-    setUpdatedImages(uploadedImageFiles);
-  };
+        if (data) {
+          setDescription(data.description || "");
+          setName(data.name || "");
+          setTel(data.tel || "");
+          setPrice(data.price || "");
+          setStandardNum(data.standardNum || "");
+          setMaxNum(data.maxNum || "");
+          setOverCharge(data.overCharge || "");
+          setImageFiles(data.imageFiles || []);
+          setCategory(data.categories || []);
 
-  const handleUploadError = (errorMessage) => {
-    console.error("Image upload failed:", errorMessage);
+          // 주소 데이터를 분리하여 상태로 저장
+          const { postcode, mainAddress, detailAddress } = splitAddress(
+            data.addr
+          );
+          setPostcode(postcode);
+          addressRef.current.value = mainAddress;
+          detailAddressRef.current.value = detailAddress;
+        }
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchCampingPlace();
+  }, [id, accessToken]);
+
+  // addr에서 우편번호, 메인 주소, 상세 주소를 분리하는 함수
+  const splitAddress = (addr) => {
+    const postcodeMatch = addr.match(/\((\d{5})\)/); // 우편번호 추출
+    const postcode = postcodeMatch ? postcodeMatch[1] : "";
+
+    // 메인 주소와 상세 주소를 분리 (상세주소가 있다고 가정)
+    const [mainAddress, detailAddress] = addr
+      .replace(/\(\d{5}\)/, "")
+      .split(", ");
+
+    return {
+      postcode,
+      mainAddress: mainAddress.trim(),
+      detailAddress: detailAddress ? detailAddress.trim() : "",
+    };
   };
 
   const handleCategoriesChange = (newCategories) => {
@@ -81,6 +97,7 @@ const AdminCampFixPage = () => {
     }
 
     const formData = new FormData();
+    formData.append("id", id);
     formData.append("name", String(name));
     formData.append("tel", String(tel));
     formData.append("price", Number(price));
@@ -99,11 +116,11 @@ const AdminCampFixPage = () => {
       formData.append(`categories[${index}]`, cat);
     });
 
-    (updatedImages.length > 0 ? updatedImages : imageFiles).forEach(
-      (image, index) => {
-        formData.append(`imageFiles[${index}]`, image);
+    (updatedImages.length > 0 ? updatedImages : imageFiles).forEach((image) => {
+      if (image instanceof File) {
+        formData.append("imageFiles", image);
       }
-    );
+    });
 
     // 요청을 보낼 때 요청 데이터와 URL이 올바른지 로그 확인
     console.log(
@@ -112,7 +129,7 @@ const AdminCampFixPage = () => {
     );
 
     try {
-      await put(`camps`, formData, customHeaders);
+      await put("camps", formData, customHeaders);
 
       alert("캠핑장 정보가 수정되었습니다.");
       navigate("/admin");
@@ -130,10 +147,6 @@ const AdminCampFixPage = () => {
       alert(`삭제 실패: ${error.message}`);
     }
   };
-
-  if (!currentCampingPlace) {
-    return <div>캠핑장 정보를 찾을 수 없습니다.</div>;
-  }
 
   if (error) {
     return <div>캠핑장 정보 가져오기 실패: {error.message}</div>;
@@ -174,15 +187,17 @@ const AdminCampFixPage = () => {
         </div>
         <div className="camp-img-title">사진</div>
         <AdminImgPlus
-          initialImages={imageFiles}
-          onUploadSuccess={handleUploadSuccess}
-          onUploadError={handleUploadError}
+          nitialImages={imageFiles.map((image) =>
+            typeof image === "string" ? image : URL.createObjectURL(image)
+          )}
+          setImages={setUpdatedImages}
+          imageFiles={updatedImages}
         />
         <DaumPostCode
-          postcode={postcode}
-          setPostcode={setPostcode}
-          addressRef={addressRef}
-          detailAddressRef={detailAddressRef}
+          postcode={postcode} // 우편번호를 상태로 관리
+          setPostcode={setPostcode} // 우편번호를 설정하는 함수
+          addressRef={addressRef} // 주소 참조
+          detailAddressRef={detailAddressRef} // 상세 주소 참조
         />
         <div>
           <div className="camp-info">
@@ -193,7 +208,7 @@ const AdminCampFixPage = () => {
             <input
               id="camp-number"
               name="camp-number"
-              type="number"
+              type="text"
               value={tel}
               onChange={(e) => setTel(e.target.value)}
               className="input-camp-number"
