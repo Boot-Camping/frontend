@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
 
     const parts = token.split(".");
     if (parts.length !== 3) {
-      console.error("유효한 JWT가 아닙니다");
       return null;
     }
 
@@ -32,8 +31,6 @@ export const AuthProvider = ({ children }) => {
           console.log("토큰만료");
           localStorage.removeItem("accessToken");
           setAccessToken(null);
-        } else {
-          console.log("토큰유효");
         }
       }
     };

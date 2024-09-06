@@ -1,20 +1,25 @@
 import React from "react";
 import "./UserProfile.css";
 
-const UserProfile = ({
-  setIsOpened,
-  setModalType,
-  userData,
-}) => {
-
-  const telChangeHandle = () => {
+const UserProfile = ({ setIsOpened, setModalType, userData }) => {
+  const changeHandle = (type) => {
     setIsOpened(true);
-    setModalType("tel");
+    setModalType(type);
   };
 
-  const addrChangeHandle = () => {
-    setIsOpened(true);
-    setModalType("addr");
+  const renderProfileItem = (label, value, onClick) => {
+    return (
+      <div
+        className={`profile-txt ${onClick ? "profile-change-btn" : ""}`}
+        onClick={onClick}
+      >
+        <div>{label}</div>
+        <div>
+          {value}
+          {onClick && <div className="profile-change">변경</div>}
+        </div>
+      </div>
+    );
   };
 
   const addrParts = userData.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
@@ -24,35 +29,21 @@ const UserProfile = ({
   return (
     <div className="user-profile-wrap">
       <div className="profile-txt-wrap underline">
-        <div className="profile-txt">
-          <div>이름</div>
-          <div>{userData.name}</div>
-        </div>
-        <div className="profile-txt profile-change-btn" onClick={telChangeHandle}>
-          <div>전화번호</div>
-          <div>
-            <div>{userData.tel}</div>
-            <div className="profile-change">변경</div>
-          </div>
-        </div>
-        <div className="profile-txt">
-          <div>이메일</div>
-          <div>{userData.email}</div>
-        </div>
-        <div className="profile-txt profile-address profile-change-btn" onClick={addrChangeHandle}>
-          <div className="">주소</div>
-          <div>
-            {addrParts ? (
-              <div className="user-profile-full">
-                <div>{address}</div>
-                <div>{detailAddress}</div>
-              </div>
-            ) : (
-              <div>{userData.addr}</div>
-            )}
-            <div className="profile-change">변경</div>
-          </div>
-        </div>
+        {renderProfileItem("이름", userData.name)}
+        {renderProfileItem("전화번호", userData.tel, () => changeHandle("tel"))}
+        {renderProfileItem("이메일", userData.email)}
+        {renderProfileItem(
+          "주소",
+          addrParts ? (
+            <div className="user-profile-full">
+              <div>{address}</div>
+              <div>{detailAddress}</div>
+            </div>
+          ) : (
+            userData.addr
+          ),
+          () => changeHandle("addr")
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,26 @@
+.mypage-btn-wrap {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .mypage-btn-wrap {
+    margin-top: 0;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .mypage-link-wrap {
+    width: 50%;
+  }
+}
