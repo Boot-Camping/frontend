@@ -2,19 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../constants/svgCollection";
-import { get, put } from "../utils/api";
+import { get, put, deleteRequest } from "../utils/api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import AdminImgPlus from "../components/admin-camping-register-page/AdminImgPlus";
 import EmptyContent from "../components/common/EmptyContent";
 import "../components/notice-page/NoticePage.css";
+import "../components/admin-camping-register-page/AdminCampingRegister.css";
 
 const AdminNoticeFixPage = () => {
   const { id } = useParams();
   const { accessToken } = getUserIdFromToken();
   const [notice, setNotice] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [imageUrl, setImageUrl] = useState([]);
+  const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [updatedImages, setUpdatedImages] = useState([]);
@@ -27,7 +28,7 @@ const AdminNoticeFixPage = () => {
         setNotice(response);
         setTitle(response.title);
         setDescription(response.description);
-        setImageUrl(response.imageUrl || []);
+        setImages(response.images || []); // 서버에서 가져온 이미지 URL
       } catch (error) {
         setErrorMessage(error.message);
       }
@@ -44,27 +45,37 @@ const AdminNoticeFixPage = () => {
     setDescription(event.target.value);
   };
 
-  const handleUploadSuccess = (uploadedImages) => {
-    const uploadedImageUrls = uploadedImages.map((file) =>
-      URL.createObjectURL(file)
-    );
-    setUpdatedImages(uploadedImageUrls);
-  };
-
-  const handleUploadError = (errorMessage) => {
-    console.error("Image upload failed:", errorMessage);
+  const removeHandle = async () => {
+    try {
+      await deleteRequest(`admin/notice/${id}`);
+      alert("공지사항이 삭제되었습니다.");
+      navigate("/admin");
+    } catch (error) {
+      alert(
+        `삭제 실패: ${
+          error.response ? error.response.data.message : error.message
+        }`
+      );
+    }
   };
 
   const handleUpdate = async () => {
     const formData = new FormData();
-    formData.append("title", String(title));
-    formData.append("description", String(description));
+    const request = {
+      title: title,
+      description: description,
+    };
 
-    (updatedImages.length > 0 ? updatedImages : imageUrl).forEach(
-      (image, index) => {
-        formData.append(`imageUrl[${index}]`, image);
-      }
+    formData.append(
+      "request",
+      new Blob([JSON.stringify(request)], { type: "application/json" })
     );
+
+    images.forEach((image) => {
+      if (image.file) {
+        formData.append("images", image.file); // 'images' 필드에 파일 추가
+      }
+    });
 
     const customHeaders = {
       Authorization: `${accessToken}`,
@@ -91,6 +102,15 @@ const AdminNoticeFixPage = () => {
       {notice ? (
         <>
           <div className="notice-title">공지사항 수정</div>
+          <div className="camp-right-container">
+            <button
+              onClick={removeHandle}
+              type="submit"
+              className="camp-remove-btn"
+            >
+              삭제
+            </button>
+          </div>
           <ReactSVG
             src={svgCollection.prev}
             className="notice-move-prev"
@@ -111,10 +131,23 @@ const AdminNoticeFixPage = () => {
 
           <div className="camping-notice">내용</div>
           <AdminImgPlus
-            initialImages={imageUrl}
-            onUploadSuccess={handleUploadSuccess}
-            onUploadError={handleUploadError}
+            imageFiles={updatedImages}
+            setImages={setUpdatedImages}
           />
+          <div>
+            {notice.imageUrl && Array.isArray(notice.imageUrl) ? (
+              notice.imageUrl.map((url, index) => (
+                <img
+                  className="admin-notice-img"
+                  key={index}
+                  src={url}
+                  alt={`Notice image ${index + 1}`}
+                />
+              ))
+            ) : (
+              <div></div>
+            )}
+          </div>
           <form>
             <textarea
               className="input-notice"
