@@ -29,7 +29,6 @@ const ReviewWriter = () => {
   const [myReviews, setMyReviews] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
   // selectedTag -> label 추출해서 -> 문자열로 변환
   const reviewTagsString = selectedTags
@@ -48,7 +47,6 @@ const ReviewWriter = () => {
     };
 
     const tagsArray = reviewTagsString.split(",");
-
     const imageUrls = reviewImages.map((image) => image.name);
 
     // 리뷰 요청 데이터 -> JSON 변환
@@ -61,7 +59,6 @@ const ReviewWriter = () => {
 
     const formData = new FormData();
     formData.append("reviewRequest", reviewRequest);
-
     reviewImages.forEach((image) => {
       formData.append("reviewImages", image);
     });
@@ -81,8 +78,6 @@ const ReviewWriter = () => {
         customHeaders
       );
       setMyReviews((prevReviews) => [...prevReviews, response.data]);
-      console.log("리뷰 제출 성공! 😄:", response.data);
-
       setIsModalOpen(true);
     } catch (error) {
       setError("리뷰 제출 에러 발생 🥲");

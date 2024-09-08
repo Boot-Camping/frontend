@@ -2,20 +2,26 @@ import React from "react";
 import "./BookPage.css";
 
 const BookInfo = ({ campInfo }) => {
+  const { name, standardNum, maxNum, price, overCharge, imageUrls } = campInfo;
+
+  const formatCurrency = (amount) => {
+    return amount.toLocaleString() + " 원";
+  };
+
   return (
     <div>
       <div className="book-info">
         <div className="book-contents">
           <div className="book-info-title">캠핑장 정보</div>
           <div className="camping-num">
-            • {campInfo.name}
-            <br />• 기준 수용인원: {campInfo.standardNum} 명 <br />• 최대
-            수용인원: {campInfo.maxNum} 명 <br />• 1박 가격:{" "}
-            {campInfo.price.toLocaleString()} 원<br />• 초과 인원당 추가비용:{" "}
-            {campInfo.overCharge.toLocaleString()} 원
+            • {name}
+            <br />• 기준 수용인원: {standardNum} 명
+            <br />• 최대 수용인원: {maxNum} 명
+            <br />• 1박 가격: {formatCurrency(price)}
+            <br />• 초과 인원당 추가비용: {formatCurrency(overCharge)}
           </div>
         </div>
-        <img className="book-img" src={campInfo.imageUrls[0]} alt="" />
+        <img className="book-img" src={imageUrls[0]} alt="" />
       </div>
     </div>
   );

@@ -5,8 +5,7 @@ const PaymentInfo = ({ submitRequestHandle, userData, loading }) => {
   const [bookRequest, setBookRequest] = useState("");
 
   const requestChangeHandle = (e) => {
-    const requestValue = e.target.value;
-    setBookRequest(requestValue);
+    setBookRequest(e.target.value);
   };
 
   useEffect(() => {

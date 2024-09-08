@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import { useCampingDays } from "../context/campingDaysContext";
 import { post, get } from "../utils/api";
 import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-
 import EmptyContent from "../components/common/EmptyContent";
 
 const PaymentPage = ({ campInfo }) => {
@@ -25,56 +24,28 @@ const PaymentPage = ({ campInfo }) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
-
   const [error, setError] = useState(false);
+  const [userData, setUserData] = useState({ name: "", tel: "", email: "" });
 
-  const [userData, setUserData] = useState({
-    name: "",
-    tel: "",
-    email: "",
-  });
   const { userId, accessToken } = getUserIdFromToken();
 
   if (!campInfo) {
     return <div>캠핑장 정보가 없습니다.</div>;
   }
 
-  const submitRequestHandle = (request) => {
-    setBookRequest(request);
-  };
+  const submitRequestHandle = (request) => setBookRequest(request);
 
   const paymentDataHandle = (totalPrice, totalBookNum) => {
     setTotalPrice(totalPrice);
     setTotalBookNum(totalBookNum);
   };
 
-  const openModal = () => {
-    if (isButtonEnabled) {
-      setIsModalOpen(true);
-    } else {
-      alert("*필수 정보를 모두 입력해주세요.");
+  const toggleModal = (modalType, isOpen) => {
+    if (modalType === "first") {
+      setIsModalOpen(isOpen);
+    } else if (modalType === "second") {
+      setIsSecondModalOpen(isOpen);
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const openSecondModal = () => {
-    setIsModalOpen(false);
-    setIsSecondModalOpen(true);
-  };
-
-  const closeSecondModal = () => {
-    setIsSecondModalOpen(false);
-  };
-
-  const closeAlert = () => {
-    setAlertMessage("");
-  };
-
-  const allCheckedHandle = (allChecked) => {
-    setIsButtonEnabled(allChecked);
   };
 
   const paymentHandle = async () => {
@@ -83,13 +54,12 @@ const PaymentPage = ({ campInfo }) => {
     };
 
     const data = {
-      totalPrice: totalPrice,
+      totalPrice,
       checkIn: new Date(checkIn).toISOString(),
       checkOut: new Date(checkOut).toISOString(),
-      bookRequest: bookRequest,
+      bookRequest,
       bookNum: totalBookNum,
     };
-    console.log("전송하려는 예약정보:", data);
 
     try {
       const response = await post(
@@ -98,24 +68,20 @@ const PaymentPage = ({ campInfo }) => {
         customHeaders
       );
       console.log("예약 성공! 😄:", response);
-      openSecondModal();
+      toggleModal("second", true);
     } catch (error) {
       setErrorMessage(error.message);
       setError(true);
     }
   };
 
-  const getUserData = async () => {
+  const userDataFetchHandle = async () => {
     setLoading(true);
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
+    const customHeaders = { Authorization: `${accessToken}` };
+
     try {
       const response = await get(`userprofile/${userId}`, customHeaders);
-
-      // 필요한 데이터가 response에 있을 경우 처리
-      const userData = response[0]; // 필요한 데이터가 response에 직접 있다고 가정
-      console.log("User Data:", userData);
+      const userData = response[0];
 
       setUserData({
         name: userData.name || "",
@@ -124,78 +90,77 @@ const PaymentPage = ({ campInfo }) => {
       });
     } catch (error) {
       setErrorMessage("유저 정보를 가져오는 중 오류가 발생했습니다.");
-      console.error(
-        "유저 정보를 가져오는 중 오류:",
-        error.response || error.message
-      );
     } finally {
       setLoading(false);
     }
   };
 
-  // useEffect에서 getUserData 호출
   useEffect(() => {
-    getUserData();
+    userDataFetchHandle();
   }, [accessToken, userId]);
 
   return (
-    <>
-      <div className="payment-page">
-        <h2 className="payment-title">캠핑장 결제하기</h2>
-        <PaymentInfo
-          submitRequestHandle={submitRequestHandle}
-          userData={userData}
-        />
+    <div className="payment-page">
+      <h2 className="payment-title">캠핑장 결제하기</h2>
+      <PaymentInfo
+        submitRequestHandle={submitRequestHandle}
+        userData={userData}
+      />
+      <PaymentAmount
+        campInfo={campInfo}
+        checkIn={checkIn}
+        checkOut={checkOut}
+        paymentDataHandle={paymentDataHandle}
+      />
+      <PaymentPolicy allCheckedHandle={setIsButtonEnabled} />
 
-        <PaymentAmount
-          campInfo={campInfo}
-          checkIn={checkIn}
-          checkOut={checkOut}
-          paymentDataHandle={paymentDataHandle}
-        />
+      <button
+        className="payment-button"
+        onClick={() => toggleModal("first", true)}
+        disabled={!isButtonEnabled}
+      >
+        캠핑장 결제하기
+      </button>
 
-        <PaymentPolicy allCheckedHandle={allCheckedHandle} />
-        <button
-          className="payment-button"
-          onClick={openModal}
-          disabled={!isButtonEnabled}
-        >
-          캠핑장 결제하기
-        </button>
+      <NormalModal
+        isModalOpen={isModalOpen}
+        closeModal={() => toggleModal("first", false)}
+      >
+        <p className="payment-modal-title">결제를 진행하시겠습니까?</p>
+        <div className="modal-box">
+          <button
+            className="payment-modal-button"
+            onClick={() => toggleModal("first", false)}
+          >
+            취소
+          </button>
+          <button className="payment-modal-button" onClick={paymentHandle}>
+            결제하기
+          </button>
+        </div>
+        {error && <EmptyContent errorMessage={errorMessage} error={error} />}
+      </NormalModal>
 
-        <NormalModal isModalOpen={isModalOpen} closeModal={closeModal}>
-          <p className="payment-modal-title">결제를 진행하시겠습니까?</p>
-          <div className="modal-box">
-            <button className="payment-modal-button" onClick={closeModal}>
-              취소
-            </button>
-            <button className="payment-modal-button" onClick={paymentHandle}>
-              결제하기
-            </button>
-          </div>
+      <NormalModal
+        isModalOpen={isSecondModalOpen}
+        closeModal={() => toggleModal("second", false)}
+      >
+        <p className="payment-modal-title">결제가 완료되었습니다!</p>
+        <div className="modal-box">
+          <Link to="/" className="payment-modal-button">
+            홈으로 이동
+          </Link>
+          <Link to="/paid" className="payment-modal-button">
+            예약내역 보러가기
+          </Link>
+        </div>
+      </NormalModal>
 
-          {/* 백엔드에서 내려주는 에러메시지 띄우기 */}
-          {error && <EmptyContent errorMessage={errorMessage} error={error} />}
-        </NormalModal>
-
-        <NormalModal
-          isModalOpen={isSecondModalOpen}
-          closeModal={closeSecondModal}
-        >
-          <p className="payment-modal-title">결제가 완료되었습니다!</p>
-          <div className="modal-box">
-            <Link to="/" className="payment-modal-button">
-              홈으로 이동
-            </Link>
-            <Link to="/paid" className="payment-modal-button">
-              예약내역 보러가기
-            </Link>
-          </div>
-        </NormalModal>
-
-        <PaymentFailAlert message={alertMessage} onClose={closeAlert} />
-      </div>
-    </>
+      <PaymentFailAlert
+        message={alertMessage}
+        onClose={() => setAlertMessage("")}
+      />
+    </div>
   );
 };
 
