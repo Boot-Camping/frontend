@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { svgCollection } from "../../constants/svgCollection";
 import "./ReviewWriter.css";
@@ -8,10 +8,9 @@ import ReviewImgUploader from "../detail-review/ReviewImgUploader";
 import StarRating from "../detail-review/StarRating";
 import NormalModal from "../common/NormalModal";
 import { useMyReviewWriter } from "../../hooks/useMyReviewWriter";
-import { maxNumImageUpload } from "../../constants/maxNumImageUpload";
 
 const svg = svgCollection;
-const maxNum = maxNumImageUpload;
+const maxImageNum = 4;
 
 const ReviewWriter = () => {
   const location = useLocation();
@@ -20,11 +19,8 @@ const ReviewWriter = () => {
   const campId = reviewData.campId;
 
   const {
-    reviewGrade,
     reviewContent,
-    reviewImages,
     selectedTags,
-    error,
     isModalOpen,
     gradeChangeHandle,
     setReviewContent,
@@ -88,10 +84,10 @@ const ReviewWriter = () => {
 
       <div className="img-input-box">
         <div className="img-input-title">
-          이미지를 등록해주세요 (최대 {maxNum.imgNum}장)
+          이미지를 등록해주세요 (최대 {maxImageNum}장)
         </div>
         <ReviewImgUploader
-          maxImages={maxNum.imgNum}
+          maxImages={maxImageNum}
           setReviewImages={setReviewImages}
         />
       </div>
