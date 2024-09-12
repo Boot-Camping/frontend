@@ -35,6 +35,10 @@ const ReviewWriter = () => {
     closeModal,
   } = useMyReviewWriter(campId, navigate);
 
+  const reviewSubmitHandle = () => {
+    reviewSubmit(), openModal();
+  };
+
   return (
     <div>
       <div className="review-writer-title">리뷰 작성</div>
@@ -92,13 +96,7 @@ const ReviewWriter = () => {
         />
       </div>
 
-      <button
-        className="review-regi-btn"
-        onClick={() => {
-          reviewSubmit();
-          openModal();
-        }}
-      >
+      <button className="review-regi-btn" onClick={reviewSubmitHandle}>
         리뷰 등록
       </button>
 
