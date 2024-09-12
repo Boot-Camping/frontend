@@ -8,8 +8,10 @@ import ReviewImgUploader from "../detail-review/ReviewImgUploader";
 import StarRating from "../detail-review/StarRating";
 import NormalModal from "../common/NormalModal";
 import { useMyReviewWriter } from "../../hooks/useMyReviewWriter";
+import { maxNumImageUpload } from "../../constants/maxNumImageUpload";
 
 const svg = svgCollection;
+const maxNum = maxNumImageUpload;
 
 const ReviewWriter = () => {
   const location = useLocation();
@@ -81,8 +83,13 @@ const ReviewWriter = () => {
       />
 
       <div className="img-input-box">
-        <div className="img-input-title">이미지를 등록해주세요 (최대 4장)</div>
-        <ReviewImgUploader maxImages={4} setReviewImages={setReviewImages} />
+        <div className="img-input-title">
+          이미지를 등록해주세요 (최대 {maxNum.imgNum}장)
+        </div>
+        <ReviewImgUploader
+          maxImages={maxNum.imgNum}
+          setReviewImages={setReviewImages}
+        />
       </div>
 
       <button
