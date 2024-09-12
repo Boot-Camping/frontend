@@ -21,7 +21,7 @@ const DateRangePicker = () => {
 
   const { setCampingDays, setCheckIn, setCheckOut } = useCampingDays();
 
-  // startDate와 endDate 차이 일수 계산
+  // NOTE: startDate와 endDate 차이 일수 계산
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
 
   useEffect(() => {
