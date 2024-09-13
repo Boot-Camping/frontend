@@ -5,14 +5,12 @@ import UserAccount from "../components/user-info-page/UserAccount";
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import UserInfoModal from "../components/user-info-page/UserInfoModal";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/api";
 import { svgCollection } from "../constants/svgCollection";
 import UserImage from "../components/user-info-page/UserImage";
 import EmptyContent from "../components/common/EmptyContent";
+import useUserInfo from "../hooks/useUserInfo";
 
 const UserInfoPage = () => {
-  const { accessToken, userId } = getUserIdFromToken();
   const [userDataArray, setUserDataArray] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
   const [isOpened, setIsOpened] = useState(false);
@@ -20,24 +18,15 @@ const UserInfoPage = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const getUserData = async () => {
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
-
-    try {
-      const response = await get(`userprofile/${userId}`, customHeaders);
-      setUserDataArray(response);
-    } catch (error) {
-      setErrorMessage(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { getUserData } = useUserInfo(
+    setUserDataArray,
+    setErrorMessage,
+    setLoading
+  );
 
   useEffect(() => {
     getUserData();
-  }, [accessToken, userId]);
+  }, [getUserData]);
 
   const userData = userDataArray.length > 0 ? userDataArray[0] : null;
 
@@ -55,7 +44,7 @@ const UserInfoPage = () => {
             userData={userData}
             error={error}
             setError={setError}
-						errorMessage={errorMessage}
+            errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             onUpdate={getUserData}
           />

@@ -3,62 +3,60 @@ import "../components/delete-account-page/DeleteAccountPage.css";
 import DeleteAccountInfo from "../components/delete-account-page/DeleteAccountInfo";
 import DeleteConfirm from "../components/delete-account-page/DeleteConfirm";
 import DeleteAccountModal from "../components/delete-account-page/DeleteAccountModal";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { deleteRequest } from "../utils/api";
 import EmptyContent from "../components/common/EmptyContent";
+import useDeleteAccount from "../hooks/useDeleteAccount";
 
 const DeleteAccountPage = () => {
-  const { accessToken } = getUserIdFromToken();
+  const { deleteAccount, errorMessage, error, setError } = useDeleteAccount();
   const [isOpened, setIsOpened] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
   const idRef = useRef(null);
   const passwordRef = useRef(null);
   const checkboxRef = useRef(null);
 
-  const deleteHandle = async (event) => {
-    event.preventDefault();
+  const focusOnEmptyField = (fieldRef) => {
+    if (fieldRef.current) {
+      fieldRef.current.focus();
+    }
+  };
 
-    const customHeaders = {
-      Authorization: accessToken,
-    };
-
+  const validateFields = () => {
     const loginId = idRef.current.value;
     const password = passwordRef.current.value;
     const isChecked = checkboxRef.current.checked;
 
     if (!loginId) {
-      idRef.current.focus();
-      return;
+      focusOnEmptyField(idRef);
+      return false;
     }
 
     if (!password) {
-      passwordRef.current.focus();
-      return;
+      focusOnEmptyField(passwordRef);
+      return false;
     }
 
     if (!isChecked) {
       setIsOpened(true);
       setError(true);
-      return;
+      return false;
     }
 
-    const account = {
-      loginId: loginId,
-      password: password,
-    };
+    return true;
+  };
 
-    try {
-      await deleteRequest("user/delete", account, customHeaders);
-      setError(false);
-      setErrorMessage("");
-      setIsOpened(true);
-      localStorage.removeItem("accessToken");
-    } catch (error) {
-      setError(true);
-      setErrorMessage(error.message);
-      setIsOpened(false);
+  const deleteClickHandle = async (event) => {
+    event.preventDefault();
+
+    if (validateFields()) {
+      const loginId = idRef.current.value;
+      const password = passwordRef.current.value;
+
+      const isDeleted = await deleteAccount(loginId, password);
+      if (isDeleted) {
+        setIsOpened(true);
+        localStorage.removeItem("accessToken");
+      } else {
+        setIsOpened(false);
+      }
     }
   };
 
@@ -75,7 +73,7 @@ const DeleteAccountPage = () => {
         <EmptyContent errorMessage={errorMessage} error={error} />
       )}
 
-      <button className="delete-account-btn" onClick={deleteHandle}>
+      <button className="delete-account-btn" onClick={deleteClickHandle}>
         회원 탈퇴
       </button>
 

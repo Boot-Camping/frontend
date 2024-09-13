@@ -9,12 +9,12 @@ const LoginPage = () => {
     <section className="login-section">
       <>
         <ul className="login-title-wrap">
-          {loginTitles.map((loginTitle, index) => (
+          {loginTitles.map((loginTitle) => (
             <li
-              key={`login-title${index + 1}`}
-              className={`login-title${index + 1}`}
+              key={loginTitle.key}
+              className={loginTitle.key}
             >
-              {loginTitle}
+              {loginTitle.text}
             </li>
           ))}
         </ul>

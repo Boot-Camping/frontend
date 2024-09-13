@@ -1,41 +1,16 @@
 import React from "react";
 import "./LoginButtons.css";
-import { loginTypes } from "../../constants/login";
 import { Link } from "react-router-dom";
 
-const LoginButtons = ({ setclickLoginAccount }) => {
-  const loginAccountHandle = () => {
-    setclickLoginAccount(true);
-    console.log("true");
-  };
-
+const LoginButtons = () => {
   return (
     <div className="login-btns">
-      {loginTypes.map((loginType) => {
-        const button = (
-          <button key={loginType.key} className={`login-btn ${loginType.key}`}>
-            {loginType.text}
-          </button>
-        );
-
-        if (loginType.key === "login-account") {
-          return (
-            <Link to={"/login/account"} key={loginType.key}>
-              <button className={`login-btn ${loginType.key}`}>
-                {loginType.text}
-              </button>
-            </Link>
-          );
-        } else if (loginType.key === "signup") {
-          return (
-            <Link to={"/signup"} key={loginType.key}>
-              {button}
-            </Link>
-          );
-        }
-
-        return button;
-      })}
+      <Link to={"/login/account"}>
+        <button className="login-btn login-account">로그인</button>
+      </Link>
+      <Link to={"/signup"}>
+        <button className="login-btn signup">회원가입</button>
+      </Link>
     </div>
   );
 };

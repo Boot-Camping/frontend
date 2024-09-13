@@ -2,9 +2,8 @@ import React from "react";
 import "./UserImage.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { post } from "../../utils/api";
 import EmptyContent from "../common/EmptyContent";
+import useUserImage from "../../hooks/useUserImage";
 
 const UserImage = ({
   userData,
@@ -14,41 +13,25 @@ const UserImage = ({
   setErrorMessage,
   onUpdate,
 }) => {
-  const { accessToken } = getUserIdFromToken();
+  // 최대 파일 크기 1MB
+  const MAX_FILE_SIZE = 1 * 1024 * 1024;
 
-  const customHeaders = {
-    Authorization: `${accessToken}`,
-    "Content-Type": "multipart/form-data",
-  };
+  const { postUserImage } = useUserImage(
+    setError,
+    setErrorMessage,
+    onUpdate,
+    MAX_FILE_SIZE
+  );
 
-  const fileUploadHandle = async (event) => {
+  const fileChangeHandle = (event) => {
     const file = event.target.files[0];
-    if (!file) return;
-
-    if (file.size > 1 * 1024 * 1024) {
-      setError(true);
-      setErrorMessage("Message: 파일 크기는 1MB 이하이어야 합니다.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("images", file);
-
-    try {
-      await post(`userprofile/images`, formData, customHeaders);
-      onUpdate();
-      setError(false);
-      setErrorMessage("");
-    } catch (error) {
-      setError(true);
-      setErrorMessage(error.message);
-    }
+    postUserImage(file);
   };
 
   return (
     <div className="user-profile-img-wrap underline">
       <div className="profile-img-wrap">
-        <input type="file" id="profile-img-input" onChange={fileUploadHandle} />
+        <input type="file" id="profile-img-input" onChange={fileChangeHandle} />
         <label htmlFor="profile-img-input">
           {userData.images[0] ? (
             <img src={userData.images[0]} className="profile-img" />
