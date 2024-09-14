@@ -14,7 +14,7 @@ const ReadMore = ({ text = "", maxLength }) => {
   return (
     <div className="readmore">
       <p className="readmore-text">{displayedText}</p>
-      {text.length > maxLength && ( // 버튼을 텍스트가 maxLength를 초과할 때만 보여줌
+      {text.length > maxLength && ( // NOTE: 버튼을 텍스트가 maxLength를 초과할 때만 보여줌
         <button className="readmore-button" onClick={toggleReadMore}>
           {isExpanded ? "접기" : "더보기 "}
         </button>

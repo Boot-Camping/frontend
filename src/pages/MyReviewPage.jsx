@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from "react";
+import "../components/my-review-page/MyReviewPage.css";
+
 import { Link } from "react-router-dom";
 import { ReactSVG } from "react-svg";
-
 import { svgCollection } from "../constants/svgCollection";
-import "../components/my-review-page/MyReviewPage.css";
+
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 
 import useMyReview from "../hooks/useMyReview";
 import updateMyReview from "../utils/updateMyReview";
 import deleteMyReview from "../utils/deleteMyReview";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+
 import { formatDate } from "../utils/formatDate";
-import StarGrade from "../components/detail-review/StarGrade";
 import { reviewTag } from "../constants/reviewTag";
+import StarGrade from "../components/detail-review/StarGrade";
 
 const MyReviewPage = () => {
   const { userId, accessToken } = getUserIdFromToken();
+  const updateReview = updateMyReview;
+  const { deleteReview } = deleteMyReview();
+  const [visibleReplies, setVisibleReplies] = useState({});
+  const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
+  const [editedContent, setEditedContent] = useState(""); // 수정된 내용 저장
   const { myReviews, setMyReviews, fetchMyReviews } = useMyReview(
     userId,
     accessToken
   );
 
-  const updateReview = updateMyReview;
-  const { deleteReview } = deleteMyReview();
-
-  const [visibleReplies, setVisibleReplies] = useState({});
-  const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
-  const [editedContent, setEditedContent] = useState(""); // 수정된 내용 저장
-
+  // 리뷰 업데이트
   const refreshReviews = async () => {
     try {
       await fetchMyReviews();
@@ -39,12 +40,8 @@ const MyReviewPage = () => {
     refreshReviews();
   }, [userId, accessToken]);
 
-  const clickEditHandle = (reviewId, currentContent) => {
-    setEditMode(reviewId);
-    setEditedContent(currentContent);
-  };
-
-  const clickSaveHandle = async (reviewId) => {
+  // 리뷰 작성 핸들
+  const saveClickHandle = async (reviewId) => {
     const content = editedContent;
     const imageUrls =
       myReviews.find((review) => review.id === reviewId)?.reviewImages || [];
@@ -74,7 +71,14 @@ const MyReviewPage = () => {
     }
   };
 
-  const clickDeleteHandle = async (reviewId) => {
+  // 리뷰 수정 핸들
+  const editClickHandle = (reviewId, currentContent) => {
+    setEditMode(reviewId);
+    setEditedContent(currentContent);
+  };
+
+  // 리뷰 삭제 핸들
+  const deleteClickHandle = async (reviewId) => {
     try {
       await deleteReview(userId, accessToken, reviewId);
       setMyReviews((prevReviews) =>
@@ -149,7 +153,7 @@ const MyReviewPage = () => {
                 <>
                   <button
                     className="my-review-save-btn"
-                    onClick={() => clickSaveHandle(myReview.id)}
+                    onClick={() => saveClickHandle(myReview.id)}
                   >
                     저장
                   </button>
@@ -165,14 +169,14 @@ const MyReviewPage = () => {
                   <button
                     className="my-review-edit-btn"
                     onClick={() =>
-                      clickEditHandle(myReview.id, myReview.reviewContent)
+                      editClickHandle(myReview.id, myReview.reviewContent)
                     }
                   >
                     수정
                   </button>
                   <button
                     className="my-review-delete-btn"
-                    onClick={() => clickDeleteHandle(myReview.id)}
+                    onClick={() => deleteClickHandle(myReview.id)}
                   >
                     삭제
                   </button>

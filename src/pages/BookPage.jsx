@@ -34,7 +34,6 @@ const BookPage = () => {
           <DateRangePicker />
         </div>
 
-        {/* 결제창 띄우기 */}
         <button className="date-confirm-button" onClick={clickVisibileHandle}>
           {isVisible ? "기간 다시 선택하기" : "결제하러 가기"}
         </button>

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
-import format from "date-fns/format";
 import { addDays, differenceInDays } from "date-fns";
 import { useCampingDays } from "../../context/campingDaysContext";
 
@@ -21,7 +20,7 @@ const DateRangePicker = () => {
 
   const { setCampingDays, setCheckIn, setCheckOut } = useCampingDays();
 
-  // startDate와 endDate 차이 일수 계산
+  // NOTE: startDate와 endDate 차이 일수 계산
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);
 
   useEffect(() => {

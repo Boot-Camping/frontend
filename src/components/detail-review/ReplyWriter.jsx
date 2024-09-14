@@ -11,7 +11,13 @@ const ReplyWriter = ({ reviewId, onReplySubmit }) => {
   const [replyContent, setReplyContent] = useState("");
   const [error, setError] = useState(null);
 
-  const toggleInputVisible = () => {
+  const resetStateHandle = () => {
+    setReplyContent("");
+    setIsInputVisible(false);
+    setError(null);
+  };
+
+  const toggleInputVisibleHandle = () => {
     setIsInputVisible(!isInputVisible);
   };
 
@@ -23,11 +29,10 @@ const ReplyWriter = ({ reviewId, onReplySubmit }) => {
 
     try {
       await replyWriterUtil(reviewId, replyContent);
-      setReplyContent("");
-      setIsInputVisible(false);
+      resetStateHandle();
 
       if (onReplySubmit) {
-        onReplySubmit(); // 댓글 작성 후 새로고침 호출
+        onReplySubmit();
       }
     } catch (error) {
       setError("댓글 작성에 실패했습니다");
@@ -36,7 +41,7 @@ const ReplyWriter = ({ reviewId, onReplySubmit }) => {
 
   return (
     <div className="reply-writer-box">
-      <div className="reply-writer-title" onClick={toggleInputVisible}>
+      <div className="reply-writer-title" onClick={toggleInputVisibleHandle}>
         <ReactSVG
           src={svg.pencilSolid}
           alt="리뷰작성"
@@ -63,10 +68,7 @@ const ReplyWriter = ({ reviewId, onReplySubmit }) => {
               작성완료
             </button>
 
-            <button
-              className="reply-cancel-btn"
-              onClick={() => setIsInputVisible(false)}
-            >
+            <button className="reply-cancel-btn" onClick={resetStateHandle}>
               <ReactSVG src={svg.xMark} alt="취소" className="xMark-icon" />
               작성취소
             </button>

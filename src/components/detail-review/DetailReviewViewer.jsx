@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import "./DetailReviewPage.css";
-
-import ReviewMoreBtn from "./ReviewMoreBtn";
-import ReplyViewer from "./ReplyViewer";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { formatDate } from "../../utils/formatDate";
+import { reviewTag } from "../../constants/reviewTag";
+
+import ReviewMoreBtn from "./ReviewMoreBtn";
+import ReplyViewer from "./ReplyViewer";
 import StarGrade from "./StarGrade";
 import useCampReview from "../../hooks/useCampReview";
 import Modal from "react-modal";
-import { reviewTag } from "../../constants/reviewTag";
-
-const svg = svgCollection;
 
 Modal.setAppElement("#root");
 
 const DetailReviewViewer = ({ campId }) => {
-  const [visibleReviews, setvisibleReviews] = useState(1);
+  const [visibleReviews, setVisibleReviews] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
   const [visibleReplies, setVisibleReplies] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -24,39 +22,64 @@ const DetailReviewViewer = ({ campId }) => {
 
   const { campReviews, loading, error } = useCampReview(campId);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
-  const loadMore = () => {
-    if (isExpanded) {
-      setvisibleReviews(1);
-    } else {
-      setvisibleReviews(campReviews.length);
-    }
+  const loadMoreHandle = () => {
+    setVisibleReviews(isExpanded ? 1 : campReviews.length);
     setIsExpanded(!isExpanded);
   };
 
-  const toggleReply = (index) => {
-    setVisibleReplies((prevVisibleReplies) => ({
-      ...prevVisibleReplies,
-      [index]: !prevVisibleReplies[index],
+  const replyToggleHandle = (index) => {
+    setVisibleReplies((prev) => ({
+      ...prev,
+      [index]: !prev[index],
     }));
   };
 
-  const openModal = (image) => {
+  const modalOpenHandle = (image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
 
-  const closeModal = () => {
+  const modalCloseHandle = () => {
     setModalIsOpen(false);
     setSelectedImage(null);
   };
+
+  const renderReviewTags = (tags) =>
+    tags.map((tag, index) => (
+      <div key={index} className="review-tag">
+        {reviewTag.find((t) => t.label === tag)?.value || tag}
+      </div>
+    ));
+
+  const renderReviewImages = (images) => {
+    if (!images || images.length === 0) {
+      return <div className="detail-no-review-img">리뷰 사진이 없습니다</div>;
+    }
+    return images
+      .slice(0, 4)
+      .map((image, index) => (
+        <img
+          key={index}
+          className="detail-review-img"
+          src={image}
+          onClick={() => modalOpenHandle(image)}
+          alt={`리뷰 이미지 ${index + 1}`}
+        />
+      ));
+  };
+
+  const renderLoadingOrError = () => {
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    if (error) {
+      return <div>{error.message}</div>;
+    }
+  };
+
+  if (loading || error) {
+    return renderLoadingOrError();
+  }
 
   return (
     <div className="detail-review">
@@ -71,36 +94,15 @@ const DetailReviewViewer = ({ campId }) => {
                 </div>
                 <div className="review-id">{review.loginId}</div>
               </div>
-
               <div className="review-content">{review.reviewContent}</div>
             </div>
 
             <div className="review-upper-right">
               <div className="image-grid">
-                {review.reviewImages && review.reviewImages.length > 0 ? (
-                  review.reviewImages
-                    .slice(0, 4)
-                    .map((image, imageIndex) => (
-                      <img
-                        key={imageIndex}
-                        className="detail-review-img"
-                        src={image}
-                        onClick={() => openModal(image)}
-                        alt={`리뷰 이미지 ${imageIndex + 1}`}
-                      />
-                    ))
-                ) : (
-                  <div className="detail-no-review-img">
-                    리뷰 사진이 없습니다
-                  </div>
-                )}
+                {renderReviewImages(review.reviewImages)}
               </div>
               <div className="review-upper-tag">
-                {review.reviewTags.map((tag, tagIndex) => (
-                  <div key={tagIndex} className="review-tag">
-                    {reviewTag.find((t) => t.label === tag)?.value || tag}
-                  </div>
-                ))}
+                {renderReviewTags(review.reviewTags)}
               </div>
               <div className="review-grade">
                 <StarGrade grade={review.grade} />
@@ -109,10 +111,13 @@ const DetailReviewViewer = ({ campId }) => {
           </div>
 
           <div className="review-reply-box">
-            <ReactSVG src={svg.letter} className="review-letter-icon" />
+            <ReactSVG
+              src={svgCollection.letter}
+              className="review-letter-icon"
+            />
             <div
               className="review-reply-count"
-              onClick={() => toggleReply(index)}
+              onClick={() => replyToggleHandle(index)}
             >
               댓글읽기
             </div>
@@ -120,11 +125,11 @@ const DetailReviewViewer = ({ campId }) => {
           {visibleReplies[index] && <ReplyViewer reviewId={review.id} />}
         </div>
       ))}
-      <ReviewMoreBtn onClick={loadMore} isExpanded={isExpanded} />
+      <ReviewMoreBtn onClick={loadMoreHandle} isExpanded={isExpanded} />
 
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={modalCloseHandle}
         className="modal"
         overlayClassName="overlay"
       >

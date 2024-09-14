@@ -15,12 +15,12 @@ const ReviewImageSlider = ({ reviewImages, onImageClick }) => {
         modules={[Pagination]}
         className="slider-review"
       >
-        {reviewImages.map((image, index) => (
-          <SwiperSlide key={index}>
+        {reviewImages.map((image) => (
+          <SwiperSlide key={image.id}>
             <img
               src={image}
               className="review-slider-img"
-              alt={`Review Image ${index + 1}`}
+              alt={`Review Image ${image.id}`}
               onClick={() => onImageClick(image)}
             />
           </SwiperSlide>
