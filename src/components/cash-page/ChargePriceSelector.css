@@ -1,0 +1,26 @@
+/*****************************
+ * 	충전 금액 버튼
+ */
+.charge-price-wrap {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.charge-price-btn {
+  width: calc((100% / 3) - 1.5rem);
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  text-align: center;
+  color: var(--light-gray);
+  padding: 1rem 0;
+  border: 1px solid var(--bg-gray);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.charge-price-active {
+  border: 1px solid var(--light-green);
+  color: #fff;
+  background: var(--light-green);
+}

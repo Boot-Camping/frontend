@@ -1,0 +1,25 @@
+/*****************************
+ * 	충전 금액 타이틀
+ */
+.charge-price-title-wrap {
+  margin: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.charge-price-title div:first-child {
+  font-size: var(--content);
+}
+
+.charge-price-title div:last-child {
+  font-size: var(--heading);
+}
+
+.charge-modal-img {
+  width: 6rem;
+  height: 6rem;
+  color: var(--light-green);
+}

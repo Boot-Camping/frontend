@@ -1,10 +1,8 @@
 import React from "react";
 import "./UserInfoModalBtn.css";
-import { closeModal } from "../../utils/closeModal";
 import { userInfoModal } from "../../constants/userInfo";
 import { ReactSVG } from "react-svg";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { put } from "../../utils/api";
+import useUpdateUserInfo from "../../hooks/useUpdateUserInfo";
 
 const UserInfoModalBtn = ({
   setIsOpened,
@@ -15,8 +13,15 @@ const UserInfoModalBtn = ({
   setError,
   setErrorMessage,
   setPostcode,
+  resetInputValue,
 }) => {
-  const { accessToken } = getUserIdFromToken();
+  const { putUserInfo } = useUpdateUserInfo(
+    setIsOpened,
+    onUpdate,
+    setPostcode,
+    setError,
+    setErrorMessage
+  );
 
   const validateInput = () => {
     if (modalType === "tel" && !inputValue.tel) {
@@ -53,41 +58,17 @@ const UserInfoModalBtn = ({
   };
 
   const submitHandle = async () => {
-    const message = validateInput();
-    if (message) {
+    const validationMessage = validateInput();
+    if (validationMessage) {
       setError(true);
-      setErrorMessage(`Message: ${message}`);
+      setErrorMessage(`Message: ${validationMessage}`);
       return;
     }
 
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
+    const { params, body } = await getBodyOrParams();
+    await putUserInfo(modalType, params, body);
 
-    if (modalType !== "password") {
-      customHeaders["Content-Type"] = "application/x-www-form-urlencoded";
-    }
-
-    try {
-      const { params, body } = await getBodyOrParams();
-      const endpoint =
-        modalType === "password" ? "userprofile/password" : "userprofile";
-      await put(
-        endpoint,
-        modalType === "password" ? JSON.stringify(body) : params.toString(),
-        customHeaders
-      );
-      setIsOpened(false);
-      closeModal(setIsOpened)();
-      setError(false);
-      setErrorMessage(null);
-      setPostcode("");
-      onUpdate();
-    } catch (error) {
-      setErrorMessage(error.message);
-      setError(true);
-      setPostcode("");
-    }
+    resetInputValue();
   };
 
   return (

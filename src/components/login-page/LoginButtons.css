@@ -10,19 +10,6 @@
   cursor: pointer;
 }
 
-.login-kakao {
-  background: #f9e000;
-  color: #371a1a;
-}
-
-.login-google {
-  background: #4286f5;
-}
-
-.login-naver {
-  background: #03c157;
-}
-
 .signup {
   background: none;
   border: 1px solid var(--light-green);

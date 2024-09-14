@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 
 const UserAccount = ({ setIsOpened, setModalType, userData }) => {
-  const pwChangeHandle = () => {
+  const changePwHandle = () => {
     setIsOpened(true);
     setModalType("password");
     console.log("비밀번호 변경");
@@ -18,7 +18,7 @@ const UserAccount = ({ setIsOpened, setModalType, userData }) => {
       </div>
       <div
         className="user-account profile-txt profile-change-btn"
-        onClick={pwChangeHandle}
+        onClick={changePwHandle}
       >
         <div>비밀번호</div>
         <div>

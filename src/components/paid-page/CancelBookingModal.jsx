@@ -3,35 +3,30 @@ import "./CancelBookingModal.css";
 import PortalModal from "../common/PortalModal";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
-import { closeModal } from "../../utils/closeModal";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { put } from "../../utils/api";
+import useCancelBooking from "../../hooks/useCancelBooking";
+import { resetModal } from "../../utils/resetModal";
 
 const CancelBookingModal = ({
   isOpened,
   setIsOpened,
-  errorMessage,
   setErrorMessage,
   bookId,
-	onUpdate,
+  onUpdate,
 }) => {
-  const { accessToken } = getUserIdFromToken();
+  const { putCancelBooking } = useCancelBooking(
+    setIsOpened,
+    setErrorMessage,
+    onUpdate
+  );
 
   const submitHandle = async (event) => {
     event.preventDefault();
 
-    const customHeaders = {
-      Authorization: accessToken,
-    };
+    await putCancelBooking(bookId);
+  };
 
-    try {
-      await put(`camps/bookings/${bookId}`, {}, customHeaders);
-			setIsOpened(false);
-			setErrorMessage("");
-			onUpdate();
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
+  const closeModalHandle = () => {
+    resetModal(setIsOpened, setErrorMessage);
   };
 
   return (
@@ -46,7 +41,7 @@ const CancelBookingModal = ({
             <ReactSVG
               src={svgCollection.xMark}
               className="cancel-booking-close"
-              onClick={closeModal(setIsOpened)}
+              onClick={closeModalHandle}
             />
           </div>
         </PortalModal>

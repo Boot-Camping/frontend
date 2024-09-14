@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -7,6 +8,8 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("accessToken");
     return token || null;
   });
+
+  const navigate = useNavigate();
 
   const getExpFromToken = (token) => {
     if (!token) return null;
@@ -31,6 +34,7 @@ export const AuthProvider = ({ children }) => {
           console.log("토큰만료");
           localStorage.removeItem("accessToken");
           setAccessToken(null);
+          navigate("/login");
         }
       }
     };
@@ -38,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     const intervalid = setInterval(checkTokenExpiry, 60000);
 
     return () => clearInterval(intervalid);
-  }, [accessToken]);
+  }, [accessToken, navigate]);
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken }}>

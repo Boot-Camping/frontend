@@ -1,66 +1,29 @@
-import React, { useEffect, useState } from "react";
-import "../components/notice-detail-page/NoticeDetailPage.css";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ReactSVG } from "react-svg";
-import { svgCollection } from "../constants/svgCollection";
-import { shortDateDot } from "../utils/shortDateDot";
-import { get } from "../utils/api";
 import EmptyContent from "../components/common/EmptyContent";
+import useNoticeDetail from "../hooks/useNoticeDetail";
+import NoticeDetailContent from "../components/notice-detail-page/NoticeDetailContent";
+import NoticeDetailImages from "../components/notice-detail-page/NoticeDetailImages";
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
-  const [notice, setNotice] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { notice, errorMessage } = useNoticeDetail(id);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getNoticeDetailData = async () => {
-      try {
-        const response = await get(`admin/notice/${id}`);
-        setNotice(response);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
-    };
-
-    getNoticeDetailData();
-  }, [id]);
+  const navigateBackHandle = () => {
+    navigate(-1);
+  };
 
   return (
     <div className="notice-detail">
       <>
         {notice ? (
           <>
-            <div className="notice-detail-info-wrap">
-              <div className="move-prev">
-                <ReactSVG
-                  src={svgCollection.prev}
-                  className="notice-move-prev"
-                  onClick={() => navigate(-1)}
-                />
-                <div>목록</div>
-              </div>
-              <div className="notice-detail-info">
-                <div className="notice-detail-title">{notice.title}</div>
-              </div>
-              <div className="notice-detail-date underline">
-                {shortDateDot(notice)}
-              </div>
-            </div>
-            <div className="notice-detail-desc">{notice.description}</div>
-            <div className="notice-detail-img">
-              {notice.imageUrl && Array.isArray(notice.imageUrl) ? (
-                notice.imageUrl.map((url, index) => (
-                  <img
-                    key={index}
-                    src={url}
-                    alt={`Notice image ${index + 1}`}
-                  />
-                ))
-              ) : (
-                <p>이미지가 없습니다.</p>
-              )}
-            </div>
+            <NoticeDetailContent
+              notice={notice}
+              navigateBackHandle={navigateBackHandle}
+            />
+            <NoticeDetailImages imageUrl={notice.imageUrl} />
           </>
         ) : (
           <EmptyContent errorMessage={errorMessage} />
