@@ -189,7 +189,7 @@ const AdminCampingRegister = () => {
               name="max-num"
               type="number"
               autoComplete="max-num"
-              className="input-camp-user"
+              className="input-camp-max-user"
               required
               value={maxNum}
               onChange={(e) => setMaxNum(e.target.value)}
