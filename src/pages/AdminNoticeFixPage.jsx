@@ -15,10 +15,10 @@ const AdminNoticeFixPage = () => {
   const { accessToken } = getUserIdFromToken();
   const [notice, setNotice] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([]); // 서버에서 가져온 이미지 URL
+  const [updatedImages, setUpdatedImages] = useState([]); // 새로 업로드된 이미지
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [updatedImages, setUpdatedImages] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,9 @@ const AdminNoticeFixPage = () => {
         setNotice(response);
         setTitle(response.title);
         setDescription(response.description);
-        setImages(response.images || []); // 서버에서 가져온 이미지 URL
+        setImages(
+          response.images ? response.images.map((url) => ({ src: url })) : []
+        );
       } catch (error) {
         setErrorMessage(error.message);
       }
@@ -43,6 +45,10 @@ const AdminNoticeFixPage = () => {
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   const removeHandle = async () => {
@@ -68,7 +74,8 @@ const AdminNoticeFixPage = () => {
 
     formData.append("request", JSON.stringify(request));
 
-    images.forEach((image) => {
+    // 기존 이미지와 새로 업로드된 이미지 모두 추가
+    [...images, ...updatedImages].forEach((image) => {
       if (image.file) {
         formData.append("images", image.file); // 'images' 필드에 파일 추가
       }
@@ -128,18 +135,29 @@ const AdminNoticeFixPage = () => {
 
           <div className="camping-notice">내용</div>
           <AdminImgPlus
-            imageFiles={updatedImages}
-            setImages={setUpdatedImages}
+            imageFiles={updatedImages} // 새로 업로드된 이미지
+            setImages={setUpdatedImages} // 새로 업로드된 이미지를 설정
+            onUploadSuccess={(files) => console.log("Upload success:", files)}
+            onUploadError={(error) => console.error("Upload error:", error)}
           />
-          <div>
+
+          <div className="img-previews">
             {notice.imageUrl && Array.isArray(notice.imageUrl) ? (
               notice.imageUrl.map((url, index) => (
-                <img
-                  className="admin-notice-img"
-                  key={index}
-                  src={url}
-                  alt={`Notice image ${index + 1}`}
-                />
+                <div key={index} className="img-preview-container">
+                  <img
+                    className="img-preview"
+                    key={index}
+                    src={url}
+                    alt={`Notice image ${index + 1}`}
+                  />
+                  <button
+                    className="img-remove-btn"
+                    onClick={() => handleRemoveImage(index)}
+                  >
+                    ×
+                  </button>
+                </div>
               ))
             ) : (
               <div></div>

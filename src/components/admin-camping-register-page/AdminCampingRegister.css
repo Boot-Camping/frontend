@@ -110,13 +110,14 @@
 
 .input-camp-name {
   margin-top: 1rem;
-  width: 38rem;
-  height: 2rem;
+  width: 90vw;
+  height: 2vh;
+  padding: 0.5rem;
   border: none;
   background: var(--bg-gray-50);
+  font-family: "Pretendard";
   font-size: var(--content);
   border-radius: 0.5rem;
-  padding: 0.5rem;
 }
 
 .camp-number-title {
@@ -129,8 +130,9 @@
 
 .input-camp-number {
   margin-top: 1rem;
-  width: 18rem;
-  height: 2rem;
+  width: 40vw;
+  height: 2vh;
+  padding: 0.5rem;
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
@@ -165,8 +167,9 @@
 
 .input-camp-price {
   margin-top: 1rem;
-  width: 15rem;
-  height: 2rem;
+  width: 35vw;
+  height: 2vh;
+  padding: 0.5rem;
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
@@ -175,8 +178,9 @@
 
 .input-camp-plus-price {
   margin-top: 1rem;
-  width: 10rem;
-  height: 2rem;
+  width: 20vw;
+  height: 2vh;
+  padding: 0.5rem;
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
@@ -207,12 +211,12 @@
 
 .input-camp-exp {
   margin-top: 1rem;
-  width: 38.5rem;
-  height: 20rem;
+  width: 90vw;
+  height: 20vh;
   padding: 0.5rem;
   border: solid 1px #666666;
   border-radius: 0.5rem;
-  font-size: 1.4rem;
+  font-size: var(--content);
   font-family: "Pretendard";
   justify-content: start;
   align-content: flex-start;
@@ -228,7 +232,7 @@
 .won {
   padding-top: 1.5rem;
   margin-left: 0.5rem;
-  font-size: 1.4rem;
+  font-size: var(--content);
   font-weight: 600;
 }
 
@@ -245,8 +249,9 @@
 
 .input-camp-user {
   margin-top: 1rem;
-  width: 5rem;
-  height: 2rem;
+  width: 10vw;
+  height: 2vh;
+  padding: 0.5rem;
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
@@ -255,8 +260,9 @@
 
 .input-camp-max-user {
   margin-top: 1rem;
-  width: 5rem;
-  height: 2rem;
+  width: 10vw;
+  height: 2vh;
+  padding: 0.5rem;
   border: none;
   background: var(--bg-gray-50);
   font-size: var(--content);
