@@ -1,41 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../components/paid-page/PaidPage.css";
 import { ReactSVG } from "react-svg";
 import Filter from "../components/common/Filter";
 import PaidList from "../components/paid-page/PaidList";
 import { Link } from "react-router-dom";
 import { filterType } from "../constants/filterType";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
-import { get } from "../utils/api";
 import { svgCollection } from "../constants/svgCollection";
+import usePaid from "../hooks/usePaid";
 
 const PaidPage = () => {
-  const { accessToken } = getUserIdFromToken();
-  const [paidData, setPaidData] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { paidData, errorMessage, setErrorMessage, getPaidData } = usePaid();
   const [filter, setFilter] = useState("all");
 
-  const getPaidData = async () => {
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
-
-    try {
-      const response = await get(`camps/bookings`, customHeaders);
-      const sortedData = response.sort(
-        (a, b) => new Date(b.startDate) - new Date(a.startDate)
-      );
-      setPaidData(sortedData);
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getPaidData();
-  }, [accessToken]);
-
-  const filterChangeHandle = (status) => {
+  const changeFilterHandle = (status) => {
     setFilter(status);
   };
 
@@ -50,7 +27,7 @@ const PaidPage = () => {
         </div>
 
         <Filter
-          filterChangeHandle={filterChangeHandle}
+          filterChangeHandle={changeFilterHandle}
           filterType={filterType.paid}
           wrapClassName="paid-filter"
           allClassName="usage-filter"

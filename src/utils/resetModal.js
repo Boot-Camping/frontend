@@ -13,7 +13,7 @@ export const resetModal = (
   }
 
   if (setErrorMessage) {
-    setError("");
+    setErrorMessage("");
   }
 
   if (setPostcode) {
