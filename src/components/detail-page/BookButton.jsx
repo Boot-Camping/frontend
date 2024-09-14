@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactSVG } from "react-svg";
 import "../detail-page/DetailPage.css";
 
 const bookButton = ({ to }) => {

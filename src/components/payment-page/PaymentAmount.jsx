@@ -9,6 +9,15 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
   const [extraNum, setExtraNum] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
 
+  const formatDate = (date) =>
+    date instanceof Date
+      ? date.toLocaleDateString("ko-KR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      : "잘못된 날짜";
+
   const totalBookNum = standardNum + extraNum;
 
   useEffect(() => {
@@ -28,24 +37,6 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
   const extraNumHandle = (newCount) => {
     setExtraNum(newCount);
   };
-
-  const formattedCheckIn =
-    checkIn instanceof Date
-      ? checkIn.toLocaleDateString("ko-KR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      : "잘못된 날짜";
-
-  const formattedCheckOut =
-    checkOut instanceof Date
-      ? checkOut.toLocaleDateString("ko-KR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      : "잘못된 날짜";
 
   return (
     <div>
@@ -96,8 +87,8 @@ const PaymentAmount = ({ campInfo, checkIn, checkOut, paymentDataHandle }) => {
           <div className="checkIn-checkOut-title">체크인-체크아웃 </div>
 
           <div className="checkIn-checkOut-date">
-            <div className="checkin-date">{formattedCheckIn}</div>
-            <div className="checkout-date">~ {formattedCheckOut}</div>
+            <div className="checkin-date">{formatDate(checkIn)}</div>
+            <div className="checkout-date">~ {formatDate(checkOut)}</div>
           </div>
         </div>
 

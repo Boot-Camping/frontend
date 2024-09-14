@@ -15,12 +15,12 @@ const ImageSlider = ({ detailImages }) => {
         modules={[Pagination]}
         className="slider-detail"
       >
-        {detailImages.map((detailImage, index) => (
-          <SwiperSlide key={index}>
+        {detailImages.map((detailImage) => (
+          <SwiperSlide key={detailImage.id}>
             <img
               src={detailImage}
               className="slider-img"
-              alt={`Slide ${index + 1}`}
+              alt={`Slide ${detailImage.id}`}
             />
           </SwiperSlide>
         ))}
