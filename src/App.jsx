@@ -34,8 +34,8 @@ import { AuthProvider } from "./context/authContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Header />
         <CampingDaysProvider>
           <main>
@@ -89,8 +89,8 @@ function App() {
           </main>
         </CampingDaysProvider>
         <Footer />
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
