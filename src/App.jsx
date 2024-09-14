@@ -31,7 +31,6 @@ import ReviewWriter from "./components/my-review-page/ReviewWriter";
 import MyReviewPage from "./pages/MyReviewPage";
 import { CampingDaysProvider } from "./context/campingDaysContext";
 import { AuthProvider } from "./context/authContext";
-import Chatting from "./components/chatting/Chatting";
 
 function App() {
   return (
@@ -89,7 +88,6 @@ function App() {
             </Routes>
           </main>
         </CampingDaysProvider>
-        <Chatting />
         <Footer />
       </BrowserRouter>
     </AuthProvider>
