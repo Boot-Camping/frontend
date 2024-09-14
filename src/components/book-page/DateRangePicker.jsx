@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DateRange } from "react-date-range";
-import format from "date-fns/format";
 import { addDays, differenceInDays } from "date-fns";
 import { useCampingDays } from "../../context/campingDaysContext";
 

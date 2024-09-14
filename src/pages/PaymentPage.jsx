@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../components/payment-page/PaymentPage.css";
+
+import { useCampingDays } from "../context/campingDaysContext";
+import { post, get } from "../utils/api";
+import { getUserIdFromToken } from "../utils/getUserIdFromToken";
+
 import PaymentInfo from "../components/payment-page/PaymentInfo";
 import PaymentAmount from "../components/payment-page/PaymentAmount";
 import PaymentPolicy from "../components/payment-page/PaymentPolicy";
 import NormalModal from "../components/common/NormalModal";
 import PaymentFailAlert from "../components/payment-page/PaymentFailAlert";
-import { Link } from "react-router-dom";
-import { useCampingDays } from "../context/campingDaysContext";
-import { post, get } from "../utils/api";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import EmptyContent from "../components/common/EmptyContent";
 
 const PaymentPage = ({ campInfo }) => {

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./DetailReviewPage.css";
-import ReviewMoreBtn from "./ReviewMoreBtn";
-import ReplyViewer from "./ReplyViewer";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
 import { formatDate } from "../../utils/formatDate";
+import { reviewTag } from "../../constants/reviewTag";
+
+import ReviewMoreBtn from "./ReviewMoreBtn";
+import ReplyViewer from "./ReplyViewer";
 import StarGrade from "./StarGrade";
 import useCampReview from "../../hooks/useCampReview";
 import Modal from "react-modal";
-import { reviewTag } from "../../constants/reviewTag";
 
 Modal.setAppElement("#root");
 

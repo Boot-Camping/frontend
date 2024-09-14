@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../detail-page/DetailPage.css";
 import { ReactSVG } from "react-svg";
 import { svgCollection } from "../../constants/svgCollection";
-import ReadMore from "./ReadMore";
 
+import ReadMore from "./ReadMore";
 import { post } from "../../utils/api";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
