@@ -4,6 +4,7 @@ import { ReactSVG } from "react-svg";
 import useFetchCampingList from "../hooks/useFetchCampingList"; // useFetchCampingList 훅 불러오기
 import AdminMainLink from "../components/admin-camping-register-page/AdminMainLink";
 import Pagination from "../components/common/Pagination";
+import { svgCollection } from "../constants/svgCollection";
 import "../components/admin-camping-register-page/AdminCampingList.css";
 import "../components/main-page/MainCampingList.css";
 import "../components/admin-notice-register/AdminNoticeListPage.css";
@@ -40,7 +41,7 @@ const AdminCampingListPage = () => {
                 </div>
                 <ReactSVG
                   className="list-pencil"
-                  src="../../src/assets/svg/pencil.svg"
+                  src={svgCollection.pencilSolid}
                   alt="edit icon"
                 />
               </div>
