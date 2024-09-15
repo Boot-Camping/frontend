@@ -6,9 +6,9 @@ import SignupTerms from "../../components/sign-up-page/SignupTerms";
 import useAddress from "../../hooks/useAddress";
 import { phoneNumber } from "../../utils/phoneNumber";
 import { validation } from "../../utils/validation";
-import { post } from "../../utils/api";
 import PasswordInput from "../common/PasswordInput";
 import EmptyContent from "../common/EmptyContent";
+import useSignup from "../../hooks/useSignup";
 
 const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
   const { postcode, setPostcode } = useAddress();
@@ -18,11 +18,9 @@ const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
   const checkboxRefs = useRef([]);
   const addressRef = useRef(null);
   const detailAddressRef = useRef(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const { postSignup, errorMessage } = useSignup(setError);
 
-  const submitHandle = async (event) => {
-    event.preventDefault();
-
+  const collectFormData = () => {
     const formData = {};
     signUp.forEach((signup) => {
       const inputElement = document.querySelector(
@@ -34,35 +32,39 @@ const SignupForm = ({ error, setError, setErrorType, setIsOpened }) => {
     });
     formData.addr = `(${postcode}) ${addressRef.current.value} ${detailAddressRef.current.value}`;
 
-    if (
-      !validation({
-        password: formData.password,
-        passwordChk: formData.passwordChk,
-        email: formData.email,
-        postcode,
-        checkedTerms,
-        checkboxRefs,
-        setError,
-        setErrorType,
-        setIsOpened,
-      })
-    ) {
+    return formData;
+  };
+
+  const validationHandle = (formData) => {
+    return validation({
+      password: formData.password,
+      passwordChk: formData.passwordChk,
+      email: formData.email,
+      postcode,
+      checkedTerms,
+      checkboxRefs,
+      setError,
+      setErrorType,
+      setIsOpened,
+    });
+  };
+
+  const submitHandle = async (event) => {
+    event.preventDefault();
+
+    const formData = collectFormData();
+
+    if (!validationHandle(formData)) {
       return;
     }
 
     setError(false);
-    setIsOpened(false);
-
     delete formData.passwordChk;
 
-    try {
-      await post("user/signup", JSON.stringify(formData));
-      setError(false);
-      setIsOpened(true);
-    } catch (error) {
-      setErrorMessage(error.message);
-      setError(true);
-    }
+		const isSuccess = await postSignup(formData);
+		if(isSuccess) {
+			setIsOpened(true);
+		}
   };
 
   return (

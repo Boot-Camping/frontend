@@ -2,108 +2,17 @@
   padding: 1rem 0;
 }
 
-.cash-list {
-  padding: 3rem 0;
-}
-
-.cash-list.underline::after {
-  bottom: 100%;
-}
-
-/***********************************
- *	상태, 날짜
-*/
-.cash-list-status {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 1rem;
-  font-size: var(--content);
-}
-
-.cash-status {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  font-size: var(--sub-content);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cash-date {
-  color: var(--dark-gray);
-}
-
-/***********************************
- *	거래내역, 금액 & 잔액
-*/
-.cash-list-cash,
-.cash-list-total-cash {
-  font-size: var(--sub-heading);
-  font-weight: bold;
-  margin: 2rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/***********************************
- *	잔액
-*/
-.cash-list-total-cash {
-  color: var(--light-gray);
-  margin-bottom: 0;
-}
-
-/***********************************
- *	충전
-*/
-.charge-list .cash-status {
-  border: 1px solid var(--light-green);
-  color: var(--light-green);
-}
-
-.charge-list .cash-list-cash {
-  color: var(--light-green);
-}
-
-/***********************************
- *	사용
-*/
-.use-list .cash-status {
-  border: 1px solid var(--red);
-  color: var(--red);
-}
-
-.use-list .cash-list-cash {
-  color: var(--red);
-}
-
 /************************************
  *	데스크탑 CSS
  */
 @media screen and (min-width: 1024px) {
   .cash-list-wrap {
     flex: 1;
-    margin-left: 25%;
-    width: 75%;
+    margin-left: 25rem;
+    width: calc(100% - 25rem);
   }
 
   .cash-list-wrap::before {
-    display: none;
-  }
-
-  .cash-list {
-    border-bottom: 0.5rem solid var(--bg-gray);
-    padding: 3rem 4rem;
-  }
-
-  .cash-list:first-of-type {
-    padding-top: 0;
-  }
-
-  .cash-list.underline::after {
     display: none;
   }
 }
