@@ -51,35 +51,25 @@ const DetailReviewViewer = ({ campId }) => {
       </div>
     ));
 
-  const renderReviewImages = (images) => {
-    if (!images || images.length === 0) {
-      return <div className="detail-no-review-img">리뷰 사진이 없습니다</div>;
-    }
-    return images
-      .slice(0, 4)
-      .map((image, index) => (
-        <img
-          key={index}
-          className="detail-review-img"
-          src={image}
-          onClick={() => modalOpenHandle(image)}
-          alt={`리뷰 이미지 ${index + 1}`}
-        />
-      ));
-  };
+  const renderReviewImages = (images) =>
+    images?.length > 0 ? (
+      images
+        .slice(0, 4)
+        .map((image, index) => (
+          <img
+            key={index}
+            className="detail-review-img"
+            src={image}
+            onClick={() => modalOpenHandle(image)}
+            alt={`리뷰 이미지 ${index + 1}`}
+          />
+        ))
+    ) : (
+      <div className="detail-no-review-img">리뷰 사진이 없습니다</div>
+    );
 
-  const renderLoadingOrError = () => {
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-    if (error) {
-      return <div>{error.message}</div>;
-    }
-  };
-
-  if (loading || error) {
-    return renderLoadingOrError();
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
 
   return (
     <div className="detail-review">
