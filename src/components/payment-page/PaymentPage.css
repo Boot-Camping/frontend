@@ -1,0 +1,271 @@
+/* PaymentPage */
+.payment-page {
+  padding-bottom: 2rem;
+}
+
+.payment-title {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  font-size: var(--heading);
+}
+
+.payment-request {
+  font-size: var(--sub-heading);
+  padding-bottom: 1rem;
+}
+
+.payment-button {
+  background-color: var(--dark-green);
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--content);
+}
+
+/* PaymentInfo.jsx */
+.payment-info-wrapper {
+  border-bottom: 0.1rem solid var(--soft-gray);
+  padding-bottom: 2rem;
+}
+
+.booker-info {
+  font-size: var(--content);
+  line-height: 3rem;
+  color: var(--dark-gray);
+  padding-left: 1rem;
+  padding-bottom: 2rem;
+}
+
+.request-form {
+  width: 90%;
+  height: 8rem;
+  border: 0.1rem solid var(--soft-gray);
+  border-radius: 0.5rem;
+  font-size: var(--sub-heading);
+}
+
+.request-form ::placeholder {
+  text-align: center;
+}
+
+/* PaymentAmount.jsx */
+.payment {
+  padding: 2rem 0;
+  border-bottom: 0.1rem solid var(--soft-gray);
+}
+
+.payment-amount-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  padding: 2rem 0;
+}
+
+.oneday-price,
+.standard-num,
+.camping-days,
+.extra-num,
+.over-charge,
+.total-num,
+.total-amount {
+  display: flex;
+  padding: 1.5rem 0;
+  justify-content: space-between;
+  font-size: var(--sub-heading);
+  align-items: center;
+}
+
+.oneday-price,
+.standard-num,
+.extra-num,
+.over-charge,
+.total-num {
+  border-bottom: 0.1rem solid var(--bg-gray);
+}
+
+.camping-days {
+  padding-top: 2rem;
+}
+
+.total-amount div {
+  padding-top: 4rem;
+  font-weight: bold;
+  font-size: var(--sub-heading);
+  color: var(--dark-green);
+}
+
+.coupon-button {
+  background-color: var(--light-green);
+  color: white;
+  border: none;
+  padding: 0.2rem 0.8rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: var(--sub-content);
+}
+
+.checkIn-checkOut-box {
+  padding-top: 0.2rem;
+  font-size: var(--sub-content);
+  color: var(--dark-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkIn-checkOut-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* PaymentPolicy.jsx */
+.payment-policy {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.policy-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.policy-1,
+.policy-2,
+.policy-3,
+.policy-4 {
+  display: flex;
+  padding-left: 0.5rem;
+  align-items: center;
+  font-size: var(--content);
+  padding: 0.5rem 0;
+}
+
+.policy-1 {
+  font-weight: bold;
+}
+
+.checkbox {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.checkbox:checked {
+  background-color: var(--dark-green);
+}
+
+.checkbox:checked::before {
+  content: "\2713";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* PaymentModal.jsx */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 60%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-modal-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.payment-modal-button {
+  background-color: var(--dark-green);
+  color: white !important;
+  border: none;
+  padding: 0.8rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--content);
+}
+
+.modal-box {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+/* PaymentFailAlert.jsx */
+.alert-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  padding: 15px;
+  z-index: 1000;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert-message .alert-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert-message .alert-content button {
+  background-color: transparent;
+  border: none;
+  color: #d8000c;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1680px) {
+  .oneday-price,
+  .standard-num,
+  .camping-days,
+  .extra-num,
+  .over-charge,
+  .total-num,
+  .total-amount {
+    display: flex;
+    padding: 1rem 0;
+    justify-content: space-between;
+    font-size: var(--sub-heading);
+    align-items: center;
+  }
+}

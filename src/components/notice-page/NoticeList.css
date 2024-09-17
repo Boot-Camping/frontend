@@ -1,0 +1,12 @@
+.notice-list-wrap {
+  margin: 3rem 0;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .notice-list-wrap {
+    margin: 0;
+  }
+}

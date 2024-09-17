@@ -1,0 +1,388 @@
+/* DetailImageSlider.jsx */
+.slider-review {
+  width: 100%;
+}
+
+.review-slider-img {
+  width: 12rem;
+  height: 10rem;
+  border-radius: 1rem;
+}
+
+.slider-review .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 0.8;
+}
+
+.slider-review .swiper-pagination-bullet-active {
+  width: var(--heading);
+  opacity: 1;
+  border-radius: 1rem;
+}
+
+/* DetailReviewViwer.jsx */
+.detail-review .review-box {
+  border-bottom: 0.1rem solid var(--soft-gray);
+}
+
+.detail-review {
+  padding-top: 2rem;
+}
+
+.review-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  padding-top: 2rem;
+}
+
+.review-box {
+  padding: 2rem 0;
+}
+
+.review-upper-box {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.review-upper-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 이미지 레이아웃 */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.detail-review-img {
+  width: 10rem;
+  height: 7rem;
+  border-radius: 0.5rem;
+}
+
+.detail-no-review-img {
+  grid-column: span 2;
+  text-align: center;
+  width: 20.5rem;
+  height: 14.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.5rem;
+  color: var(--soft-gray);
+  border: 0.1rem solid var(--soft-gray);
+}
+
+/* */
+
+.review-upper-writer {
+  padding-bottom: 0.5rem;
+}
+
+.review-upper-writer .review-id {
+  font-size: var(--content);
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.review-upper-writer .review-date {
+  font-size: var(--sub-content);
+  color: var(--dark-gray);
+  padding-bottom: 0.5rem;
+}
+
+.review-upper-tag {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.review-tag {
+  color: var(--light-green);
+  font-size: var(--sub-content);
+  font-weight: bold;
+  border: 0.1rem solid var(--light-green);
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.review-letter-icon {
+  width: 1.5rem;
+  padding-right: 0.2rem;
+  color: var(--light-green);
+}
+
+.review-edit-btn,
+.review-delete-btn {
+  display: flex;
+  font-size: var(--sub-content);
+  background-color: white;
+  border-radius: 0.3rem;
+  padding: 0 0.5rem;
+  align-items: center;
+  margin-right: 0.5rem;
+  height: 2rem;
+}
+
+.review-edit-btn {
+  color: var(--dark-gray);
+  border: 0.1rem solid var(--dark-gray);
+}
+
+.review-delete-btn {
+  color: var(--red);
+  border: 0.1rem solid var(--red);
+}
+
+.review-content {
+  font-size: var(--content);
+  padding: 1rem 0;
+  padding-right: 1rem;
+  line-height: 2rem;
+}
+
+.review-reply-box {
+  display: flex;
+  align-items: center;
+  font-size: var(--content);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ReviewMoreBtn.jsx */
+.review-more-btn {
+  border: none;
+  border-radius: 0.3rem;
+  font-size: var(--sub-heading);
+  color: var(--dark-green);
+  width: 30%;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* ReplyWriter.jsx */
+.reply-box {
+  background-color: var(--bg-gray);
+  border-radius: 0.3rem;
+  padding-bottom: 1rem;
+}
+
+/* ReplyViewer.jsx */
+.reply-upper-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  padding-top: 0.8rem;
+}
+
+.reply-writer-box {
+  display: flex;
+}
+
+.reply-id {
+  font-size: var(--sub-content);
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.reply-date {
+  font-size: var(--sub-content);
+  color: var(--light-gray);
+}
+
+.reply-edit-btns {
+  display: flex;
+}
+
+.reply-edit-btn,
+.reply-delete-btn {
+  display: flex;
+  font-size: var(--sub-content);
+  border-radius: 0.3rem;
+  padding: 0 0.5rem;
+  align-items: center;
+  margin-right: 0.5rem;
+  height: 2rem;
+}
+
+.reply-delete-btn {
+  color: var(--red);
+  border: 0.1rem solid var(--red);
+}
+
+.reply-content {
+  font-size: var(--sub-content);
+  color: var(--dark-gray);
+  margin: 0 0.5rem;
+  padding: 0 0.6rem;
+}
+
+/* ReplyWriter.jsx */
+.reply-writer-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.reply-writer-title {
+  display: flex;
+  font-size: var(--content);
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+.reply-writer-title-icon {
+  width: 1.5rem;
+  padding-right: 0.2rem;
+  color: var(--light-green);
+}
+
+.reply-input-form {
+  border: #999999 0.1rem solid;
+  border-radius: 0.3rem;
+  height: 4rem;
+  width: 99%;
+  margin-bottom: 1rem;
+}
+
+.reply-writer-btns {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.reply-cancel-btn,
+.reply-complete-btn {
+  display: flex;
+  font-size: var(--sub-content);
+  border-radius: 0.2rem;
+  border: none;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.reply-complete-btn {
+  background-color: var(--dark-green);
+  border-radius: 0.3rem;
+  color: white;
+  align-items: center;
+}
+
+.pencil-icon {
+  width: 1.5rem;
+}
+
+.reply-cancle-btn {
+  background-color: var(--dark-gray);
+  border-radius: 0.3rem;
+  color: white;
+  align-items: center;
+}
+
+.xMark-icon {
+  width: 1.5rem;
+}
+
+/* StarGrade.jsx */
+.review-grade {
+  font-size: var(--sub-content);
+  font-weight: bold;
+  padding-top: 0.5rem;
+}
+
+/* imageModal */
+.detail-review .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  padding: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  z-index: 1001;
+  border: none;
+}
+
+.detail-review .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 테블릿용 CSS */
+@media screen and (min-width: 1024px) {
+  .detail-review-img {
+    width: 15rem;
+    height: 11rem;
+    border-radius: 1rem;
+  }
+  .detail-no-review-img {
+    width: 30.5rem;
+    height: 22.5rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    border: 0.1rem solid var(--soft-gray);
+  }
+
+  .review-content {
+    font-size: var(--sub-heading);
+    padding: 1rem 0;
+    padding-right: 2rem;
+    line-height: 2rem;
+  }
+}
+
+/* PC용 CSS */
+@media screen and (min-width: 1680px) {
+  .detail-review-img {
+    width: 20rem;
+    height: 15rem;
+    border-radius: 1rem;
+  }
+
+  .detail-no-review-img {
+    width: 40.5rem;
+    height: 30.5rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    border: 0.1rem solid var(--soft-gray);
+  }
+
+  .review-content {
+    font-size: var(--sub-heading);
+    padding: 1rem 0;
+    padding-right: 2rem;
+    line-height: 3rem;
+  }
+}

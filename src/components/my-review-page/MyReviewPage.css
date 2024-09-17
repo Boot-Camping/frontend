@@ -1,0 +1,207 @@
+.my-review-title-wrap {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.my-review-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.my-review-move-prev svg {
+  stroke: #000;
+}
+
+.my-review .review-box {
+  border-bottom: 0.1rem solid var(--soft-gray);
+}
+
+.my-review-upper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-review-left-box {
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1rem 1rem 0;
+}
+
+.my-review-right-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1rem;
+}
+
+.my-review-img {
+  width: 12rem;
+  height: 8rem;
+  border-radius: 0.5rem;
+}
+
+.my-no-review-img {
+  width: 12rem;
+  height: 8rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid var(--soft-gray);
+  color: #999;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+.my-review-tag-wrapper {
+  display: flex;
+}
+
+.my-review-tag {
+  color: var(--light-green);
+  font-size: var(--sub-content);
+  font-weight: bold;
+  border: 0.1rem solid var(--light-green);
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  margin: 1rem 0.2rem;
+}
+
+.my-review-grade {
+  font-size: var(--sub-content);
+  font-weight: bold;
+}
+
+.review-edit-content {
+  border: #999999 0.1rem solid;
+  border-radius: 0.3rem;
+  height: 4rem;
+  width: 20rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.my-review-content {
+  font-size: var(--content);
+  padding: 1rem 0;
+  padding-right: 3rem;
+  line-height: 2rem;
+}
+
+.my-review-camp-name {
+  font-size: var(--content);
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.my-review-date {
+  font-size: var(--sub-content);
+  font-weight: bold;
+  color: var(--light-gray);
+}
+
+.review-edit-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-review-edit-btn,
+.my-review-save-btn,
+.my-review-cancel-btn,
+.my-review-delete-btn {
+  font-size: var(--sub-content);
+  background-color: white;
+  border-radius: 0.3rem;
+  padding: 0 0.5rem;
+  align-items: center;
+  margin-right: 0.5rem;
+  height: 2rem;
+  color: var(--dark-gray);
+  border: 0.1rem solid var(--light-gray);
+}
+
+/* 테블릿용 CSS */
+@media screen and (min-width: 1024px) {
+  .my-review {
+    width: 80%;
+    margin: auto;
+  }
+
+  .review-edit-content {
+    border: #999999 0.1rem solid;
+    border-radius: 0.3rem;
+    height: 4rem;
+    width: 50rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .my-review-img {
+    width: 20rem;
+    height: 15rem;
+    border-radius: 1rem;
+  }
+  .my-no-review-img {
+    width: 20rem;
+    height: 15rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #ddd; */
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+  }
+}
+
+/* PC용 CSS */
+@media screen and (min-width: 1680px) {
+  .my-review {
+    width: 60%;
+    margin: auto;
+  }
+
+  .my-review-content {
+    font-size: var(--sub-heading);
+    padding: 1rem 0;
+    padding-right: 3rem;
+    line-height: 3rem;
+  }
+
+  .review-edit-content {
+    border: #999999 0.1rem solid;
+    border-radius: 0.3rem;
+    height: 4rem;
+    width: 50rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .my-review-img {
+    width: 30rem;
+    height: 20rem;
+    border-radius: 1rem;
+  }
+
+  .my-no-review-img {
+    width: 30rem;
+    height: 20rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #ddd; */
+    color: #999;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+  }
+}

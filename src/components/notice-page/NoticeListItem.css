@@ -1,0 +1,46 @@
+.notice-list {
+  font-size: var(--sub-heading);
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*****************************
+ * 	공지사항, 이벤트 분류
+ */
+.notice-list-title {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.notice-status {
+  color: var(--light-green);
+  font-weight: bold;
+}
+
+/*****************************
+ * 	제목, 날짜
+ */
+.notice-date {
+  color: var(--light-gray);
+  font-size: var(--content);
+  margin-top: 1rem;
+}
+
+.notice-list-img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .notice-list {
+    padding: 0 0 4rem;
+  }
+}

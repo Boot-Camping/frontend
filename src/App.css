@@ -128,6 +128,23 @@ table {
   border-spacing: 0;
 }
 
+:root {
+  --heading: 2rem;
+  --sub-heading: 1.6rem;
+  --content: 1.4rem;
+  --sub-content: 1.2rem;
+  --bold: bold;
+  --dark-green: #038153;
+  --light-green: #03a678;
+  --red: #f43c3c;
+  --yellow: #ffc100;
+  --dark-gray: #666666;
+  --light-gray: #999999;
+  --soft-gray: #d9d9d9;
+  --bg-gray: #eaeaea;
+  --bg-gray-50: rgb(234, 234, 234, 0.5);
+}
+
 @font-face {
   font-family: "Pretendard-Regular";
   src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
@@ -138,10 +155,109 @@ table {
 
 html {
   font-family: "Pretendard-Regular";
+  width: 100%;
+  overflow-x: hidden;
+  font-size: 62.5%;
+  letter-spacing: -0.05rem;
+  /* font-size: 15px;
+  font-size: 1.5rem; */
+}
+
+body {
+  overflow-x: hidden;
+  word-break: keep-all;
 }
 
 a:link,
 a:visited {
   text-decoration: none;
   color: #000;
+}
+
+/************************************
+ *	모바일 퍼스트 CSS
+ */
+main {
+  width: 92%;
+  margin: 10rem auto 5rem;
+  min-height: 70rem;
+}
+
+.underline {
+  position: relative;
+}
+.underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 150%;
+  height: 0.5rem;
+  background: var(--bg-gray);
+  transform: translateX(-50%);
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.modal button {
+  cursor: pointer;
+}
+
+.swiper,
+.swiper-wrapper {
+  z-index: 0 !important;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  main {
+    width: 80%;
+  }
+
+  .modal {
+    width: 40%;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  main {
+    width: 70%;
+    min-height: 65rem;
+		margin: 13rem auto 8rem;
+  }
+
+  .modal {
+    width: 30%;
+    padding: 6.5rem 3rem;
+  }
 }

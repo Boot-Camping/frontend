@@ -1,0 +1,389 @@
+.regi-title {
+  font-size: 2rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.hashTag {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #bdbdbd;
+  display: flex;
+  justify-content: center;
+}
+
+.regi-category {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.regi-category-san {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-sea {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-gog {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-dog {
+  width: 9rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  margin-right: 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category-NoKids {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: 1px solid #03a678;
+  background-color: white;
+  color: #03a678;
+  padding: 0;
+  cursor: pointer;
+}
+
+.regi-category button.selected {
+  background-color: #03a678;
+  color: white;
+}
+
+.camp-name {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+.input-camp-name {
+  margin-top: 1rem;
+  width: 90vw;
+  height: 2vh;
+  padding: 0.5rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-family: "Pretendard";
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
+.camp-number-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+.input-camp-number {
+  margin-top: 1rem;
+  width: 40vw;
+  height: 2vh;
+  padding: 0.5rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
+.camp-price-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+.camp-standard-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.camp-max-user-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.camp-plus-price-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.input-camp-price {
+  margin-top: 1rem;
+  width: 35vw;
+  height: 2vh;
+  padding: 0.5rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
+.input-camp-plus-price {
+  margin-top: 1rem;
+  width: 20vw;
+  height: 2vh;
+  padding: 0.5rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camp-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camp-user-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camping-explanaion {
+  justify-content: space-between;
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.input-camp-exp {
+  margin-top: 1rem;
+  width: 90vw;
+  height: 20vh;
+  padding: 0.5rem;
+  border: solid 1px #666666;
+  border-radius: 0.5rem;
+  font-size: var(--content);
+  font-family: "Pretendard";
+  justify-content: start;
+  align-content: flex-start;
+  text-align: start;
+  margin-bottom: 3rem;
+}
+
+.camping-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.won {
+  padding-top: 1.5rem;
+  margin-left: 0.5rem;
+  font-size: var(--content);
+  font-weight: 600;
+}
+
+.camp-number-title,
+.camp-price-title {
+  margin-right: 1rem;
+}
+
+.camp-img-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  margin-top: 3rem;
+}
+
+.input-camp-user {
+  margin-top: 1rem;
+  width: 10vw;
+  height: 2vh;
+  padding: 0.5rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
+.input-camp-max-user {
+  margin-top: 1rem;
+  width: 10vw;
+  height: 2vh;
+  padding: 0.5rem;
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  border-radius: 0.5rem;
+}
+
+.camping-user {
+  padding-top: 1.5rem;
+  margin-left: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.camp-img-input {
+  margin: 1rem 0 2rem 0;
+  border: none;
+  border-radius: 1rem;
+  width: 30vw;
+  height: 10.7vh;
+  background-color: var(--light-green);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.camp-img-input-hidden {
+  display: none;
+}
+
+.image-uploader-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.img-previews {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.img-preview {
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+}
+
+.img-remove-btn {
+  background: var(--red); /* 빨간색 배경 */
+  border: none;
+  border-radius: 0.6rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.camp-center-container {
+  display: flex;
+  justify-content: center;
+}
+
+.camp-perpect-regi {
+  color: white;
+  background-color: var(--dark-green);
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 1rem;
+  width: 15rem;
+  height: 4rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.camp-fix-btn {
+  color: white;
+  background-color: var(--red);
+  font-size: 1.4rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  border: none;
+  width: 15rem;
+  height: 4rem;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.camp-right-container {
+  display: flex;
+  justify-content: right;
+}
+
+.camp-remove-btn {
+  color: white;
+  background-color: var(--red);
+  font-size: var(--content);
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: none;
+  width: 5rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.admin-home-icon {
+  justify-content: left;
+  color: var(--dark-green);
+  width: 2.5rem;
+  height: auto;
+}

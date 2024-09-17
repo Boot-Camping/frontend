@@ -1,0 +1,82 @@
+/* BookPage.jsx */
+.book-page {
+  padding-bottom: 10rem;
+}
+
+.book-page-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  padding: 2rem 0;
+}
+
+.book-date {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.book-date-title {
+  font-weight: bold;
+  font-size: var(--heading);
+  padding: 2rem 0;
+  margin: 1rem 0;
+}
+
+.date-confirm-button {
+  background-color: var(--dark-green);
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--content);
+  margin: 2rem 0;
+}
+
+/* BookInfo.jsx */
+.book-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3rem;
+  border-bottom: 0.1rem solid var(--soft-gray);
+}
+
+.book-info-title {
+  font-size: var(--content);
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.camping-num {
+  font-size: var(--content);
+  line-height: 3rem;
+  padding-left: 1rem;
+  color: var(--dark-gray);
+}
+
+.book-img {
+  width: 20rem;
+  height: 15rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .book-page {
+    width: 80%;
+    margin: auto;
+  }
+
+  .book-img {
+    width: 30rem;
+    height: 20rem;
+    border-radius: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+  .book-page {
+    width: 60%;
+    margin: auto;
+  }
+}

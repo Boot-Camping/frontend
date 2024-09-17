@@ -1,0 +1,14 @@
+.cash-filter-img {
+  width: var(--sub-heading);
+  height: var(--sub-heading);
+}
+
+.use-filter {
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+
+.use-filter.filter-active {
+  background: var(--red);
+  color: #fff;
+}

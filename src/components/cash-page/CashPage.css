@@ -1,0 +1,33 @@
+.cash-title-wrap {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cash-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.cash-move-prev svg {
+  stroke: #000;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .cash-page-wrap {
+    display: flex;
+    margin-bottom: 10rem;
+  }
+
+  .cash-aside {
+    position: fixed;
+    top: 13rem;
+    width: 18rem;
+  }
+}

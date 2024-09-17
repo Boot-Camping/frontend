@@ -1,0 +1,85 @@
+/***********************************
+ *	텍스트 영역
+*/
+.profile-txt-wrap {
+  padding: 2rem 0;
+  width: 100%;
+  font-size: var(--sub-heading);
+}
+
+.profile-txt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.profile-txt > div:first-child {
+  color: var(--dark-gray);
+}
+
+.profile-txt > div:last-child {
+  color: var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+}
+
+.profile-change-btn {
+  cursor: pointer;
+}
+
+.profile-change {
+  margin-left: 1rem;
+  color: var(--light-green);
+  font-size: var(--content);
+}
+
+.profile-address {
+  line-height: 1.5;
+}
+
+.profile-address div {
+  align-self: start;
+}
+
+/***********************************
+ *	회원탈퇴
+*/
+.user-account-delete > div:last-child {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .user-profile-full {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .user-profile-img-wrap {
+    padding: 2rem 0 5rem;
+  }
+
+  .profile-img-wrap {
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-txt-wrap.underline::after {
+    width: 110%;
+  }
+
+  .profile-txt {
+    padding: 2rem 0;
+  }
+}

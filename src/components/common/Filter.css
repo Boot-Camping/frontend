@@ -1,0 +1,39 @@
+.filter-wrap {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter {
+  font-size: var(--sub-content);
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.filter-active {
+  background: var(--light-green);
+  color: #fff;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .filter-wrap {
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+  }
+
+  .filter {
+    width: 100%;
+  }
+}

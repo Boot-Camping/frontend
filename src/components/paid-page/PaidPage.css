@@ -1,0 +1,33 @@
+.paid-title-wrap {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.paid-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.paid-move-prev svg {
+  stroke: #000;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .paid-wrap {
+    display: flex;
+    margin-bottom: 10rem;
+  }
+
+  .paid-aside {
+    position: fixed;
+    top: 13rem;
+    width: 10%;
+  }
+}

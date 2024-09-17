@@ -1,0 +1,36 @@
+.signup-section {
+  margin: 3rem 0;
+}
+
+.signup-title {
+  font-size: var(--heading);
+  font-weight: var(--bold);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .signup-section {
+    margin: 6rem 0;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .signup-title {
+    width: 20%;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .signup-section {
+    margin: 6rem 0;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .signup-title {
+    width: 20%;
+  }
+}

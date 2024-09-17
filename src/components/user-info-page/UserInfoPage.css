@@ -1,0 +1,74 @@
+/***********************************
+ *	타이틀 영역
+*/
+.user-info-wrap {
+  margin: 3rem 0;
+}
+
+.user-info-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  gap: 1rem;
+}
+
+.user-info-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.user-info-prev svg {
+  stroke: #000;
+}
+
+/***********************************
+ *	캐시 영역
+*/
+.user-cash-wrap {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.user-cash-wrap > div:last-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-arrow-img {
+  width: var(--heading);
+  height: var(--heading);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .user-info-wrap {
+    margin: 6rem 0;
+  }
+  .user-cash-wrap {
+    padding: 2.5rem 0;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .user-info-wrap {
+    display: flex;
+    justify-content: center;
+		gap: 13rem;
+  }
+
+  .user-info-content {
+    width: 50%;
+  }
+}

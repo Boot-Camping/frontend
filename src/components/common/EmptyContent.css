@@ -1,0 +1,23 @@
+.empty-content {
+  font-size: var(--sub-heading);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50rem;
+  width: 100%;
+}
+
+.error-message {
+  font-size: var(--content);
+  min-height: auto;
+  color: var(--red);
+  position: relative;
+  padding-left: 1rem;
+}
+
+.error-message::before {
+  content: "*";
+  position: absolute;
+  left: 0;
+  top: 0;
+}

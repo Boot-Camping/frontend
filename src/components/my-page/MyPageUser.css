@@ -1,0 +1,126 @@
+.mypage-user-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.mypage-user-wrap::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 150%;
+  height: 0.2rem;
+  background: var(--bg-gray);
+  transform: translateX(-50%);
+}
+
+/***********************************
+ *	유저 이미지
+*/
+.mypage-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--sub-heading);
+  font-weight: bold;
+}
+
+.mypage-user-icon {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.mypage-user-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mypage-user-icon svg {
+  fill: var(--bg-gray);
+}
+
+/***********************************
+ *	유저 이름, 수정, 로그아웃
+*/
+.mypage-user-info {
+  line-height: 1.3;
+  font-size: var(--sub-heading);
+}
+
+.user-setting {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  font-size: var(--content);
+  font-weight: normal;
+  color: var(--light-gray);
+}
+
+.user-setting:link,
+.user-setting:visited {
+  color: var(--light-gray);
+}
+
+.mypage-setting-icon {
+  width: var(--sub-heading);
+  height: var(--sub-heading);
+  margin-left: 0.5rem;
+}
+
+.mypage-setting-icon svg {
+  fill: var(--light-gray);
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .mypage-user-wrap {
+    flex-direction: column;
+    align-items: start;
+    width: 35%;
+  }
+
+  .mypage-user-wrap::after {
+    display: none;
+  }
+
+  .mypage-user {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .mypage-user-icon {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .mypage-user-info {
+    margin: 2rem 0;
+    line-height: 2;
+    font-size: var(--heading);
+  }
+
+  .user-setting {
+    font-size: var(--sub-heading);
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .mypage-user-wrap {
+    flex-direction: column;
+    align-items: start;
+    width: 20%;
+  }
+}

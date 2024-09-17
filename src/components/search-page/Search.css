@@ -1,0 +1,296 @@
+.search-title {
+  font-size: var(--heading);
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid;
+}
+
+.search-addr {
+  width: 10rem;
+  height: 3.4rem;
+  background-color: white;
+  border: 1px solid gray;
+  border: none;
+  border-right: 1px solid gray;
+  cursor: pointer;
+}
+.search-text {
+  width: 100%;
+  height: 3rem;
+  font-size: var(--sub-heading);
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-text:focus-visible,
+.search-area:focus-visible {
+  outline: none;
+}
+
+.search-text::placeholder {
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.search-submit-Btn {
+  width: 8rem;
+  height: auto;
+  padding: 0.2rem 0;
+  font-size: 1.5rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-block {
+  height: 100%;
+  margin-left: 8.1rem;
+  border: 1px solid gray;
+}
+
+.search-history {
+  font-size: var(--sub-heading);
+  color: gray;
+  padding: 1.5rem 1rem;
+}
+
+.search-history-list-wraper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-history-list {
+  font-size: var(--content);
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.search-history-delete-btn {
+  width: 4rem;
+  margin-right: 1rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-results {
+  margin-top: var(--heading);
+}
+
+.search-camping-list {
+  position: relative;
+  display: block;
+}
+
+.search-camping-img {
+  width: 39.5rem;
+  height: 20.2rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-camping-img-heart {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.search-camping-img-heart svg {
+  stroke: var(--red);
+  fill: var(--red);
+}
+
+.search-camping-img-heart-delete svg {
+  fill: none;
+}
+
+.search-camping-type {
+  font-size: var(--sub-heading);
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.search-camping-sub-title-wrapper,
+.search-camping-addr-wrapper,
+.search-camping-info-icons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.search-camping-name {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+.search-camping-price {
+  font-size: var(--heading);
+}
+
+.search-camping-addr-icon-wrapper,
+.search-camping-info-star-wrapper {
+  display: flex;
+}
+
+.search-camping-addr-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: green;
+}
+
+.search-camping-addr,
+.search-camping-people {
+  font-size: var(--sub-heading);
+  color: gray;
+}
+
+.search-camping-info-star {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: green;
+}
+
+.search-camping-info {
+  font-size: var(--sub-content);
+  color: gray;
+}
+
+@media screen and (min-width: 800px) {
+  .search-title-wrapper {
+    margin-top: 0.5rem;
+    margin: 2rem 0;
+  }
+  .search-title {
+    font-size: 2.5rem;
+  }
+
+  .search-select-box {
+    width: 12rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+
+  .search-camping-list {
+    width: 50rem;
+    padding: 0 6rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-camping-img {
+    width: 50rem;
+    height: 25rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-camping-img-heart {
+    right: 6rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .search-camping-info-star {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .search-camping-info {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-select-box {
+    width: 11rem;
+    height: 2rem;
+  }
+
+  .search-results {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search-camping-list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    width: 30rem;
+    padding: 0.5rem;
+  }
+
+  .search-camping-img {
+    width: 30rem;
+    height: 20.2rem;
+  }
+
+  .search-camping-img-heart {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+  .search-results {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .search-camping-list {
+    width: 33rem;
+    padding: 0.5rem;
+  }
+
+  .search-camping-img {
+    width: 33rem;
+    height: 21rem;
+  }
+
+  .search-camping-img-heart {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+  }
+
+  .search-addr {
+    width: 14rem;
+    font-size: var(--sub-heading);
+    height: auto;
+    padding: 1rem 0;
+    font-size: 1.8rem;
+  }
+  .search-text {
+    font-size: 2rem;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .search-text::placeholder {
+    font-size: 2rem;
+    vertical-align: middle;
+  }
+
+  .search-submit-Btn {
+    width: 8rem;
+    height: auto;
+    padding: 0.8rem 0;
+    font-size: 2rem;
+  }
+
+  .search-block {
+    height: 100%;
+    margin-left: 8.1rem;
+    border: 1px solid gray;
+    margin-left: 12rem;
+  }
+}

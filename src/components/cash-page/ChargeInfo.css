@@ -1,0 +1,24 @@
+/*****************************
+ * 	금액 확인
+ */
+.charge-confirm {
+  margin: 4rem 0;
+  font-size: var(--sub-heading);
+  font-weight: bold;
+  line-height: 2.5;
+}
+
+.charge-confirm > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confirm-price {
+  font-weight: normal;
+  color: var(--light-gray);
+}
+
+.confirm-price-hide {
+  opacity: 0;
+}

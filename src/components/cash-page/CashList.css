@@ -1,0 +1,18 @@
+.cash-list-wrap {
+  padding: 1rem 0;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .cash-list-wrap {
+    flex: 1;
+    margin-left: 25rem;
+    width: calc(100% - 25rem);
+  }
+
+  .cash-list-wrap::before {
+    display: none;
+  }
+}

@@ -1,0 +1,53 @@
+/***********************************
+ *	LoginPage
+*/
+.login-section {
+  margin: 3rem 0;
+}
+
+.login-title-wrap {
+  width: 100%;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.login-title {
+  font-size: var(--heading);
+}
+
+.login-desc {
+  font-size: var(--sub-heading);
+}
+
+.login-img {
+  width: 40%;
+  margin: 8rem auto;
+}
+
+.login-img img {
+  width: 100%;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .login-title-wrap {
+    text-align: center;
+  }
+  .login-btns-wrap {
+    margin-top: 5rem;
+  }
+  .login-img {
+    width: 30%;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .login-img {
+    width: 15%;
+  }
+}

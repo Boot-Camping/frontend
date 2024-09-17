@@ -1,0 +1,102 @@
+.login-account-wrap {
+  margin: 3rem 0;
+}
+
+.login-account-title {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+#login-account-form {
+  margin: 3rem 0 1rem;
+}
+
+.login-input-wrap {
+  font-size: var(--sub-heading);
+  width: 100%;
+  margin: 3rem 0;
+}
+
+.login-input-wrap label {
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.login-input-wrap input {
+  border: none;
+  background: var(--bg-gray-50);
+  font-size: var(--content);
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.login-input::placeholder {
+  color: var(--light-gray);
+  font-size: var(--sub-content);
+}
+
+.login-input:focus-visible {
+  outline: 2px solid var(--dark-green);
+}
+
+.login-submit-btn {
+  width: 100%;
+  border: none;
+  background: var(--dark-green);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: var(--content);
+  margin-top: 3rem;
+  cursor: pointer;
+}
+
+.move-howtologin {
+  width: 100%;
+  border: 1px solid var(--light-green);
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--light-green);
+  font-size: var(--content);
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .login-account-wrap {
+    margin: 6rem 10rem;
+  }
+  #login-account-form {
+    margin: 6rem 0 3rem;
+  }
+  .login-account-title {
+    text-align: center;
+  }
+  .login-input-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .login-input-wrap label {
+    width: 10rem;
+    margin: 0;
+  }
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .login-account-wrap {
+    max-width: 500px;
+    margin: 6rem auto;
+  }
+}

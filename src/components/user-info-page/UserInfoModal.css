@@ -1,0 +1,125 @@
+.user-info-modal {
+  display: block;
+  text-align: left;
+}
+
+.info-modal-title {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+}
+
+/***********************************
+ *	데이터 영역
+*/
+.info-modal-data {
+  font-size: var(--content);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.info-modal-old {
+  color: var(--light-gray);
+}
+
+.info-modal-data input {
+  color: var(--dark-gray);
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  width: 35%;
+}
+
+.info-modal-data input:focus-visible {
+  outline: none;
+}
+
+.info-modal-data input::placeholder {
+  color: var(--soft-gray);
+}
+
+/***********************************
+ *	X 버튼
+*/
+.info-modal-close {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+	cursor: pointer;
+}
+
+/***********************************
+ *	주소 변경 모달
+*/
+.info-modal-addr .info-modal-data {
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.info-modal-addr .info-modal-data div:first-child {
+  font-size: var(--content);
+}
+.info-modal-addr .info-modal-new {
+  color: #000;
+}
+
+.info-modal-addr .postcode-wrap {
+  width: 100%;
+}
+
+.info-modal-addr .info-modal-new input {
+  border-radius: 0;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.info-modal-addr .postcode-btn {
+  font-size: var(--sub-content);
+}
+
+/***********************************
+ *	비밀번호 변경 모달
+*/
+.info-modal-pw .info-modal-data {
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.info-modal-pw .info-modal-old div:first-child {
+  color: #000;
+}
+
+.info-modal-pw .info-modal-data input {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.info-modal-pw .info-modal-old input {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 0.5rem 1rem;
+  color: var(--dark-gray);
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .info-modal-title {
+    font-size: var(--heading);
+  }
+  .info-modal-data {
+    margin: 3rem 0;
+    font-size: var(--sub-heading);
+  }
+}

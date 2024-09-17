@@ -1,0 +1,34 @@
+.paid-list-wrap {
+  position: relative;
+  padding: 1rem 0;
+}
+
+.paid-list-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 150%;
+  height: 100%;
+  background: var(--bg-gray-50);
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/************************************
+ *	데스크탑 CSS
+ */
+@media screen and (min-width: 1024px) {
+  .paid-list-wrap {
+    flex: 1;
+    margin-left: 20%;
+    width: 80%;
+    background: var(--bg-gray-50);
+    padding: 2rem 6rem;
+    border-radius: 1rem;
+  }
+
+  .paid-list-wrap::before {
+    display: none;
+  }
+}

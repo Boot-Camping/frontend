@@ -1,0 +1,23 @@
+.pagination-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 4rem 0;
+}
+
+.page-btn {
+  border: 1px solid var(--light-green);
+  border-radius: 0.3rem;
+  background: none;
+  font-size: var(--content);
+  color: var(--light-green);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.page-active {
+  background: var(--light-green);
+  color: #fff;
+}

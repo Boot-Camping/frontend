@@ -1,0 +1,39 @@
+.cash-charge-modal {
+  display: block;
+  text-align: left;
+}
+
+.charge-title {
+  font-size: var(--heading);
+  font-weight: bold;
+}
+
+/*****************************
+ * 	취소/결제 버튼
+ */
+.charge-modal-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--sub-heading);
+  margin-top: 3rem;
+}
+
+.charge-modal-btn button {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 50%;
+  color: #fff;
+  font-size: var(--content);
+}
+
+.charge-cancel {
+  background: var(--red);
+}
+
+.charge-pay {
+  background: var(--light-green);
+}

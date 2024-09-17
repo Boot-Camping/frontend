@@ -1,0 +1,28 @@
+.mypage-btn-notice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--light-gray);
+  border-radius: 0.5rem;
+  line-height: 1.5;
+  padding: 2rem 1rem;
+}
+
+.mypage-notice-text div:first-child {
+  font-size: var(--sub-heading);
+  font-weight: bold;
+}
+
+.mypage-notice-text div:last-child {
+  font-size: var(--sub-content);
+  color: var(--light-gray);
+}
+
+.mypage-notice-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.mypage-notice-icon svg {
+  fill: var(--light-gray);
+}

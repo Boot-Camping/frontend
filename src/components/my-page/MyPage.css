@@ -1,0 +1,10 @@
+/************************************
+ *	태블릿 CSS
+ */
+@media screen and (min-width: 800px) {
+  .mypage-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+}

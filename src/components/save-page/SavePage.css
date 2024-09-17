@@ -1,0 +1,21 @@
+.save-wrap {
+	margin-bottom: 5rem;
+}
+
+.save-title-wrap {
+  font-size: var(--heading);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.save-move-prev {
+  width: var(--heading);
+  height: var(--heading);
+  transform: scaleX(-1);
+}
+
+.save-move-prev svg {
+  stroke: #000;
+}

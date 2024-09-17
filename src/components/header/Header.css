@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: white;
+  top: 0;
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  border-bottom: 1px solid var(--bg-gray);
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 5rem;
+  height: 3rem;
+}
+
+.logo-title {
+  font-size: var(--content);
+  font-weight: bold;
+  color: var(--dark-green);
+  padding-left: 1rem;
+}
+
+.icons {
+  display: flex;
+}
+
+.header-icon {
+  width: 3rem;
+  height: 3rem;
+  padding-left: 1rem;
+}
+
+/* 테블릿 CSS */
+@media screen and (min-width: 1024px) {
+  .logo {
+    width: 7rem;
+    height: 4rem;
+  }
+
+  .logo-title {
+    font-size: var(--sub-heading);
+    font-weight: bold;
+    color: var(--dark-green);
+  }
+
+  .header-icon {
+    width: 4rem;
+    height: 4rem;
+    padding-left: 2rem;
+  }
+}

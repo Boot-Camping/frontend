@@ -1,0 +1,13 @@
+.signup-modal-content {
+  font-size: var(--heading);
+}
+
+.signup-modal-btn {
+  font-size: var(--sub-content);
+  border: none;
+  background: var(--dark-green);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: var(--heading);
+}

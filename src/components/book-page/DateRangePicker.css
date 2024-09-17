@@ -1,0 +1,56 @@
+.calendar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5rem;
+}
+
+.inputbox {
+  font-size: var(--content);
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 0.1rem solid var(--soft-gray);
+  width: 38rem;
+  text-align: center;
+  color: var(--dark-gray);
+  font-weight: bold;
+}
+
+.calendar-element {
+  width: 100%;
+}
+
+.nights-days-info {
+  font-size: var(--sub-heading);
+  padding-top: 1rem;
+}
+
+.nights-days-highlight-text {
+  font-weight: bold;
+  font-size: var(--sub-heading);
+  color: var(--light-green);
+}
+
+.calendar-wrap .rdrMonth {
+  width: 35rem;
+}
+
+.rdrInRange,
+.rdrStartEdge,
+.rdrEndEdge {
+  color: var(--light-green) !important;
+}
+
+/* 테블릿용 CSS */
+@media screen and (min-width: 1024px) {
+  .calendar-wrap .rdrMonth {
+    width: 55rem;
+  }
+}
+
+/* PC용 CSS */
+@media screen and (min-width: 1680px) {
+  .calendar-wrap .rdrMonth {
+    width: 70rem;
+  }
+}
