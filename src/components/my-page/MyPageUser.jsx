@@ -1,59 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./MyPageUser.css";
 import { ReactSVG } from "react-svg";
 import { Link } from "react-router-dom";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { get } from "../../utils/api";
 import MyPageLogout from "./MyPageLogout";
 import { svgCollection } from "../../constants/svgCollection";
+import useMyPageUser from "../../hooks/useMyPageUser";
 
 const MyPageUser = () => {
-  const { accessToken, userId } = getUserIdFromToken();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userImage, setUserImage] = useState("");
+  const { userName, userImage, errorMessage, setErrorMessage } =
+    useMyPageUser();
 
-  useEffect(() => {
-    const getUserData = async () => {
-      const customHeaders = {
-        Authorization: `${accessToken}`,
-      };
+  const renderUserImage = () => {
+    if (!userImage) {
+      return (
+        <ReactSVG src={svgCollection.userImg} className="mypage-user-icon" />
+      );
+    }
+    return (
+      <div className="mypage-user-icon">
+        <img src={userImage} />
+      </div>
+    );
+  };
 
-      try {
-        const response = await get(`userprofile/${userId}`, customHeaders);
-        if (response.length > 0) {
-          setUserImage(response[0].images[0]);
-          setUserName(response[0].name);
-        }
-      } catch (error) {
-        setErrorMessage(error.message);
-        console.log(errorMessage);
-      }
-    };
-
-    getUserData();
-  }, [accessToken, userId]);
+  const renderUserInfo = () => (
+    <div className="mypage-user-info">
+      <div>{userName}</div>
+      <Link to="/userinfo" className="user-setting">
+        <div>내 정보 관리</div>
+        <ReactSVG src={svgCollection.setting} className="mypage-setting-icon" />
+      </Link>
+    </div>
+  );
 
   return (
     <div className="mypage-user-wrap">
       <div className="mypage-user">
-        {userImage === undefined ? (
-          <ReactSVG src={svgCollection.userImg} className="mypage-user-icon" />
-        ) : (
-          <div className="mypage-user-icon">
-            <img src={userImage} />
-          </div>
-        )}
-        <div className="mypage-user-info">
-          <div>{userName}</div>
-          <Link to="/userinfo" className="user-setting">
-            <div>내 정보 관리</div>
-            <ReactSVG
-              src={svgCollection.setting}
-              className="mypage-setting-icon"
-            />
-          </Link>
-        </div>
+        {renderUserImage()}
+        {renderUserInfo()}
       </div>
       <MyPageLogout
         errorMessage={errorMessage}

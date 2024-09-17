@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 import "../components/login-account-page/LoginAccountPage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { post } from "../utils/api";
 import PasswordInput from "../components/common/PasswordInput";
 import EmptyContent from "../components/common/EmptyContent";
+import useLogin from "../hooks/useLogin";
 
 const LoginAccountPage = () => {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [error, setError] = useState(false);
+  const { postLogin, errorMessage, error } = useLogin();
 
   const submitHandle = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    const jsonData = JSON.stringify(data);
+    const jsonData = prepareFormData(event.target);
+    const result = await postLogin(jsonData);
 
-    try {
-      const response = await post("user/login", jsonData);
-      const accessToken =
-        response.headers["authorization"] || response.headers["Authorization"];
-
-      localStorage.setItem("accessToken", accessToken);
-      navigate(data.loginId === "admin" ? "/admin" : "/");
-      window.location.reload();
-    } catch (error) {
-      setErrorMessage(error.message);
-      setError(true);
+    if (result) {
+      const data = JSON.parse(jsonData);
+      navigateToHomeOrAdmin(data);
     }
+  };
+
+  const prepareFormData = (target) => {
+    const formData = new FormData(target);
+    const data = Object.fromEntries(formData);
+    return JSON.stringify(data);
+  };
+
+  const navigateToHomeOrAdmin = (data) => {
+    navigate(data.loginId === "admin" ? "/admin" : "/");
+    window.location.reload();
   };
 
   return (
@@ -63,7 +64,7 @@ const LoginAccountPage = () => {
         </form>
 
         <Link to={"/login"}>
-          <button className="move-howtologin">다른 방법으로 로그인</button>
+          <button className="move-howtologin">이전 페이지</button>
         </Link>
       </div>
     </section>

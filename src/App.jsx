@@ -31,12 +31,11 @@ import ReviewWriter from "./components/my-review-page/ReviewWriter";
 import MyReviewPage from "./pages/MyReviewPage";
 import { CampingDaysProvider } from "./context/campingDaysContext";
 import { AuthProvider } from "./context/authContext";
-import Chatting from "./components/chatting/Chatting";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Header />
         <CampingDaysProvider>
           <main>
@@ -89,10 +88,9 @@ function App() {
             </Routes>
           </main>
         </CampingDaysProvider>
-        <Chatting />
         <Footer />
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

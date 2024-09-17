@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SignupTerms.css";
 import { signUpTerms } from "../../constants/signUp";
 import { ReactSVG } from "react-svg";
@@ -17,6 +17,12 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
   };
 
   const allChecked = checkedTerms.every(Boolean);
+
+	const setFocusForChecked = (el) => {
+		if(el) {
+			setErrorFocus(el);
+		}
+	}
 
   return (
     <div className="signup-terms">
@@ -45,11 +51,7 @@ const SignupTerms = ({ checkedTerms, setCheckedTerms, setErrorFocus }) => {
             id={terms.key}
             checked={checkedTerms[index]}
             onChange={isCheckedHandle(index)}
-            ref={(el) => {
-              if (el) {
-                setErrorFocus(el);
-              }
-            }}
+            ref={setFocusForChecked}
           />
           <label className="chk-content" htmlFor={terms.key}>
             <ReactSVG src={svgCollection.check} className="signup-check-img" />

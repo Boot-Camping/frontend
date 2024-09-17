@@ -1,6 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import { closeModal } from "../../utils/closeModal";
+import { resetModal } from "../../utils/resetModal";
 
 const PortalModal = ({
   setIsOpened,
@@ -10,10 +10,7 @@ const PortalModal = ({
   children,
 }) => {
   const resetModalHandle = () => {
-    closeModal(setIsOpened)();
-    setError(false);
-    setErrorMessage("");
-    setPostcode("");
+    resetModal(setIsOpened, setError, setErrorMessage, setPostcode);
   };
 
   return (

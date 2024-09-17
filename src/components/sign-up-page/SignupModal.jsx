@@ -8,16 +8,20 @@ import { useNavigate } from "react-router-dom";
 const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
   const navigate = useNavigate();
 
-  const errorMessage = () => {
+  const getErrorMessage = () => {
     return signUpError[errorType] || null;
   };
 
-  const closeHandle = () => {
+  const closeModalHandle = () => {
     closeModal(setIsOpened)();
 
     if (!error) {
-      navigate("/login/account");
+      navigateToAccountPage();
     }
+  };
+
+  const navigateToAccountPage = () => {
+    navigate("/login/account");
   };
 
   return (
@@ -26,12 +30,12 @@ const SignupModal = ({ error, errorType, isOpened, setIsOpened }) => {
         <PortalModal setIsOpened={setIsOpened}>
           <div className="signup-modal modal signup-error">
             <div className="signup-modal-content">
-              {error ? errorMessage() : "회원가입이 완료되었습니다"}
+              {error ? getErrorMessage() : "회원가입이 완료되었습니다"}
             </div>
             <button
               type="button"
               className="signup-modal-btn"
-              onClick={closeHandle}
+              onClick={closeModalHandle}
             >
               확인
             </button>

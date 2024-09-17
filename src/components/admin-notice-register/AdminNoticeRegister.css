@@ -64,16 +64,14 @@
 
 .input-notice-title {
   margin-top: 1rem;
-  width: 40rem;
-  height: 3rem;
+  width: 90vw;
+  height: 2vh;
+  padding: 0.5rem;
   background: var(--bg-gray-50);
   font-size: var(--content);
+  font-family: "Pretendard";
   border-radius: 0.5rem;
   border: none;
-}
-
-.notice-img-input-hidden {
-  display: none;
 }
 
 .camping-notice {
@@ -83,26 +81,14 @@
   margin-bottom: 1rem;
 }
 
-.notice-img-input {
-  border: none;
-  border-radius: 1rem;
-  width: 6rem;
-  height: 3rem;
-  background-color: var(--light-green);
-  color: white;
-  font-size: 1.2rem;
-  font-weight: normal;
-  text-align: center;
-  cursor: pointer;
-}
-
 .input-notice {
-  width: 38.5rem;
-  height: 35rem;
+  width: 90vw;
+  height: 40vh;
+  padding: 0.5rem;
   border: solid 1px #666666;
   border-radius: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1.4rem;
+  font-size: var(--content);
+  font-family: "Pretendard";
   justify-content: start;
   align-content: flex-start;
   text-align: start;

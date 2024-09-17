@@ -7,6 +7,7 @@ import NoticeList from "../components/notice-page/NoticeList";
 import { svgCollection } from "../constants/svgCollection";
 import { get } from "../utils/api";
 import Pagination from "../components/common/Pagination";
+import useNotice from "../hooks/useNotice";
 
 const NoticePage = ({
   linkPrefix = "/notice",
@@ -15,51 +16,21 @@ const NoticePage = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [noticeData, setNoticeData] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
   const [page, setPage] = useState(0);
   const size = 8;
-  const [totalPages, setTotalPages] = useState(0);
+
+  const { noticeData, errorMessage, totalPages } = useNotice(page, size);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const pageFromQuery = parseInt(params.get("page"), 10);
-    console.log(location);
 
     if (!isNaN(pageFromQuery)) {
       setPage(pageFromQuery);
     }
   }, [location.search]);
 
-  useEffect(() => {
-    const getNoticeData = async () => {
-      const customHeaders = {
-        "Content-Type": "application/x-www-form-urlencoded",
-      };
-
-      const params = {
-        page: page,
-        size: size,
-      };
-
-      const queryString = new URLSearchParams(params).toString();
-
-      try {
-        const response = await get(
-          `admin/notice/all?${queryString}`,
-          customHeaders
-        );
-        setNoticeData(response.content);
-        setTotalPages(response.totalPages);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
-    };
-
-    getNoticeData();
-  }, [page]);
-
-  const movePrevHandle = () => {
+  const navigateBackHandle = () => {
     if (linkPrefix === "/notice") {
       navigate("/mypage");
     } else if (location.pathname === "/admin/notice-list") {
@@ -67,13 +38,13 @@ const NoticePage = ({
     }
   };
 
-  const pageChangeHandle = (newPage) => {
+  const changePageHandle = (newPage) => {
     setPage(newPage);
-    if (linkPrefix === "/notice") {
-      navigate(`${linkPrefix}?page=${newPage}`);
-    } else if (location.pathname === "/admin/notice-list") {
-      navigate(`/admin/notice-list?page=${newPage}`);
-    }
+    const newPath =
+      linkPrefix === "/notice"
+        ? `${linkPrefix}?page=${newPage}`
+        : `/admin/notice-list?page=${newPage}`;
+    navigate(newPath);
   };
 
   return (
@@ -82,7 +53,7 @@ const NoticePage = ({
         <ReactSVG
           src={pageSvgSrc}
           className="notice-move-prev"
-          onClick={movePrevHandle}
+          onClick={navigateBackHandle}
         />
         <div>공지사항</div>
       </div>
@@ -97,7 +68,7 @@ const NoticePage = ({
 
         <Pagination
           page={page}
-          setPage={pageChangeHandle}
+          setPage={changePageHandle}
           totalPages={totalPages}
         />
       </div>

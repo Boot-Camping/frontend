@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./SaveList.css";
-import { svgCollection } from "../../constants/svgCollection";
-import { ReactSVG } from "react-svg";
 import EmptyContent from "../common/EmptyContent";
 import SaveModal from "./SaveModal";
-import { Link } from "react-router-dom";
+import SaveListItem from "./SaveListItem";
 
 const SaveList = ({ visibleItems, saveData, errorMessage, onUpdate }) => {
   const [savedItems, setSavedItems] = useState(
@@ -13,48 +11,27 @@ const SaveList = ({ visibleItems, saveData, errorMessage, onUpdate }) => {
   const [isOpened, setIsOpened] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
 
-  const saveHandle = (index) => {
+  const hasData = saveData.length > 0;
+
+  const clickSaveHandle = (index) => {
     const newSavedItems = [...savedItems];
     newSavedItems[index] = false;
     setSavedItems(newSavedItems);
     setSelectedData(saveData[index]);
     setIsOpened(true);
-    console.log("selectedData", selectedData);
-  };
-
-  const shortAddr = (address) => {
-    return address.substring(0, 6);
   };
 
   return (
     <div className="save-list-wrap">
-      {saveData.length > 0 ? (
+      {hasData ? (
         <>
           {saveData.slice(0, visibleItems).map((data, index) => (
-            <>
-              <div className="save-list" key={`save-list${index + 1}`}>
-                <Link to={`/camping/detail/${data.id}`}>
-                  <div className="save-img">
-                    <img src={data.campImages[0]} />
-                    <div className="save-addr">{shortAddr(data.addr)}</div>
-                  </div>
-                  <div className="save-txt-wrap">
-                    <div className="save-name-wrap">
-                      <div className="save-name">{data.name}</div>
-                    </div>
-                    <div>1박 : {Number(data.price).toLocaleString()}원</div>
-                  </div>
-                </Link>
-
-                <ReactSVG
-                  src={svgCollection.heart}
-                  className={`save-heart-img ${
-                    !savedItems[index] && "save-delete"
-                  }`}
-                  onClick={() => saveHandle(index)}
-                />
-              </div>
-            </>
+            <SaveListItem
+              key={`save-list${data.wishId}`}
+              data={data}
+              isSaved={savedItems[index]}
+              onSaveClick={() => clickSaveHandle(index)}
+            />
           ))}
 
           <SaveModal

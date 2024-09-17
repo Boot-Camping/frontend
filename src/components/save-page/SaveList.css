@@ -3,82 +3,6 @@
   margin: 4rem 0 3rem;
 }
 
-.save-list {
-  position: relative;
-}
-
-.save-list > a {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-/*****************************
- * 	이미지 & 지역
- */
-.save-img {
-  width: 45%;
-  height: 13rem;
-  border-radius: 1rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.save-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.save-addr {
-  position: absolute;
-  left: 0.5rem;
-  top: 0.5rem;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 0.5rem;
-  color: #fff;
-  padding: 0.5rem;
-  font-size: var(--sub-content);
-}
-
-/*****************************
- * 	캠핑장명 & 하트
- */
-.save-txt-wrap {
-  font-size: var(--content);
-  line-height: 1.5;
-  width: calc(100% - 45% - 1rem);
-}
-
-.save-name-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.save-name {
-  font-size: var(--sub-heading);
-  font-weight: bold;
-}
-
-.save-heart-img {
-  width: 2.5rem;
-  height: 2.5rem;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.save-heart-img svg {
-  stroke: var(--red);
-  fill: var(--red);
-}
-
 /************************************
  *	태블릿 CSS
  */
@@ -86,50 +10,9 @@
   .save-list-wrap {
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: start;
     flex-wrap: wrap;
     gap: 4rem;
     margin: 6rem 0;
-  }
-
-  .save-list {
-    width: calc(50% - 2rem);
-  }
-
-  .save-list > a {
-    margin: 0;
-    align-items: start;
-  }
-
-  .save-heart-img {
-    top: auto;
-    bottom: 0;
-    transform: translateY(0);
-  }
-}
-
-/************************************
- *	데스크탑 CSS
- */
-@media screen and (min-width: 1024px) {
-  .save-list {
-    width: calc(25% - 4rem);
-  }
-
-  .save-list > a {
-    flex-direction: column;
-  }
-
-  .save-img {
-    width: 100%;
-  }
-
-  .save-txt-wrap {
-    width: 100%;
-  }
-
-  .save-heart-img {
-    top: 70%;
-    transform: translateY(0);
   }
 }

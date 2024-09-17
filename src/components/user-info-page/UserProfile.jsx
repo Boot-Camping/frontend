@@ -2,7 +2,7 @@ import React from "react";
 import "./UserProfile.css";
 
 const UserProfile = ({ setIsOpened, setModalType, userData }) => {
-  const changeHandle = (type) => {
+  const changeModalHandle = (type) => {
     setIsOpened(true);
     setModalType(type);
   };
@@ -22,27 +22,36 @@ const UserProfile = ({ setIsOpened, setModalType, userData }) => {
     );
   };
 
-  const addrParts = userData.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
-  const address = addrParts ? addrParts[1].trim() : userData.addr;
-  const detailAddress = addrParts ? addrParts[3].trim() : "";
+  const extractAddressParts = (address) => {
+    const addrParts = userData.addr.match(/(.*?)(\s+\d+\s+)(.+)$/);
+    return addrParts
+      ? {
+          mainAddress: addrParts[1].trim(),
+          detailAddress: addrParts[3].trim(),
+        }
+      : {
+          mainAddress: address,
+          detailAddress: "",
+        };
+  };
+
+  const { mainAddress, detailAddress } = extractAddressParts(userData.addr);
 
   return (
     <div className="user-profile-wrap">
       <div className="profile-txt-wrap underline">
         {renderProfileItem("이름", userData.name)}
-        {renderProfileItem("전화번호", userData.tel, () => changeHandle("tel"))}
+        {renderProfileItem("전화번호", userData.tel, () =>
+          changeModalHandle("tel")
+        )}
         {renderProfileItem("이메일", userData.email)}
         {renderProfileItem(
           "주소",
-          addrParts ? (
-            <div className="user-profile-full">
-              <div>{address}</div>
-              <div>{detailAddress}</div>
-            </div>
-          ) : (
-            userData.addr
-          ),
-          () => changeHandle("addr")
+          <div className="user-profile-full">
+            <div>{mainAddress}</div>
+            <div>{detailAddress}</div>
+          </div>,
+          () => changeModalHandle("addr")
         )}
       </div>
     </div>

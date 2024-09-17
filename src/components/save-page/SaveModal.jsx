@@ -1,67 +1,40 @@
-import React, { useEffect, useState } from "react";
 import "./SaveModal.css";
-import { createPortal } from "react-dom";
-import { closeModal } from "../../utils/closeModal";
-import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
-import { deleteRequest } from "../../utils/api";
+import useDeleteSave from "../../hooks/useDeleteSave";
+import PortalModal from "../common/PortalModal";
+import { resetModal } from "../../utils/resetModal";
 
 const SaveModal = ({ isOpened, setIsOpened, selectedData, onUpdate }) => {
-  const { accessToken } = getUserIdFromToken();
-  const [errorMessage, setErrorMessage] = useState("");
+  const { deleteSave } = useDeleteSave(setIsOpened, onUpdate);
 
   const submitHandle = async (event) => {
     event.preventDefault();
 
-    const customHeaders = {
-      Authorization: `${accessToken}`,
-    };
-
-    const wishId = selectedData.wishId;
-    console.log("wishId", wishId);
-
-    try {
-      await deleteRequest(
-        `userprofile/wishlist/remove/${wishId}`,
-        {},
-        customHeaders
-      );
-      closeModal(setIsOpened)();
-      setIsOpened(false);
-      onUpdate();
-    } catch (error) {
-      setErrorMessage(error.message);
-      console.log(errorMessage);
+    if (selectedData) {
+      const wishId = selectedData.wishId;
+      await deleteSave(wishId);
     }
+  };
+
+  const closeModalHandle = () => {
+    resetModal(setIsOpened);
   };
 
   return (
     <>
       {isOpened && (
-        <>
-          {createPortal(
-            <div className="overlay" onClick={closeModal(setIsOpened)}></div>,
-            document.getElementById("overlay-root")
-          )}
-          {createPortal(
-            <div className="save-modal modal">
-              <div className="save-modal-txt">
-                찜 목록에서 삭제하시겠습니까?
-              </div>
-              <div className="save-btn-wrap">
-                <button
-                  className="save-cancel-btn"
-                  onClick={closeModal(setIsOpened)}
-                >
-                  취소
-                </button>
-                <button className="save-confirm-btn" onClick={submitHandle}>
-                  확인
-                </button>
-              </div>
-            </div>,
-            document.getElementById("modal-root")
-          )}
-        </>
+        <PortalModal setIsOpened={setIsOpened}>
+          <div className="save-modal modal">
+            <div className="save-modal-txt">찜 목록에서 삭제하시겠습니까?</div>
+            <div className="save-btn-wrap">
+              <button className="save-cancel-btn" onClick={closeModalHandle}>
+                취소
+              </button>
+              <button className="save-confirm-btn" onClick={submitHandle}>
+                확인
+              </button>
+            </div>
+          </div>
+        </PortalModal>
       )}
     </>
   );

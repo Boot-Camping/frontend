@@ -9,8 +9,8 @@ import searchImg from "/src/assets/svg/search.svg";
 import { getUserIdFromToken } from "../../utils/getUserIdFromToken";
 
 const Header = () => {
-  const { userId } = getUserIdFromToken();
-  const isLoggedIn = !!userId; // userId가 있으면 로그인 상태로 간주
+  const { accessToken } = getUserIdFromToken();
+  const isLoggedIn = !!accessToken; // accessToken이 있으면 로그인 상태로 간주
 
   return (
     <div className="header">

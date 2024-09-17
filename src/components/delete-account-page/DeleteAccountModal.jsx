@@ -7,21 +7,21 @@ import PortalModal from "../common/PortalModal";
 const DeleteAccountModal = ({ error, isOpened, setIsOpened }) => {
   const navigate = useNavigate();
 
-  const message = () => {
-    if (error) {
-      return "동의사항에 체크해주세요";
-    } else {
-      return "그동안 이용해주셔서 감사합니다";
-    }
+  const getModalMessage = () => {
+    return error ? "동의사항에 체크해주세요" : "그동안 이용해주셔서 감사합니다";
   };
 
-  const closeHandle = () => {
+  const closeModalHandle = () => {
     closeModal(setIsOpened)();
 
     if (!error) {
-      navigate("/");
-      window.location.reload();
+			navigateToHome();
     }
+  };
+
+  const navigateToHome = () => {
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -29,11 +29,13 @@ const DeleteAccountModal = ({ error, isOpened, setIsOpened }) => {
       {isOpened && (
         <PortalModal setIsOpened={setIsOpened}>
           <div className="delete-account-modal modal delete-account-error">
-            <div className="delete-account-modal-content">{message()}</div>
+            <div className="delete-account-modal-content">
+              {getModalMessage()}
+            </div>
             <button
               type="button"
               className="delete-account-modal-btn"
-              onClick={closeHandle}
+              onClick={closeModalHandle}
             >
               확인
             </button>
