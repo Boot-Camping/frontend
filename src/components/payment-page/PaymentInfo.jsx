@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./PaymentPage.css";
 
 const PaymentInfo = ({ submitRequestHandle, userData, loading }) => {
-  const [bookRequest, setBookRequest] = useState("");
-
   const requestChangeHandle = (e) => {
-    setBookRequest(e.target.value);
+    submitRequestHandle(e.target.value);
   };
-
-  useEffect(() => {
-    submitRequestHandle(bookRequest);
-  }, [bookRequest, submitRequestHandle]);
 
   return (
     <div className="payment-info-wrapper">
@@ -27,7 +21,6 @@ const PaymentInfo = ({ submitRequestHandle, userData, loading }) => {
         <div>사용자 정보가 없습니다</div>
       )}
       <input
-        value={bookRequest}
         type="text"
         className="request-form"
         onChange={requestChangeHandle}

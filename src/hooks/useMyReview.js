@@ -37,10 +37,6 @@ const useMyReview = (userId, accessToken) => {
     }
   };
 
-  useEffect(() => {
-    fetchMyReviews();
-  }, [userId, accessToken]);
-
   return { myReviews, loading, error, setMyReviews, fetchMyReviews };
 };
 

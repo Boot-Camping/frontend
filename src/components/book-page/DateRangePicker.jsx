@@ -8,6 +8,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
 const DateRangePicker = () => {
+  const { setCampingDays, setCheckIn, setCheckOut } = useCampingDays();
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -17,8 +18,6 @@ const DateRangePicker = () => {
   ]);
 
   const refOne = useRef(null);
-
-  const { setCampingDays, setCheckIn, setCheckOut } = useCampingDays();
 
   // NOTE: startDate와 endDate 차이 일수 계산
   const numberOfNights = differenceInDays(range[0].endDate, range[0].startDate);

@@ -17,17 +17,18 @@ import StarGrade from "../components/detail-review/StarGrade";
 
 const MyReviewPage = () => {
   const { userId, accessToken } = getUserIdFromToken();
-  const updateReview = updateMyReview;
-  const { deleteReview } = deleteMyReview();
-  const [visibleReplies, setVisibleReplies] = useState({});
+
   const [editMode, setEditMode] = useState(null); // 수정 중인 리뷰 ID 저장
-  const [editedContent, setEditedContent] = useState(""); // 수정된 내용 저장
+  const [editableContent, setEditableContent] = useState(""); // 현재 리뷰내용 저장
+
   const { myReviews, setMyReviews, fetchMyReviews } = useMyReview(
     userId,
     accessToken
   );
 
-  // 리뷰 업데이트
+  const updateReview = updateMyReview;
+
+  // 1. 나의 리뷰 get
   const refreshReviews = async () => {
     try {
       await fetchMyReviews();
@@ -40,9 +41,14 @@ const MyReviewPage = () => {
     refreshReviews();
   }, [userId, accessToken]);
 
-  // 리뷰 작성 핸들
+  // 2. 나의 리뷰 수정(put)
+  const editClickHandle = (reviewId, editableContent) => {
+    setEditMode(reviewId);
+    setEditableContent(editableContent);
+  };
+
   const saveClickHandle = async (reviewId) => {
-    const content = editedContent;
+    const content = editableContent;
     const imageUrls =
       myReviews.find((review) => review.id === reviewId)?.reviewImages || [];
 
@@ -71,16 +77,10 @@ const MyReviewPage = () => {
     }
   };
 
-  // 리뷰 수정 핸들
-  const editClickHandle = (reviewId, currentContent) => {
-    setEditMode(reviewId);
-    setEditedContent(currentContent);
-  };
-
-  // 리뷰 삭제 핸들
+  // 3. 나의 리뷰 삭제(delete)
   const deleteClickHandle = async (reviewId) => {
     try {
-      await deleteReview(userId, accessToken, reviewId);
+      await deleteMyReview(userId, accessToken, reviewId);
       setMyReviews((prevReviews) =>
         prevReviews.filter((review) => review.id !== reviewId)
       );
@@ -106,12 +106,14 @@ const MyReviewPage = () => {
               <div className="my-review-date">
                 {formatDate(myReview.createdAt)}
               </div>
+
+              {/* 리뷰 수정모드 */}
               <div className="review-edit-box">
                 {editMode === myReview.id ? (
                   <input
-                    value={editedContent}
+                    value={editableContent}
                     type="text"
-                    onChange={(e) => setEditedContent(e.target.value)}
+                    onChange={(e) => setEditableContent(e.target.value)}
                     className="review-edit-content"
                   />
                 ) : (
@@ -157,6 +159,7 @@ const MyReviewPage = () => {
                   >
                     저장
                   </button>
+
                   <button
                     className="my-review-cancel-btn"
                     onClick={() => setEditMode(null)}
@@ -174,6 +177,7 @@ const MyReviewPage = () => {
                   >
                     수정
                   </button>
+
                   <button
                     className="my-review-delete-btn"
                     onClick={() => deleteClickHandle(myReview.id)}

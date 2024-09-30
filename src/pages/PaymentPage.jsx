@@ -16,10 +16,13 @@ import EmptyContent from "../components/common/EmptyContent";
 const PaymentPage = ({ campInfo }) => {
   const campId = campInfo.id;
 
+  const { checkIn, checkOut } = useCampingDays();
+
+  // 결제모달 상태관리
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
-  const { checkIn, checkOut } = useCampingDays();
   const [bookRequest, setBookRequest] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalBookNum, setTotalBookNum] = useState(0);
@@ -37,11 +40,6 @@ const PaymentPage = ({ campInfo }) => {
 
   const submitRequestHandle = (request) => setBookRequest(request);
 
-  const paymentDataHandle = (totalPrice, totalBookNum) => {
-    setTotalPrice(totalPrice);
-    setTotalBookNum(totalBookNum);
-  };
-
   const toggleModal = (modalType, isOpen) => {
     if (modalType === "first") {
       setIsModalOpen(isOpen);
@@ -50,6 +48,12 @@ const PaymentPage = ({ campInfo }) => {
     }
   };
 
+  const paymentDataHandle = (totalPrice, totalBookNum) => {
+    setTotalPrice(totalPrice);
+    setTotalBookNum(totalBookNum);
+  };
+
+  // 결제 요청 보내기
   const paymentHandle = async () => {
     const customHeaders = {
       Authorization: `${accessToken}`,
@@ -77,6 +81,7 @@ const PaymentPage = ({ campInfo }) => {
     }
   };
 
+  // 유저 정보 불러오기
   const userDataFetchHandle = async () => {
     setLoading(true);
     const customHeaders = { Authorization: `${accessToken}` };
@@ -126,9 +131,10 @@ const PaymentPage = ({ campInfo }) => {
 
       <NormalModal
         isModalOpen={isModalOpen}
-        closeModal={() => toggleModal("first", false)}
+        // closeModal={() => toggleModal("first", false)}
       >
         <p className="payment-modal-title">결제를 진행하시겠습니까?</p>
+
         <div className="modal-box">
           <button
             className="payment-modal-button"
@@ -136,6 +142,7 @@ const PaymentPage = ({ campInfo }) => {
           >
             취소
           </button>
+
           <button className="payment-modal-button" onClick={paymentHandle}>
             결제하기
           </button>
@@ -143,10 +150,7 @@ const PaymentPage = ({ campInfo }) => {
         {error && <EmptyContent errorMessage={errorMessage} error={error} />}
       </NormalModal>
 
-      <NormalModal
-        isModalOpen={isSecondModalOpen}
-        closeModal={() => toggleModal("second", false)}
-      >
+      <NormalModal isModalOpen={isSecondModalOpen}>
         <p className="payment-modal-title">결제가 완료되었습니다!</p>
         <div className="modal-box">
           <Link to="/" className="payment-modal-button">

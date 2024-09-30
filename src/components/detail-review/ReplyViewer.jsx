@@ -5,7 +5,7 @@ import { formatDate } from "../../utils/formatDate";
 import ReplyWriter from "./ReplyWriter";
 
 const ReplyViewer = ({ reviewId }) => {
-  const { replies, loading, error, deleteReply, refreshReplies } =
+  const { replies, loading, error, deleteReplies, refreshReplies } =
     useReplyViewer(reviewId);
 
   if (loading) {
@@ -16,10 +16,9 @@ const ReplyViewer = ({ reviewId }) => {
     return <div>댓글 가져오기 실패: {error.message}</div>;
   }
 
-  const deleteReplyHandle = async (replyId) => {
-    console.log("삭제하려는 댓글 id:", replyId);
+  const deleteRepliesHandle = async (replyId) => {
     try {
-      await deleteReply(replyId);
+      await deleteReplies(replyId);
       console.log(`Reply with ID ${replyId} deleted successfully`);
     } catch (error) {
       console.error("댓글 삭제에 실패했습니다:", error);
@@ -39,7 +38,7 @@ const ReplyViewer = ({ reviewId }) => {
             <div className="reply-edit-btns">
               <button
                 className="reply-delete-btn"
-                onClick={() => deleteReplyHandle(reply.id)}
+                onClick={() => deleteRepliesHandle(reply.id)}
               >
                 삭제
               </button>

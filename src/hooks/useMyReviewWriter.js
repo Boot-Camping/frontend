@@ -4,23 +4,32 @@ import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { reviewTag } from "../constants/reviewTag";
 
 export const useMyReviewWriter = (campId, navigate) => {
+  const { userId, accessToken } = getUserIdFromToken();
+
   const [reviewGrade, setReviewGrade] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
   const [reviewImages, setReviewImages] = useState([]);
-  const [error, setError] = useState(null);
-  const { userId, accessToken } = getUserIdFromToken();
   const [selectedTags, setSelectedTags] = useState([]);
   const [myReviews, setMyReviews] = useState([]);
+
+  const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // selectedTag -> label 추출해서 -> 문자열로 변환
   const reviewTagsString = selectedTags
     .map((tagId) => reviewTag.find((tag) => tag.id === tagId)?.label)
-    .filter(Boolean) // null 또는 undefined 필터링
-    .join(",");
+    .filter(Boolean); // null 또는 undefined 필터링
 
   const gradeChangeHandle = (rating) => {
     setReviewGrade(rating);
+  };
+
+  const toggleTagHandle = (tag) => {
+    if (selectedTags.includes(tag.id)) {
+      setSelectedTags(selectedTags.filter((tagId) => tagId !== tag.id));
+    } else {
+      setSelectedTags([...selectedTags, tag.id]);
+    }
   };
 
   const reviewSubmit = async () => {
@@ -29,14 +38,11 @@ export const useMyReviewWriter = (campId, navigate) => {
       "Content-Type": "multipart/form-data",
     };
 
-    const tagsArray = reviewTagsString.split(",");
-    const imageUrls = reviewImages.map((image) => image.name);
-
     // 리뷰 요청 데이터 -> JSON 변환
     const reviewRequest = JSON.stringify({
       content: reviewContent,
       grade: reviewGrade,
-      tags: tagsArray,
+      tags: reviewTagsString,
       imageUrls: [],
     });
 
@@ -65,14 +71,6 @@ export const useMyReviewWriter = (campId, navigate) => {
     } catch (error) {
       setError("리뷰 제출 에러 발생 🥲");
       console.error("리뷰 제출 에러 발생 🥲:", error);
-    }
-  };
-
-  const toggleTagHandle = (tag) => {
-    if (selectedTags.includes(tag.id)) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag.id));
-    } else {
-      setSelectedTags([...selectedTags, tag.id]);
     }
   };
 

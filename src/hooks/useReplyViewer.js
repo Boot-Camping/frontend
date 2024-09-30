@@ -26,7 +26,7 @@ const useReplyViewer = (reviewId) => {
     fetchReplies();
   }, [reviewId]);
 
-  const deleteReply = async (replyId) => {
+  const deleteReplies = async (replyId) => {
     const customHeaders = {
       Authorization: `${accessToken}`,
     };
@@ -53,7 +53,7 @@ const useReplyViewer = (reviewId) => {
     fetchReplies();
   };
 
-  return { replies, loading, error, deleteReply, refreshReplies };
+  return { replies, loading, error, deleteReplies, refreshReplies };
 };
 
 export default useReplyViewer;
