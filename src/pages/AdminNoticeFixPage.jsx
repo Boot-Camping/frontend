@@ -47,8 +47,26 @@ const AdminNoticeFixPage = () => {
     setDescription(event.target.value);
   };
 
-  const handleRemoveImage = (index) => {
-    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  const handleRemoveImage = async (index) => {
+    const imageToRemove = images[index];
+
+    if (imageToRemove.src) {
+      try {
+        // 서버에 이미지 삭제 요청을 보냄
+        await deleteRequest(`admin/notice/${id}`, {
+          data: { imageUrl: imageToRemove.src },
+        });
+        // 성공적으로 삭제되면 로컬 상태에서도 이미지 제거
+        setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+      } catch (error) {
+        alert(`이미지 삭제에 실패했습니다: ${error.message}`);
+      }
+    } else {
+      // 새로 추가된 이미지를 로컬에서만 삭제
+      setUpdatedImages((prevImages) =>
+        prevImages.filter((_, i) => i !== index)
+      );
+    }
   };
 
   const removeHandle = async () => {
@@ -74,10 +92,17 @@ const AdminNoticeFixPage = () => {
 
     formData.append("request", JSON.stringify(request));
 
-    // 기존 이미지와 새로 업로드된 이미지 모두 추가
-    [...images, ...updatedImages].forEach((image) => {
+    // 기존 이미지 URL을 서버에 보내서 유지
+    images.forEach((image) => {
+      if (image.src) {
+        formData.append("existingImages", image.src); // 서버에서 기존 이미지를 유지할 수 있게 이미지 URL을 보내줌
+      }
+    });
+
+    // 새로 업로드된 이미지를 추가
+    updatedImages.forEach((image) => {
       if (image.file) {
-        formData.append("images", image.file); // 'images' 필드에 파일 추가
+        formData.append("newImages", image.file); // 새로 업로드한 이미지 추가
       }
     });
 
