@@ -32,12 +32,14 @@ const AdminNoticeRegisterPage = () => {
 
     formData.append("request", JSON.stringify(request)); // 문자열로 변환하여 추가
 
-    // 이미지 파일을 배열로 추가
-    images.forEach((image) => {
-      if (image.file) {
-        formData.append("images", image.file); // 'images' 필드에 파일 추가
-      }
-    });
+    // 이미지 파일이 있는 경우에만 배열로 추가
+    if (images.length > 0) {
+      images.forEach((image) => {
+        if (image.file) {
+          formData.append("images", image.file); // 'images' 필드에 파일 추가
+        }
+      });
+    }
 
     try {
       await post("admin/notice", formData, {
